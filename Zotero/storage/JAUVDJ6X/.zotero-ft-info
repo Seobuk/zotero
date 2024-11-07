@@ -1,0 +1,16 @@
+Title:          Design of Shape Memory Alloy-Based Soft Wearable Robot for Assisting Wrist Motion
+Subject:        In this paper, we propose a shape memory alloy (SMA)-based wearable robot that assists the wrist motion for patients who have difficulties in manipulating the lower arm. Since SMA shows high contraction strain when it is designed as a form of coil spring shape, the proposed muscle-like actuator was designed after optimizing the spring parameters. The fabricated actuator shows a maximum force of 10 N and a maximum contraction ratio of 40%. The SMA-based wearable robot, named soft wrist assist (SWA), assists 2 degrees of freedom (DOF) wrist motions. In addition, the robot is totally flexible and weighs 151g for the wearable parts. A maximum torque of 1.32 Nm was measured for wrist flexion, and a torque of larger than 0.5 Nm was measured for the other motions. The robot showed the average range of motion (ROM) with 33.8, 30.4, 15.4, and 21.4 degrees for flexion, extension, ulnar, and radial deviation, respectively. Thanks to the soft feature of the SWA, time cost for wearing the device is shorter than 2 min as was also the case for patients when putting it on by themselves. From the experimental results, the SWA is expected to support wrist motion for diverse activities of daily living (ADL) routinely for patients.
+Keywords:       soft robots; shape memory alloy; wearable; wrist; assistive robots
+Author:         Jaeyeon Jeong, Ibrahim Bin Yasir, Jungwoo Han, Cheol Hoon Park, Soo-Kyung Bok and Ki-Uk Kyung
+Creator:        LaTeX with hyperref package
+Producer:       pdfTeX-1.40.18
+CreationDate:   09/26/19 17:07:13
+ModDate:        09/26/19 17:07:13
+Tagged:         no
+Form:           none
+Pages:          15
+Encrypted:      no
+Page size:      595.276 x 841.89 pts (A4) (rotated 0 degrees)
+File size:      4553861 bytes
+Optimized:      no
+PDF version:    1.5

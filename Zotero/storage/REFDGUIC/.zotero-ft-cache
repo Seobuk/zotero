@@ -1,0 +1,199 @@
+Design of Rotor and Magnetic Bearings for 200RT Class Turbo Refrigerant Compressor
+Cheol Hoon Park and Sang Kyu Choi Dept. of Robotics & Mechatronics Research, KIMM 104 Sinseongno, Yuseong-gu, Daejeon, 305-343, Korea
+{parkch,skchoi}@kimm.re.kr
+
+Abstract. For turbo refrigerant compressor, oil-free bearing has merits that the continuous operation is possible because the lubrication system is not required and the refrigerant is not contaminated by the oil. Magnetic bearing is one of oil-free bearing and recently it started to be applied to a few turbo refrigerant compressors because of easy maintenance thanks to no friction and no wear in bearing. 200RT class turbo refrigerant compressor using oil-free bearing is under development after finishing the development of 145RT compressor. This paper presents the design modification from 145RT compressor and design procedure of hybrid thrust magnetic bearing using both of permanent magnet and electromagnet. Thrust magnetic bearing are designed to support 2,000N thrust force by compressor at 18,000rpm operating speed. The controller for magnetic bearing was designed and the rotordynamic analysis such as critical speed, and unbalance response in case that the rotor is supported by magnetic bearings are simulated by using finite-element method.
+Keywords: Turbo refrigerant compressor, magnetic bearings, rotordynamics.
+
+1 Introduction
+The rotor of turbo refrigerant compressors cannot be supported by the ball bearings because the refrigerant melts the lubricant which is used in the ball bearings. Therefore, turbo refrigerant compressors should adopt the oil-free bearings. Air foil bearings are a kind of oil-free bearings, but they have disadvantages that the maintenance cost is high because there is friction and wear between air foil bearing and rotor at the moment of start-up and the stability is not so high because the damping is low. The other oil-free bearings are magnetic bearings. In contrast to air foil bearing, magnetic bearings have advantages that the maintenance cost is very low because there is no friction and wear in all operation speed range including initial start and the energy efficiency is very high because friction loss is less than 1/500 of friction loss in the typical oil bearings [1, 2]. In this study, we present the design procedure of magnetic bearings to support 200RT class turbo refrigerant compressor. Magnetic bearings here consist of hybrid homopolar type radial bearings and hybrid thrust bearing using both of permanent magnet and electromagnet. Magnetic bearings are designed to support 2,000N thrust force by compressor at 18,000rpm operating
+
+J.-H. Kim et al. (Eds.): Robot Intelligence Technol. & Appl. 2012, AISC 208, pp. 941–949.
+
+DOI: 10.1007/978-3-642-37374-9_91
+
+© Springer-Verlag Berlin Heidelberg 2013
+
+942 C.H. Park and S.K. Choi
+speed. The controller for magnetic bearings was designed and the critical speed, and unbalance response are simulated through rotordynamic analysis using finite element method.
+2 Previous Works
+Several turbomachinery companies have already released compressor using magnetic bearings. TURBOCOR Co. in USA developed centrifugal compressor using permanent/electromagnet magnetic bearings as shown in figure 1, which has been equipped in the chiller of UNILAIR Co. SKF Co. in Sweden developed turbo refrigerant compressor using electromagnet magnetic bearings as shown in figure 2 of which radial and thrust magnetic bearing could generate 1,320 N and 2,200 N respectively. The other company in Sweden, abs also developed turbo compressor using electromagnet magnetic bearings as shown in figure 3.
+
+Motor Volute Impellor
+
+Diffuser
+
+IGV
+
+EMB
+
+Fig. 1. Centrifugal compressor of Danfoss TURBOCOR, USA
+
+Fig. 2. Turbo refrigerant compressor of SKT, Sweden
+
+Design of Rotor and Magnetic Bearings for 200RT Class Turbo Refrigerant Compressor 943
+Fig. 3. Turbo compressor of abs, Sweden Previously, we have developed 145RT class turbo refrigerant compressor which has a configuration as shown in Fig. 4. It was composed of shaft, high efficient impellors, magnetic bearings and high speed BLDC. The rotor was located to stand vertically so that the radial magnetic bearings could be free from the necessity to support the weight of rotor and the force requirement for the radial magnetic bearings could be minimized. In addition to this, this layout is helpful to reduce the force requirement for the thrust magnetic bearing because the gravity force by rotor would act in the opposite direction to the thrust force by compressor. The magnetic bearings to support the rotor were composed of radial magnetic bearings and thrust magnetic bearings. Magnetic bearings are classified based on the way how to generate magnetic flux such as active magnetic bearings (AMB) using electromagnet only, permanent magnetic bearings (PMB) using permanent magnet only and hybrid magnetic bearings (HMB) using the combination of electromagnet and permanent magnet [3]. While PMB have a merit that they don’t need energy, there is a demerit that it is difficult to be used for vibration control because of low stiffness and damping [4]. AMB show the fast dynamic response but they need continuous bias current to generate bias flux and the efficiency becomes low. In contrast, HBM don’t need bias current because the permanent magnets located adjacent to the electromagnet core generate bias flux, and they have merits that they can generate more magnetic force than AMB with the same amount of current and they can be more efficient. On the basis of these reasons, HMB were selected for the radial magnetic bearings so that the size of magnetic bearings could be minimized and the efficiency could be maximized. For the thrust bearing, the
+
+944 C.H. Park and S.K. Choi
+use of both HMB and PMB was selected. While double-acting type thrust HMB generates the dynamic force to take care of the pulsation of thrust force by compressor, thrust PMB located at the end of the rotor generates bias force in the opposite direction to the thrust force by compressor.
+
+Thrust gap sen so r
+R adial HM B
+
+R adialgap sen so r
+M otor stator
+
+R adial HM B
+T h ru st HM B
+Thrust PM B
+Fig. 4. 145RT class turbo refrigerant compressor ( Previous work of this study )
+However, there were several problems in the configuration of 145RT class turbo refrigerant compressor. Firstly, there was no space to install the axial gap sensor at the end of shaft because thrust PMB was installed at that location. Therefore, thrust target plate should be installed right below the second impeller in the rotor. Moreover, correct axial displacement could be measured by averaging the outputs of 2 axial sensors. The additional axial sensor resulted in the increase of the cost. Secondly, thrust HMB was equipped with a radially magnetized ring magnet. Because it is almost impossible to magnetize the entire ring magnet in the radial direction, in practice, a ring magnet is segmented into 6 or 8 pieces, and each segment is separately magnetized in the radial direction. One of the problems with a segmented ring magnet is that it is not easy to assemble all the pieces of the magnet into one ring magnet again and control the gap between the magnet and the thrust collar. Another problem is that the radial magnetic flux becomes non-uniform on the boundaries of the segmented magnets, which results in performance degradation.
+3 Configuration of 200RT Class Turbo Refrigerant Compressor
+Figure 5 shows the configuration of 200RT class turbo refrigerant compressor. In order to solve the problems in the previous work, some configuration has been modified in developing 200RT compressor. Inductive type gap sensor to measure
+
+Design of Rotor and Magnetic Bearings for 200RT Class Turbo Refrigerant Compressor 945
+both axial and radial displacement with one PCBA was developed and installed at the upper side of upper radial HMB and lower side of lower radial HMB. The structure of thrust HMB has been modified to install the axially magnetized ring magnet. Because it is easy to magnetize the ring magnet in the axial direction, the segmentation of the ring magnet for magnetization is not required and the assembly process can be simplified. The rotor length of 200RT compressor is 707 mm, which is increased by 25 mm compared to the rotor length of 145RT compressor. Therefore, it is predicted that the first bending mode critical speed would be reduced, but it would not make any problem because the operating speed is also reduced from 21,000 rpm of 145RT compressor to 18,000 rpm.
+
+A xialand rad ial senso r
+R ad ialH M B
+
+M o to r stato r
+
+R ad ialH M B Thrust PM B
+
+R ad ialsenso r Thrust H M B
+
+Fig. 5. Configuration of rotor and magnetic bearings of 200RT class turbo refrigerant compressor
+4 Design of Magnetic Bearings
+In order to design thrust magnetic bearing, the thrust force to be supported must be identified first. Because turbo refrigerant compressor is the vertical-rotor type, the sum of the thrust force by compressor and the weight of rotor can be considered as the total thrust force to be supported. It is predicted that the mass of rotor will be about 22kg and the thrust force by compressor at the operating speed will be maximum 2,000N. Hence, thrust force covering all speed range is from -200N at a standstill to
+
+946 C.H. Park and S.K. Choi
+1,800N at the operating speed. Thrust magnetic bearing consists of HMB which can dynamically control the magnetic force by changing the amount of current and PMB which generates bias force in the opposite direction to the thrust force by compressor. Ring-shaped coil is located inside of HMB stator made of pure iron. Ring-shaped permanent magnet which is axially magnetized and generates bias flux for HMB is positioned inner side of coil, and pure iron ring which provides a flux path from PM to thrust collar is located on the ring-shaped magnet. PMB using coin-shaped permanent magnet is located inside of pure iron stator at a distance of air gap, g0 apart from the end of the rotor [5]. The integral pure iron structure of thrust collar and Ushape core which is attached at the end of the rotor serves the flux path from HMB and PMB to the rotor. Based on the requirements in Table 1, thrust HMB and PMB were designed by referring [6]-[9]. The dynamic force requirement of thrust HMB is determined to have enough range so that the net magnetic force by HMB and PMB could have a safety factor of more than 1.5.
+
+Thrust collar (Pure-Iron)
+
+N
+PM
+S
+
+Bo b b in (SU S304)
+C oil
+
+Fig. 6. Configuration of thrust HMB of 200RT class turbo refrigerant compressor
+
+Table 1. Design requirements for thrust HMB and PMB
+
+Item Thrust force to be supported Force requirement for HMB and PMB[N] Bias force by PMB[N] Dynamic force by HMB[N] Net magnetic force by HMB and PMB[N]
+
+Value -200~1,800 -1,800~200
+-1,000 -2,000~2,000 -3,000~1,000
+
+In order to check the design validity, magnetic flux density analysis shown as Figure 7 was performed under 3 cases of conditions by using electromagnetic analysis software, Maxwell. The analysis results in Table 3 show that this design would result in generating almost same forces as the design requirements.
+Radial HMB was designed to meet the same specifications as 145RT compressor.[1]
+
+Design of Rotor and Magnetic Bearings for 200RT Class Turbo Refrigerant Compressor 947
+
+Fig. 7. Magnetic flux density analysis of thrust HMB and PMB with 10A current
+
+Table 2. Analysis results for magnetic forces of thrust HMB depending on conditions
+
+Condition Force by PMB only Force by HMB only with 10A current Force by PMB and HMB with 10A current
+
+Magnetic force[N] -729 2,081 1,607
+
+5 Rotordynamic Analysis
+The rotor in Figure 5 is divided into 38 elements as shown in Figure 8 to perform the rotordynamic analysis of the flexible rotor by using finite element method. All other components on the rotor except the shaft are considered as the added mass. The analytical model for the rotor suspended by the radial HMB can be obtained by combining the finite element model of the flexible rotor and the linearized model of the radial HMB [10]. PID controller was designed to compensate the radial disturbances such as unbalance force. The analysis to get the eigenvalues and unbalance response was performed for the speed range from 0 to 24,000rpm, and Damped natural frequency map is shown in Figure 9. It is predicted that free-free first and second bending mode frequency would be 471 Hz and 952 Hz, respectively, and the translational and conical rigid body mode would be met at 1,500rpm and 1,800rpm each and the frequency of backward 1st bending mode at 2,1000rpm would exist at 441Hz which is far enough from the operating speed, 18,000rpm (300Hz). Unbalance response was calculated assuming unbalance is evenly located at 17th and 32nd node with the phase difference of 180deg, and it is predicted that there would be zero-to peak displacement of the rotor at nodes of the location of radial HMB less than 2 μm in all speed range.
+
+948 C.H. Park and S.K. Choi
+
+Fig. 8. Rotordynamic model for FEM analysis
+
+forward backward
+f=441.3 Hz d=.0014 zeta N=18000 rpm
+
+Damped Eigenvalue Mode Shape Plot
+KIMM & MagPlus 200RT Turbo ref rigerant compressor, 18,000RPM (2012)
+1st bending : 441Hz
+
+1200 1000
+800 600
+
+Rotordynamic Natural Frequency Map
+
+Natural Frequency[Hz]
+
+400
+
+200
+
+0
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+Rotor Speed[rpm]
+
+Fig. 9. Mode shape of 1st bending mode and Campbell diagram
+
+2.5 x 104
+
+6 Conclusion
+The magnetic bearings to support 200RT class turbo refrigerant compressor were designed. Basically, they are based on those of 145RT compressor, but new sensors and thrust HMB was adopted to overcome several issues of 145RT compressor. Through the rotordynamc analysis, it was predicted that first bending mode would be located at the high frequency with enough margin from the operating speed. Also, it is predicted that even with PID controller, zero-to-peak displacement caused by unbalance response would be less than 2 μm, and it would be possible to run the stable operation in all the speed range. In the future, we have a plan to build the test rig to verify the performance of the radial and thrust magnetic bearings.
+
+Design of Rotor and Magnetic Bearings for 200RT Class Turbo Refrigerant Compressor 949
+
+x 10-3 6 5
+
+upper x lower x
+
+unbalance response
+
+4
+
+Displacement[mm]
+
+3
+
+2
+
+1
+
+0
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+[RPM]
+
+x 104
+
+Fig. 10. Unbalance response in 200RT class turbo refrigerant compressor
+
+References
+1. Park, C.H., Choi, S.K., Park, J.Y., Yun, D.W.: Design of hybrid magnetic bearings for turbo refrigerant compressor. In: Proc. 17th International Congress on Sound & Vibration, pp. 1–8 (2010)
+2. Allaire, P.E., Maslen, E.H., Humphris, R.R., Sortore, C.K., Studer, P.A.: Low power magnetic bearing design for high speed rotating machinery. In: Proceedings of the NASA International Symposium on Magnetic Suspension, pp. 317–329 (1992)
+3. Rao, J.S., Tiwari, R.: Design optimization of double-acting hybrid magnetic thrust bearings with control integration using multi-objective evolutionary algorithms. Mechatronics 19, 945–964 (2009)
+4. Morales, W., Fusaro, R.: “Permanent magnetic bearing for spacecraft applications”, NASA/TM-2003-211996/REV1
+5. TURBOCOR INC., “Device to relieve thrust load in a rotor-bearing system using permanent magnets”, PCT patent, 2004007984
+6. Lee, A.C., Hsiao, F.Z., Ko, D.: Analysis and testing of magnetic bearing with permanent magnets for bias. JSME International Journal Series C 37, 774–782 (1994)
+7. Lee, A.C., Hsiao, F.Z., Ko, D.: Performance limits of permanent-magnet-biased magnetic bearings. JSME International Journal Series C 37, 783–794 (1994)
+8. Maslen, E.H., Allaire, P.E., Noh, M.D., Sortore, C.K.: Magnetic bearing design for reduced power consumption. Journal of Tribology 118, 839–846 (1996)
+9. Fan, Y.H., Lee, A.C.: Design of a permanent/electromagnetic magnetic bearing-controlled rotor system. Journal of the Franklin Institute 334B, 337–356 (1997)
+10. Yoo, S.Y., Park, C.H., Choi, S.K., Noh, M.K.: Flexible rotor modelling for a large capacity flywheel energy storage system. In: Proceedings of 11th International Symposium on Magnetic Bearing 2008, Nara, Japan, pp. 238–242 (2008)
+

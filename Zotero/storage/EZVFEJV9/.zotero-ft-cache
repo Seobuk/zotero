@@ -1,0 +1,411 @@
+applied sciences
+Article
+High-Precision Roller Supported by Active Magnetic Bearings
+Cheol Hoon Park 1,*, Tae Gwang Yoon 2, Dongwoo Kang 1 and Hugo Rodrigue 3,* 1 Department of Robotics & Mechatronics, Korea Institute of Machinery & Materials, Daejeon 34103, Korea; dwkang@kimm.re.kr 2 Magnetar Inc., Daejeon 34103, Korea; mag1@magnetar.co.kr 3 School of Mechanical Engineering, Sungkyunkwan University, Suwon 16419, Korea * Correspondence: parkch@kimm.re.kr (C.H.P.); rodrigue@skku.edu (H.R.); Tel.: +82-42-868-7980 (C.H.P.); +82-31-299-4860 (H.R.)
+Received: 17 September 2019; Accepted: 14 October 2019; Published: 17 October 2019
+Featured Application: Printing machines, Roller conveyors, Cleanroom applications.
+Abstract: Magnetic bearings support rotors in a non-contact way using magnetic force. Therefore, there is no friction and it is possible to measure and control the position of a rotor in the air gap. In this study, the rotational vibration of a roller was minimized using magnetic bearings, and a precision roller capable of automatic alignment using the position control function of magnetic bearings was proposed. A rotation accuracy of approximately 4.6 µm (peak-to-peak) was observed, even under a rotation of 30 rev/min and a radial force load of 300 N. The rotor position control experiment for magnetic bearings showed that 1-µm resolution position control is possible. To further improve the accuracy, the automatic alignment algorithm was proposed using magnetic bearings for the roller misalignment condition, and it was conﬁrmed that alignment is possible at a level that the pressing force diﬀerence between both ends of the roller is within 0.3 N. Through this study, it was conﬁrmed that rollers with magnetic bearings can be applied to precision equipment. It is expected that the implementation of the automatic alignment function will simplify the equipment conﬁguration and maintenance compared to conventional rollers with ball bearings.
+Keywords: magnetic bearings; automatic alignment; high precision roller; roller applications
+
+1. Introduction
+Display devices, such as ﬂexible OLED, micro LED, electronic papers, RFID sensors, solar panels and other electronic elements can be mass-produced in a continuous manner similar to newspapers. Thus, the low-cost mass-production of printed electronics technology is attracting considerable attention [1,2]. In particular, since display devices are composed of ﬁne patterns with features ranging in size from a few µm to tens of µm, the roller must have a vibration amplitude smaller than this feature size. Ideally, the vibration amplitude should remain within a few µm. The vibration of the roller and the application of an ever force during printing are some of the most important factors directly aﬀecting the printing accuracy. Therefore, the roller used for printing requires extremely precise printing surface processing and low rotational vibration. Commonly used printing machines for producing sub-micron patterns include roll-based nanoimprinting and reverse oﬀset printing. In addition, since printing forces signiﬁcantly aﬀect the patterning mechanism and printing quality [3,4], printing machines for producing sub-micron patterns must have high-precision printing force control and a uniform printing force. For multi-step continuous roll-to-roll printing technology, the tension control of the web [5], the roll of paper used in oﬀset printing, using the roller and longitudinal displacement control are also
+
+Appl. Sci. 2019, 9, 4389; doi:10.3390/app9204389
+
+www.mdpi.com/journal/applsci
+
+Appl. Sci. 2019, 9, 4389
+
+2 of 16
+
+important to reduce printing errors [6]. Furthermore, the implementation of proper roller alignment is one of the most important factors in achieving high printing precision and a uniform printing force.
+In general, rollers are supported by ball bearings. In the case of printed electronics equipment, the performance improvement and commercialization of printed electronics elements are hindered by the poor rotation accuracy or diﬃculties during the roller alignment process. Most printing equipment under research/development uses rollers with ball bearings. Ball bearings exhibit signiﬁcant mechanical wobble, which produces rotational vibrations with at least 10–20 µm of displacement owing to non-uniform stiﬀness and clearance [7]. In addition, rollers tend to shift during roll-to-roll printing, which causes misalignment of the printing rollers such that disassembly and re-assembly of the printing rollers is required during the production process. Due to this, it is extremely diﬃcult and time-consuming to implement reliable precision printing. A non-uniform force distribution on the printing surface causes periodic errors due to the printing force, and may cause serious printing defects such as nanoimprinting, microcontact printing, and oﬀset printing [8–12]. The printing force applied by rollers must be uniform to improve the printing quality. For this, many additional devices are required, including various force and position sensors, pneumatic or hydraulic actuators, linear motors, and voice coil motors, which make the structure of the printing equipment complicated and more expensive while still requiring periodic re-calibration [13].
+Magnetic bearings cause constant bearing stiﬀness with no friction because they support rollers in a non-contact way, while controlling the magnetic force [14]. This makes the rotational vibration of the roller very small. In addition, since the positions of both ends of the roller can be arbitrarily and easily changed within the air gaps between the shaft core and the electromagnets of the magnetic bearings, it is possible to automatically align the roller so that the printing forces at both ends of the roller can act uniformly. Active magnetic bearings have been used for a wide range of applications including rotors [15], turbo blowers [16], control moment gyroscopes [17], gears [18], and for machining [19]. Existing magnetic bearing rotational machinery focus on the performance of rotating shafts during transmission of a torque, but no study has been done on the use of magnetic bearings to transmit a force as would be required of rollers. Furthermore, the surveyed literature does not include any function for self-aligning rollers that could signiﬁcantly increase the printing performance for printed electronics.
+In this study, a concept for a roller with force feedback for self-alignment making use of magnetic bearings to adjust and align the printing forces without re-assembly was designed and fabricated for precision printing. Its basic performance was tested, and the automatic alignment function was implemented and veriﬁed. The measured rotation vibration of this system under a lateral load was measured to be much less than existing rollers with ball bearings. The ﬁne displacement movement performance of the roller using the position control of the magnetic bearings was examined, and the automatic alignment performance was experimentally veriﬁed. This study proposes the applicability of a new type of roller to precision printing equipment.
+2. Automatic Alignment System Using Magnetic Bearings
+For roll-to-roll or roll-to-plate type printing, alignment between the roller and printing surface is required for uniform printing quality. The alignment degree of a roller can be deﬁned as the mechanical parallelism between the roller and printing surface or the uniformity of the printing force at both ends of the roller. For rollers with typical ball bearings, repetitive measurement, disassembly and re-assembly processes are required to adequately align the roller and printing section. In addition, during printing, additional driving devices are required to apply uniform printing forces to both ends of the roller. However, the roller can move freely within the air-gap range and the printing force at each end of the roller can be controlled when magnetic bearings are used as the radial bearings at both ends of the roller. Therefore, the printing forces at both ends of the roller can be controlled to apply a uniform pressure. Furthermore, it is possible to implement the automatic alignment function of the roller by using this characteristic.
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+3 of 16 3 of 16
+
+22.1.1..MMaaggnneetitcicBBeeaarrininggSSyysstteemmCCoonnfiﬁgguurraattioionn
+
+MMAapapggl.nnSeceit.ti2ic0c1b9,e9a, rxiFnnOggRssPcEcaEanRnmREmeVaIeEsaWusrueraenadncdonctornoltrtohle tphoesiptiosnitoiof ntheofrotthoer urositnogr eulescintrgomelaegcntreot3mso, faseg16nnseotsrs, , saenndsocrosn, atrnodl scyosnttermolss. yFsitgeumres.1Fsighuorwes1tshheoswchsetmheasticchdemiagatriacmdioafgtrhaemmoafgthnetmicabgenaertiincgbceoanritnroglcsoynstreoml .
+sTyhsteepm2o..1sT.itMhioeangpnoeftsiictthiBoeenasrhoinafgfttShwyesitstehhmainfCtotwnhfeigthauirrnatgitohanpe aisirmgeaapsuisremdeuasuinrgedthuesignagptsheengsaoprsspelnascoerds ipnlatcheedxinantdhey
+xdairnedctyiodnirsMe. caTtgihonenetsmi.cTabgheneaermitniacggsbneceaatnricinmbgeeaacsrouinrtgerocalonlnedrtrcaoodlnljteurrosaltsdthjtuheseptspotsohisteiiotpinoonosifotitfohtnehoreofsttohraefustshcianofgrteceoblerycetcrbooymnctaorgonnltelritons,lglinthge tihnepuintspceuuntsrorcerusn,rtraoennfdtchooenf mttrhoaelgsnmyesatteigcmnbsee.taFicrigibnuegreacr1oinsilhgsoucwopsiplthlsieeudspcpthhleirmeodautgitchdrtoihaueggrcahumrtrhoeefnttchuderrmriveanegrtn. edTtrihcivebeemra.raiTgnhngectominc tabrgoenlaeritnicg bceoanrtirnosgyllsectreomcnot. rnToshlilesetprsoocsofitnaiospnisrotosfptohfretsiaohnapfartlow-piniotthreitgniortanhlae-dla-einrritgveaagptriaivsle-md(eParIisDvu)aretcidovneutsr(ionPlgIlDetrh)ewcgoiatnhptrasoesnlalsemorrpswlpiinltahgcefadreisqnaumtehnpecliynogf f1r0eqkuHexnza,cnyadloyefad1di0reckcoHtmioznp,sea.nTlsehaetdomcra,ogamnnepdtiecanblseoaawtroi-nrp,gacsnosdnﬁtarlotlelolrew.rT-apdhajeussPstsIfDitlhtegrap.ioTnshiwteioaPnsIoDofptghtaiemisnhizwaeftadcsotoorepsbttiyambciolzynetldreovtloliitnasgtaebtlhye lreovtiotarttaehnetdhiensperuocutorcreurarnepdnhtsaoesfceutmhreeamargpaignhnaoesfteimcmboeararergitinhngaoncfo2mi0l ◦so.urpeptlhieadn t2h0r°o.ugh the current driver. The magnetic
+bearing controller consists of a proportional-integral-derivative (PID) controller with a sampling
+flerevqituaetencthyeorfo1t0orkHanzd, aselecSauedrnecsoaomrphpaesnesamtoarr,gainndofamloowre-ptahsaGsnafpi2al-0tmse°erp.n.sTohre PID gain was optimized to stably
+
+Shaft corSeensor
+Shaft core
+
+Gap-sensor amp
+
+A/D
+CoAn/Dtroller
+
+ContrDo/lAler
+
+Stator core
+
+(electromagnet)
+Stator core
+
+Current
+
+driver
+
+D/A
+
+F(Fieiglgeuucrtrereo11m..SaScgchhneeemmt)aatitcicddiaiaggrraammooffmmaaggnneetitCcidcubrbrievreaeeanrrritninggccoonntrtroollssyysstteemm..
+
+22.2.2..PPrrininccipiplelessoof fththeeAAuutotomFmiagatuitcirceAA1l.ilSgigcnhnmemmeenanttitcSSdyyisastgteremammUUosfsimningaggMnMeataigcgnbneeetatiricicnBgBeecaoarnriintnrgogslssystem.
+FF2iig.2gu.urPrerein22cispshlheosowowfstshtethhAeeutttoeemsstatiitnnicggAslsieegtntuumppenfftooSrryasatssesmseesUsssisininngg MtthhaeegnaaeuutitctooBmmeaaartitiniccgsaalliiggnnmmeenntt ppeerrffoorrmmaannccee ooff tthhee pprreecciissiioonnrFrooigllluleerreffo2orrsphproriwinntstiintnhgge..RtReasadtdiinaigallmsmetaauggpnnefeottircicabsbeseaeasrrsiniinngggsstchcaeappaaaubbtloelemooafftciccoonanltitrgronolmllliinennggttthpheerrfroaarddmiiaaalnlpcpeoososifittiitoohnenaanndd ffoorrcceewpwreeercreiesiionnnsstrtaaollllleeedrdfaoatrtbpboroitnthhtienengnd.dRssaoodffiatthlhemerarogolnllleetrir,c,aabnnedadraiantgthhsrrcuuaspsttambmleaagognfneceottinicctrbboeelalairnriginngtghwewraaasdspipalllaapccoeesdditaiaottntthahneedrriigghhtt eennddoofffothrtcheeerworleolrelelreitrnosttcoaollcneotdnroatrtlotbhloethhaeexniaadxlsimaolfomtvheeomvroeelmnletre.,nIantn.sdidIanestthihdreuesrtahmdeiaarglanmdetiaiacglbnmeeatarigicnnbgeewtaircaisnbpgelsaa,rcgiendagpasts, teghnaesporirgsshewtnseorres awttearceheaentdtdaiconhf tethhdeeirnoxl-tlahexreitsxo-acaonxnditsryoal-natdhxeiysa-xadixaiirlsemcdtoiirvoeencmstieotnonts.mItnoesaimdseuetraheseutrrhaeedtihdaleismdpailsagpcneleamticceebmnetaernoiftngothsf,etghareportsooetrnosironirnsrewraeelarletitmimee. . TThhrroouuaggththactthhheeedffeeineeddthbbeaaccxkk-aoxofifsthtahenedgagypa-pasxeisnsesndosirosercostinoontnhsetthomememaesaeusaurseruedrterhodellrdeorisldlpeilrsapcdeliamscpeenlmatceoenfmtt,hetenhter,opttohoresiitpnioornseiaotlifottinmheoe.frotlhleer rtoirohofnafelstdltheirhidraeaeedTrtolilhonflihedteealshftrliflhietorretdradeeuaaedaicginlnnrieithtadresifhdolitcgtdedrnthareaiiinieagorpgftdiehnrhfrhcoewetrttfgemiirmadgoaamoihnbsprmataathfgcgwcgrmoaenkotnphnamaeceosegttwetrfintcinccohacteoehtlsebtlnenbieececcrtteodeargebaonnor.raertftilpTaiorenlntoerrfhghsildgonetlseeehs.nfgdcrTtesrschoa.oaahrcTenlrdnaalesherindbaaerborideoblnearpileomlcalrctleolmhcoloaeromnepnrganptoamtpgnrtrrgrsorneooeoneoltaepllldepillestceoetoiudidicdscsbnr..eee.bbeTTdddteeTahhhaairihrinerneirosieninpltnptslhgpgehotgoisrsusosisssiadadstsiaintsitnioyutisntdoidnpudodcntldyoanhatthfnycoehcoeetaffechmmfnotafefrthoeomnohcrnerevraeomctcdea,rveeranitoeauahdaadvdlupenniepbiapddpateoluotloaspobppsrib±teioio±ienttao0s0isoagorin..ir2t2snti±iniioomcno0mofgan.ngfem2snmsaotomchbcicfafhneeiaemnnenaatbcihbchnehee uusseeddtutooseaadddjtujousasttdtjthuhesetfftohorerccefeoerecxxeeerertxteeedrdtebbdyybttyhhetehreroorllollelelrerarananndddtththheeellloooaaadddccceeelllllslssppprrorovovivdiidedefeofrfocorerccfeeeeffdeeebedadcbbkaacockfktohofeftcthohenetcacocontnttaacctt ffoorrcceeafaonnrdcdeaaalliniggdnnammliegennmttoeofnftthohefetrhrooelllrleoerrllwewriitwthhitrhreesrseppsepeccettcttoototththheeeeeellleeemmmeennttttthhheeerroroollllellererirsiisisniincnocncootannctttaawccttitwwh.iitFthhig..uFFriieggu3uriresea33iissaa ccoonncceepcpottunucaaelpldtduiaiaaglgrdraiamamgroaofmftthohefetahaueutatooummtoamatitacictiacalilagilgingnmnmmeenenntttooofffttthhheeerrroolllelerrraaannndddsshshohowowswstshtethhdeeedfdienefiﬁitninoiinttiiooonfnaoolifgfanalmliiggennnmtmeenntt uusseeddiuinnstethdhiissnpptahapipseeprra..pIIfeftrth.hIefetpphreriinpntrtiiinnngtginffogorfrcocerescseasarraeeretthhteheessasaammmeee,,iitt iiisssaaassssssuuummmeeedddthtthahtaaattlaiaglliniggmnnemmneteninsttaiicsshaaieccvhheiiedev.veedd..
+
+FigurFeig2u.re 2.PPrreecciissiioonnrorlloelrleterstitnegstsinetgupswetituhpmawgintehticmbeaagrninegtsicforbaeuatroinmgasticfaolrignamuetontmpaetrifcormalaingcnement perforamsseasnscmeeansts. essment. Figure 2. Precision roller testing setup with magnetic bearings for automatic alignment performance
+assessment.
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+4 of 16 4 of 16
+
+Figure 3. Basic concept of automatic alignment of roller..
+33.. DDeessiiggnn ooff MMaaggnneettiicc BBeeaarriinngg aanndd RRoolllleerr SSyysstteemm
+FFiigguurree44shshoowws sthtehecocnoﬁngfuigruatriaotnioonf tohfetphreecpirseiocnisiroonllerroslylesrtesmyswteimth mwiatghnmetiacgbneeatricinbges.arTihnegsr.adTihael mraadgianletmicabgenaertinicgsbeaaprpinligeds taoptphleiepdretcoistihoen rporlelecirsfioornprroinllteinr gfomr upsrtinbetinabglemtousstupbepoarbtltehetoprsiunptipnogrftotrhcee apsriwnteilnlgasfotrhceemasawsseollfatshtehreomllears,sboefcathueserothlleerm, baescsaoufsethteheromllaesrsaoctfsthaes raorlaledriaalctlsoaads .aTrahdeimalalossado.fTthhee rmolalsesr oisf 3th0ekrgoallnedr itsh3e0mkagxaimndumtheprminatxinimgufomrcperainptpinligedfotroctehaeprpollileedr dtourthinegrpolrlienrtidnugrwinagspsreitnttoin3g0w0 Nas. Tsehtetroef3o0r0e,Nth. eThmeargefnoerteic, tbheeamrinaggsneatticmbuesatrbinegcsaaptambluesotfbgeecnaepraatbilnegoaf gfoernceeroatfinatgleaafsotr6ce00oNf a.tBlaeasestd6o0n0 tNh.isB, atsheedroanditahlism, athgeneratidciablemarainggnsetwicebreeadriensgigsnwederetodgeesingenreadtetoa gfoernceeraetaecha feoxrcceeeedaicnhg e3x0c0eeNd.inIng 3th0e0 cNa.seInotfhtehecaasxeiaolf ftohrecea,xtihaleftohrrcues, tthgeentherruastetdgebneetwraeteedn btheetwcoeeren athnedcroorteoranmdargonteotrimn athgenemt ointotrhaenmdotthoer aaxnidaltchoemapxoianlecnotmofptohneepnrtionftitnhgefporrcinetcinaugsfeodrcbeyctahuesvedibrbaytitohneavnidbrmatiisoanligannmd emnitsoaclicgunrmrinegntdoucrciungrrtinhge rdoutaritniognthofetrhoetartoilolenroafctthaesraoxlliearl dacisttausrbaaxniacleds.isStiunrcbeatnhceesse. Sfoinrcceestahreesenofotrlcaersgea,rtehneortelqaurgiree,dthfoerrceeqoufirthede tfhorrucestomf athgenetthicrubsetamrinaggnweatiscsbeteatori1n0g0wNa. sThseetrtoolle1r0,0roNto.rTohfethreolmleor,torro,troorlloefr pthreinmtinogtosre,crtoiollne,rapnrdinshtianfgt csoercetiowne,reanddessihganfetdctoorebewienrteegdreasteigdnaesdotnoebpearint tfeogrreaatseedoafscoonnteroplaarnt dfocroemapseleotef lceovnittarotiloann. dThceomdepsliegtne pleavriatmateiotenr.sTohfethdeesraigdniapl aarnadmaextiearlsmoaf gthneetricadbieaalrainngdsawxiearlemsealegcnteetdicbbaesaedrinognsthweemreasgenleectitcedcirbcausietdanodn tthhee mmaaggnneettiicc fcoirrccue ietqaunadtitohne,manadgntheetiyc wfoerrcee eexqaumatiinoend, aunsdintghMeyawxwereelle,xaaﬁmniinteedeluemsinengtMelaexcwtroemll,aagfninetitice ﬁeleelmd aennat leylseicstsroofmtwagarneetpircofgieraldma[n2a0,l2y1s]is. Tshofetwdiamreenpsrioongrsaomf th[2e0m,21a]g.nTehtiec bdeimareinngssiownseroefsethleectmedagbnaseetidc obneatrhiengrosllwereuresesdelfeocrtethdebteasste,dbuotnththeseerdoilmleernussioendsfmoraythneeteedstt,obbuetinthcereseasdedimdeenpseinodnisnmg oany tnheeesdpetociﬁbce ainpcprleiacsaetidondeapnednrdoilnlegr ounsetdhebescpaeucsifeiclaarpgperlicbaetaiorinngasndwirlol lbleerreuqsuedirebdectaoussueplpaorgrterhebaevaireirnginsdwuisltlribael rroelqleurisr.edThtoisspurpopcoesrst hiseoavmieitrteinddfurosmtriathl irsopllaeprse.rTfhoirsbprreovcietys.sTishoemaiirttgeadpfroofm±0th.2ismpmapienrwfohribchretvhietyr.oTllheer caairngmapovoef w±0a.2s mdemsiginnewdhtiochimthpelermolelenrt ctahne mauotovme wataics adleigsingmneednttofuinmcptiloenmoefntthteheroaluletro. mThatiiscmaloigvnemmeenntt rfaunngcetioisnsoufﬃtchieenrtoflloerr.mTohsitspmroodvuecmtioenntprraoncgeessiess swuhffeicreietnhtefaodr jmusotmstepnrtoids ufacitriloynspmraolcl,ebssuetsthwehceurrerethnet oardtjuhsetmmaegnnt eistifcabirelayrsinmgaslli,zbeumt itghhetcnuererdentot obretihnecrmeaasgendettoicgbeenaerriantge stihzeesmamigehmt naegendettioc bfoericnecfroeraslaerdgetor mgeonveermateentthreansagmese. Tmhaegsnpeeticciﬁfocarctieonfosrolfatrhgeerprmecoivseiomnernotllrearnagneds.mTahgenseptieccibfeicaartiinognssporfotphoesepdreicnistihoins srtoulldeyr aanredlimstaegdnientiTcabbelear1in. gs proposed in this study are listed in Table 1.
+
+AAppppll.. SSccii.. 22001199,, 99,, x43F8O9R PEER REVIEW Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+55ooff 1166 5 of 16
+
+Figure 4. Configuration of precision roller with magnetic bearings for automatic alignment function.
+
+FFiigguurree44..CCoonnfﬁigguurraattiioonnooffpprreecciissiioonnrroolllleerr wwiitthh mmaaggnneettiicc bbeeaarriinnggss ffoorr aauuttoommaattiicc aalliiggnnmmeenntt ffuunnccttiioonn..
+
+TTaabbllee 11.. SSppeecciifﬁiccaattiioonnss ooff mmaaggnneettiicc bbeeaarriinnggss..
+
+Table 1. SpeIctifeimcations of magnetic bearingsV. alue
+
+Radial
+
+Item
+magnetic
+
+bIeteamring
+
+outer
+
+diameter
+
+V7Va2alumlueme
+
+RRRaadadidRaiRiaRlRaalmadlaamdmdidaaiagiiaalaagnglmllnenmmmeteaitctaigaaiccgbnggbenbenneaeeteeariatittcrirniiicicncbgnbgebgbmeaeoeraroaaueirvqrrtnieieiunngnrmiggrgdmeeoidrnraoueetmfvqqtroeeaeuurtrncmiieergrdreeeiddnatmfforoearrtncceeegre ThrRuTasdthmiraualsgmtnmeatgaicngbeneteiactriibcnegbaerreaiqnriugnirgmedroefvqoeurmcierendtfroarncgee
+
+±±70372033.022.000m20mm0NmmNNmmm ±1010.0020NmNm
+
+ThrustRmolalegrnRdeoitalilcmebreetdeariraimngetreerquired force 1171700m0mmNm
+
+RolleRrRolelolnelglrethrdilaenmgetther RollReroRlrlooeltrlaRRewtoriooellrnillogeeshtrrpatwwlteeieoeendinigggtshhhptt eed
+
+31307000mmmm 330033r3300er00evkv/kkgmm/gfgmmiffnin
+
+Roller rotation speed
+
+30 rev/min
+
+TThhee pprroottoottyyppeess ooff tthhee mmaaggnneettiicc bbeeaarriinnggss aanndd pprreecciissiioonn rroolllleerr eeqquuiippmmeenntt ffoorr pprriinnttiinngg wweerree
+
+ffaabbrriicTcaahtteeddparaoccctcootrryddpiinnegsg totoof ttthhheee ddmeessaiigggnnnepptiaacrraabmmeaeerttieenrrgssssshahnoodwwnnprpperrceeivvsiiiooonuussrllyoy.l.lFeFriiggeuuqrrueei55paam,,bbensshht oofwowrssptthhrieenftfiaanbbgrriiccwaateteerdde
+
+frraaabddriiiaacllaaatenndddatthchcrruourssdttimmngaaggtnoneethtiicecbbdeeeaasrirgninnggsps, ,aarnandmdFeFitgiegurusrerse5h5cocwpprnersepesrneentvstistohtuehseplyrp.erFceicsgiiusoirnoenr5oralol,ebllre.srhF. oFrworrsorltlohelerlerfraobrtaortiticaoatnitoe,nda,
+
+rdaaiddreiiracetlcadtnrdidvrietvhmerumostototmro(raTg(BTnMBetMSic-S1b-21e92a19r3i1n,3Kg, soK,loalmlnlmdoroFgrieggnue,nrRe, aR5dcafdpofroedrs,deV,nVAtsA,tU,hUenniptiertedecdSistSiaottanetser)so)wllwearsa.suFusoesrderd.o.ller rotation, a
+
+direct drive motor (TBMS-12913, Kollmorgen, Radford, VA, United States) was used.
+
+FFiigguurree 55..FFaabbrirciactaetdedrorlloelrlearndanmdagmnaegtincebteicaribnegasrifnogr sauftoormaautitcoamliagtnicmeanlitgfnumncetniot nf:u(nac)triaodni:al(am)argandeitaicl Fmbiegaagurnirneegti;5c(.bbF)eatbhrirrniucgsa;tt(embd)agtrhnorleultesirct mbaenaadgrinnmegtai;cgabnnedati(rccin)bgpe;raearcniindsigo(scn)frpoorlelecairus. itonmraotlilcera.lignment function: (a) radial
+4. BamsiacgPneetrifcobremarainngc;e(bT)etshtroufstPmreacginseiotinc bReaorlilnegr;wanitdh(cM) pargenciestioicnBroelalerri.ngs 4. Basic Performance Test of Precision Roller with Magnetic Bearings 4lo. aBdasTaTinhhcdeePtbbeoaarpfssoiirccormpdpueearrcnffeoocserrtmmeTpaae-nnswtcceieosfoeofPfinttrhhcereceeiaaascsicoettuuninaaRttlooaorrtletltroeoarplpwfrroooirtddchueusMcceweammagsniinvneieitmmriciﬁaaBlledevvai.ibbrTirronaatgtiimisoonnplwwemhheeennntssauuubbtjojeemccttaeetddicttaooliaagllnaamtteeerrnaaltl loonadthTeahnreodlbleatrossi,cpgprooeodrdfuopcreemrfsaotnercmpe-awonficsteehoeifnatchrteuesaestoetwriotnoclphaartoreadrcautlecrefiosmrtciicenssiimsweaaslssveivnbetriraaitlfi.oeFndig.wuThroeen6imsshupoblwejemsctetehndet tcaoounatcoleamptetaurtaiacll ladoliiaagdgnrmaanmednottfotnhpetrhroeodlrulo-ctloele-rrssot,ellgplo-owoaddisepcoeinrnfdcorirtemiaosanentceienstolufasteehrdeastleoftoewvrcoaelcsuhawateraatschteverebirsaitfsiiicecsdpi.seTrefososreimmntapinalecl.meFoeigfnutthraeeua6tcostmhuoaatwtoicsr, athliegncomnecnetpotunatlhdeiargorllaemrs,ogf othoedrpoellr-ftoor-mroallnlcoeaodfctohnedseititownotecshtaurascetdertiosteicvsalius aetsesethnetiabla.sFicigpuerrefo6rmshaonwces
+the conceptual diagram of the roll-to-roll load condition test used to evaluate the basic performance
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+6 of 16 6 of 16
+
+aonf dthFeigaucrteua7toilrlu, satnradteFsigthuereex7pielrluimsternattaelsstehteupexcponersitmruecntetadl bsaesteudp ocnonthsterudciategdrambaswehdeorenththeeiddlieagrorlalmer hwahsearedtihame iedtleer roofll1e0r0hmasma. diameter of 100 mm.
+Magnetic bearing
+
+Main roller
+
+Idle roller
+
+Load cell
+
+FFiigguurree 66.. CCoonncceeppttuuaall ddiiaaggrraamm ooff rroollll--ttoo--rroollll llooaadd ccoonnddiittiioonn tteesstt..
+
+FFiigguurree 77. .VVibirbartaiotinonmemaseuarseumreemntetnetsttoefstproecfispiorencrisoilolenr froorllperrinftoinrgpwriinthtimngagwneitthic bmeaarginnegtsicdebpeeanrdininggs odneploenadd.inSguponplleomaden. Staurpypmlimateernitaalr, yVimdaeoteSri1ali,sVpirdoevoidSe1disfoprrtohviisdteedst.for this test.
+44..11.. VViibbrraattiioonn PPeerrffoorrmmaannccee ooff RRoolllleerr uunnddeerr RRaaddiiaall LLooaaddss
+AA llooaadd wwaass aapppplliieedd tthhrroouugghh tthhee iiddllee rroolllleerr oonnttoo tthhee pprriinnttiinngg rroolllleerr aanndd iittss vvaalluuee wwaass mmeeaassuurreedd uussiinngg aa llooaadd cceellll aattttaacchheedd ttoo tthhee fﬁixxttuurree ooff tthhee iiddllee rroolllleerr.. FFiigguurree 88 sshhoowwss tthhee rreessuullttss ooff mmeeaassuurriinngg tthhee vviibbrraattiioonn aammoouunntt ooff tthhee rroolllleerr ddeeppeennddiinngg oonn tthhee llooaadd ccoonnddiittiioonn ooff tthhee rroolllleerr uussiinngg tthhee ggaapp sseennssoorrss ooff tthhee lleefftt aannddrrigighhttraraddiaial lmmagagnneteitcicbebaerainrignsg.sT. hTehveivbirbartiaotniown awsaﬁsrsfitrmstemaseuarseudrewditwhoituhtocuotnctaocnttwacitthwtihthe itdhlee irdollelerroulnledrerunstdoepr csotnodpitcioonndaintidonat a3n0drevat/m3i0n r(Fevig/murien8a(F,big).uTrehe8ma,ba)x.imThuemmvaibxriamtiuomn mveibarsautrioedn umnedaesrurthede sutnopdecrotnhdeitsitoonpwcaosndapitpiornoxwimasataeplypr2o.2xiµmmat(epleya2k.-2toμ-pmea(pk)eawkh-tiole-ptheaekm) awxhimileumthevimbraaxtiimonumat 3v0ibrreavt/imoninawt 3a0s arepvp/rmoxinimwaateslyap3.p6rµoxmim(paetealky-t3o.-6peμamk).(pNeeaxkt-,ttoh-eperoalkl)e.rNweaxst,tetshteedroaltle3r0 wreavs/mteisnteudndater3a0 3re0v0/Nmilnatuernadl eloraad3f0r0omN tlhateeirdalleloroaldlefrrowmhitchheroidtaletersoallte5r1wrehvic/mh rinotoarte0s.8a5t H51zr(eFvig/murien8ocr).0T.8h5eHmza(xFiimguurme v8cib).rTathioenmmaxeiamsuurmedviinbrthateio3n0 mreeva/msuinrerdoitnattihoen3a0nrde3v0/m0-iNn rmoataxtiimonumanldoa3d00c-oNndmitaixoinmwuams laopapdrocoxnimdaittieolny 4w.6asµampp(proexakim-taot-epleyak4.)6. Iμnmth(ipsecaaks-et,o-tpheeavki)b. rIantiothniscocmaspeo, nthene tvoibf rtahteiornotcaotimonpofrneeqnuteonfcythoef rtohteatiidolne rfroelqleure(n0c.8y5oHf tzh)ewidasleforoulnledr t(o0.b85e Hthze)lwaragsefsot usonudrtcoe boef vthiberlaatrigoens.tTsohuesrecevoibfrvaitbiorantsioanr.eTohreigsienvaitberdatfiroonms aalrlecoormigpinonateendtsfroofmthealslycsotemmpoinncelnutdsinofgtthhee svyibstreamtioinncclauudsiendgbtyhethveibmraatgionneticcaluesveidtabtiyonthoef tmheagrnoellteirc, tlehveitraotuionndnoef stsheerrroolrleorf, tthhee srhoaufntdcnorees,sveirbrroartioofnthoef tshheafdtrcivoirneg, vmibortaotrioonr ofrfotmhethderiivdinlegrmolloetro,rthoer mfroamss uthnebiadlalenrcoelolefrt,htheeromllaesrsaunndbfarolamncseenofsothr enrooisllee.r and from sensor noise.
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+7 of 16 7 of 16
+
+FFiigguurree 88.. VVibibrraatitoionndduueetotoththeeloloadaddduurirnigngthtehemmagangenteicticlelveivtaittaiotinonofotfhtehreorlloelrl:er(a: )(ast)osptocponcdointdiointio(0n r(e0vr/emv/imn,in0,N0)N; ()b; )(br)ortaottiaotniocnocnodnidtiiotinon(3(030rerve/vm/mini,n0, 0NN);)a; nandd(c()c)rorotatatitoionnccoonndditiitoionnuunnddeerraaffoorrccee llooaadd ((3300 rreevv//mmiinn,, 330000 NN))..
+DDuurriinngg rroottaattiioonn,, aa llaarrggeerr hhaarrmmoonniicc vviibbrraattiioonn wwaass mmeeaassuurreedd aatt tthhee lleefftt bbeeaarriinngg tthhaann aatt tthhee rriigghhtt bbeeaarriinngg.. TThhiissaappppeeaarrssttoobbeebbeeccaauusseeoofftthheeiimmppaaccttoofftthheettoorrqquuee rriippppllee iinn tthhee mmoottoorr llooccaatteedd oonn tthhee lleefftt eenndd.. TThheefrferqeuqeunecnycoyf tohfistvhiibsravtiiobnrawtiaosn78wHasz, w78hicHhzi,s twhehi1c5h6thishathrme o1n5ic6tchomhpaormneonnticcorcroemsppoonndeinngt ctoortrheespleoansdticnogmtomtohne mleuaslttipcolemomf 1o2n-pmouleltiapnlde o39f -1s2lo-pt.oIlet wanads c3o9n-sﬁlormt. eItdwthaastctohnefirromlleedr wthitaht tmheagrnoellteirc wbeitahrimngasgwneatsiccbaepaarbinlegos fwaarsoctaaptiaobnlael ovfibarraottioatniopnearlfovribmraanticoenopfelrefsosrmthaannc4e.6ofµlmess(ptheaakn-4to.6-pμemak()peevaekntwo-hpeenakap) pevlyeinngwahelanrgaepplaltyeirnagl faolracregoefla3t0e0raNl faotracerootfa3ti0o0nNal aspt eaerdotoafti3o0nraelvs/pmeiend. of 30 rev/min.
+4.2. Step Movement Control Performance of Roller
+Another function that the roller must meet is the ability to accurately execute step movement position control to be able to calibrate the roller without disassembly of the entire system. The next section shows the performance of the roller to execute step movements of different heights in order
+
+Appl. Sci. 2019, 9, 4389
+
+8 of 16
+
+4.2. Step Movement Control Performance of Roller
+Appl. AScin. o20t1h9e, r9,fxuFnOcRtiPoEnEtRhRaEtVtIhEeWroller must meet is the ability to accurately execute step move8moefn1t6 position control to be able to calibrate the roller without disassembly of the entire system. The next steocteivonalushaotewisnthaedpvearnfcoermhaonwcesomfatlhletrhoellererstooluextieocnutoefstehpe mstoevpemeonvtesmoefndtiﬀtheraetnthheeirgohlltesrinisoradbeler ttoo epvearlfuoarmte.in advance how small the resolution of the step movement that the roller is able to perform.
+TThhee mmaaggnneettiicc bbeeaarriinnggs ppeerrffoorm ffeeeeddback control ttoo ccoonnsstantly pposition the sshhaft ccooree aatt tthhee rreeffeerreennccee ppoossiittiioonn, wwhhich iiss tthhee cceenntteerr ooff tthhee mmaaggnneettiicc bbeeaarriinngg ssttaattoorr ccoorree,, bbyy mmeeaassuurriinngg tthhee eerrrroorr bbeettwweeeenn tthhee aaccttuuaall ppoossiittiioon ooff tthhee sshhaafftt ccoorree aanndd tthhee rreeffeerreennccee ppoossiittiioonn aanndd ccoommppeennssaattiinngg ffoorr tthhee eerrrroorr.. TThhee rreeffeerreennccee ppoossiittiioonns ooff tthhee lleefftt aanndd rriigghhtt rraaddiiaall mmaaggnneettiicc bbeeaarriinnggs aarree mmoovveedd iinn tthhee rraaddiiaall ddiirreeccttiioonnttooppeerrffoorrmmaasstteeppmmoovveemmeenntt.. TThhee reessoolluuttiioonnaannddsseettttlliinnggttiimmeeffoorrsstteepp mmoovveemmeennttssooff1100 aanndd 11µμmmwwaassmmeeaassuurreeddwwiitthhsstteeppmmoovveemmeennttssbbeeiinnggeexxeeccuutteeddaattccoonnssttaannttiinntteerrvvaallssooff22ss.. After ﬁfive steps, tthhee rreeffeerreenncceeppoossiittiioonnsswweerreemmoovveeddbbaacckkttootthheeoorriiggiinniinnﬁfviveesstteeppss. .
+IInn tthhee 1100 µμmm mmoovveemmeenntt tteesstt,, aann oovveerrsshhoooott ooff aapppprrooxxiimmaatteellyy 2200%% ooccccuurrrreedd aafftteerr tthhee mmoovveemmeenntt wwiitthh aa rriissiinngg ttiimmee ooff 00..004477 ss,, aanndd tthhee mmoovveemmeenntt ttoo tthhee rreeffeerreennccee ppoossiittiioonn wwaass ppeerformed with a 3% sseettttlliinngg time of 00..4477ss(F(Figiguurere99aa).).PoPsoitsiiotniocnocnotrnotlrowliwthitahreasroelusotilountionf aopfparpopxirmoxaitmelayte1lμym1 µwmaswalasso aclosnofciromnﬁedrmtoedbteo pboespsoibslseibulesiunsginmgamgnagetniectibcebaerianrginsg, sw, whihchichwwouoludldbbeeuusseeffuullffoorr the ssuuppeerriimmppoosseedd pprriinnttiinnggooffpprreecciisseeppaattteerrnnss((FFiigguurree99bb))..
+
+FFiigguurree 99.. SStteepp mmoovveemmeenntt tteesstt rreessuullttss ooff tthhee rroolllleerr wwiitthh mmaaggnneettiicc bbeeaarriinnggss:: ((aa)) 1100 µμmm mmoovveemmeenntt;; aanndd ((bb))11µμmmmmoovveemmeenntt..
+5. Automatic Alignment Function Test of Precision Roller with Magnetic Bearings 5. Automatic Alignment Function Test of Precision Roller with Magnetic Bearings
+The ability to perform automatic alignment is one of the main advantages of using magnetic bearinTghse faobriplirtyectiosiopnerrfoolrlmersa. uTthoims caatinc baeligdnomneenwtitihs oountedoisfatshseemmbaliynaanddvcaanntabgeeseaosfiluysaindgjumsteadgnaentdic bearings for precision rollers. This can be done without disassembly and can be easily adjusted and calibrated between production batches. This section introduces two methods for automatic alignment of the roller.
+
+Appl. Sci. 2019, 9, 4389
+
+9 of 16
+
+calibrated between production batches. This section introduces two methods for automatic alignment of the roller.
+5.1. Automatic Alignment Test of Roller
+The basic automatic alignment method of the roller is shown in Table 2 and Figure 10. Figure 11 shows the simple schematic of the automatic alignment function test device using load cells. When the roller contacts the alignment reference surface, the contact forces at both ends of the roller are measured and these contact forces are compared to align the roller. Load cells, which can simultaneously measure the force applied at each end and play the role of the alignment reference, were installed at the left and right ends of the roller. Although both load cells have diﬀerent distances from the origin of the roller, they are located within closer distances than the magnetic bearing air gap (0.2 mm), in which the roller can move. Figure 12 shows the experimental setup for the automatic alignment test. After levitating the roller to the origin with magnetic bearings, misalignment is forcibly formed by placing both load cells at diﬀerent distances from the roller surface within the range of the air gap (±0.2 mm) of the radial magnetic bearings. The reference force used to determine whether the roller contacted the load cells (alignment reference surface) was set to 5 N, and the forces applied to the load cells were measured while the roller was moved toward the load cells with a constant ﬁne displacement (here 5 µm). The ﬁne displacement movement of the magnetic bearings was stopped when contact forces exceeding 5 N were measured by both load cells.
+
+Table 2. Sequence of steps for automatic alignment of roller.
+
+Step
+
+A load cell for measuring the contact forces between the roller and counterpart surface is
+
+1
+
+installed at each end of the roller. Here, each load cell is installed to create misalignment
+
+within the air gap (±0.2 mm) of the roller surface and radial magnetic bearings.
+
+2
+
+The reference force used to determine whether the roller contacted the counterpart surface is set.
+
+The reference position of the roller shaft in the radial magnetic bearings is modiﬁed so that
+
+3
+
+the roller can move toward the counterpart surface (load cell) at a constant displacement.
+
+Through this, the roller moves by a ﬁne displacement.
+
+4
+
+When the roller contacts a load cell, the load cell can measure the contact force. The ﬁne displacement movement is repeated until the contact force is measured.
+
+The contact forces measured through the load cells at the magnetic bearings of both ends
+
+5
+
+are compared with the reference force. If the contact forces are smaller than the reference force, the ﬁne displacement movement is repeated. Otherwise, contact is determined and
+
+the movement is stopped.
+
+AAppppll.. SSccii.. 22001199,, 99,, 4x3F8O9 R PEER REVIEW AAppppll..SSccii..22001199,,99,,xxFFOORRPPEEEERRRREEVVIIEEWW
+
+1100 ooff 1166 1100 ooff 1166
+
+Figure 10. Flow chart for automatic alignment. FFiigguurree1100..FFlloowwcchhaarrttffoorraauuttoommaattiiccaalliiggnnmmeenntt..
+Figure 11. Schematic of automatic alignment test for roller with magnetic bearings. FFiigguurree1111..SScchhheeemmmaaatttiiicccooofffaaauuutttooommmaaatttiiiccaalliiggnnmmeenntttteessttffoorrrroolllleerrwwiitthhmmaaggnneettiiccbbeeaarriinnggss..
+FFiigguurree 1122.. EExxppeerriimmeennttaall sseettuupp ffoorr aauuttoommaattiicc aalliiggnnmmeenntt tteesstt ffoorr tthhee rroolllleerr wwiitthh mmaaggnneettiicc bbeeaarriinnggss uussiinngg FllFooiiagagdudurcrceee1ll1ll2ss2...EExxppeerriimmeennttaallsseettuuppffoorraauuttoommaattiiccaalliiggnnmmeenntttteessttffoorrtthheerroollleerrwwiitthhmmaaggnneettiiccbbeeaarriinnggssuussiinngg llooaaddcceelllss..
+FFiigguurree 1133 sshhoowwss tthhee rreessuullttss oofftteessttiinnggtthheeaauuttoommaatitcicaalilgignnmmeennt tfufunnctcitoionnoof fththeerorlolellrermmovoevdedbyby5 μm5mμm1μm2mmµmoooo0mvv.v.v.μii① iF① in① .Fnnnmigiggggg1,uTaTuaaTacrTthtthrthoee6he66e6me1000e10rr3rp3μiμiµrμiggslgimsmmegmhhhhhthto.ti..to.nt③ wl③ l③ wlogo3olsoaasaaTdaTdtTdTtuhdhhhhhccteceeeoeeceeerlemlrllleleleleeleslfsfassfsftutttsuttttaaillltalllcotoraortorstastartaaaeeteodddolddeddiffdgccctcttteneteeoeoetollslmolslltlddtdisssedisneettnettnaateagtatgeetrrterr.cetttctctteheteTctehtdddtedfhfefoofoartttaotroroooruocucrcutedceddtedogeoeeefemffhmtrttrftreoeeroeoatcaoccmcmhtmttttmitiicfffcsf2o2oo2o,a2a0r0rr0rli0clcictciμgeμeμegeµcnmmnfmofffmrmrrrmuoooobblbemmbmemdaananassst6bse6t6e6efe5ed55fd5duduμμpnµμoonoomrcmmnmncnentti,d,,ti,ottoahtahaiahnhcnnennenetedodeddooooofdfr④ r④ r④ rti4itihgitghgghieisiesnsiansntntrtt,otro,o,oo,opaptapalpahlnnppnlpenpeeddeerdederddldmd② e② m②fm2mmomto-vososevososettvnvtevtovoodoididipipnnpnpnbppbggpagpgyyeeneeaaaadd5dddtt5tt 112200 μμmm,, ccoommpplleettiinngg aauuttoommaattiicc aalliiggnnmmeenntt.. TThhrroouugghh tthhiiss,,iitt ccoouulldd bbee pprreeddiicctteedd tthhaatt tthhee lleefftt--eenndd aanndd
+
+Appl. Sci. 2019, 9, 4389 AAppppl.l.SScic.i.22001199, ,99, ,xxFFOORRPPEEEERRRREEVVIEIEWW
+
+11 of 16 1111oof f1166
+
+r1ri2gig0hhµt-tme-enn,dcdommisipsaalleilgtiginnnmgmeaenunttstosmooffatthtihceearroliolgllelnermrfofeonrrtt.hthTeehlolrooaadudgchceeltllshlsi(sc(,cooiutuncntoetuerrlpdpaarbrtetsspuurrerfafdacicece)t)ewdweterhreeaataptphpperroloxexifmitm-eanatetdelylayn66d00 μrμimgmh.t.-TeThnhede mtitmiimseaelisgspnpemenntetnftofsorrotfhttheheearauoutlotloemrmafoatitrcicthaealillgiognanmdmeceennltltsw(wcaoasusnaaptpeprprproaoxrxitmismuaartfetaelcylye)11w77esrs.e. AaApftfpeterrorxaailmilgiganntmemleyenn6t0,t,µthtmhee. mTmheeaastsuimurreeeddspccoeonnnttatfacoctrtftofhorercceaeuwtwoamassa77t.i4.c4aNNligfofnormrtehthneet rwrigiaghshtatepenpndrdoaxaninmdda5t5.e2.l2yNN17fofsor.rAthtfheterlelaefltfitgeennnmdd.e.AnAtn,ntahapeppmprroeoxaxismiumraeatdete dcdoifinffeftearrceetnnfcocerecooeff2w2.2.a2sNN7.w4waNassfmomreeatahssueurrreiegddhbtbeetnwtwdeeeaennndbbo5ot.2hthNeennfdodsrs,t,whwehhilceichfht iesins2d2.4.4ANNnooavvpeeprrrtohthxeiemrreeafefterredenincﬀceeervevanalculueee.o.FfFi2gi.gu2urNree 1w144assshmhooewwasssutrhtehede tbetessttwt rereessnuulbtlstostahaftfeetnerrdssse,etwttitnihngigchththiese2d.d4isispNplaloacvceemmretenhntetraaetfte11r0e0nμμcmemvtaotlourere.eddFuuicgceuertehthe1e4titsmihmoeewsspptehennetttfeofsortr araelilsgiugnlnmtms eaenfntte.t.r setting the displacement at 10 µm to reduce the time spent for alignment.
+
+FFororccee( (N)N) PPoosistiitioonn( (mmm)m)
+
+00.0.055 00.0.000 -0-0.0.055 -0-0.1.100 -0-0.1.155
+88 66 55NN 44 22 00
+00 22
+
+①①
+
+②②③③
+
+RLRLeigefitghftcht④oct④coroceroreere
+
+44 66TTimi8m8ee(s(1s1e0e0cc))1122 1144 1166 1188
+
+FFFiigigguuurrreee111333...TTTeeessstttrrreeesssuuulltltstssuuunnndddeeerrrtththheeerrreeeffefeerrreeennnccceeeffofoorrrccceeeooofff555NNNaaannndddmmmooovvveeemmmeeennntttooofff555μµμmmm.. .
+
+FFororccee( (N)N) PPoosistiitioonn( (mmm)m)
+
+00.0.055 00.0.000 -0-0.0.055 -0-0.1.100 -0-0.1.155
+88 66 44 22 00
+00
+
+LRLReigefitghftcht octcoroceroreere
+
+22
+
+TT4i4mimee(s(seec6c6))
+
+88
+
+1100
+
+FFFiigigguuurrreee111444...TTTeeessstttrrreeesssuuulltltstssuuunnndddeeerrrtththheeerrreeeffefeerrreenncceefoforrcceeooff55NNaannddmmoovveemmeennttooff1100μµμmm. .
+
+AAltlhthoouugghhtthhtheeettiitmmimeeespsspepenentntftofrofortrhtehthaeeuatauoumtotoammtiacatitacilcigaalnilgmignenmnmteednntetcdrdeeaccrsreeadassteoedd9totso, 9t9hses,,mthteheaesmumreeeadassucurorenedtdacccotonfnotatraccett afwoafodradrcsicfeiﬀffe8efw.ewr3reaeanNsnsc8c8ef.e3o.3irniNnNtthfhtofheoererrctichtoghoenhentrtatriageicgctnhthdftofteoraenrcnncdeddeabab6nenetdNwtdw6e6feNeoNenrnfboftbohororetthththlheeefenltenldeefdtfsntsedoenocndaccdcfuuatuarerfrrtfrrreteeetrddhrdteahtahfeatfteetelaeirarlgriltgnihtghnhmenememeccneoeontmmnsmt.stpps.pl.UlUeleUetntnitinoidododneneneroorobffbfottohtthhhteeheccaacoaololinlingingdgdndnniimtimtmitioieooeennnnnnststs,,t,,,, aannddththeeeennddththaat tﬁfifrrisrststtrrereaeacachchehededdtthhteheerrerefeefefrererenencncecefeofofrocrreccesehsshohwoowewdeedadalaalralgarerggreeerrrererorrrrootrhrtahtnhaanthntehthoeethootehtrh.eerTr.h.TiTshhiasipsapapeppapreesaartross tboteobbbeeecbabeueccsaeauuassepeahaepnphohemennoeonmmoenennsooinmnsisliamimr itlioalartrhtoteopthtrheinepcpirprinilnecciopipfletlehoeoflfethtvheerleloevcvecerurrorocicnccugurdrrriunineggtdodutuheeetotfootrhtcheesfofeonrrcsceoerssseenbnessoinorrgss bnbeoeitninlgogcnanotoettdlolooccnaattetheddeoionnstihtdheeeimninsasigdidneeemtmicaagbgnenaeertitncicgbbse.eaaTrrihninigsgsms. .TaThkheisissmtmhaeakkeenessttirhtheeereoenlnlteitrirereorrotoalltlelerarrrroootuatantetdeatarhroeouunnnodndt-htmheoenvnoionnng-mbmeoaovrvininggbabseeaaarripninigvgoaats,sawaphpivcivhooti,tn,wcwrhehiacischehsinitnchcrereeafaosserecssethtthheerfoofuorgrcceheothtuhrtro. ouCugoghnhosoueutq.tu.CCeonontnlsyse,eqiqutuewennatltsylyc, ,oitintﬁwwramassecdcoontnhfifarirmtmteheded tchtuharatrtethtnheteaccluiugrrrnremenntetnaaltilgiagnlgnmomreientnhttmaalglrgoeoqrriutihtihrmemsriremeqqpuuriroirevesesimmimepnprtro.ovveemmeennt.t.
+555..22.2...IImmImppprrorovovveededdAAAuuuttootmommaatatiitccicAAAlliilggignnnmmmeenenntttTTTeeseststotofofRfRRoololllelelrerr bpcepbcbbpceoroeeeeeorreenanrtarronarwfrftrotofrroatiaiTorTnaeinrccrTnbrehmcghmttgbhmgetnefeefstesoofswtmhmteheorwmhhreracrarceoroearrefcefoeerovotfvteecovntbrercbencoreecbmoomeinitmotneinrhttrwnterhweteeaeewettn,ne,echthn,ewthewctteeewestcsnoeefsnhohoppnonhotpinoirhrftrctifccraftehctehehtaeethhcvvehthcsvltephpiieetepooilaeefefoeleuouftnsresrfuosrfmmsrftfadsofmosrtcnoamcmraeratamdrnaemhmsllnmeleslldeeerletsdatseirhtsahrrgnrrhp..penoroip.hdooFgfioFdddoFgtedsrhsrtrsrheoiiioithtetoitsnisthmitimsneemoioddedeocndnnsrnueuanadreuadonceceenffsnceofooefstoteaoanrrntotoaonrhlecolfttileifenrttetrgigtnrhthog.ochtnhonrcelhneleToem,,elmeeom,ldadaflrdaenofeeniriroenonfﬀireonrddnlffrdtcdleelftitceleesttrrupepehtrhr.eepmhrce.eeenneiTeerensriToccrlsoslsctolsoeeorpmphoeepmccrebbciearaoeebiscaeecoemtdtcrteittdttidrietoiuoiwwtvpieoivuwvnnﬀcieoneeemciee,eemroee,oe,orterpnfntrfaerepnfhteotnenthdtthotdihrdhthtchsiurehtueseueteeatcdhe,cammcndippmiatinnipntfhinaoonatffgaogetgefsgsghtgtesirintnhhatttiranehtihteiueaeehnnooieetetnnoteinrtcniocintcecdedchmtdedoo,bihbioe,fbifuﬀfeateefffehtefatctetrahehathirrieerrrhcnreeerieedeieniendgnaannunammgulguccmtgicucsehstgecaaiseotnaiewngwgoinimwgnginmnmnenghhnrhaeetttieiaerthhtttchticnoiithhtcihheecceiicrhteecc aalilgignnmmeennttpprroocceedduurreewwaassmmooddifiifeiedd, ,aasssshhoowwnnininFFigiguurree1155. .FFirirsst,t,bbooththbbeeaarrininggssmmoovveeaattaaggiviveennssppeeeedd
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+12 of 16 12 of 16
+
+p(crooacresdeusrteepw).aWs mheondeiﬁitehde,r aesndshoofwthneirnolFliegrurreeac1h5e.sFtihrsetr,ebfoerthenbceeafroinrcgesfmirsotv, tehaetraolgleivr eenndsptheeadt r(ecaocahresde tshteepr)e. fWerehnecneefiothrceer menodveosf itnhethroeloleprproesaictheedsirthecetiroenfeorefnthcee fporricnetiﬁnrgsts,utrhfeacreolaletraernedduthceadt rsepaecehded(ftihnee sretefepr)etnocecofomrcpeenmsoavteesfoinr tthhee loepvpeor seiftfeedctiraenctdiopnreovf ethnet fpurrinthtienrginscurrefaacsee aotf athreedcuocnetdacstpfeoerdce(.ﬁMneovsteemp)entot ocofmthpeernoslaleter sfotorpths ewlhevenertehﬀeeccotnatnadctpfroervceens taftubroththereinndcsreoafstehoefrtohlelecroanrteahctigfohrecret.hManovtheme reenfet roefntcheefroorlcleer. Astonpesswtimheantethfoerctohnetarcattifoorocfecsoaatrbseotshteepndtos foifntehseteropllcearnabreehoibgthaeinr ethdaunstihnegrtehfeerpernicnecifpolreceo.fAlenveesrtuimsiantge tfhore tdhiestraanticoeobfectowaeresne sttheepbteoaﬁrinnegssteapndcatnhebediosbtatanicneedfroumsintghethbeeparriinngciptoletohfelleovaedr ucesilnl.gTthhreoudgishtatnhcies mbeetwtheoedn, tthhee tbiemareinspgesnatnfdorththeedcisotnatnaccet ffroormcetthoerbeaecahrinthgetroetfhereelnocaedfcoerlcle. Tcahnrobuegrhedthuicsemd,etthhoede,rrthore wtimithe tshpeenrteffeorretnhceecfoonrtcaectcafonrcbeetroedreuaccehdt,haenrdeftehreendciefffeorrecnecceainnbteherecdouncteadc,t tfhoerceerrboertwwietehnththeerelefeftreanncde rfoigrhcet ecanndsbecarnedbuecreedd,uacneddt.he diﬀerence in the contact force between the left and right ends can be reduced.
+
+Figure 15. Flow chart for improved automatic alignment.
+FFiigguurree 1166 sshhoowwss tthhee rreessuullttss ooff tthhee aauuttoommaattiicc aalliiggnnmmeenntt tteesstt ccoonndduucctteedd bbaasseedd oonn tthhee iimmpprroovveedd aauuttoommaattiicc aalliiggnnmmeennttpprroocceedduurreefoforraarerfeefreernecnecfeofrocrecoefo5fN5.NH.eHree, rsete, pstmepovmeomveenmt eonf tcooafrcsoeamrsoedme aondde fainnde ﬁmnoedme owdaeswsealsesceteledctaesd1a0s μ10mµmandan2d μ2mµm, r,ersepsepcetcivtievlyel.yI.nInththeepprerevvioiouusssseeccttioionn, ,tthhee rroolllleerr wwaass eevvaalluuaatteedd ttoo bbee ccaappaabbllee ooff sstteepp mmoovveemmeenntt ooff 11--μµmm rreessoolluuttiioonn,, tthhuuss iitt ccaann ppeerrffoorrmm fﬁinnee mmooddee ooff 22--μµmm sstteepp mmoovveemmeenntt..①1 TThheerriigghhttloloaaddcceellllstsatratretdedtotodedteetcetcftofrocrecferofrmom222μ2mµmbabseadseodnothnethoerigoirnig, iann,dan②d s2tasrttaedrtemdomvionvginingtihnetohpepoopspitoesditieredctirioenctiionnstienpsstoepf s2 oμfm2. µ③m.Th3e lTehfteloleafdt lcoealldsctaerltlesdtatroteddetteoctdfeotreccet ffororcme f6r0omμm60, aµnmd, a④ndal4iganlmigennmtewntaswcaosmcopmlepteledteodnocenctehethleefltefctocroeremmovoevdedbbyy113300μµmm..TThhiiss kkeepptt tthhee ccoonnttaacctt ffoorrccee ooff tthhee rriigghhtt--eenndd llooaadd cceellll nneeaarrllyy ccoonnssttaanntt tthhrroouugghhoouutt tthhee mmoovveemmeenntt oofftthheeootthheerrbbeeaarriinngg.. AAfftteerr aapppprrooxximimaatetelyly99s,st,htehealiaglingmnmenetnwt aws acsomcopmlepteledteads tahsetmheeamsueraesdurfoerdcefsorocnesbootnh beontdhs eonf dthseorfoltlheer reoxlcleeerdeexdcetehdeerdetfhereernecfeerfeonrccee.foArfctee.rAafltigernamliegnntmcoenmtpcloemtiopnle,ttihoen,mtheeasmuereadsufroerdcefsorocnesboonthbeonthdsenodf sthoef trhoellerrowlleerrew5e.9r6e N5.9a6ndN6.a1n2dN6. .T1h2eNd.iﬀTehreendceiffweraesn0c.e16wNa,sin0d.1i6caNtin, ginsdigicnaiﬁticnagntsliyginmifpicraonvtelyd aimligpnrmoveendt acolimgnpmareendt tcoomthpeapreredvtioouthseauptroemviaotuics aaluigtonmmaetnict amliegtnhmode.nTt ambeleth3osdh.oTwabslteh3e srhesouwltsstohfeﬁrveesualutstoomf faitviec aaluigtonmmaetnict taelsitgsnfmoretnhtetreesftesrefonrcethfoercreesfeorfe5ncNe afonrdce1s0 Nof u5nNderanradnd1o0mNmuinsadleigrnrmanedntomconmdiitsiaolnigsn. mIneanltl caosnedsi,ttihoensd.iﬀIneraelnlcceaisnesth, ethmeedaisfufererednfcoercienbtehtewemeenaesaucrhedenfdorocfethbeetrwolelernaefatecrhaelingdnmoefntthwe arsolleesrs athftaenr a0.l3igNnm, ceonntﬁwrmasinlegssthteharenli0a.b3lNe a, ucotonmfiramticinaglitghnemrelniatbfulenacutitoonmoaftitchealiimgnpmroevnetdfuanlgcotiroitnhomf.the improved
+algorithm.
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+13 of 16 13 of 16
+
+Position (mm)
+
+0.05
+0.00
+-0.05
+-0.10
+-0.15
+8 6 5N 4 2 0
+0
+
+①
+
+②③
+
+2
+
+4
+
+6
+
+Time (sec)
+
+Left core Right core
+④
+
+8
+
+10
+
+Force (N)
+
+FFigiguurere1166. .TTeessttreressuultlstsoofftthheeiimmpprroovveeddaauuttoommaattiicc aalliiggnnmmeenntt ccoonnttrrooll;; rreeffeerreenncceeffoorrccee,,55NN;;mmoovveemmeenntt1, 11, 010µμmm; m; movoevmemenetn2t ,22, 2µmμm. .
+
+Table 3. Automatic alignment test results for random misalignment.
+
+Table 3. Automatic alignment test results for random misalignment.
+
+Test No.
+
+Reference Force
+
+Measured Force Error between Both Ends of the Roller
+
+Test N1o. Reference F5o[Nrc]e Measured Force Error betwe0e.1n5 [BNo]th Ends of the Roller
+
+1 2
+
+5 [N] 5 [N]
+
+0.15 0[.N24][N]
+
+2 3
+
+5 [N] 5 [N]
+
+4
+
+10 [N]
+
+3 5
+
+5 [N]10 [N]
+
+0.24 0[.N12][N]
+0.21 [N]
+0.12 0[.N16][N]
+
+4
+
+10 [N]
+
+0.21 [N]
+
+5.3. Presca5le Film Test 10 [N]
+
+0.16 [N]
+
+5.3. PrTeshcealeeﬀFeiclmtivTeensetss of the automatic alignment of the roller was tested using a prescale ﬁlm (LLW, Fujiﬁlm Co., Tokyo, Japan), which can visually conﬁrm the force distribution of the roller (Figure 17a). TheTphreesecfafelectﬁivlmeneisssaokfitnhde oafuptormesastuicrea-lsiegnnsmiteivnet oﬁflmthethraotllcehr awnagsetsecstoeldorudsienpgenadpirnegscoanletfhilemp(rLesLsWin,g Ffuojricfielm[13C].oT.,hTisoksoyrot,oJfaapuatno)m, wathicicahligcannmvenistucaolulyldcobnefpirrmacttihcaellfyorrceealdiziesdtribbyuatitotanchoifntghleoarodllbeern(eFaitghutrhee 1b7aas).eTphlaeteporefstchaelepfriilnmtinisg aeqkuiinpdmoefntpsrhesoswurne-inseFnisgituivree 1f7ilam. Tthhaetpcrheascnagleesﬁclomlotresdtsepweenrdeinpgerofonrmtheed purensdseinrgtwfoorcceon[1d3i]ti.oTnhsi,sinsowrthoicfhauthtoembaatsiec pallaigtenmanedntrocloluerldwbeerepmraicstaicliaglnlyedreaanlidzeadlibgyneadtt,arcehspinegctliovaedly, baenndeatthhetrheesublatssewpelraetecoomf tphaerpedri.nFtiinrsgt,eaqufoiprcmeeonft2s5h0oNwnwians Faipgpulrieed17toa.tThheepprersecsaclaeleﬁflimlmwtietshtsawroelrleer puenrfdoerrmthede munisdaelirgtnwmoencot ncodnitdioitnios,n,inanwdhtihcehrtehseulbtaisseshpolawten ainndFigroulrleer17wbe.rTehmenis,atlhigenroedllearnwdaaslaiglingende,d rwesipthectthiveeblays,eapnldattehue sriensgutlthsewauertoemcoamticpaalriegdn.mFeirnsttp, arofcoerdcueroefa2n5d0fNorcwesasofap25p0liaenddto50th0eNpwreesrceaaleppfillimed wointhtoatrhoellperreusncadleerﬁthlme mbyistahliegnromlleenr.tTcohnesdeitrioesnu, latns darteheshroeswunltiins sFhigouwrne i1n7cF,idg.uTrehe17ebﬀ.eTchtievne,ntehsesrooflltehre waaustoamligantiecdalwiginthmtehnetboafstehpelraotleleurscinang btheevaisuutoamllyatciocnaﬁlirgmnemdetnhtrpourogchedthuereunanifdorfmorcweisdothf 2o5f0thaendm5a0rk0s Nonwtehreeparpepscliaelde ﬁolnmto. the prescale film by the roller. These results are shown in Figure 17c,d. The effectiveness of the automatic alignment of the roller can be visually confirmed through the uniform
+width of the marks on the prescale film.
+
+Appl. Sci. 2019, 9, 4389 Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+14 of 16 14 of 16
+
+FigFuigreur1e7.17(.a()aE) xEpxepreirmimenentatlalsesetutuppaannddtteessttrreessuullttss ooff ffoorrccee ddiissttrriibbuuttiioonn((bb))bbeeffoorreeaanndd(c()c,),(d(d) a) fateftrer
+
+roller alignment.
+
+roller alignment.
+
+6. Conclusions 6. Conclusions
+In this study, the automatic alignment of the precision roller for printing was implemented using the abIinlitthyiosfstmuadgyn, ethtiec abuetaormingatsictoalmigonvme ethnet opfotshiteiopnreocfisthioenrroolllelerrwfoitrhpinritnhteinagirw-gaaspimrapnlgeem. eAnpterdecuissiionng rtohlelearbfiolirtyproinf mtinaggncaeptiacbbleeaorfin±g0s.2tommmomveotvheempeonstitaionnd omf athgenerotilclebrewariitnhgins wtheereaidr-egsaigpnreadngane.dAfapbrreicciastieodn. Wrohlleenr tfhoerpprercinistiionng rocallpear bcloentoafct±ed0.2themamlignmmovenemt reenfetreanncde smurafgancee,titchebceoanritnacgtsfowrceerse adt ebsoitghneenddsanodf tfhaebrrioclalteerdc.oWulhdebnethmeeparseucriesdionusrionlglelrocaodnctaeclltse.dAthneaaultigonmmateinctarleigfenrmenecnet spurrofdacuec,ethweacsodnetavcetlofoprecdesbayt ubsoitnhg ethnedsfoorcfetshme eraoslluerredcobuyldthbeelomadeacseullrseads ufeseindgbalcoka.dTcheellism. pArnovaeudtoamligantimc eanlitgwnmaseinmtppleromdeuncteedwbays adpepvleylionpgetdwboy-sutespindgistphleacfoemrceens tms,eaansdurtehde dbiyﬀtehreenlcoeadinctehlelscaosnfteaecdt fboarccke.sTbhetewimeepnreoavcehdeanldigwnmasewntitwhians 0im.3pNle.mVeibnrtaetdiobnys aopfplelyssintghatwn oa-pspterpoxdiimspaltaecleym2eµnmts,paenadk-tthoe-pdeifafkerwenacsecionntﬁhremceodntuanctdfeorrcthese bneot-wloeaedn ceoancdhietinodn wanads wofitlehsisnt0h.a3nNa.pVpirborxaitmioantseloyf 5leµssmthpaenaka-ptop-rpoexaimk watealsyo2bsμemrvpedeaukn-tdoe-rpaearkotwataiosncosnpfeiermd eodf 3u0nrdeevr/mthiennaon-dloaadlocaodnodfit3io00n Nan.dThoifslevsibs rtahtaionnapispvreorxyimsmataelllyc5omμmpapreedakt-ototh-peevaikbrwaatisoonbosfer1v0e–d10u0nµdmer paeraokt-atoti-opneaskpeoefdcoonfv3e0ntrieovn/aml pinrianntidngarloolaledrsosfu3p0p0oNrte. dThbiys bvailblrbaetiaorninigssv[1e3ry]. small compared to the vibraTthioenporof p1o0–se1d00syμsmtempeiaskth-teo-ﬁprestamk oafgcnoentivcebnetairoinnaglspyrsitnetmindgersoigllneresdstuoppproodrtuecdebaycbonaltlroblelaabrilneglast[e1r3a]l. load oTnhteo apnroepxotesrendalsyobstjeecmt, ims atkhiengfiritstsumpaegrinoertiinc bteeramrisnogf seynsetregmy, tdimeseiganneddqtuoaplirtyodtouceexiasticnognstryosltleamblse. Ilfatthereapl rlooapdosoendtomaangenxetteicrnbaelaorbinjegctr,omllearksinygstietmsuipseursioedr ,inittiesrmexspoefcteendertghya,t ttihmeedaisnadssqeumalbitlyy–taosesxeimstbinlyg psryoscteemsssf.oIrf tthhee preraolpigonsemdemntaogfntehteicabsesaerminbglerdolrloelrlesryswteimll nisotubseedn,eicteissseaxrpy.ecIntedadtdhiattiothne, tdhiesapsrsoepmobsleyd– saysssteemmblwyipllroalcseosspfroorvtihdee rseiaglnigiﬁncmanent tboefntehﬁetsasinsetmerbmlesdorfoltlheer wcoilslt naontdbevonleucmesesabreyc.aIunsaedadditdioitnio, nthael proposed system will also provide significant benefits in terms of the cost and volume because additional actuators required for uniform printing force control on both ends of the roller will not be necessary. The lower friction of the bearings will also make the system more energy efficient and
+
+Appl. Sci. 2019, 9, 4389
+
+15 of 16
+
+actuators required for uniform printing force control on both ends of the roller will not be necessary. The lower friction of the bearings will also make the system more energy eﬃcient and prevent printing failures, which makes the system greener. In the future, the vibration performance of the roller will be further improved by applying additional control algorithms against loads and disturbances that may occur in printing equipment, such as printed electronics equipment. In addition, improved control algorithms will be used to automate the ﬁne adjustments near the setpoint.
+Supplementary Materials: The following are available online at http://www.mdpi.com/2076-3417/9/20/4389/s1, Video S1: Vibration Performance of Roller under Radial Loads.wmv.
+Author Contributions: Conceptualization, C.H.P.; methodology, D.K.; software, C.H.P. and T.G.Y.; validation, D.K.; writing—original draft preparation, C.H.P., T.G.Y., and H.R.; writing—review and editing, C.H.P. and H.R.; supervision, C.H.P.; and funding acquisition, C.H.P.
+Funding: This research was funded by the R&D Program (No. R0005638) of the Ministry of Trade, Industry & Energy (MOTIE), Korea Institute for Advancement of Technology (KIAT) through the Encouragement Program for The Industries of Economic Cooperation Region.
+Conﬂicts of Interest: The authors declare no conﬂict of interest.
+References
+1. Søndergaard, R.R.; Hösel, M.; Krebs, F.C. Roll-to-Roll fabrication of large area functional organic materials. J. Polym. Sci. Pol. Phys. 2013, 51, 16–34. [CrossRef]
+2. Noh, J.H.; Kim, I.; Park, S.H.; Jo, J.; Kim, D.S.; Lee, T.-M. A study on the enhancement of printing location accuracy in a roll-to-roll gravure oﬀset printing system. Int. J. Adv. Manuf. Technol. 2013, 68, 1147–1153. [CrossRef]
+3. Choi, Y.M.; Lee, E.; Lee, T.M. Mechanism of reverse-oﬀset printing. J. Micromech. Microeng. 2015, 25, 1–7. [CrossRef]
+4. Choi, Y.M.; Lee, E.S.; Lee, T.M.; Kim, K.Y. Optimization of a reverse-oﬀset printing process and its application to a metal mesh touch screen sensor. Microelectron. Eng. 2015, 134, 1–6. [CrossRef]
+5. Sievers, L.; Ballas, M.J.; Flotow, A.V. Modeling of Web Conveyance Systems for Multivariable Control. IEEE Trans. Automat. Contr. 1988, 33, 524–531. [CrossRef]
+6. Brandenburg, G. New Mathematical Models and Control Strategies for Rotary Printing Presses and Related Web Handling Systems. IFAC Proc. Vol. 2011, 44, 8620–8632. [CrossRef]
+7. Brändlein, J.; Eschmann, P.; Hasbargen, L.; Weigand, K. Ball and Roller Bearings: Theory, Design and Application; Wiley: Hoboken, NJ, USA, 1999; ISBN 978-0-471-98452-8.
+8. Raul, P.R.; Manyam, S.G.; Pagilla, P.R.; Darbha, S. Output regulation of nonlinear systems with application to roll-to-roll manufacturing systems. IEEE/ASME Trans. Mechatron. 2015, 20, 1089–1098. [CrossRef]
+9. Ahn, S.H.; Guo, L.J. Large-area roll-to-roll and roll-to-plate nanoimprint lithography: A step toward high-throughput application of continuous nanoimprinting. ACS Nano 2009, 3, 2304–2310. [CrossRef] [PubMed]
+10. Libert, A.M. Precision Control of Cylindrical Stamp Contact in a Continuous Roll-to-Roll Microcontact Printing Machine. Master Thesis, Massachusetts Institute of Technology, Boston, MA, USA, 20 May 2014.
+11. Petrzelka, J.E.; Hale, M.R.; Hardt, D.E. Contact pattern sensitivity and precision machine control in roll-to-roll microcontact printing. In Proceedings of the Materials Research Society Symposia, Boston, MA, USA, 25 November 2012.
+12. Kang, D.; Lee, E.; Kim, H.; Choi, Y.M.; Lee, S.; Kim, I.; Yoon, D.; Jo, J.; Kim, B.; Lee, T.M. Investigation on synchronization of the oﬀset printing process for ﬁne patterning and precision overlay. J. Appl. Phys. 2014, 115, 234908. [CrossRef]
+13. Choi, Y.M.; Kang, D.; Lim, S.; Lee, M.G.; Lee, S.H. High-Precision Printing Force Control System for Roll-to-Roll Manufacturing. IEEE/ASME Trans. Mechatron. 2017, 22, 2351–2358. [CrossRef]
+14. Schweitzer, G.; Maslen, E.H. Magnetic Bearings: Theory, Design and Application to Rotating Machinery; Springer: Berlin, Germany, 2009; ISBN 978-3-642-00496-4.
+
+Appl. Sci. 2019, 9, 4389
+
+16 of 16
+
+15. Lum, K.Y.; Coppola, V.T.; Bernstein, D.S. Adaptive autocentering control for an active magnetic bearing supporting a rotor with unknown mass imbalance. IEEE Trans. Control Syst. Technol. 1996, 4, 587–597. [CrossRef]
+16. Park, C.H.; Yoon, T.G.; Park, J.Y. Design of magnetic bearings for 200 HP class turbo blower. KSFM 2015, 18, 12–18. [CrossRef]
+17. Zheng, S.; Li, H.; Han, B.; Yang, J. Power consumption reduction for magnetic bearing systems during torque output of control moment gyros. IEEE Trans. Power Electron. 2017, 32, 5752–5759. [CrossRef]
+18. Jungmayr, G.; Loeﬄer, J.; Winter, B.; Jeske, F.; Amrhein, W. Magnetic gear: Radial force, cogging torque, skewing, and optimization. IEEE Trans. Ind. Appl. 2016, 52, 3822–3830. [CrossRef]
+19. Knospe, C.R. Active magnetic bearings for machining applications. Control. Eng. 2007, 15, 307–313. [CrossRef]
+20. Park, C.H.; Choi, S.K.; Ahn, J.H.; Ham, S.Y.; Kim, S.H. Thrust hybrid magnetic bearing using axially magnetized ring magnet. J. Magn. 2013, 18, 302–307. [CrossRef]
+21. Park, C.H.; Choi, S.K.; Ham, S.Y. Design of magnetic bearing for turbo refrigerant compressors. Mech. Ind. 2014, 15, 245–252. [CrossRef]
+© 2019 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license (http://creativecommons.org/licenses/by/4.0/).
+

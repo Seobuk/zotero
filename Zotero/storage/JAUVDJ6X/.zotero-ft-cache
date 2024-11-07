@@ -1,0 +1,500 @@
+applied sciences
+Article
+Design of Shape Memory Alloy-Based Soft Wearable Robot for Assisting Wrist Motion
+Jaeyeon Jeong 1, Ibrahim Bin Yasir 1, Jungwoo Han 1 , Cheol Hoon Park 2, Soo-Kyung Bok 3 and Ki-Uk Kyung 1,*
+1 Korea Advanced Institute of Science and Technology, Daejeon 34141, Korea; jjy7583@kaist.ac.kr (J.J.), ibrahimbinyasir@kaist.ac.kr (I.B.Y.), jungwoohan72@kaist.ac.kr (J.H.)
+2 Korea Institute of Machinery and Materials, Daejeon 34103, Korea; parkch@kimm.re.kr 3 Department of Rehabilitation Medicine, Chungnam national University Hospital, Daejeon 35015, Korea;
+skbok111@gmail.com * Correspondence: kyungku@kaist.ac.kr; Tel.: +82-42-350-3245
+Received: 30 August 2019; Accepted: 21 September 2019; Published: 26 September 2019
+Abstract: In this paper, we propose a shape memory alloy (SMA)-based wearable robot that assists the wrist motion for patients who have diﬃculties in manipulating the lower arm. Since SMA shows high contraction strain when it is designed as a form of coil spring shape, the proposed muscle-like actuator was designed after optimizing the spring parameters. The fabricated actuator shows a maximum force of 10 N and a maximum contraction ratio of 40%. The SMA-based wearable robot, named soft wrist assist (SWA), assists 2 degrees of freedom (DOF) wrist motions. In addition, the robot is totally ﬂexible and weighs 151g for the wearable parts. A maximum torque of 1.32 Nm was measured for wrist ﬂexion, and a torque of larger than 0.5 Nm was measured for the other motions. The robot showed the average range of motion (ROM) with 33.8, 30.4, 15.4, and 21.4 degrees for ﬂexion, extension, ulnar, and radial deviation, respectively. Thanks to the soft feature of the SWA, time cost for wearing the device is shorter than 2 min as was also the case for patients when putting it on by themselves. From the experimental results, the SWA is expected to support wrist motion for diverse activities of daily living (ADL) routinely for patients.
+Keywords: soft robots; shape memory alloy; wearable; wrist; assistive robots
+
+1. Introduction
+Loss of mobility and power in the upper extremity (UE) is a common symptom resulting from damage to the peripheral nervous system, muscle weakness, tendon disorders, muscle contracture and change in muscle tone after an accident or a medical disorder such as cerebral palsy, stroke, traumatic brain injury or damage to the spinal cord [1–6]. The disabilities of the upper extremity can manifest themselves individually more often, but they also occur in combination. Also, several of these neurological diseases are chronic as well as progressive [3,4]. Consequently, the ability to perform voluntary movement and ﬁne motor and manipulation skills are lost [7]. This results in loss of independence during the performance of tasks required in activities of daily living (ADL) such as feeding, self-hygiene, dressing and transferring [8].
+Especially for rehabilitation treatment, there is less improvement of patients in the wrist mobility compared to the shoulder or elbow. The radiocarpal joint is one of the major and complex parts of the upper extremity, comprising of bones, ligaments, nerves, tendons and connective tissues. Its anatomy allows a wide spectrum of intricate movements necessary in performing day-to-day tasks, which in turn, makes it susceptible to injuries [9]. Compression or damage to the radial, ulnar and median nerve of the wrist such as wrist drop, ulnar claw or carpal tunnel syndrome also lead to chronic
+
+Appl. Sci. 2019, 9, 4025; doi:10.3390/app9194025
+
+www.mdpi.com/journal/applsci
+
+Appl. Sci. 2019, 9, 4025
+
+2 of 15
+
+wrist impairment. Owing to the motor, neurological and perceptual defects of the wrist joint, the quality of life and independence of the patient reduces along with the adverse eﬀect on the ability to perform ADL. Moreover, the reduced mobility at the wrist results in compensatory movement of the shoulder, and the elbow [10]. In many cases, physical therapy leads to recovery by stimulating the aﬀected muscles together with leveraging neuroplasticity [11,12]. Similarly, rehabilitation in the form of repetitive motions and exercises have resulted in restoring some degree of motor loss [13] and cortical reorganization while regaining some portion of the lost sensorimotor skills [14]. Findings of 6 months of longitudinal studies reveal that about 30 to 66% of hemiplegic patients, had little or no function in the paralyzed arm, whereas only 5 to 20% showed complete functional recovery [15]. Nevertheless, recovery is not limited to the months following stroke [16] with rehabilitation of the UE being reported many years after stroke [17]. Also, manual therapeutic rehabilitation where the therapist has to guide the paralyzed limb directly requires a daily treatment, which makes the treatment diﬃcult and expensive [18].
+In the past decades, researchers have developed many robotic rehabilitation systems [19–35]. A few investigations show that the improvement of recovery for acute and chronic patients facing stroke, cerebral palsy and injury to the spinal cord was observed from rehabilitation treatment by applying robotic systems [19–23]. Conventionally used rehabilitation robots have rigid structures and the force to the patients is delivered primarily by a motor located at the respective joint. However, these robots are not suitable in wearable applications since the rigid links and joints are heavy and bulky. Also, the limitation of the degrees of freedom (DOF) causes inconvenience for the user.
+Applying soft robotic technologies is a great approach for a compact, lightweight, user-friendly and portable exoskeleton for the upper limb, since the soft actuators and sensors are lightweight, compact and have high DOFs [36–45]. Pneumatic actuators are widely used for wearable applications since they can produce high force compared to that of other soft actuators along with large deformations. Several soft wearable robots for the wrist using multiple pneumatic actuators that produce bending or linear contraction motion were suggested [36–40]. However, the systems that use the pneumatic actuators require compressors and regulators, which in turn makes it hard to be used as a portable robot. Tendon-driven systems are also generally employed for designing wearable robots [42–45]. The use of Bowden cables along with DC motors [42,43] or twisted coil actuators [44] allows locating the actuators away from the point of interest, reducing the weight on the wearer and mobilizing the external joints that were constrained using the rigid exoskeleton. For example, Choi et al. used a simple cable-driven wearable robot with ﬂexible polymer structures and an active anchor to produce the dart-throwing motion of the wrist [45]. However, further improvement in the anchoring mechanism is needed to accomplish a precise and repetitive motion.
+Recently, Shape Memory Alloy (SMA) has been highlighted as a potential material to be used as an artiﬁcial muscle thanks to its unique characteristics of shape memory eﬀects [46]. The shape change of the SMA is caused by the change in crystalline arrangement with change in temperature. The actuators that are fabricated using SMA can produce high force and can be rapidly actuated via Joule heating. Also, the SMA actuators that are shaped as a coil spring are capable of producing large strains, over 200% of their initially contracted length. The wearable robots targeting the UE that utilize wire type SMA actuators have been introduced [47–49]. However, slow response and the need of a passive force to pre-stretch the actuator makes practical implementation for such systems diﬃcult.
+In this paper, we propose a new soft SMA-based wearable wrist robot aimed at portability and compliance, so that the wearer can use the robot independently and eﬀortlessly. Our device focuses on the 2-DOF wrist motion occurring near the two non-aligned axis of the radiocarpal joint; namely extension, ﬂexion and ulnar and radial deviation. In this paper, the design process of the highly stretchable, fast-response muscle-like actuator is described ﬁrst by optimizing the parameters of the SMA coil spring and the cooling system of the actuator. Next, the design process and the performances of the wearable robot are described. The fabricated wearable robot can produce the 2-DOF motion of the wrist by selectively activating the muscle-like actuators. Finally, user tests were performed to
+
+Appl. Sci. 2019, 9, 4025
+
+3 of 15
+
+observe the wearability and the range of motion (ROM). Time spent for self and assistive wearing were measured as well as the ROM of the SWA for ﬁve subjects.
+
+2. Design of Muscle-Like Actuator Based on Shape Memory Alloy (SMA) Coil Spring
+Typical type of SMA for actuator applications is in the form of wires [47–50]. The advantage of the wire-shaped SMA actuator is that it can produce high forces compared to the other soft actuator technologies such as Ionic Polymer Metal Composites [51], dielectric elastomers [52], shape-morphing polymers [53] and hydrogels [54]. However, the strain that the actuator can produce is relatively low (<8% of its initial length) [46], which is insuﬃcient for the use in making a wearable robot. In order to enhance actuating performance, SMA can be shaped in the shape of coiled springs that result in substantially larger displacement when it is utilized as an actuator [46,55–59]. The coil spring shaped SMA actuators have large extension strain over 200% [46,55], which is enough for the desired application as the strain of a SMA coil spring is larger than that exhibited by human muscles [60].
+Another shortcoming faced when working with SMA actuators is the slow response due to the diﬃculty of both heating up and cooling down the SMA rapidly in the same system. Generally, many SMA-based actuators are operated in ambient air, which oﬀers a fast heating rate, but the limitation is a slow cooling rate as well [46–49,59]. To enhance the response speed of SMA based actuators, a few works have applied water as an alternative coolant during the actuation of the SMA [50,55–58]. Park et al. developed SMA coil spring-based actuator that was composed of the SMA coil spring bundles and a stretchable polymer tube that can stretch over 300% of its initial length [55–57]. The heat transfer from water activated the SMA coil spring, and the temperature of the water that ﬂows through the tube was controlled by the faucet-like valve system, which adjusts the amount of hot and cool water from the reservoir. The above-mentioned actuator showed up to 50% contraction strain when 5kg load was applied with 1Hz actuation speed. However, this actuation method is not suitable for wearable applications since large reservoirs for hot and cool water are needed.
+The highly stretchable muscle-like actuator proposed in this work is designed based on SMA coil springs and coolant circuit for a thin, high force, displacement, and fast response. Figure 1 shows the schematic design of the proposed actuator. In order to make the actuator thin, one SMA coil spring is integrated with a coolant circulation system. An electrical wire is connected to both the ends of the SMA coil spring while attaching it tightly at the end of a Polycarbonate connector containing the coolant ﬂow inlet and outlet. The temperature of the SMA increases when the electrical current is applied to the SMA as the SMA itself is resistance. A stretchable polymer tube that is designed to surround the SMA coil spring is used for the ﬂow of coolant. The polymer tube is made with Ecoﬂex 00-30 (Smooth on Co). It stretches and contracts in conjunction with the SMA coil spring thanks to its high stretchability of over 300% of its initial length. The tubes attach to the pump and the radiator was connected to the other end of the connectors. The coolant ﬂows in closed circulation. The initial diameter of the stretchable polymer tube before stretching is selected as 7 mm. The width and height of the connectors are less than 15 mm. Mineral oil is chosen as a coolant that ﬂows inside the tube.
+In order to design the SMA coil spring for a wearable robot, the actuator parameters which determine the maximum force as well as displacement should be analyzed. Adjustable parameters for designing conventional spring are described in Figure 2. The relationship between force and displacement of the spring is Equation (1):
+
+F
+
+=
+
+Gd4 δ 8D3n
+
+(1)
+
+00-30 (Smooth on Co). It stretches and contracts in conjunction with the SMA coil spring thanks to its
+high stretchability of over 300% of its initial length. The tubes attach to the pump and the radiator
+was connected to the other end of the connectors. The coolant flows in closed circulation. The initial
+diameter of the stretchable polymer tube before stretching is selected as 7 mm. The width and height Apopfl.tShcei. c2o01n9n, 9e,c4t0o2r5s are less than 15 mm. Mineral oil is chosen as a coolant that flows inside the t4uobfe1.5
+
+Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+4 of 15
+
+In order to design the SMA coil spring for a wearable robot, the actuator parameters which
+
+determine the maximum force as well as displacement should be analyzed. Adjustable parameters
+
+for designing displacement
+
+ocfotnhveFeiFsngpiutgriruoienrne1ga.1liS.sscSEhpcheqrmieunmaagtatiitcaoicronefo(ft1dht)hee:seschsrhaipbapeeedmmeinmemoFroiygryaularlolelyo2y(.S(MSTMhAeA)-)br-eablsaaestdeiodancatscuhtauitpaotrob.re. tween
+
+force
+
+and
+
+Figure Figure
+
+2. 2.
+
+PPaarraammeetteerrss
+
+ooff
+
+ccooiill
+
+sspprriinngg..
+
+F is the force, G is the shear modulus of the SMA, d is the wire diameter of the SMA, D is
+
+the coil
+
+coil diameter of the SMA, spring. Shear modulus is
+
+n is the
+
+pthroepneurtmy boFefrtho8feG𝐷cSdoM𝑛il A𝛿tumrnast,earniadl
+
+δ is the displacement of itself, whereas D, d, and
+
+the SM(1)A n can be
+
+changed in the fabrication process. In the case of SMA, the shear modulus G changes depending on the
+
+tempFeriasttuhreefcohracne,gGe. iIsnthadedshiteioanr,mthoedturalunssiotifotnheteSmMpAer,adtuisrethoef wthiereSMdiAam, wetheircohfitshteheSMtemA,pDeriastuthree tchoailt dthiaempehtaesreotfrathnesfSoMrmAa,tnioins tfhroemnummabrteernosfitceotiol tauursntse,naintedst𝛿aritss,thceandibseplcaocnesmideenrteodf athseaSpMarAamcoeitlesrptroinbge. Ssehleeacrtemd oddeupleunsdiisngthoenptrhoepeenrtvyiroofntmheenStMinAwmhiacthertihael iatcsetulfa,tworhiesrueasesdD. ,Ind,oarndderntocadnetbeermchinaengtheedsipnrtinhge fpaabrraimcaetitoenrsptrhoacteosps.tiImn itzheetchaesepeorffoSMrmAa,ntchees,sﬁhveaersammopdluelsuosfGcocihl asnpgriensgdsetpheantdhianvgeodniﬀthereentetmtrpaenrsaittuiorne ctehmanpgeer.aItnuraedsd, witiiorne,dtihaemtreatenrs,itainodn stepmripnegradtiuarmeeotferthweeSrMe fAab, rwichaitcehdi,satnhde ttheemfpoerrcaetuanredtdhaistptlhaecepmhaesnet trrealnatsifoonrmshaitpiosnoffrtohmosemsaartmenpslietse wtoeraeusotbenseitrevesdta.rtTs,hceansebleectceodnsviadleureesd oafssaprpianrgampaertaermteotebres saenldecttehde dtreapnesnitdioinngteomnptehreatuenreviorfotnhmeseenﬁt vine swamhipchlesthaereadcitsupaltaoyredisinusTeadb.leIn1. order to determine the spring
+
+parameters that optimize the performances, five samples of coil springs that have different transition temperatures, wiTraebldeia1m. Peatrearm, aetnedrs sopf rﬁivnegsdhaiapme meteemr owryeraellofayb(rSiMcaAte)dc,oialnsdpritnhge sfaomrcpeleas.nd displacement
+
+relationships of those traSnasmitpiolenNteummbpeerrature
+
+osfamthSpeMslAeesfMiwvaeteesrrieaamlsopblseesrvaered.dSiTsphpreilnagys(eeDDdli)eacimnteeTdtearbvlaelu1Ne.usmobfe(rnso)pfrTiunrgnsparamIneittie(amrlsLmea)nngdth
+
+the
+
+1 2 3
+Sample4 Numbe5r
+
+d = 0.5 mm
+TableTr1a.nPsiatiroanmTeetmerpseroaftufirvee40sh◦Cape
+
+3 mm
+memo2ry.8 amllmoy
+2.5 mm
+
+(SMA)
+
+coil
+
+55
+spr5i5ng
+55
+
+samples.
+
+50 50 50
+
+d = 0.42 mm
+
+3 mm
+
+55
+
+45
+
+TSrManAsitiMonaTteemriaplesrature 70 ◦CSpring Dia2m.5 emtmer (D)Number of5T5 urns (n)Initial Le4n5gth (mm)
+
+1 2 3
+
+d = 0.5mm Transition Temperature 40 °C
+
+3 mm 2.8 mm 2.5 mm
+
+55 55 55
+
+50 50 50
+
+4
+
+d = 0.42mm
+
+3 mm
+
+55
+
+45
+
+5
+
+Transition Temperature 70 °C
+
+2.5 mm
+
+55
+
+45
+
+Appl. Sci. 2019, 9, 4025
+
+5 of 15
+
+Several target performances of the proposed muscle-like actuator are determined for the wearable robot application. The actuator should be designed to produce high force in the desired deformation range. As preloading the SMA is required to be stretched, the target range of deformation is determined under load conditions. The target force required is 10 N per a single coil spring. The target maximum contraction ratio is selected to be greater than 40% of its initial stretched length, which exhibits a similar contraction ratio as that of a human muscle [60]. The target displacement range is selected as 50 mm Afrpoplm. Sciit.s20in19i,ti9a, lx sFtOreRtPchEEeRdRleEnVgIEtWh when a 10 N load is applied to the spring samples. Target max5imofu1m5 tloenthgtehsopfritnhge sspamrinpgleiss. sTealregcetetdmuapxitmo u15m0 lmenmg,thwohficthheissapsriunigtaibslesesliezcetefodruapcotom1p5a0ctmwmea, rwabhliechroibs oat sfuoirtathbelewsirziestf.oIrnaacdodmitpioanct, wa emaarainblceornosbiodtefroartitohneiwn raicstt.uIantoardddeitsiiognn, aismthaaint tchoensaicdtueraattoironshinoualcdtubaetoars dtheisnigansipsothssaitbtlheetoacmtuaakteorthsehowueladrabbelaesrtohbiontapsoprotasbslieblaentdo meaaskyetothwe ewaer.aFrainbalellryo, bthoet pmoarxtaimbluemansdurefaascye ttoemwpeearra. tFuirneahllays, tthoebme aasxliomwumas spuorsfsaicbeletetomppreervaetuntrebuhransintogboef ahsumloawnasskipnossisnibcelethtoe pSMrevAeinstabcutirvnaitnegd obfyhtuhme ianncrsekainsesoinfcteemthpeeSraMtuArei.s activated by the increase of temperature.
+TThhee eexxppeerriimmeennttaallsesteutuppforfothr ethfoercfeo-rdcies-pdlaiscpelmaceenmt reenlattiroenlasthioipnmsheiapsumreemaseunrteomf ethnet sopfritnhgesasmprpinlegs swttiktoheasefemaemmps7shpt0pptkeoelec◦meerwroCpasanpntt,tiusuestcthrirroasnaeeehnntowuFtosteftirwbamage7synun0pcwtrfio°eeenbCarneyas3t,Fdtr.tifucbohgeoTrlaeeulencehdrtktdweeebromcaaa3tloctes.lpknme3Tced0tohcrpr,oanoe4aetntl0trut.rtae,orr3Fmt5leo0ulo0le,pwr,.rdee46Ftar00haoosa,tearftc53nuotts00hhdran,,eeemt756ro0sS0op0fa,Ml◦lmlt7eaCehAs0nd.pedtFalahSwenotMsa7rda3t0ttsA0h9hh°,0maeaCw5tv◦s0e.Caheaa,Fmsa.7stovru0mpraerlaneeettnasdhsrdisaettubhni9osryas0eanittdmt°hihtCoeabpenm.vylteethptsetheemrterrahmapntathesuotiretcrahrieootmasuunvoropetecfelsoemt4uro0aappfnn◦el4dCser0ai,tawti°utnoChardnee,s
+
+Figure 3. Experimental Setup for force-displacement measurement of SMA coil spring. Figure 3. Experimental Setup for force-displacement measurement of SMA coil spring. The graphs of the relationship between force and displacement of the sample springs at various
+tempTehreatgurraepshasroef sthoewrenlaitnionFsighuiprebe4t.weSeenveforarlcechanardadctiesrpilsatcicesmoefntSoMf Athecasnambpeleobspserirnvgesdaitnvarlliotuhse teexmppereirmateunrteasl raerseulstsh.oAwsnthienteFmigpuerreat4u.reSienvcerreaalsecsh,athraecstperisntgicfsorocfe iSnMthAe scaamn ebdeisopblasecervmeedntinincarlelatsheed eaxspwereilml.eInntalddreitsiuolnts,.reAsisduthael sttermainpseroactcuurer aitnlcorweastems, ptehreatsuprreinags tfhoercceryisntaltlhineesaarmraengdeismpelancteomfetnhte iSnMcrAeawseads caosnvweertlel.dIfnromadtdwitiinonne,drmesaidrtueanlsitsetrtaoindsetwocicnunredamt alortwenstietme pheraasteu. re as the crystalline arranTgheme erneat lofdtihspelSaMceAmewnatsrcaonngveerotefdthfreomsprtwinignnbeyd tmemarpteenrasittuerteocdheatnwgienniesdthmeardtieﬀnesrietencpehaosfe.the displacements when the temperatures of the spring are 40 ◦C and 70 ◦C under 10 N load conditions. Sample 4 and 5 have relatively low stiﬀness compare to sample 1, 2 and 3 since the wire diameter is smaller. Additionally, the actuator has to be heated to a higher temperature to exert high force compared to other samples. Sample 1, 2 shows enough force over 10 N, but it needs larger displacement range than the target value. The optimal SMA coil spring is selected as sample 3 since it satisﬁes the target force in the displacement range, is the thinnest, and has the lowest transition temperature.
+The fabricated SMA-based actuator is shown in Figure 5. The SMA-based actuator shows high stretchability. It can contract and release 40% of its initial stretched length with an actuation frequency of 0.5 Hz when 1 kg pre-load is applied. Since the average frequency responses of general ADLs is around 1 Hz [61], the proposed actuator can support the ADLs of low frequencies. The SMA coil
+
+(a) Sample 1
+
+(b) Sample 2
+
+(c) Sample 3
+
+Figure 3. Experimental Setup for force-displacement measurement of SMA coil spring.
+AAppppll..TSSchcii.e.220g011r9a9,,p99,h,x4s0Fo2O5fRthPEeErRelRaEtVioInEWship between force and displacement of the sample springs at va6r6iooofuf1s155 temperatures are shown in Figure 4. Several characteristics of SMA can be observed in all the experimental results. As the temperature increases, the spring force in the same displacement inspcreinagsehdeaatss uwp etoll.arIonunadd7d0it◦ioCni,n r1ess,idanudalthsetrtaeimnspeoractcuurre aattthleowpoltyemmepretruabtue rseurfaascethreeacchreyssatarloluinned a7r0ra◦nCgeinm6ens.t Ionf tahdedSitMioAn, wtimasecsopnevnetrotendcforolmingtwthinenSeMd Amarttaemnsbitientot tdemetwpeinranteudremisarletessnsthitaenp1hass. e.
+
+(d) Sample 4
+
+(e) Sample 5
+
+Figure 4. The force-displacement relationship with various temperature, (a) sample No. 1, (b) sample No. 2, (c) sample No. 3, (d) sample No. 4, and (e) sample No. 5, from Table 1.
+
+Appl. Sci. 2019, 9, x FOR PEER REVIEW
+
+6 of 15
+
+The(ar)eSaalmdpilsep1lacement range of t(hbe) Ssapmripnlge 2by temperature chang(ec)iSsamthpeled3ifference of the
+
+displacements when the temperatures of the spring are 40 °C and 70 °C under 10 N load conditions.
+
+Sample 4 and 5 have relatively low stiffness compare to sample 1, 2 and 3 since the wire diameter is
+
+smaller. Additionally, the actuator has to be heated to a higher temperature to exert high force
+
+compared to other samples. Sample 1, 2 shows enough force over 10 N, but it needs larger
+
+displacement range than the target value. The optimal SMA coil spring is selected as sample 3 since
+
+it satisfies the target force in the displacement range, is the thinnest, and has the lowest transition
+
+temperature.
+
+The fabricated SMA-based actuator is shown in Figure 5. The SMA-based actuator shows high
+
+stretchability. It can contract and release 40% of its initial stretched length with an actuation frequency
+
+of 0.5 Hz when 1 kg pre-load is applied. Since the average frequency responses of general ADLs is
+
+around 1 Hz [61],(tdh)eSapmroppleo4sed actuator can support the ADLs o(fel)oSwamfrpelqeu5encies. The SMA coil
+
+sprinFgighueraets4. uTTphetfofooracreo-duinspdla7c0em°eCntinrel1atsio, nasnhdip twhiethtevmarpioeursatteumrepeartattuhree, p(ao)lsyammepprlleetuNboe.. 1s,u(brf)ascaemrpelaeches arounNdo7. 20,°(Cc) isnam6psl.eInNoa.d33d,,i((tddi)o)snsaa,mmtipmplleeeNNspoo.e. 4n4,t,aaonnnddc((eoe)o)slsaianmmgpptlleheeNNSooM..55,A,ffrraootmmamTTaabbbilleeen11t..temperature is less than 1 s.
+
+The real displacement range of the spring by temperature change is the difference of the displacements when the temperatures of the spring are 40 °C and 70 °C under 10 N load conditions. Sample 4 and 5 have relatively low stiffness compare to sample 1, 2 and 3 since the wire diameter is smaller. Additionally, the actuator has to be heated to a higher temperature to exert high force compared to other samples. Sample 1, 2 shows enough force over 10 N, but it needs larger displacement range than the target value. The optimal SMA coil spring is selected as sample 3 since it satisfies the target force in the displacement range, is the thinnest, and has the lowest transition temperature.
+The fabricated SMA-based actuator is shown in Figure 5. The SMA-based actuator shows high stretchability. It can contract and release 40% of its initial stretched length with an actuation frequency of 0.5 Hz when 1 kg pre-load is applied. Since the average frequency responses of general ADLs is around 1 Hz [61], the proposed actuator can support the ADLs of low frequencies. The SMA coil spring heats up to around 70 °C in 1 s, and the temperature at the polymer tube surface reaches around 70 °C in 6 s. In addition, time spent on cooling the SMA at ambient temperature is less than 1 s.
+
+(a)
+
+(b)
+
+FFigiguurere55. .FaFbarbirciactaetdedSMSMAA-b-absaesdedacatcutuataotor.r,(a(a) )Eexxtteennddeeddssttaattee,,((bb))Ccontracted state..
+
+33.. DDeessiiggnnooffSSooffttWWrriisstt AAssssiisstt ((SSWWAA)) WWrriisstt mmoottiioonnisisrerqequuirierdedfofrotrhtehaectaicvtiitvieitsieosf doaf idlyailliyvinligvi(nAgD(LA)DliLke) olipkeenoinpgenaindgooar,dlioftoinr,glaiftsipnogoan
+soprofoonrkofrorfoforkodfoirntfaokoed, ainntdakmea, nainpdulmatainngipoubljaetcitnsg. Tohbejercetfso.rTe,htehreeufoltriem, tahtee guoltailmoaf toeugroraolbooft iosutro rporboovtidise
+
+AAppppll.. SSccii.. 22001199,, 99,, 4x0F2O5 R PEER REVIEW
+
+77 ooff 1155
+
+to provide a sufficient amount of torque and ROM for 2-DOF motions of flexion/extension and aulsnuaﬃr/rcaiedniatladmevoiuantitonof. AtonroqtuheerainmdpRorOtaMntfcoorn2si-dDeOraFtimonoitniodnessiogfnﬂinegxitohne/reoxbteont sisiotnhaatnitdisulilgnhartw/raedigiahlt danevdiaetaiosny. tAonwotehaerrfiomrphoerltpainntgcopnastiidenertsatiionncianrrdyeisniggnoiuntg tthhee rAoDboLt iasstshoactiaitteids liwghitthwtehigehwt arinsdt meaosytioton wroeuatrinfoerlyh.elping patients in carrying out the ADL associated with the wrist motion routinely.
+TThhee pprrooppoosseedd wweeaarraabbllee rroobboott,, nnaammeedd ssoofftt wwrriisstt aassssiisstt ((SSWWAA)),, ccoonnssiissttss ooff ttwwoo ppaarrttss,, aa wweeaarraabbllee ﬁfinnggeerrlleessss gglloovvee tthhaatt iiss wwoorrnn oonn tthhee hhaanndd aanndd aawweeaarraabbllee ssttrraapp tthhaatt iissppllaacceeddoonntthheeffoorreeaarrmm.. EEaacchh (ee(LLnnOOddCCooTffTIttIThhTEeeE®mm® 44uu00ss11cc)l)l.e.e--TTllihihkkeeeemamaccaattsuusssaaottoofofrtrshstheiissewsswtetrraoeorannargbgalllbyeylpaeatattptraaatccrohhtfeeotddhf tettoohfatethbhfereaigcbgalrlotoiecvvdaeetSeaadWnnddASWtthihseAeossntitsrlryaaopp1n5ppl1yaagrr1tt,5uau1nssidginn,gtgahanaenndtoaattddhahhel emetssoiaivtvsaesel omf athsseorof bthoet irnocbloutdiinncgluthdeinpgutmheppaunmd praadniadtorardisiaatrooruisndar1oukngd. 1 kg.
+IInnththisischcahpatpert,etrh, etmheecmhaencihsamniosfmtheofhuthmeanhwumrisatnmwotriiosnt ims ionttiroonduiscedinﬁtrrosdt.uNceedxt,ftihrset.mNecehxatn, itshme amnedcdhaesniigsnmoafnthdedreosbigont foofrtah2e-rDoOboFtmfoortaio2n-DofOthFemwortiisotnaoref tdheescwrirbisetda. rFeindaelslcyr, itbheeda.nFcihnoarllyd,etshigenaonfchthoer wdeesairganbloefptharetswiesaerxapbllaeinpeadrt.s is explained.
+3.1. Mechanism of Wrist Motion 3.1. Mechanism of Wrist Motion
+The wrist contains multiple joints including the radiocarpal joint, a few intercarpal joints, and ﬁve cTahrpeowmreistat ccaornptaalinjosinmtsucltoipnlneejcotiinngtstihneclhuadnidngtoththeerafodrieoacramrp.aTlhjoeijnoti,natsfecwanibnetearpcaprrpoaxlimjoaintetsd, aasnda sfiinvgelceawrproismt jeotianctatrhpaatlpjooisnstesssceosntnweoctinnognt-haleighnaenddrtootatthioenfaolreaaxrems [.6T2h].eFjoiginutrse c6asnhboewasptpherotxairmgeatteeddfaosuar msinogtiloenws roisftthjoeinwt rthisatt. pBoesnsdeisnsgestthweownroisnt-saulicghnethdartotthaetiopnaalml agxeoses[6c2l]o.sFeirgutoreth6esahnotwersitohrestuarrfgaecteedoffothuer fmoroetaiormns roefsuthlteswinriﬂste.xBioenn.dEinxgtetnhseiownriissttshuecmh othvaetmtheentpoaflmthegowersisctlotsoewr atrodththeeaonpteproiosritseudrifraeccetioofnthoef ﬂfoerxeiaornm. Urelnsuarltdseivniaflteioxnio,na.lsEoxktennoswionnaiss uthlneamr ﬂoevxeimone,nitsothf ethme owvreimstetnotwoafrtdhethweroisptptoowsitaerddsirtehcetiuolnnaorf bfloenxeio. nT.hUelnmaorvdeemvieantitoonf, tahlseowkrnisotwtonwasarudlsnathr efleraxdioiun,sibsothnee,mwohviecmh eisntthoef othpepwosriitset dtoirweactridosnthofe uullnnaarr wdaobdaainntexroehhetvivnteasehiiaergaraween.totpaiTtoihnoolasthaenignhsurneoteerleirennmrac.essaipsmusoruultlvaiotallcestnnvnsmemaiedn.irmenoraRnavenRtandeddaomtisadifraleaiitlnandhddlteeitseahdvwvlieienaidvrasteiitaitsaoivhmtotnieinatoeoost.niwpacMo.mclnaaMuorneorrdoesecps,rocwleauvtaohninertvedsrhe,e,wiruﬂrnaa,leidnnttxfhhidlaiueioernxsunaaitlobnnnhanodtnaeenrdarareaoanne,dpndtxweiodtareehslonrxtideapcstredhieooinvisonaistirsaeliooarttdichinxooeceinvurso.oiracaapFxcwrtueliipesoirota.xnhsFlwisoiialntoeinertxetahadhinioaneintnlrdastetgoracheaontxeanindotnseitnvsternataexoisgnrctifseoosienunvnnsaeilsntaixrhotrsaiineesecr
+
+FFiigguurree 66.. FFoouurr wwrriisstt mmoottiioonnss..
+3.2. The Alignment of the Actuator 3.2. The Alignment of the Actuator
+The fabricated SWA is shown in Figure 7. To achieve 2-DOF motion of the wrist, 5 muscle-like actuaTtohres faarberaicttaatcehdedSWtoAthies SshWoAwant ivnaFriioguusrepo7s. iTtioonaschwiehviceh2a-rDeOchFomseontiboanseodf tohnetwheripsitl,o5t smtuudsiceles-alinkde tahcetuaantaotrosmariceaaltptalachceemd etontthoef tSeWndAonast avnadriojouisntpsotsoitpioenrsfowrmhicthheatraergchetoesdenmboatsioendso. nInthaeddpiitliootns,ttuhdeisees paonsdittihone saanraetosmelieccatledplcaocnemsidenertionfgttehnadtotnhse aronbdojtosinhtosutlod pneortfoinrmtertfhereetwarigthetethdemhaontidonms.oItnioand. dTihtiroene, athcteusaetoprossiatrioenasttaarcehesedletoctethdecboancskidoefritnhge hthaantdt,haesrsohboowt nshionuFldignuoret 7inbt.erTfhereeowthiethr ttwheo haacntudatmorostiaorne. aTthtarceheeadcttuoatthoerssiadreesaottfatchheepdatlomt,haesbsahcokwonf tinheFhigaunrde,7acs. shown in Figure 7b. The other two actuators are attached to the sides of the palm, as shown in Figure 7c.
+
+Appl. Sci. 2019, 9, 4025 ApAppl.pSl.cSi.c2i.021091, 99,, 9x, FxOFRORPEPEERERERVEIVEIWEW
+
+8 of 15 8 8ofo1f515
+
+(a()a)
+
+(b()b)
+
+(c()c)
+FFiiFggiuugrrueer7e7..7WW. WeeaaerraaarbballbeelReRoRobbooobttofftoofrrowwr wrriisrstits((taa())ass)iidsdiedveiivewiew, (,b()bt)otpopvivewie,w, ((c,c))(cbb)oobtttotootmtmomvviievewwie.w. .
+FiFgiugruere8 8shsohwows tshtehefofuorufrufnudnadmamenetnatlaml motoiotinosnsofotfhtehewwrisritstthtahtaatraereprpordoudcuecdedbybythteheprporpoopsoesded rorboobto. tT. hTehdediidvveievrrsesereswewrwriissrtitsmmt omotitooiotninossnosof ftohtfhetehSWeSWSAWAcAocuocludoludbledbeebaesialeysaislpyielyrpfeoprrefmrofreomdrmebdeydbcoybnyctorconoltnlritonrlgoliltnlhignegtmhteuhsemcmlues-ulcislkceel-ealickltieukeactaotcurtsautasoetrolsercstesilveelceltcyivtie(veleyalcy(he(aeacachctuhaacatcuotrautaiostronirsuinms unbmuemrbeebdreeardesdasshasohwsohnwowninninFiniFgiFugirugerue7re7to7toteoexxpepxlalpailnianitnthhetehmemmecehcahnainsmism eaesailsyil)y. )F.oFroerxeaxmamplpel,et,htehceocnotnrtarcatciotinonofotfhtehaecatcutautaotrosrtshtahtaatraerpelpalcaecdedononthtehpeaplamlmsidsied(e4(4anadnd5)5c)acuasuesses ﬂfleflxeixoino,na,nadndthtehceocnotnratrcaticiootinnonofotfhtehaecatuctautaootrrossrtshhtaahttaatraeerpelpaaclcaeecddedoonnonthteehbeabcakkcokfotfhtehwe wrisrtis(t1(,12, 2anadnd3)3c)acuasuesses thteheexetxetnesnisoinonmmotoiotinonofotfhtehewwrisrtis. tSS. iiSmmimiillaialrrallyryl,yt,htehecocnotnrtarcatciotinonofotfhteheacatcutautaotrosrsthtahtaat raereplpalcaecdedononthtehe sidsiedeofotfhtehhe ahnadndnenaeratrhtehﬁefifftihfthﬁfinfignegre(r1(a1nadnd4)4cc)aacuuasuessettshhtehueullunnlanraddreedveivaitaiotino,na,nadndthtehceocnotnratrcatciotinonofotfhtehe acatcutautaotrosrtshtahtaitsips lpalcaecdedononthtehesisdiedeofotfhtehehahnadndnenaeratrhtehethtuhmumb b(3(3anadnd5)5c)acuasuessetshteeherarddaidiaailladdl edevveiivaaittaiiotoinno.n. . AAdddidtiiotinoanllayl,l,ydd,iidvveievrrsesereswwe rwriissrtitsmmt moovvoeevmmemeennettnsstrrseersseuuslluttiilnntiggnfgfrroformmomtthhteehceocmombbiibnniaanttaiiootinnonofotfhtehme motoiotinonononthtehde idfﬀfieffreernetnt axaexsescacnanbeberreeraaelliaizzleizdedbbyybyaaccatticivvtiaavttiainntiggngtthhteehaeaccattucutaauttoaotrrossrsseeslleeclcetticivvtieevllyey.l.yF. oFrorexeaxmamplpel,et,htehewwrisrtismt motoiotinonwwhihcihch cocmombibnnieenssetsthheteheexxtetexentnessinoisoninoananndadnrdardardiaaidladilaedlvedivaeitvaioitainotincoancnacbnaenbpebeerpfeoprrefmrofreomdrmeedaesdeilayesaibslyilycboybnyctrocanoctntritanrcgatciantcigntugaactatocurtasut1ao,tro2sr,s1a,n12d, ,2, 4anasdinmd4u4slitsmainmueluotalutnaselnyoe.uosulsyl.y.
+
+Figure 8. Four wrist motions produced by the wearable robot, (a) ﬂexion, (b) extension, (c) radial dFieFgviuigaruteiroe8n.8,F.(odFu)oruulwrnawrirsrdtisemtvmoiatotiiotoinonsn. ps rpordoudcuecdedbybythtehewweaeraarbalbelerorboobto, t(,a()af)lefxleixoino,n(,b()be)xetxetnesniosino,n(,c)(cr)ardaidailal dedveivaitaiotino,n(,d()du) lunlanradr edveivaitaiotino.n.
+ThTeheiniintiatilasltsrtertecthcehdedlelnegntghthofotfhteheacatcutautaotrosrws whehnenthtehewwrisritsitsiisninthtehenenueturtarlapl opsoistiotinonisisestettoto121020 mmmmtotoenesnusruereneonuoguhghdidsipslpalcaecmemenetnot fotfhteheacatcutautaotrosrassaws welel lalsatshtehecocmompapcatcdt edseigsingnofotfhteherorboobto. tT. hTehe
+
+Appl. Sci. 2019, 9, x FOR PEER REVIEW Appl. Sci. 2019, 9, 4025
+
+9 of 15 9 of 15
+
+distance between the actuators that are positioned at the back of the hand is selected to be 15 mm,
+
+and thTehdeisitnainticael bsetrtewtcehenedthleenagctthuaotfortshepoascittuioantoerdsawt thheenptahlemwisricshtoisseinn atshe60nmeumtr.al position is set to
+
+120 mm to ensure enough displacement of the actuators as well as the compact design of the robot. 3.T3h. eAdncishtoarnDceesbiegtnween the actuators that are positioned at the back of the hand is selected to be 15 mm,
+
+andInthoerddiesrtatnocperbeevtewnetetnhethdeisalcotcuaatitoonrsopfotshietiowneeadraabtltehreopbaoltmthisatcohcocsuenrreads 6d0ume mto.the force exerted
+
+by the muscle-like actuator, the anchoring mechanism is considered. The glove design is selected si3n.c3e. Ait nwcohourldDpesoisgsnibly prevent the dislocation of the robot from the hand. Fingerless glove is adopted
+
+since tIhneourdseerr ctoanprweveaerntittheeasdiliyslococamtipoanroedf tthoetwheafrualbl-lgelorovbeodt ethsiagtno.cFcourrtehdedwueeatroabthlee pfoarrcteloexcaetreteddabty
+
+ththe efomreuasrcmle,-laiksetracptudaetsoigr,nthweiathncVheolrcirnogthmaetcchaannbisemtiigshctoenseiddetoretdh.eTfhoreegalromveisdaedsiogpnteisdsteolemctaekdestihnece
+
+roitbowtoeualsdy ptooswsiebalry. Ipnreavdednitiothne, tdhieslsotcratpiosntruofcttuhreeraolbloowt sfrtohme rtohbeohtatondb.e Ffiirnmgelyrlfeisxsedglfoovreeivsearydoupseterd
+
+resginacrde ltehses uosfetrhceafnorweaeramr itsiezaes.iTlyhceowmipdathreodf ttohethVeeflucrllo-gsltorvape dise7si5gmn.mF,owr thhiechwiesasrealbelcetepdartot lboecawteideat
+
+tothinecfroeraesaermth,eafrsitcrtaipond. eTsoigpnrewviethntVtehlecrsotrtehtcaht coafnthbee ftaigbhritcenbeydthtoe tfhorecfeoorefatrhme aisctaudaotoprt,etdhetowmearkaebtlhee
+
+praortbsoatreeafsaybtroicwateadr.bIynnaodnd-sitiroentc,hthabelsetrfabprsictr.ucture allows the robot to be ﬁrmly ﬁxed for every user
+
+regardless of the forearm size. The width of the Velcro strap is 75 mm, which is selected to be wide to
+
+3.i4n.cTreoarqseuethEevfarliucattioionn. To prevent the stretch of the fabric by the force of the actuator, the wearable parts
+
+are Tfahberitcoartqeudebsyonf othne-sftoreutrchwarbilset fmabortiico.ns were measured to observe the performance of the SWA.
+
+T3h.e4.eTxopreqruiemEevnatlaulastieotnup is shown in Figure 9. The robot was worn on a 3D-printed hand-forearm model, in which the hand and the forearm were connected via a universal joint. The universal joint was usTehdestionrcqeuietshoafdthtwe foounronw-railsitgmneodtioaxnessw, seirme imlaerafsuunrcetdiotnosotbosethrvaet tshheowpenrfionrma raenaclewofritshtejoSiWntA. T. Thhee
+
+meaxxpiemriummenttoarlqsueetuwpaiss smheoawsunriendFwighueren 9th. eThwerriostbwotaws ains witsornneuontraal3pDo-spirtiionnte.dOhnaenedn-fdoroefaarmstmeeol dweilr,ein
+
+wwashiccohntnheectheadntdo athnedwtheearfoabrelearrmobwote, raencdotnhneeocttehderveinada oufntihveerwsairlejowinats. cTohnenuenctievdertsoaal jlooiandt wceallstuhsaetd mseinacsue riet dhathdetwteonsnioonn-ianlitghneewd iarxee.sT,hsiemtoilraqrufeunwcatisoensstitmo athteadt sbhyomwunlitnipalyrienagl wthreisdtijsotianntc. eTbheetwmeaexnimthuem
+
+utnoirvqeurseawl jaosinmteaansdurtehdewwhireenbthyethweritsetnwsiaosnin[4i5t]s.nTehuetrsaiml ppolseiteioqnu.aOtionne feonrdthofeaesstteimelawtiiorne wofatshceotnonreqcuteed
+
+istodethsceriwbeedarianbEleqruoabtiootn, a(n2d). the other end of the wire was connected to a load cell that measured the
+
+tension in the wire. The torque was estimated by multiplying the distance between the universal joint
+
+and the wire Equation (2).
+
+by
+
+the
+
+tension
+
+[45].
+
+TheMsimple
+
+e𝑇quation𝑙
+
+for
+
+the
+
+estimation
+
+of
+
+the
+
+torque
+
+is
+
+describ(e2d)
+
+in
+
+MSMA = Twire × l
+
+(2)
+
+(a)
+
+(b)
+
+FiFgiugruere9.9E. xEpxepreimrimenetnatlaslesteutpupfofrotrotroqruqeuemmeaesausruermemenetnotfoSfWSWAA, (,a()ae) xepxepreirmimenetnatlaslesteutpupfofrormmeaesausruirnigng exetxetnesnisoinontotroqruqeu,e(,b(b) s)cshchememataitcicofoftotroqrquueemmeaesausurermemenent tsysystsetmem. .
+
+TTaabblele22shshoowwssththeemmeaesausurerdedmmaxaixmimuummtotorqrquuesesexexeretretdedbbyyththeeSWSWAAininththeeddiriercetcitoionnoof ffofuour rwwrirsitst mmotoitoinosn.sS. iSnicnecethtehelalragregsetsnt unmumbebreor foafcatcutautaotrosrps rpordoudcuecethtehemmotoiotinonininthtehedidriercetciotinonofotfhteheexetxetnesnisoino,n, ththeehihgihghesetsttotroqrquueeofo1f .13.232NNmmwwasasmmeaesausurerdedininthtehedidriercetcitoinonofoef xetxetnensisoionnmmotoitoionn. I.nInadaddidtiiotino,nt,otroqruqueses ofo0f .06.16,10, .09.09,00, .06.262NNmmwwereeremmeaesausruerdedininthtehde idreircetciotinonofoffleﬂxeixoino,nr,ardaidailadl edveivaitaiotino,na,nadndulunlanradredveivaitaiotino.n.
+
+AAppppll..SSccii..22001199,,99,,4x0F25OR PEER REVIEW
+
+1100 ooff 1155
+
+Table 2. Maximum torque of the robot in the direction of various wrist motions.
+
+WristTMabolteio2.nMaximum tFolreqxuieoonf the Eroxbtoetnisniothne direcRtiaodnioaflvDareivoiuastwiornist motUiolnnsa. r Deviation
+
+MaximWurimst MToortqioune (Nm) Flex0io.6n1
+
+Ext1e.n3s2ion
+
+Radia0l.D90eviation Ulnar D0e.6v2iation
+
+Maximum Torque (Nm)
+
+0.61
+
+1.32
+
+0.90
+
+0.62
+
+From the experimental results of torque evaluation, it is noted that the SWA can produce a
+
+maximum torque near 1.5 Nm in the direction of the extension. Additionally, the torques measured in alFl roothmerthdeireecxtpioenrismwenertealhriegshuelrtsthoafnto0r.5quNeme.vSailnucaetimono,stitAisDnLottheadt tuhsaettthheewSrWisAt mcaontiopnroredquuciereas mthaexitmoruqmuetolersqsuethnaenar11.5.5NNmm[i6n3]th, eitdisireecxtpioenctoefdththeaetxtthenespiorno.pAosdedditSioWnaAllyc,atnhesutoprpqouretswmreisatsumreodtioinn aelxleoctuhteerdddiruercitniognssowmeerAe hDiLghtheratthdaonn0o.5t rNeqmu.irSeinrecelamtivoesltyAhDigLhtthoartquusee. the wrist motion requires the torque less than 1.5 Nm [63], it is expected that the proposed SWA can support wrist motion executed
+
+d3u.5r.inUgsesroTmesetADL that do not require relatively high torque.
+
+3.5. UWseeraTreasbtility and ROM are also the important factors that have to be considered, as the SWA is wwftccattﬂidlftwccrawaagd1danhhhoaonhoeeeoan3fvraeericeepentriscxvdetpeﬂgn,edvvstuesihputsisaihfwsertwseeruiioatsmoeeuestataW TaehxnT1entreR.tnfneuhcrgttnrfihiheaeda5ohsii,iotdateeooOiTretoosexict.ecemecnaR4vfntiohtwnnfihoMxirtRmRrRmsdomrReOmnoeeom,tnamodrOrOmlieOeoarrO.ampbyeasMispmpevensopsfsTroMMa,laM,ioM,fugtaatiosltltatshsothicyatsiihwittirirrumhstuetiooerieerhoneieeiomeyievrwnemnernevnanmfenedowolnndee,Rondsoea,sepat,ttet.mprtwierhtrartniOwtnahmsswaran3soThhnaaafsteedtteareloMt.weendlreehthmwehctnmsieftrdsfeiis[aiRtneeoiihocxRntta6hwiex.lcm.osauioOfeupol4sasfitOpuopTflIx[tpronrhtt]deearsn6htMreahaﬂiiah.Muhaushrexddsemed4rnennaeiTetntairdvriei]temhiutoxdvmdaraeh.hvurtiaswmweeisnspaeberadpla.eeaeopvelcmT.etc,ryarpenytarodnTteipmnTddtdhisioxiasetihaternichsoterhisaoeipsnﬃlarasxltamdfdaoornesnilenfrg,wetlfvvaewtoenmeiskcceadmlaraseaecasrveeveueuinerwavneuttmtwvomlxweiRarimehrlllssryedaaletRetaxiaserdeiuteOe,ireoitatro,kttirroeOwoiucair.wrneieacsnegoionMweesnonegnIlsmnogtMeenrnnn,emdng,msemilnmseesrisnryas.ptRdnierirtdaeethobarsaeowTahoeohouwmOagabundemaygfdtdtoehrfecstaetyeiscMeeettaﬁsiebuetmeoasctseustaaaaserunvshsvetrantnxcnepnl.rodamhtoeeeboiideleh,peieaTpgtvafcd.rtdepjfd.ddeieeateuwvRsslehuftIo.iuIteedcarhtbausr.norelhnbeOlntvshitoilaTsacyaedTbnamvtsaeyauittblaiegMotfacjaetoleiostiowelirslstoreeeinhrhnlstunlltwehrnctuereinythtgeeeessgoesmbtoRd.etgsbuteesdarxpxhfjnwut,toOtjeuesrlweFptphieewwhehft,nsotnhncdscliehcieMteaeeeetaeugnersloeeattsrrrsetuyribixrstuenmsorinwaisovseawmhmaeliytsdfndtatrdfnoecnrbourarahecrrji3ugeleoitneeiaoydlfm1vyeoibmehs3vnllucnns1ri.3ae2etenjfae.ntit2tea0ttl.da8,irsds4aTe.wsdsnnhsvt4cgtadtwg,Tud,.t,eT,heotda.efu2eeir3e2ohﬁsfovcRosoehrdticti0byctsahshvrcernoivwyiotOeeg.aaouetmonecadexeo4re,ebvdrrpthbaeepbMdbdt,ewacaeiehsjieheerrtsoooj2tavo,raraileudeesneeuaessaonsia1ttmtinfr.cwarnrasf.iae.xtrniu.vtbtotetsvli4enlemtsthasheFtodeanti,tyn,ir,et,shdhrerohiesnsdwosattkfgRoyhtyiienterhdoointmshaheummmbuOre3iairebsisrdrveeoerro.rtenrcuiusMteioadeeeseplnweatbalpd1ababeceitaars,re.isn35rie,sj1rtadjnpmfrwoeareeitiu3T.rti0gtofhi4scertsnncaefo.tanoarhotevnt8orctorrnge.dtssresgetae,tesrhtddtRmsihsTrehmme(rd(i3hvhtesipeanageeOhhen0etaeilmoleaeflifrSanae.almfllannomMoae4wcndyonWrxtmamrcrtser,eceo.ruuoidoehrseusmstvef2mAvatakuallthsaoaTris1nenffiltileeroevnreroooeecehhil.aiamirddden4nyiee)ddsn)nrreesrrr,,,,,
+
+(a)
+
+(b)
+
+FFiigguurree1100.. User test of the prooppoosseedd rroobboott ffoorrﬁfivveessuubbjjeeccttss,,((aa))rraannggeeooffmmoottiioonn,,((bb))wweeaarriinnggttiimmee..
+
+TThhee RROOMM pprroodduucceedd bbyy tthhee rroobboott sshhoowweedd vvaarriiaattiioonn ddeeppeennddiinngg oonn tthhee ppeerrssoonn wweeaarriinngg iitt ssiinnccee tthhee ssiizzee ooff tthhee wwrriisstt,, aarrmm aanndd hhaanndd ooff eeaacchh ppeerrssoonn iiss ddiiﬀffeerreenntt ffrroomm tthhee rreesstt.. AAddddiittiioonnaallllyy,, tthhee ddiiﬀffeerreennccee dduuee ttoo tthhee ppaassssiivvee ssttiiﬀffnneessssoofftthheewwrriissttooffeeaacchhiinnddiivviidduuaall ccaann bbee aannootthheerr ffaaccttoorr tthhaatt aaccccoouunnttss ffoorr tthhee ddiissssiimmiillaarriittyy..TThheerreeffoorree,,wwhheennddeessiiggnneedd aaccccoorrddiinnggttootthhee ssiizzee ooff tthhee hhaanndd aanndd wwrriisstt ooff eeaacchh uusseerr,,tthhee SSWWAAccaannggeenneerraatteeaallaarrggeeaammoouunnttooffRROOMMsstthhaattaarreeaaddeeqquuaatteeffoorrtthheewwrriissttAADDLLss.. FFuurrtthheerrmmoorree,, ssiinnccee
+the SWA is designed by simply attaching multiple SMA-based actuators at desired locations, the
+torque and ROM can be easily increased by attaching additional actuators to the robot.
+
+Appl. Sci. 2019, 9, 4025
+
+11 of 15
+
+the SWA is designed by simply attaching multiple SMA-based actuators at desired locations, the torque and ROM can be easily increased by attaching additional actuators to the robot.
+The wearability is assessed by measuring the time spent wearing the robot. The experiments were conducted in consideration of the fact that the robot is designed to be used by patients who have diﬃculties in manipulating lower arm. Two scenarios were provided for the experiments; self and assistive wearing. The self-wearing experiment was conducted to observe how easily the patients could wear the robot on their own. Therefore, the subjects wore the robot on the passive hand, by using only one hand in this experiment. In the assistive wearing experiment, the time that it takes to attach the robot to the patients by an assistant was measured.
+Figure 10b shows the measured average wearing times of two experiments. The average time spent on self-wearing was measured as 87 s. The average assistive wearing time was measured at 75 s. The step that consumed the most time was inserting ﬁngers into the glove in both experiments. The fact that it takes less than 2 min to wear the robot indicates that the proposed robot system can be worn easily. In particular, the experimental result of the self-wearing implies that the proposed robot can be worn solely by the patient with only one hand in about 80 to 90 s. Therefore, the patients facing motor impairments in their wrist can also wear the robot without the need for external assistance.
+4. Conclusions and Future Work
+A need for wearable robots that are ﬂexible, easy to wear, lightweight and provide enough force has increased for patients who have diﬃculties in manipulating their bodies. This paper shows the ﬁrst step in the development of a new type of soft wearable robot. We demonstrated an SMA-based soft wearable robot made for the assistance of wrist motion. To design a wearable robot that possesses such advantages for supporting the wrist, several design processes are carried out. To design a wearable robot that possesses such advantages for assisting the wrist, several design processes are carried out in this paper. Firstly, a highly stretchable muscle-like actuator is designed to achieve the target performances of force and contraction ratio required for wearable applications. The optimal design of the SMA coil spring is selected by comparing the force-displacement relationships of ﬁve coil springs samples. In order to enhance the response speed, an active cooling system using mineral oil was integrated with the SMA coil spring. The fabricated muscle-like actuator shows a maximum force of 10 N and a maximum contraction ratio of 40% respectively. Furthermore, by attaching the proposed muscle-like actuators to multiple positions on a wearable anchor, we propose a new soft wearable robot for the wrist named SWA, which is able to assist the 2-DOF motion of the wrist. The fabricated SWA is totally ﬂexible and lightweight. The mass of the wearable parts of the robot was only 151 g. Additionally, the highest torque measured was 1.32 N for wrist extension, while the robot provided a torque of higher than 0.5 Nm for the other wrist motions.
+In order to observe the wearability and the ROM of the robot, we conducted user tests on ﬁve healthy male subjects with no impairment in the upper extremity. The average ROM is measured as 33.8, 30.4, 21.4, and 15.4 degrees for ﬂexion, extension, radial deviation, and ulnar deviation. In addition, the wearability of the SWA was observed by measuring the time cost for wearing the device. The self-wearing time is measured as 87 s, and the assistive wearing time is measured as 75 s. The experimental results imply that the SWA can be used routinely to assist patients facing motor impairments at the wrist since it can be worn easily, even when under single hand use.
+However, there are some issues that have to be resolved in the design process. Firstly, although we designed the anchor system that prevents the dislocation of the wearable parts, it could not be perfectly prevented. Additional anchoring at the forearm to increase the ﬁxation force can be applied. Secondly, since the size and the shape of the hands and forearms vary from person to person, the force and motion imbalance resulting from the misalignment of the actuators can occur while using the robot. In order to optimize the robot performances for all users, the attachment positions of the actuators should be easily modiﬁed, while having strong ﬁxing force when it is attached. Adopting
+
+Appl. Sci. 2019, 9, 4025
+
+12 of 15
+
+locking mechanisms that allow ﬁxing the actuators on the wearable anchor regardless of the attachment position can be considered.
+As a future work, we will integrate highly stretchable skin patch-like sensors fabricated using a stretchable polymer and a waved optical ﬁber with the proposed robot to measure its position. Furthermore, the position of the wrist can be possibly controlled by feedback provided from the integrated sensors. Recognizing the intention of the users by adopting intention sensing systems like EMG, force, or ultra-sensitive strain measurement systems will be covered in upcoming studies. We expect that the development of the SWA could be helpful for patients who have diﬃculties in manipulating their lower arm by suggesting a new portable assistive wearable robot that supports the wrist motion in everyday ADL.
+Author Contributions: Conceptualization, J.J. and K.-U.K.; methodology, J.J., I.B.Y., C.H.P., J.H., S.-K.B. and K.-U.K.; writing-original draft preparation, J.J., I.B.Y., J.H. and K.-U.K.; writing-review and editing, J.J., I.B.Y. and K.-U.K.
+Funding: This research was funded by the R&D Program (No.2019R1A2C2006362) of National Research Foundation (NRF), Korea and the Translational Research Program for Rehabilitation Robots (NRCTR-EX199006:KAIST N06190009), National Rehabilitation Center, Ministry of Health and Welfare, Korea.
+Conﬂicts of Interest: The authors declare no conﬂict of interest.
+References
+1. Connell, L.A.; Lincoln, N.B.; Radford, K.A. Somatosensory impairment after stroke: Frequency of diﬀerent deﬁcits and their recovery. Clin. Rehabilit. 2008, 22, 758–767. [CrossRef] [PubMed]
+2. Tyson, S.F.; Hanley, M.; Chillala, J.; Selley, A.B.; Tallis, R.C. Sensory loss in hospital-admitted people with stroke: Characteristics, associated factors, and relationship with function. Neurorehabilit. Neural Repair 2008, 22, 166–172. [CrossRef] [PubMed]
+3. Pendleton, H.M.H.; Schultz-Krohn, W. Pedretti’s Occupational Therapy: Practice Skills for Physical Dysfunction, 8th ed.; Elsevier Health Sciences: San Jose, CA, USA, 2017; ISBN 978-03-2333-928-5.
+4. Janca, A.; Aarli, J.A.; Prilipko, L.; Dua, T.; Saxena, S.; Saraceno, B. WHO/WFN Survey of neurological services: A worldwide perspective. J. Neurol. Sci. 2006, 247, 29–34. [CrossRef] [PubMed]
+5. Sathian, K.; Buxbaum, L.J.; Cohen, L.G.; Krakauer, J.W.; Lang, C.E.; Corbetta, M.; Fitzpatrick, S.M. Neurological principles and rehabilitation of action disorders: Common clinical deﬁcits. Neurorehabilit. Neural Repair 2011, 25, 21S–32S. [CrossRef] [PubMed]
+6. Gemperline, J.J.; Allen, S.; Walk, D.; Rymer, W.Z. Characteristics of motor unit discharge in subjects with hemiparesis. Muscle Nerve 1995, 18, 1101–1114. [CrossRef] [PubMed]
+7. Pollock, A.; Farmer, S.E.; Brady, M.C.; Langhorne, P.; Mead, G.E.; Mehrholz, J.; Van Wijck, F. Interventions for improving upper limb function after stroke. Cochrane Database Syst. Rev. 2013. [CrossRef]
+8. Mlinac, M.; Feng, M. Assessment of Activities of Daily Living, Self-Care, and Independence. Arch. Clin. Neuropsychol. 2016, 31, 506–516. [CrossRef] [PubMed]
+9. Kijima, Y.; Viegas, S.F. Wrist anatomy and biomechanics. J. Hand Surg. 2009, 34, 1555–1563. [CrossRef] [PubMed]
+10. Adams, B.D.; Grosland, N.M.; Murphy, D.M.; McCullough, M. Impact of impaired wrist motion on hand and upper-extremity performance. J. Hand Surg. 2003, 28, 898–903. [CrossRef]
+11. Van Peppen, R.P.; Kwakkel, G.; Wood-Dauphinee, S.; Hendriks, H.J.; Van der Wees, P.J.; Dekker, J. The impact of physical therapy on functional outcomes after stroke: What’s the evidence? Clin. Rehabilit. 2004, 18, 833–862. [CrossRef]
+12. Dimyan, M.A.; Cohen, L.G. Neuroplasticity in the context of motor rehabilitation after stroke. Nat. Rev. Neurol. 2011, 7, 76–85. [CrossRef] [PubMed]
+13. Büteﬁsch, C.; Hummelsheim, H.; Denzler, P.; Mauritz, K.H. Repetitive training of isolated movements improves the outcome of motor rehabilitation of the centrally paretic hand. J. Neurol. Sci. 1995, 130, 59–68. [CrossRef]
+14. Liepert, J.; Miltner, W.H.R.; Bauder, H.; Sommer, M.; Dettmers, C.; Taub, E.; Weiller, C. Motor cortex plasticity during constraint-induced movement therapy in stroke patients. Neurosci. Lett. 1998, 250, 5–8. [CrossRef]
+
+Appl. Sci. 2019, 9, 4025
+
+13 of 15
+
+15. Kwakkel, G.; Kollen, B.J.; van der Grond, J.; Prevo, A.J. Probability of regaining dexterity in the ﬂaccid upper limb: Impact of severity of paresis and time since onset in acute stroke. Stroke 2003, 34, 2181–2186. [CrossRef] [PubMed]
+16. Sörös, P.; Teasell, R.; Hanley, D.F.; Spence, J.D. Motor recovery beginning 23 years after ischemic stroke. J. Neurophysiol. 2017, 118, 778–781. [CrossRef] [PubMed]
+17. Meyer, S.; Verheyden, G.; Brinkmann, N.; Dejaeger, E.; De Weerdt, W.; Feys, H.; Gantenbein, A.R.; Walter, J.; Laenen, A.; Lincoln, N.; et al. Functional and Motor Outcome 5 Years After Stroke Is Equivalent to Outcome at 2 Months: Follow-Up of the Collaborative Evaluation of Rehabilitation in Stroke Across Europe. Stroke 2015, 46, 1613–1619. [CrossRef]
+18. Mozaﬀarian, D.; Benjamin, E.J.; Go, A.S.; Arnett, D.K.; Blaha, M.J.; Cushman, M.; Das, S.R.; de Ferranti, S.; Després, J.P.; Fullerton, H.J.; et al. Heart Disease and Stroke Statistics-2016 update: A report from the American Heart Association. Circulation 2016, 133, e38–e60. [CrossRef] [PubMed]
+19. Aisen, M.L.; Krebs, H.I.; Hogan, N.; McDowell, F.; Volpe, B.T. The eﬀect of robot-assisted therapy and rehabilitative training on motor recovery following stroke. Arch. Neurol. 1997, 54, 443–446. [CrossRef]
+20. Volpe, B.T.; Krebs, H.I.; Hogan, N.; Edelsteinn, L.; Diels, C.M.; Aisen, M. Robot training enhanced motor outcome in patients with stroke maintained over 3 years. Neurology 1999, 53, 1874–1876. [CrossRef]
+21. Krebs, H.I.; Ladenheim, B.; Hippolyte, C.; Monterroso, L.; Mast, J. Robot-assisted task-speciﬁc training in cerebral palsy. Dev. Med. Child Neurol. 2009, 51, 140–145. [CrossRef]
+22. Carpinella, I.; Cattaneo, D.; Bertoni, R.; Ferrarin, M. Robot training of upper limb in multiple sclerosis: Comparing protocols with or without manipulative task components. IEEE Trans. Neural Syst. Rehabilit. Eng. 2012, 20, 351–360. [CrossRef] [PubMed]
+23. Zariﬀa, J.; Kapadia, N.; Kramer, J.; Taylor, P.; Alizadeh-Meghrazi, M.; Zivanovic, V.; Willms, R.; Townson, A.; Curt, A.; Popovic, M.; et al. Feasibility and eﬃcacy of upper limb robotic rehabilitation in a subacute cervical spinal cord injury population. Spinal Cord 2012, 50, 220. [CrossRef] [PubMed]
+24. Burgar, C.G.; Lum, P.S.; Shor, P.C.; Van der Loos, H.F.M. Development of robots for rehabilitation therapy: The Palo Alto VA/Stanford experience. J. Rehabilit. Res. Dev. 2000, 37, 663–673.
+25. Celik, O.; O’Malley, M.K.; Boake, C.; Levin, H.S.; Yozbatiran, N.; Reistetter, T.A. Normalized Movement Quality Measures for Therapeutic Robots Strongly Correlate with Clinical Motor Impairment Measures. IEEE Trans. Neural Syst. Rehabilit. Eng. 2010, 18, 433–444. [CrossRef] [PubMed]
+26. Hogan, N.; Krebs, H.I.; Rohrer, B.; Fasoli, S.; Stein, J.; Volpe, B.T. Recovery After Stroke; Cambridge University Press: Cambridge, UK, 2005; pp. 604–622. ISBN -13 978-0-521-82236-X.
+27. Fasoli, S.E.; Krebs, H.I.; Stein, J.; Frontera, W.R.; Hogan, N. Eﬀects of robotic therapy on motor impairment and recovery in chronic stroke. Arch. Phys. Med. Rehabilit. 2003, 84, 477–482. [CrossRef] [PubMed]
+28. Winstein, C.J.; Stein, J.; Arena, R.; Bates, B.; Cherney, L.R.; Cramer, S.C.; Deruyter, F.; Eng, J.J.; Fisher, B.; Harvey, R.L.; et al. Guidelines for Adult Stroke Rehabilitation and Recovery: A Guideline for Healthcare Professionals from the American Heart Association/American Stroke Association. Stroke 2016, 47, e98–e169. [CrossRef] [PubMed]
+29. Rahman, M.H.; Rahman, M.J.; Cristobal, O.L.; Saad, M.; Kenné, J.P.; Archambault, P.S. Development of a whole arm wearable robotic exoskeleton for rehabilitation and to assist upper limb movements. Robotica 2015, 33, 19–39. [CrossRef]
+30. Gopura, R.A.R.C.; Kiguchi, K.; Li, Y. SUEFUL-7: A 7DOF upper-limb exoskeleton robot with muscle-model-oriented EMG-based control. In Proceedings of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2009), St. Louis, MO, USA, 10–15 October 2009; pp. 1126–1131.
+31. Nef, T.; Guidali, M.; Klamroth-Marganska, V.; Riener, R. ARMin—Exoskeleton Robot for Stroke Rehabilitation. In Proceedings of the World Congress on Medical Physics and Biomedical Engineering, Munich, Germany, 7–12 September 2009; pp. 127–130.
+32. Carignan, C.; Tang, J.; Roderick, S.; Naylor, M. A Conﬁguration-Space Approach to Controlling a Rehabilitation Arm Exoskeleton. In Proceedings of the 10th International Rehabilitation Robotics, Noordwijk, The Netherlands, 13–15 June 2007; pp. 179–187.
+33. Perry, J.C.; Rosen, J.; Burns, S.T. Upper-Limb Powered Exoskeleton Design. IEEE/ASME Trans. Mechatron. 2007, 12, 408–417. [CrossRef]
+
+Appl. Sci. 2019, 9, 4025
+
+14 of 15
+
+34. Coderre, A.M.; Zeid, A.A.; Dukelow, S.P.; Demmer, M.J.; Moore, K.D.; Demers, M.J.; Bretzke, H.; Herter, T.M.; Glasgow, J.I.; Norman, K.E.; et al. Assessment of upper-limb sensorimotor function of subacute stroke patients using visually guided reaching. Neurorehabilit. Neural Repair 2010, 24, 528–541. [CrossRef]
+35. Gunasekara, M.; Gopura, R.; Jayawardena, S. 6-REXOS: Upper Limb Exoskeleton Robot with Improved pHRI. Int. J. Adv. Robot. Syst. 2015, 12, 1–13. [CrossRef]
+36. Gopura, R.; Bandara, D.; Kiguchi, K.; Mann, G.; Gopura, R. Developments in hardware systems of active upper-limb exoskeleton robots: A review. Robot. Auton. Syst. 2016, 75, 203–220. [CrossRef]
+37. Sasaki, D.; Noritsugu, T.; Takaiwa, M. Development of Active Support Splint driven by Pneumatic Soft Actuator (ASSIST). In Proceedings of the IEEE International Conference of Robotics and Automation (ICRA) 2005, Barcelona, Spain, 18–22 April 2005; pp. 520–525.
+38. Realmuto, J.; Sanger, T. A robotic forearm orthosis using soft fabric-based helical actuators. In Proceedings of the IEEE 2nd International Conference of Soft Robotics (RoboSoft), Seoul, Korea, 14–18 April 2019; pp. 591–596.
+39. Skorina, E.H.; Luo, M.; Onal, C.D. A Soft Robotic Wearable Wrist Device for Kinesthetic Haptic Feedback. Front. Robot. AI 2018, 5, 83. [CrossRef]
+40. Al-Fahaam, H.; Davis, S.; Nefti-Meziani, S. The design and mathematical modelling of novel extensor bending pneumatic artiﬁcial muscles (EBPAMs) for soft exoskeletons. Robot. Auton. Syst. 2018, 99, 63–74. [CrossRef]
+41. Li, Y.; Hashimoto, M. PVC gel soft actuator-based wearable assist wear for hip joint support during walking. Smart Mater. Struct. 2017, 26, 125003. [CrossRef]
+42. Park, D.; Cho, K.J. Development and evaluation of a soft wearable weight support device for reducing muscle fatigue on shoulder. PLoS ONE 2017, 12, e0173730. [CrossRef] [PubMed]
+43. Dinh, B.K.; Xiloyannis, M.; Cappello, L.; Antuvan, C.W.; Yen, S.; Masia, L. Adaptive backlash compensation in upper limb soft wearable exoskeletons. Robot. Auton. Syst. 2017, 92, 173–186. [CrossRef]
+44. Gaponov, I.; Popov, D.; Lee, S.J.; Ryu, J.H. Auxilio: A portable cable-driven exosuit for upper extremity assistance. Int. J. Control. Autom. Syst. 2017, 15, 73–84. [CrossRef]
+45. Choi, H.; Kang, B.B.; Jung, B.; Cho, K. Exo Wrist: A Soft Tendon Driven Wrist Wearable Robot with Active Anchor for Dart Throwing Motion in Hemiplegic Patients. IEEE Robot. Autom. Lett. 2019. [CrossRef]
+46. An, S.M.; Ryu, J.; Cho, M.; Cho, K.J. Engineering Design Framework for a Shape Memory Alloy Coil Spring Actuator using a Static Two-State Model. Smart Mater. Struct. 2012, 21, 055009. [CrossRef]
+47. Villoslada, A.; Flores, A.; Copaci, D.; Blanco, D.; Moreno, L. High-displacement ﬂexible Shape Memory Alloy actuator for soft wearable robots. Robot. Auton. Syst. 2015, 73, 91–101. [CrossRef]
+48. Copaci, D.S.; Moreno, L.; Blanco, D. Wearable elbow exoskeleton actuated with shape memory alloy in antagonist movement. In Proceedings of the Joint Workshop on Wearable Robotics and Assistive Devices, International Conference on Intelligent Robots and Systems, Daejeon, Korea, 9–14 October 2016.
+49. Hope, J.; McDaid, A. Development of Wearable Wrist and Forearm Exoskeleton with Shape Memory Alloy Actuators. J. Intell. Robot. Syst. 2017, 86, 397–417. [CrossRef]
+50. Ertel, J.D.; Mascaro, S.A. Dynamic Thermomechanical Modeling of a Wet Shape Memory Alloy Actuator. J. Dyn. Syst. Meas. Control. 2010, 132, 051006. [CrossRef]
+51. Guo, S.; Ge, Y. Underwater Swimming Micro Robot Using IPMC Actuator. In Proceedings of the 2006 IEEE International Conference on Mechatronics and Automation, Luoyang, China, 25–28 June 2006; pp. 249–254.
+52. Cianchetti, M.; Mattoli, V.; Mazzolai, B.; Laschi, C.; Dario, P. A new design methodology of electrostrictive actuators for bio-inspired robotics. Sens. Actuators B Chem. 2009, 142, 288–297. [CrossRef]
+53. Huang, W.; Ding, Z.; Wang, C.C.; Wei, J.; Purnawali, H.; Zhao, Y. Shape memory materials. Mater. Today 2010, 13, 54–61. [CrossRef]
+54. Shin, S.R.; Shin, C.; Memic, A.; Shadmehr, S.; Miscuglio, M.; Jung, H.Y.; Jung, S.M.; Bae, H.; Khademhosseini, A.; Tang, X.S.; et al. Aligned carbon nanotube–based ﬂexible gel substrates for engineering biohybrid tissue actuators. Adv. Funct. Mater. 2015, 25, 4486–4495. [CrossRef] [PubMed]
+55. Park, C.H.; Ham, S.Y.; Son, Y.S. Relationship between Input Power and Power Density of SMA Spring. In Proceedings of the SPIE. Smart Structures and Materials + Nondestructive Evaluation and Health Monitoring, Las Vegas, NV, USA, 15 April 2016; p. 9799.
+
+Appl. Sci. 2019, 9, 4025
+
+15 of 15
+
+56. Park, C.H.; Son, Y. SMA spring-based artiﬁcial muscle actuated by hot and cool water using faucet-like valve. In Proceedings of the SPIE. Smart Structures and Materials + Nondestructive Evaluation and Health Monitoring, Portland, OR, USA, 11 April 2017; p. 10164.
+57. Park, C.H.; Choi, K.J.; Son, Y.S. Shape Memory Alloy-Based Spring Bundle Actuator Controlled by Water Temperature. IEEE/ASME Trans. Mechatron. 2019, 24, 1798–1807. [CrossRef]
+58. Cheng, S.S.; Kim, Y.; Desai, J.P. Modeling and characterization of shape memory alloy springs with water cooling strategy in a neurosurgical robot. J. Intell. Mater. Syst. Struct. 2017, 28, 2167–2183. [CrossRef] [PubMed]
+59. Park, S.J.; Park, C.H. Suit-type Wearable Robot Powered by Shape-Memory-alloy-based Fabric Muscle. Sci. Rep. 2019, 9, 9157. [CrossRef]
+60. Madden, J.D.W.; Vandesteeg, N.A.; Anquetil, P.A.; Madden, P.G.A.; Takshi, A.; Pytel, R.Z.; Lafontaine, S.R.; Wieringa, P.A.; Hunter, I.W. Artiﬁcial Muscle Technology: Physical Principles and Naval Prospects. IEEE J. Ocean. Eng. 2004, 29, 706–728. [CrossRef]
+61. Mann, K.A.; Werner, F.W.; Palmer, A.K. Frequency Spectrum Analysis of Wrist Motion for Activities of Daily Living. J. Orthop. Res. 1989, 7, 304–306. [CrossRef]
+62. Andrews, J.G.; Youm, Y. A biomechanical investigation of wrist kinematics. J. Biomech. 1979, 12, 83–93. [CrossRef]
+63. Sergi, F.; Lee, M.M.; O’Malley, K. Design of a series elastic actuator for a compliant parallel wrist rehabilitation robot. In Proceedings of the International Conference of Rehabilitation Robotics (ICORR), Seattle, WA, USA, 24–26 June 2013.
+64. Gates, D.H.; Walters, L.S.; Cowley, J.; Wilken, J.M.; Resnik, L. Range of Motion Requirements for Upper-Limb Activites of Daily Living. Am. J. Occup. Ther. 2015, 70, 70013500. [CrossRef] [PubMed]
+© 2019 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license (http://creativecommons.org/licenses/by/4.0/).
+

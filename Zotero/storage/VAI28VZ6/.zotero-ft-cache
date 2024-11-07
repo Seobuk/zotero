@@ -1,0 +1,510 @@
+2218
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+A Novel Intrinsic Force Sensing Method for Robot Manipulators During Human–Robot Interaction
+Uikyum Kim , Gwanghyun Jo , Heeyeon Jeong, Cheol Hoon Park , Je-Sung Koh , Dong Il Park, Hyunmin Do , Member, IEEE, Taeyong Choi , Hwi-Su Kim , and Chanhun Park
+
+Abstract—Robotic manipulators require contact force sensing capabilities to sense the contact force between the manipulator and an object. Speciﬁcally, for humans and robots to coexist in the work environment, the robot must be able to detect an external force applied by a human. This study presents a new intrinsic force sensing method for robot manipulators that can obtain accurate information of the external force applied by a human during human–robot interaction. The method employs a robot cover, which is typically utilized in robot manipulators. Unlike conventional force sensing methods, a six-axis force/torque sensor is placed between the cover and the link of the robot manipulator. As a result, the proposed method provides information of the three-axis contact force applied to the cover surface and its contact location. Therefore, the cover itself becomes a sensorized cover based on the intrinsic force sensing method. To evaluate its sensing performance, the sensorized cover is experimentally validated using reference sensors. Finally, an experiment is performed in which the robot successfully recognizes letters written on the cover, indicating a high level of contact force sensing performance.
+Index Terms—Contact location, human–robot interaction (HRI), intrinsic force sensing, six-axis force/torque (F/T) sensor, three-axis force.
+I. INTRODUCTION
+Collaboration between humans and robots has been developing rapidly and has led to increased work efﬁciency in a wide range of applications, enabling tasks that were previously thought impossible [1]–[3]. Recently, human–robot interaction (HRI) for collaboration purposes has become an important issue in robotics research [3]–[5]. To interact with humans, it is essential that robots recognize their surroundings and ensure human safety. Therefore, ensuring these capabilities is a constant challenge, particularly for robotic manipulators used in automated factories and multiple industrial ﬁelds.
+Manuscript received October 26, 2020; accepted April 7, 2021. Date of publication May 12, 2021; date of current version December 6, 2021. This work was supported by the Basic Research Program funded by the Korea Institute of Machinery and Materials under Grant NK224C and Grant NK232F. This paper was recommended for publication by Associate Editor C. Yang and Editor M. Yim upon evaluation of the reviewers’ comments. (Corresponding author: Uikyum Kim.)
+Uikyum Kim, Heeyeon Jeong, Cheol Hoon Park, Dong Il Park, Hyunmin Do, Taeyong Choi, Hwi-Su Kim, and Chanhun Park are with the Department of Robotics and Mechatronics, Korea Institute of Machinery and Materials, Daejeon 34103, South Korea (e-mail: ukkim@kimm.re.kr; gmldus1493@kimm.re.kr; parkch@kimm.re.kr; parkstar@kimm.re.kr; hmdo@kimm.re.kr; taeyongc@kimm.re.kr; HSKim81@kimm.re.kr; chpark@kimm.re.kr).
+Gwanghyun Jo is with the Department of Mathematics, Kunsan National University, Gunsan 54150, South Korea (e-mail: gwanghyun@kunsan.ac.kr).
+Je-Sung Koh is with the Department of Mechanical Engineering, Ajou University, Suwon 16499, South Korea (e-mail: jskoh@ajou.ac.kr).
+This article has supplementary material provided by the authors and color versions of one or more ﬁgures available at https://doi.org/10.1109/TRO.2021. 3072736.
+Digital Object Identiﬁer 10.1109/TRO.2021.3072736
+
+Fig. 1. Current force sensing methods for robotic manipulators. (a) Basic structure of a robotic manipulator. (b) Use of a joint torque sensor or ﬁlm-type tactile sensor in the manipulator.
+Touch sense capability is required to ensure the fundamental interaction during physical contact between an object or human and a robot manipulator [6]–[10]. This sense provides contact force information about the degree and direction of force applied to the object/human by the robot [11]. A force sensor typically provides the touch sense to a robot manipulator [6]. Typically, a robot manipulator is composed of joints and links, with a tool located at the end-effector, as shown in Fig. 1(a). Previous research has employed two main approaches to integrate force sensors into a robot manipulator.
+The ﬁrst is a torque measurement method using a joint torque sensor. Here, the axial torque of the joint is measured by attaching a torque sensor to the joint of the robot [see Fig. 1(b)] and estimating the contact force applied to the link [12]. Thus, a torque sensor can be utilized to detect collisions with objects and humans and enable simple direct teaching. The existing sensing method used to integrate the sensor with the manipulator and measure the accurate joint torque value of the manipulator that has been considered promising; however, the use of a torque sensor in robot manipulators yields limited information about the contact force applied to the robot [12]–[15]. Moreover, because the actuator should be directly connected to the torque sensor, the structure and machining/designing parts of the joint module become more complicated, and the price of the robot increases. Furthermore, even a very small deformation of the sensor at the starting joint, such as in joint 1 of the manipulator, can cause a large position error at the end-effector. To solve this problem, a torque sensor with very high rigidity and a very high sensing accuracy is required. The second approach is a force-sensing method using a ﬁlm-type force sensor. As shown in Fig. 1(b), ﬂexible ﬁlm sensors can be attached to the surface of the link to measure the magnitude, location, and distribution of the contact force. This is an important sensing method because it enables measurement of the location and distribution of force. The sensor can act intuitively, like human skin; therefore, it is a promising method [16]–[20]. However, there have been difﬁculties integrating current sensor technology into the robot manipulator surface. Speciﬁcally,
+
+1552-3098 © 2021 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+2219
+
+it is difﬁcult for the sensor to cover the large area of the manipulator due to manufacturing and cost factors. Furthermore, it is difﬁcult to measure any biaxial shear force other than a vertical force over the large surface. However, the biggest factor limiting integration of the sensor with the robot is the wiring problem of the sensor hardware, which requires multiple wires corresponding to a number of sensor cells to be connected to the robot. In addition, high-performance measuring equipment is required to measure the vast amount of data recorded by the cells. Such equipment is difﬁcult to obtain high measurement speeds in view of the state of currently developed chips or the universal computer performance in current technology. The various difﬁculties described before can be factors responsible for increasing the cost of robot integration.
+Intrinsic force sensing derives force contact information using a force sensor within the mechanical structure of the manipulator [11], [21]. If the sensor measures both force and torque at the same time, the sensing method can derive the magnitude and location information of an external contact force applied on the outer surface of the mechanical structure. Bicchi et al. showed that intrinsic force sensing can measure abundant contact information of a robot using six-axis force/torque (F/T) data [22]. Boucher et al. showed that important functions for collaborative robotic manipulators can be acquired by measuring user interaction forces on the links of the robot manipulator [23].
+This study presents a novel intrinsic force sensing method for robot manipulators. Unlike the previous studies described earlier, intrinsic force sensing is performed at the surface of the manipulator link. A sixaxis F/T sensor, typically mounted at the end-effector for robot-direct teaching, is attached to the inside of the cylindrical cover attached to the link and placed between the cover and the link. This simple conﬁguration can provide abundant contact force information; i.e., the three-axis force and its contact location during physical contact with the surface. In such a conﬁguration, the wiring of the sensor is simple and a complicated structure is not required for the joint. To develop this sensing method, the relationship between the six-axis F/T and the contact force is analyzed based on the geometric relationship between the F/T sensor and the cylindrical cover. To verify the feasibility of the proposed sensing method, a prototype sensorized cover is fabricated and its contact force sensing capabilities are evaluated in an experimental setup. In addition, an experiment is conducted to determine if the proposed method can measure complex applied contact force information, i.e., written letter recognition.
+This article is organized as follows: The principle of the proposed sensing method is explained in Section II. The sensing method is evaluated using three experiments in Section III. Section IV concludes this article.
+II. PRINCIPLE OF THE PROPOSED SENSING METHOD
+A. Robot and Sensor Conﬁguration
+To develop a sensorized cover based on the proposed intrinsic force sensing method, a six-axis F/T sensor is attached between the cover and the link surface of a robot manipulator, as shown in Fig. 2. The sensor measures three orthogonal forces (fx, fy, and fz) and three orthogonal moments (mx, my, and mz) at the center point of the sensor’s top surface [24]. Typically, robotic manipulators are equipped with covers to shield the inner robot link parts, power transmission parts, electronic circuits, etc., from unwanted damage. One side of the sensor is attached to the inner surface of the cover and the other side is attached to the link surface. To minimize the size of the cover in the radial direction, the sensor is placed as close as possible to the surface of the cover.
+
+Fig. 2. Proposed intrinsic force sensing method for detecting a three-axis force and its contact location at the surface of a robotic manipulator.
+Fig. 3. Schematic illustrating a contact force applied by a human hand to the surface of the sensorized cover installed to a link.
+As a result, the sensorized cover can measure the six-axis F/T on the surface of the robot link. Based on the geometric relationship between the location of the sensing point S and the shape of the cover, the F/T data (f and m) are converted into a three-axis contact force P and its three-degree-of-freedom (DOF) location where it is applied on the surface C, as shown in Fig. 3.
+In detail, the measured contact force always represents the resultant force and not the distributed load. Therefore, if an external force is applied to the top surface of the cover while the same force is applied to the opposite surface of the cover, the two forces will cancel each other out and not be displayed. For the aforementioned reason, the cover can be divided into two or three sections (bisected or trisected). Each cover includes the sensor, as shown in Fig. 2. Consequently, the sensing method has signiﬁcant advantages such as a simple structure, easy wiring, and the ability to measure abundant contact force information at low cost.
+B. Relationship Between the Magnitude/Location of the Three-Axis Contact Force and the Six-Axis F/T
+Theoretically, the sensorized cover measures three-axis force information and its three-dimensional (3-D) location where it is applied on the surface. As mentioned earlier, the six-axis F/T data (f and m) is converted into the three-axis force P and its 3-D location C data using the geometric relationship between the sensor location S and the cover. As there are six input data (six-axis F/T), six output data (three-axis force and 3-D location) can be acquired. As a result, it is possible to determine where a human touches the robot and the direction of the applied force by measuring the position and magnitude of the contact force.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+2220
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+cT A2c = r02
+
+(10)
+
+where the 3×3 matrix Γ(K) is deﬁned as
+
+⎛
+
+⎞
+
+K/γ2 Γ(K) = ⎜⎝ −f3
+
+f3 K
+
+−f2 f1
+
+⎟⎠
+
+.
+
+(11)
+
+f2 −f1 K
+
+Fig. 4. Directional and locational relationship between the F/T measured by the sensor and the applied contact force on the cover.
+
+Then, c and K are found using (9) and (10). The two cases are considered as follows.
+First, if f T m = 0, the force system can determine c using the wrench axis method. The case is a point contact solution with the assumption that q = 0. In this case, the displacement c is obtained by
+
+In this study, the geometric relationship is analyzed using a basic technique established in a previous study [22], which has been used in many studies to calculate the contact force and its location. The contact force information on the cylinder surface is calculated by considering that the sensor sensing point is close to the surface of the cover.
+Computation: The surface S of the structure has a cylindrical shape with a radius r0 and its axis is parallel to the x-axis. The F/T sensor is located at x0 = (0, 0, z0), where 0 < z0 < r0. The surface S is described by the zero set of the quadratic form
+
+S(r) = rT AT Ar − r02 = 0
+
+(1)
+
+where A is given by
+
+⎛
+
+⎞
+
+1/γ 0 0
+
+A = ⎜⎝ 0 1 0⎟⎠ .
+
+(2)
+
+0 01
+
+Here, γ tends to ∞ to describe the geometry of a cylindrical surface. First, we study the contact location of S.
+As shown in Fig. 4, the force f measured by the F/T sensor can express the three-axis contact force p. The moment m is related to the torque q, the contact location c, and the three-axis contact force.
+Therefore, the force and moment balance equations are written as
+
+f =p
+
+(3)
+
+m = q + (c − z0) × p.
+
+(4)
+
+Here, by letting m = m + z0 × f , which is the sum of the known quantities, the moment balance equation (4) is rewritten as
+
+m = q + c × p.
+
+(5)
+
+The normal vector n to the surface is given as
+
+n
+
+=
+
+∇S(c) ||∇S(c)||
+
+=
+
+A2 ||A2
+
+c c||
+
+.
+
+(6)
+
+Because most of the contact with the hard cover corresponds to soft contact from human hands during HRI tasks, q is parallel to the normal vector n to S. Thus, K is deﬁned as follows:
+
+q = KA2c.
+
+(7)
+
+Substituting (7) and (3) into (5) yields
+
+m = KA2c + c × f .
+
+(8)
+
+From (1) and (8), a system of four nonlinear equations and four unknowns is obtained, as follows:
+
+Γ(K)c = m
+
+(9)
+
+c = r0 + λf
+
+(12)
+
+where the axis is a line through r0 that is expressed as
+
+r0
+
+=
+
+f ×m ||f ||2
+
+(13)
+
+and
+
+λ = −f · r0 −
+
+(f
+
+·
+
+r0)2 − ||f ||2
+
+||f
+
+||2(||r0||2
+
+−
+
+R2) .
+
+(14)
+
+Here, f = Af and r0 = Ar0. Moreover, f parameterized by λ is parallel to the axis.
+Next, the case that f T m = 0 is a soft contact solution that considers the moment q exerted on the surface. If f T m = 0, the displacement c
+is obtained as follows:
+
+c
+
+=
+
+1 detΓ(K
+
+)
+
+[K
+
+2
+
+D2(A−1
+
+)2
+
+m
+
++ K(A2f ) × m
+
++ (f T m )f ]
+
+(15)
+
+where K is given by the solution of
+
+K4D2r02 + K2[r02||Af ||2 − D2||A−1m ||2] − (f T m )2 = 0. (16)
+
+Here
+
+D = det(A), σ = D2||A−1m ||2 − R2||Af ||2.
+
+(17)
+
+By taking the limit γ → ∞ on both sides of (15), the contact location for the cylinder surface can be found. Thus, the limit of D is computed
+
+limγ→∞D
+
+=
+
+1 limγ→∞ γ
+
+= 0.
+
+(18)
+
+Similarly
+
+limγ→∞D2||A−1m ||2 = limγ→∞γ−2(γm1 + m2 + m3)2
+
+= (m1)2.
+
+(19)
+
+According to the deﬁnition of σ, the limit of σ is given as
+
+limγ→∞σ = (m1)2 − r02(f22 + f32).
+
+(20)
+
+K is found for the limiting case of γ → ∞. As D → 0, (16) is restricted to
+
+K2σ − (f T m )2 = 0.
+
+(21)
+
+Thus
+
+limγ→∞K
+
+= − f√T m −σ
+
+=
+
+−f T m
+
+.
+
+r02(f22 + f32) − (m1)2
+
+(22)
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+2221
+
+Fig. 5. Manufactured sensorized cover used to evaluate sensing performance. (a) Six-axis F/T sensor ﬁxed on the 3-D printed jig. (b) Cover attached on the sensor. (c) Side view of the sensorized cover.
+
+Fig. 6. Conﬁguration of the experimental setup used to evaluate the sensing performance of the cover by comparing with reference data measured by a reference F/T sensor and two rotary encoders.
+
+Finally, c is limited using the limiting values of D, σ, and K as follows:
+
+limγ→∞c =
+
+1 [K2D2(A−1)2m detΓ
+
++ K(A2f ) × m
+
++ (f T m )f ]
+
+=
+
+K
+
+1 (f22 +
+
+f32
+
+)
+
+[K
+
+2
+
+(m1
+
+,
+
+0, 0)
+
++ K(0, f2, f3) × m + (f T m )f ].
+
+(23)
+
+As a result, the geometric relationship is determined and the threeaxis external force p and its location c during surface contact are computed using the sensor data (f and m).
+
+III. EVALUATION
+
+A. Experimental Setup
+
+To verify the proposed method, an experimental sensorized cover was designed and fabricated (see Fig. 5). An RFT60-HA01 model sixaxis F/T sensor produced by ROBOTOUS was ﬁxed to a base part manufactured by a 3-D printer (F370 produced by STRATASYS), as shown in Fig. 5(a) [25]. The sensor has a load capacity of fx, fy: 150 N, fz: 200 N, and mx, my, mz: 4 N · m. Including all measuring parts, the F/T sensor directly sends the F/T data to a computer. One wire from the sensor contains four wires that are dedicated to the communication and power source (5 V). The base part acts as the inner part of the robot link, and the center line represents the center of the cylindrical link. The height of the sensing point of the sensor from the center line is 65 mm. A 3-D printed cover with a radius of 60 mm and a length of 200 mm was attached to the sensor, as displayed in Fig. 5(b) and (c). Each part was ﬁxed by a bolting connection.
+As explained before, the sensorized cover measures the three-axis force and its three-DOF location. Therefore, to evaluate the sensing performance of the cover, reference sensors are required to measure the force and the location. Fig. 6 shows the experimental setup used to obtain the measured data and the reference data. The setup consists of a linear guide part including a ball screw produced by THK, two rotary encoders (RE22 produced by RLS), and an F/T sensor (NANO25 produced by ATI Industrial Automation). The block has a ball nut, the F/T sensor, a knob, and a contact probe. The knob is ﬁxed to the surface
+
+Fig. 7. Manufactured experimental setup. (a) Actual design of the experimental setup with the cover and reference sensors. (b) Motions of the experimental setup when translating and rotating the block by grasping the knob.
+of the sensor and the probe is ﬁxed to the other surface of the sensor. Because four springs and four guides are placed between the knob and the probe, the probe can touch and release the surface of the cover by pushing the knob while the F/T sensor measures the contact force. Moreover, the block can move along the ball screw by rotating the ball screw. In other words, the block moves 2 mm for each wheel of the ball screw. By measuring the rotation of the ball screw, the encoderL can detect the linear motion data of the block. The encoderR directly detects the circular motion based on the center of the link, as shown in Fig. 6. Therefore, the contact probe can touch all surfaces of the cover and apply the contact force. At the same time, the location of the probe is measured by the two encoders and the contact force is measured by the F/T sensor.
+Fig. 7 shows a photograph of the manufactured experimental setup. When the probe makes contact with the surface of the cover, the two sensing coordinates (Rs: reference sensor and C: sensorized cover) are expressed as displayed in Fig. 7(a). As shown in Fig. 7(b), the probe can contact all surfaces and apply the contact force. At this time, the
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+2222
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+Fig. 8. Three experiments conducted to evaluate the performance of the cover. (a) Experiment evaluating the contact force location measured by the cover. (b) Experiment evaluating the measurement of the three-axis contact force and its location. (c) Experiment evaluating the recognition of written letters on the cover.
+
+coordinate Rs is rotated based on the circular motion. It is difﬁcult to compare the two sensors due to the angular difference between the two coordinates. Therefore, to compare the data from the two sensors, the measured reference f on the coordinate Rs is computed as follows:
+
+C Rs
+
+RRs
+
+f
+
+=
+
+Cf
+
+(24)
+
+where
+
+C Rs
+
+R
+
+represents
+
+a
+
+rotation
+
+matrix
+
+that
+
+rotates
+
+the
+
+reference
+
+sensor
+
+coordinate according to the circular motion, Rs f is the measured forces
+
+in
+
+the
+
+reference
+
+coordinate,
+
+and
+
+C Rs
+
+R
+
+is
+
+found
+
+by
+
+the
+
+rotational
+
+angle
+
+θR of the circular motion, which is measured by the encoderR.
+
+Using this setup, we conducted three experiments, as shown in
+
+Fig. 8. First, we performed an experiment to evaluate the contact force
+
+location measured by the cover [see Fig. 8(a)]. Next, we conducted an
+
+experiment to evaluate the simultaneous measurement of the three-axis
+
+contact force and its location [see Fig. 8(b)]. Finally, letters were written
+
+on the cover to validate the sensing performance of the cover [see Fig.
+
+8(c)]. A detailed explanation of the experiments is given in the following
+
+sections.
+
+B. Performance Evaluation According to the Measured Location of the Contact Force
+As shown in Fig. 8(a), the probe applied a normal force to the points at 2-cm intervals. The points were placed on θR, which extends from 0◦ to 90◦ at 15◦ intervals. Thus, the number of points on the surface is 77. During the experiment, we pressed the probe to all points until the normal force was 30 N. The location data were recorded by both the sensorized cover and the reference sensors. According to the speciﬁcations of the F/T sensor, this sensor can measure a force of up to 200 N from the center of the cover surface. Because the sensor’s torque measurement range is limited to 4 N · m, the force measurement range at the contact point farthest from the sensor is limited to 40 N.
+Fig. 9 shows the experimental results of the contact force location data measured by the two types of sensor. The “◦” symbol represents the measured location data and the “∗” symbol represents the reference location data. Fig. 9(a) represents the two location datasets recorded simultaneously at the same coordinates. Both datasets are very similar across the entire surface, with no signiﬁcant differences. To intuitively determine the error distribution across the entire surface, the error at each measured point is expressed by colors in Fig. 9(b). The maximum location error is 1.7 mm and the rms error across the entire surface is 0.65 mm. Among the seven horizontal lines, the rms error of 11 points on the line with a θR of 90◦ is the highest, at 0.11 mm. Among the 11 vertical lines, the rms error of the seven points at the right end is the highest, at 0.15 mm.
+Because the proposed method is based on the geometric relationship with the F/T, we expected that the error caused by the difference between measured data and reference data would be uniform on the cover surface. The errors are typically equivalent, but those at some
+
+Fig. 9. Experimental results comparing the contact force location sensing performance of the cover and reference sensors.
+locations are high. This is likely due to machining errors of the cover and errors related to the conﬁguration of the experimental setup. Additionally, the contact point derived in the actual experiment based on the derived equations becomes unstable when the magnitude of the contact force approaches zero. Therefore, during the experiment, an additional constraint was applied to regard the force as 0 when the force was less than 0.2 N.
+In addition, we checked the distribution of the contact points according to the magnitude of the contact force. As shown in Fig. 10, when a constant force was applied to the cover surface for 10 s, the distributions of the contact points calculated were analyzed. The origin of the graphs corresponds to the average of the measured contact points. When a contact force as high as 0.1 N was applied, it was conﬁrmed that the contact points were distributed over almost the entire cover, and the standard deviation (SD) was observed to be 16.1 mm. When the contact forces of 1 and 3 N were applied, the contact points were derived as in the case involving a point contact with SDs of 2.1 and 0.76 mm, respectively. When a force of 20 N was applied, a stable contact point was derived with an SD of 0.08 mm.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+2223
+
+Fig. 10. Distribution of measured contact points according to the magnitude of the applied contact force.
+
+Fig. 12. Experimental results comparing the three-axis contact force magnitude sensing performance of the cover and reference sensors.
+
+Fig. 11. Experimental results comparing the external contact force location sensing performance of the cover and reference sensors.
+C. Performance Evaluation of the Measured Three-Axis Force and Its Location
+An external contact force was applied by the probe to the surface along the path in a zigzag line, as shown in Fig. 8(b). The probe initiated contact at the starting point and maintained contact for 25 s until the end point. While applying the external contact force along the path, the sensorized cover and reference sensors simultaneously measured the three-axis force and the position of the contact force. Because the force was applied along a zigzag path, three-axis force sensing was successfully evaluated.
+Fig. 11 shows the experimental results of the external contact force location measurement. The location data measured by the sensorized cover and the reference sensors are represented by overlapping zigzagging blue and red dotted lines, respectively [see Fig. 11(a)]. Both data are fairly similar with the maximum location error of 1.5 mm and the rms error of 0.74 mm along the entire path. Fig. 11(b) shows the location data at two different angles. To analyze the three-axis contact force data with the location data, the starting point, peak points, and end point
+
+( S , P , and E ) are indicated in Figs. 11 and 12. The path passes through the points S - P - 1 - P - 2 - P - 3 - P - 4 - P - E in sequence. Fig. 12 shows the experimental results of the three-axis contact force magnitude measurement during the same experiment. The results show the time-domain responses of the three-axis force measured by the cover and the reference force sensor.
+The three graphs in Fig. 12 display force information on the x-, y-, z-axis, respectively, where the blue and red dotted lines represent the cover and the reference data, respectively. These data are again fairly similar with the maximum force error of 7.5 N and the rms error of 2.1 N over the entire path. Most of the rather large measured force errors are considered to be caused by a slight tilt of the knob owing to a mechanical error of the experimental setup. The tilt may cause the knob and probe to move slightly in the opposite direction. Thus, the errors between the cover and the reference data occur with a slight tilt. At approximately 2.5 s, the force data ﬂuctuate at the starting point S where contact ﬁrst occurs. As the maximum measured z-axis force is at point P , the ﬁrst peak point P occurs at approximately 4.3 s. Moreover, as the main force generated by passing point 1 is the x-axis force, point 1 is passed at approximately 7 s. The blue shaded sections in Fig. 12, such as that from S to 1 , were analyzed as those that draw a circular path on the y–z plane. The x-axis motions occur in the white sections when drawing the zigzag line. The y-axis force data show increasing and decreasing trends based on the peak point P during the circular paths. The reason why the y-axis force at the peak point P is not completely zero is due to the frictional force generated between the probe and the cover. Along the zigzag path, ﬁve circular paths and four x-axis paths are created, and the contact force becomes zero at the end point E . In addition, while drawing the x-axis path from point 1 , the stepped motion displayed in Fig. 11(a) and (c) is reﬂected in the measured x-axis force data displayed in Fig. 12, which generates ﬂuctuations in the force data. Therefore, the ability of the proposed method to measure force/position sensing of the cover is veriﬁed in the experimental environment.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+2224
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+Fig. 13. Location data of the contact force measured by the cover while writing four letters on the cover surface.
+
+force is conﬁrmed at 6.8 s. I is written by three ﬁnger touches and shows three corresponding increases in the force. M is written by two ﬁnger touches. During the second ﬁnger touch, three lines are written with two changes in the direction of the force. Similarly, two ﬂuctuations in the force are shown in Fig. 14. Furthermore, the measured force is similar during the ﬁrst and second M. The lower graph of Fig. 14 analyzes the three-axis contact force data for the four sections. The sign of the three forces is determined by the direction of ﬁnger movement during contact. For example, the change in the sign of the x-axis force at 6.8 s represents a change in the direction of ﬁnger movement.
+Therefore, this experiment conﬁrms a very good contact force sensing performance that enables the recognition of written letters. The measured three-axis force data can also be used to determine multiple aspects of the applied contact force. Therefore, it is possible to detect the magnitude and position of the complex force applied by a human using the sensorized cover. This information could aid the development of new communication methods and control strategies during HRI tasks.
+
+Fig. 14. Three-axis contact force data measured by the cover while writing four letters on the cover surface.
+D. Application of the Cover for Recognizing Written Letters
+This experiment was conducted to determine whether the robot cover can be used to recognize letters using contact force information, similar to if letters were written by hand on a person’s back. As shown in Fig. 8(c) and Supplemental video, the four letters “KIMM” were written by a human hand on the cover surface over a duration of approximately 28 s. The video shows that the three-axis contact force and its location, according to the contact between the ﬁnger and the cover, are measured in real time. Here, the direction of the ﬁnger is indicated using arrows. Fig. 13 shows the 3-D location data of the contact force measured by the cover. The experimental results are also displayed in a supplementary video. The shape of the letters KIMM are effectively estimated using the sensor’s location data; i.e., the location of the contact force is detected with enough accuracy to recognize the letters.
+The measured three-axis force during the experiment is also shown in Fig. 14. The upper graph shows the magnitude of the force computed by the three-axis force: fmag. = fx2 + fy2 + fz2. The four sections corresponding to each letter (K, I, M, and M) are clearly observed at 1.4–7.7 s, 8.4–12.7 s, 16.2–20.3 s, and 20.8–27.1 s, respectively. The number of ﬁnger touches is related to the contact force. For example, K is written by two ﬁnger touches, indicated by two increases in the force in Fig. 14. During the second ﬁnger touch, two lines are written by changing the direction of the force; a corresponding ﬂuctuation in the
+
+IV. DISCUSSION AND CONCLUSION
+In this study, a novel intrinsic force sensing method was presented for robot manipulators during HRIs. To accurately measure contact force information applied to a robotic manipulator, a novel intrinsic sensing method was developed using a standard robot cover and a sixaxis F/T sensor placed between the cover and the link of the robot manipulator. Using geometric information of the F/T sensor location and the cover surface, the three orthogonal forces and three orthogonal torques measured by the F/T sensor were computed as the three-axis contact force and the 3-D location of applied force on the surface. Thus, the cover itself is a sensorized cover based on the intrinsic force sensing method that can determine where a person touches the robot and in which direction the force is applied by measuring the position and magnitude of the contact force. The sensing method also has the signiﬁcant advantages of a simple structure, easy wiring, and the ability to measure abundant contact force data at a low cost.
+The sensing performances of the proposed method was veriﬁed by fabricating a prototype of the sensorized cover and performing experiments comparing data measured by the cover and by reference sensors. The resulting accuracy of the contact force magnitude and contact location was checked. In addition, letter-writing experiments veriﬁed that complex contact forces can be accurately recognized by the sensor. Thus, as well as the required human–robot teaching function and collision detection function, this sensing method can be used to transmit information in the form of letters and symbols. Future studies can employ the proposed cover to develop new robot control methods using the measured sensor data and conduct letter or symbol recognition experiments using machine learning algorithms. New combinations with sensors that are additionally coupled to the cover surface will also be investigated. These combinations could clarify the possibility of providing new contact force information that could not be provided previously. Furthermore, the proposed sensing method could be used in the ﬁeld of robotic manipulators to upgrade manipulator technologies and accelerate the development of robotic manipulators.
+The proposed method differs from existing methods using torque sensors or ﬁlm-type tactile sensors; however, it cannot fully replace them. For example, even when no external force is applied, torque can be detected by a torque sensor according to the weight and speed of the robot manipulator, providing dynamic control data of the robot. Moreover, the ﬁlm-type tactile skin sensor measures the force distribution according to the resolution of the sensor. Because the distribution of the contact forces on the surface of a cover cannot be measured via the proposed method, forces applied at two contact points and
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
+IEEE TRANSACTIONS ON ROBOTICS, VOL. 37, NO. 6, DECEMBER 2021
+
+2225
+
+in simultaneously different directions at each contact point cannot be measured. In the presented method, twisting at the contact point of the surface was not considered. Therefore, these situations, wherein the force is zero and the moment is not zero, cannot be recognized. In addition, in the proposed conﬁguration, the maximum measurement force varies depending on the location of the contact point on the cover surface. Because the maximum measurement torque of the F/T sensor is determined, the maximum force that can be measured decreases as the location of the contact point moves away from the sensor. Also, in the structure of parallel manipulators composed of a prismatic joint or other joints, the use may be restricted. Therefore, it is desirable to apply the proposed method with an appropriate target application speciﬁcation in consideration of the force range. Nevertheless, the proposed method is meaningful because it has important advantages for robotic manipulators. Although this method can be implemented with a very simple structure, some improvements are required to maximize its advantages. First, the price of the F/T sensor should be low; however, as two F/T sensors are used for one link, several sensors are required for one robot manipulator. Therefore, to ensure the widespread applicability of the proposed sensing method, it is necessary to lower the price of the sensor. A large amount of research is currently focused on this goal [24], [26]. Second, the space required to install the sensor on the cover and the size of the sensor itself should be reduced. This will allow the proposed force sensing method to be implemented without affecting the design of the robot manipulator. In addition, the compact sensor minimizes the size of the cover in the radial direction, which can, in turn, reduce inertia of the cover and interference with the workspace of the manipulator.
+REFERENCES
+[1] A. D. Santis, B. Siciliano, A. D. Luca, and A. Bicchi, “An atlas of physical human-robot interaction,” Mechanism Mach. Theory, vol. 43, pp. 253–270, 2008.
+[2] C. Bartolozzi, L. Natale, F. Nori, and G. Metta, “Robots with a sense of touch,” Nature Mater., vol. 15, pp. 921–925, 2016.
+[3] H. Yu, S. Huang, G. Chen, Y. Pan, and Z. Guo, “Human-robot interaction control of rehabilitation robots with series elastic actuators,” IEEE Trans. Robot., vol. 31, no. 5, pp. 1089–1100, Oct. 2015.
+[4] F. Ficuciello, L. Villani, and B. Siciliano, “Variable impedance control of redundant manipulators for intuitive human-robot physical interaction,” IEEE Trans. Robot., vol. 31, no. 4, pp. 850–863, Aug. 2015.
+[5] A. Lecours, M. J. Otis, and C. Gosselin, “Modeling of physical humanrobot interaction: Admittance controllers applied to intelligent assist devices with large payload,” Int. J. Adv. Robot. Syst., vol. 13, no. 5, pp. 1–12, 2016.
+[6] Y.-L. Park, S. C. Ryu, R. J. Black, K. K. Chau, B. Moslehi, and M. R. Cutkosky, “Exoskeletal force-sensing end-effectors with embedded optical ﬁber-Bragg-grating sensors,” IEEE Trans. Robot., vol. 25, no. 6, pp. 1319–1331, Dec. 2009.
+[7] M. B. Hong, H. Park, Y. H. Yoon, and D. J. Kim, “A novel elastic structure for three-axis force/torque sensor: Kinematic design and feasibility study,” IEEE Sens. J., vol. 18, no. 17, pp. 6969–6977, Sep. 2018.
+
+[8] U. Kim, Y. B. Kim, D.-Y. Seok, J. So, and H. R. Choi, “A surgical palpation probe with 6-axis force/torque sensing capability for minimally invasive surgery,” IEEE Trans. Ind. Electron., vol. 65, no. 3, pp. 2755–2765, Mar. 2018.
+[9] U. Kim, D.-H. Lee, W. J. Yoon, B. Hannaford, and H. R. Choi, “Force sensor integrated surgical forceps for minimally invasive robotic surgery,” IEEE Trans. Robot., vol. 31, no. 5, pp. 1214–1224, Oct. 2015.
+[10] A. M. Almassri et al., “Pressure sensor: State of the art, design, and application for robotic hand,” J. Sens., vol. 2015, pp. 1–12, 2015.
+[11] R. S. Dahiya, G. Metta, M. Valle, and G. Sandini, “Tactile sensing-from humans to humanoids,” IEEE Trans. Robot., vol. 26, no. 1, pp. 1–20, Feb. 2010.
+[12] B. Jung, B. Kim, J. C. Koo, H. R. Choi, and H. Moon, “Joint torque sensor embedded in harmonic drive using order tracking method for robotic application,” IEEE/ASME Trans. Mechatronics, vol. 22, no. 4, pp. 1594–1599, Aug. 2017.
+[13] Y. B. Kim, U. Kim, D.-Y. Seok, J. So, Y. H. Lee, and H. R. Choi, “ Torque sensor embedded actuator module for robotic applications,” IEEE/ASME Trans. Mechatronics, vol. 23, no. 4, pp. 1662–1672, Aug. 2018.
+[14] H.-X. Zhang, Y.-J. Ryoo, and K.-S. Byun, “Development of torque sensor with high sensitivity for joint of robot manipulator using 4-Bar linkage shape,” Sensors, vol. 16, pp. 991–1002, 2016.
+[15] A. D. Luca and R. Mattone, “Sensorless robot collision detection and hybrid force/motion control,” in Proc. IEEE Int. Conf. Robot. Automat., 2005, pp. 999–1004.
+[16] C. M. Boutry et al., “A hierarchically patterned, bioinspired e-skin able to detect the direction of applied pressure for robotics,” Sci. Robot., vol. 3, 2018, Art. no. eaau 6914.
+[17] A. Cirillo, F. Ficuciello, C. Natale, S. Pirozzi, and L. Villani, “A conformable force/tactile skin for physical human-robot interaction,” IEEE Trans. Robot. Autom., vol. 1, no. 1, pp. 41–48, Jan. 2016.
+[18] Y. Wu et al., “A skin-inspired tactile sensor for smart prosthetics,” Sci. Robot., vol. 3, 2018, Art. no. eaat0 429.
+[19] J. Kim et al., “Stretchable silicon nanoribbon electronics for skin prosthesis,” Nature Commun., vol. 5, 2014, Art. no. ncomms 6747.
+[20] A. Schmitz, P. Maiolino, M. Maggiali, L. Natale, G. Cannata, and G. Metta, “Methods and technologies for the implementation of large-scale robot tactile sensors,” IEEE Trans. Robot., vol. 27, no. 3, pp. 389–400, Jun. 2011.
+[21] K. Xu and N. Simaan, “An investigation of the intrinsic force sensing capabilities of continuum robots,” IEEE Trans. Robot., vol. 24, no. 3, pp. 576–587, Jun. 2008.
+[22] A. Bicchi, J. K. Salisbury, and D. L. Brock, “Contact sensing from force measurement,” Int. J. Robot. Res., vol. 12, pp. 249–262, 1993.
+[23] G. Boucher, T. Laliberte, and C. Gosselin, “A parallel low-impedance sensing approach for highly responsive physical human-robot interaction,” inProc. IEEE Int. Conf. Robot. Automat., 2019, pp. 3754–3760.
+[24] U. Kim, D.-H. Lee, Y. B. Kim, D.-Y. Seok, and H. R. Choi, “A novel 6-axis force/torque sensor for robotic applications,” IEEE/ASME Trans. Mechatronics, vol. 22, no. 3, pp. 1381–1391, Jun. 2017.
+[25] Robotous RFT60-HA. Accessed: Jul. 20, 2017. [Online]. Available: https: //www.robotous.com/forcetorquesensor.
+[26] U. Kim, H. Jeong, H. Do, J. Park, and C. Park, “Six-axis force/torque ﬁngertip sensor for an anthropomorphic robot hand,” IEEE Trans. Robot. Autom., vol. 5, no. 4, pp. 5566–5572, Oct. 2020.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 07,2024 at 06:24:48 UTC from IEEE Xplore. Restrictions apply.
+
