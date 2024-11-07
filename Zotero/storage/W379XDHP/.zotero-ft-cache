@@ -1,0 +1,658 @@
+Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000. Digital Object Identifier 10.1109/ACCESS.2017.Doi Number
+
+Electrical Parameter Estimation Method for Surface-Mounted Permanent Magnet Synchronous Motors Considering Voltage Source Inverter Nonlinearity
+Juchan Lee1, Hyunuk Seo2, Ju-Suk Lee3, Byung-Kil Han2, and Hyung-Soo Mok1, Member, IEEE
+1Department of Electrical Engineering, Konkuk University, Seoul 05029, South Korea 2Department of Robotics and Mechatronics, Korea Institute of Machinery and Materials, Daejeon 34103, South Korea 3Department of Architecture and Fire Safety, Gyeonggi University of Science and Technology, Siheung 15073, South Korea
+Corresponding author: Hyung-Soo Mok (e-mail: hsmok@konkuk.ac.kr).
+This research was supported by a major project of the Korea Institute of Machinery and Materials (Project ID: NK238F).
+
+ABSTRACT This paper proposes an electrical parameter estimation method for permanent magnet synchronous motors (PMSMs) considering the voltage source inverter (VSI) nonlinearity. Accurate parameters are essential for high-performance control of PMSMs. Therefore, numerous studies have been conducted to obtain accurate parameters. However, the VSI nonlinearity causes voltage distortion, which causes parameter-estimation errors. To address this problem, this paper presents a solution using the double-frequency double-amplitude (DFDA) injection method based on the high-frequency (HF) injection method. The proposed method is a practical and novel method using simple mathematical calculations that takes into account VSI nonlinearity without using nonlinearity-compensation methods. It increases the accuracy and reduces the resistance-estimation step by simultaneously estimating the stator resistance and inductance. To demonstrate the efficacy and practicability of the proposed method, it was experimentally verified on a 400 W surface-mounted PMSM. The proposed method can simultaneously estimate the stator resistance and inductance with high accuracy within a short time and can, therefore, be applied to PMSM drives in various industries, such as robotics.
+INDEX TERMS Dead time, parameter estimation, permanent magnet synchronous motor, selfcommissioning, voltage source inverter nonlinearity.
+
+I. INTRODUCTION Permanent magnet synchronous motors (PMSMs) are widely used in various fields owing to their high efficiency, energy density, and torque density [1]–[3]. Determination of PMSM parameters is essential for almost all types of control, such as current control based on vector control, and accurate PMSM parameters are required for highperformance control [4]–[6]. Additionally, the parameters are useful for fault detection [7]. The effect of parameter inaccuracy when controlling the current based on vector control has been analytically observed to be detrimental [2][8][9], particularly in sensorless control [10][11].
+Various parameter estimation methods have been proposed in previous studies to obtain accurate parameters, both online and offline. Generally, offline estimation
+
+methods can only be implemented in dedicated laboratories because they require high-performance measurement or specialized equipment. Performing online estimation in actual industrial-field applications is challenging because of the complexity of the algorithms used to control and estimate the PMSM parameters in real time [12][13].
+Self-commissioning is a subcategory of offline estimation methods. It is used to accurately identify parameters under limited conditions, such as the unlocked rotor, while using available sensors within a short time, without using additional hardware. Consequently, the self-commissioning method is becoming increasingly important for parameter estimation [12].
+
+VOLUME XX, 2017
+
+1
+
+The parameter estimation method based on the voltage equation is commonly employed for electrical parameter estimation [14]. The reference voltage is commonly used for parameter estimation because directly measuring the terminal voltage of a motor is difficult. However, owing to the voltage source inverter (VSI) nonlinearity, distortion occurs in the reference and actual voltage applied to the motor [15].
+The voltage distortion varies based on the current direction, thereby limiting the generality of the estimation method. These adverse conditions can cause estimation errors [13].
+Voltage distortion can be compensated using a sign function to account for the estimation error caused by the VSI nonlinearity [16]. Errors have been considered using model-based compensation [17]. Additionally, a compensation measure using a self-learning method based on the Hermite interpolation method has been developed [18]. However, the VSI nonlinearity cannot be accurately compensated for using only the sign function. Although selflearning can accurately compensate for voltage distortion, its implementation in industrial applications is challenging because it requires additional processes and learning time. In summary, estimation errors caused by VSI nonlinearity are a significant problem that require an immediate solution in the parameter estimation method based on the voltage equation [19].
+The signal injection method is effective for parameter estimation [18]. In [20], an inductance and initial position are estimated using the voltage pulse injection method, and stator resistance is estimated using the DC voltage injection method.
+The high-frequency (HF) injection method, which is a subcategory of signal injection methods, is the most widely used method for estimating inductance [18]. In [18], inductance estimation using the hysteresis control-based HF injection method considering the VSI nonlinearity is proposed. In [21], an inductance and initial position are estimated through a spatial inductance mapping algorithm using the HF injection method. In [22], an inductance is estimated using the HF injection method. Interturn shortcircuit fault detection is performed using the estimated inductance. As presented in previous studies, HF injection methods are a good solution for inductance estimation.
+This paper proposes the double-frequency doubleamplitude (DFDA) injection method based on the HF injection method to estimate the PMSM parameters, as a practical and novel solution to the parameter estimation method. The proposed method increases the accuracy by estimating the parameters considering the VSI nonlinearity. Furthermore, the stator resistance and inductance are simultaneously estimated to reduce the resistance estimation step. Furthermore, the proposed method is a selfcommissioning method and estimates the parameters without additional hardware.
+The contribution of this study is that the error due to the voltage distortion effect is reduced considering the VSI nonlinearity using a simple equation, without using a
+
+nonlinearity-compensation method. Moreover, the stator resistance and inductance are simultaneously estimated; therefore, the resistance estimation step is reduced to identify parameters in a short time.
+The remainder of this paper is organized as follows. Section II describes the mathematical PMSM modeling. Section III describes the current control system and currentcontrol gain-selection method. Section IV introduces the parameter estimation method. Section V presents the results of the parameter estimation and transient response characteristics experiments and Section VI presents the experimental results. Lastly, Section VII presents the conclusions of this study.
+
+II. PMSM MODELING
+
+The d- and q-axis equivalent circuits of a PMSM, ignoring
+
+iron loss and saturation, are illustrated in Fig. 1. The rotor
+
+reference voltage equations are expressed as [23][24]
+
+vdrs
+
+
+
+Rsidrs
+
+ Lds
+
+didrs dt
+
+ e Lqsiqrs
+
+,
+
+(1)
+
+vqrs
+
+
+
+Rs iqrs
+
+ Lqs
+
+diqrs dt
+
+ e Ldsidrs
+
+ em ,
+
+(2)
+
+where vdrs and vqrs represent the d- and q-axis voltages, respectively; idrs and iqrs indicate the d- and q-axis currents, respectively; Rs denotes the stator resistance; Lds and Lqs represent the d- and q-axis inductances, respectively; e
+
+represents the electrical rotor speed; and m represents the
+
+permanent magnet flux.
+
+For a surface-mounted permanent magnet synchronous
+
+motor (SPMSM), Ls  Lds  Lqs ; Lds is equivalent to Lqs owing to its structural characteristics. Therefore, (1) and (2)
+
+can be expressed as (3) and (4), respectively.
+
+vdrs
+
+
+
+Rsidrs
+
+
+
+Ls
+
+didrs dt
+
+ e Lsiqrs
+
+,
+
+(3)
+
+vqrs
+
+
+
+Rs iqrs
+
+ Ls
+
+diqrs dt
+
+ e Lsidrs
+
+ em .
+
+(4)
+
+(a)
+
+(b)
+FIGURE 1. d- and q-axis equivalent circuits of a PMSM. (a) d-axis equivalent circuit; (b) q-axis equivalent circuit.
+
+VOLUME XX, 2017
+
+9
+
+III. CURRENT CONTROL SYSTEM The schematic of a general current controller of a PMSM is depicted in Fig. 2. The controller comprises a proportional– integral (PI) controller and a feedforward term. Combined with the impedance model of an SPMSM, the q-axis closedloop transfer function Gcc (s) can be expressed as (5) [25]
+
+(a)
+
+(b)
+
+FIGURE 2. Schematic of a current controller of the PMSM. (a) d-axis current controller; (b) q-axis current controller.
+
+Gcc (s)
+
+
+
+iqrs (s)
+
+ir*
+qs
+
+(
+
+s)
+
+
+
+(Ls s
+
+
+
+K ps  Ki Rs )s  (K p s
+
+
+
+Ki )
+
+,
+
+(5)
+
+where
+
+v r ds, ff
+
+and
+
+v r qs, ff
+
+represent the d- and q-axis
+
+feedforward
+
+terms,
+
+respectively;
+
+i r* ds
+
+and
+
+i r*
+qs
+
+denote
+
+the
+
+d-
+
+and q-axis current commands, respectively; K p and Ki
+
+indicate the proportional and integral gains, respectively; and
+
+s represents the Laplace operator.
+
+For convenience, the gains of the PI controller are set as
+
+expressed in (6) and (7) to design the transfer function of
+
+the current controller in the form of a first-order low-pass
+
+filter as shown in (8).
+
+K p  Lscc ,
+
+(6)
+
+Ki  Rscc ,
+
+(7)
+
+Gcc (s)
+
+
+
+s
+
+cc  cc
+
+,
+
+(8)
+
+where cc denotes the cutoff frequency of the current controller and Fcc represents the cutoff frequency of the current controller in Hz ( cc  2  Fcc ).
+Furthermore, as expressed in (1) and (2), the decoupled
+
+inductance and magnetic-flux-interlinkage values are
+
+required for the feedforward terms. The feedforward terms
+
+are presented in (9) and (10).
+
+Therefore, accurate values of Rs , Ls , and m are
+
+required to achieve the target current-control performance
+
+of the PMSM.
+
+vr ds, ff
+
+ e Lqsiqrs ,
+
+(9)
+
+vr qs, ff
+
+ e Ldsidrs  em .
+
+(10)
+
+IV. ELECTRICAL PARAMETER ESTIMATION METHOD
+
+A. EXISTING INDUCTANCE ESTIMATION METHOD
+
+The HF injection method is the most commonly used method
+
+to estimate the inductance [18].
+
+Assuming that the output of the VSI ideally does not exhibit
+
+nonlinearity, as expressed in (11), where the d-axis current
+
+flows according to (12), the impedance can be expressed as
+
+in (13).
+
+vdrs  Vac sin(ht) ,
+
+(11)
+
+idrs  Iac sin(ht   ) ,
+
+(12)
+
+Zs  Rs2  L2sh2 ,
+
+(13)
+
+where h denotes the injected frequency, Vac indicates the amplitude of the injected HF voltage, Iac denotes the amplitude of the induced HF current, and Zs represents the impedance at h .
+In the HF injection method, if the resistance component is
+
+ignored, assuming that the reactance component resulting
+
+from the inductance has a large resistance component, the
+
+inductance can be calculated as in (14) [21].
+
+Ls 
+
+1 h
+
+Z
+
+2 s
+
+ Rs2 ≒1h
+
+Zs
+
+
+
+Vac I  ac h
+
+.
+
+(14)
+
+However, the VSI nonlinearity distorts the output voltage
+
+of the actual inverter. Thus, the inductance expressed as (15)
+
+  Lˆs 
+
+1 h2 
+
+Zˆs
+
+2
+
+
+
+Rs2
+
+ 
+
+
+
+1 h2
+
+ 
+
+Va*c I ac
+
+2
+  
+
+
+
+Rs2
+
+  
+
+(15)
+
+
+
+1 h2
+
+  
+
+Va*c Va*c  V
+
+Zs
+
+2
+  
+
+
+
+
+
+Rs2
+
+ 
+
+,
+
+where Lˆs denotes the estimated inductance, Zˆs represents the estimated impedance at h , Va*c represents the amplitude of the injected HF voltage command, and V indicates the
+
+voltage distortion owing to the VSI nonlinearity.
+
+If the resistance component is ignored, the inductance is
+
+estimated as in (16). This causes an estimation error, and the
+
+desired control performance is not achieved.
+
+Lˆs
+
+1 h
+
+Va*c Va*c  V
+
+Zs .
+
+(16)
+
+Furthermore, as shown in Section III, the identification of
+
+both the inductance and resistance is necessary to configure a
+
+current controller. Therefore, additional steps are required to
+
+estimate the resistance.
+
+B. PROPOSED SIMULTANEOUS PARAMETER ESTIMATION METHOD This study presents the simultaneous parameter estimation method to overcome the problem faced by the existing inductance estimation method. The VSI nonlinearity is considered through two voltage signals having different amplitudes. In addition, the combined HF signal is injected to simultaneously estimate the stator resistance and inductance.
+
+VOLUME XX, 2017
+
+9
+
+The voltage-signal application waveform of the proposed parameter estimation method is illustrated in Fig. 3.
+
+represents the sampling time, and Iij and Yij represent the magnitudes of the changes in the current and estimated
+
+admittance, Yˆth , and tth
+
+respectively, from previous results. Further, , are selected to improve the accuracy of
+
+Ith , the
+
+proposed estimation method; they represent the reference
+
+points of current, admittance, and sensing time, respectively. Zˆij denotes the estimated impedance for the test region and
+frequency. The flowchart of the proposed electrical
+
+parameter estimation method is depicted in Fig. 4.
+
+FIGURE 3. Voltage-signal waveform of the proposed estimation method.
+
+The actual voltage applied to the motor by injecting two
+
+HFs can be expressed as (17)
+
+vr* ds
+
+ V1*j
+
+sin(h1t)
+
+ V2*j
+
+sin(h2t)
+
+(17)
+
+ (V1*j  V1j )  sin(h1t)  (V2*j  V2 j )  sin(h2t) ,
+
+where
+
+ hj
+
+denotes
+
+the
+
+injected
+
+HF,
+
+v r* ds
+
+denotes
+
+the
+
+d-axis
+
+voltage command, Vij* indicates the amplitude of the injected
+
+HF voltage command, Vij denotes the voltage distortion
+
+owing to VSI nonlinearity, and i and j represent the injected
+
+levels of the injected frequency and test region, respectively
+
+(i, j = 1 or 2). However, the power factor remains identical if the amplitude of the voltage (Vij* ) at each frequency increases
+at the same ratio without a change in frequency. Assuming
+
+that the voltage distortion owing to the VSI nonlinearity
+
+saturates above a certain current level, the voltage distortions
+
+in regions 1 ( Vi1 ) and 2 ( Vi2 ) are identical [18]. Therefore, if Vi  Vi1  Vi2 , the impedance at each frequency can be estimated as follows (18):
+
+Zˆi
+
+
+
+Vi*2 Ii2
+
+ Vi1*  Ii1
+
+
+
+Vi*2
+
+Vi*2 Vi1*  Vi  (Vi1*
+
+ Vi ) Zi
+
+
+
+Zi
+
+,
+
+(18)
+
+where Zˆi denotes the estimated impedance considering the
+
+VSI nonlinearity at hi through DFDA. Therefore, the
+
+inductance and resistance can be estimated using the
+
+impedances at the two frequencies, as shown below.
+
+Lˆs 
+
+Zˆ22 2
+h2
+
+ Zˆ12
+
+
+
+2 h1
+
+,
+
+(19)
+
+Rˆs  Zˆi2  (hi Lˆs )2 ,
+
+(20)
+
+where Rˆs denotes the estimated resistance considering the VSI nonlinearity through DFDA, Ai indicates the amplitude of the injected HF voltage command in the test region, Tsamp
+
+VOLUME XX, 2017
+
+FIGURE 4. Flowchart of the proposed electrical parameter estimation method.
+9
+
+V. EXPERIMENTAL RESULTS The performance of the proposed electrical parameter
+estimation method was experimentally verified using a 400 W SPMSM. Additionally, the proposed method performs parameter estimation with minimum information such as rated voltage, rated current, and number of poles. The experimental platform is shown in Fig. 5, and the parameters of the PMSM used in the experiment are shown in Table 1. The block diagram of the parameter estimation method is presented in Fig. 6. In the experimental analysis, the alignment of the PMSM was completed before implementing the parameter estimation method.
+
+current information at the selected current levels Ilevel1 and . Ilevel 2 Ilevel1 and Ilevel 2 were set at 25% and 30% of the rated current, and the injected frequencies Fh1 and Fh2 are set at 250 Hz and 500 Hz, respectively. Fh2 used a multiple of Fh1 for the convenience of the fast Fourier transform calculation. The switching frequency was 10 kHz. The
+experiment was conducted by changing the dead time from 1
+μs to 5 μs in increments of 1 μs to analyze the effect of the
+VSI nonlinearity due to the dead time.
+
+FIGURE 5. Experimental platform of the 400 W SPMSM.
+
+(a) TABLE I PARAMETERS OF THE PMSM
+
+Parameters
+
+Value
+
+Rated power (W) DC link voltage (V) Rated Current (A) Rated Speed (RPM) Rs (Ω) Ls (μH) Number of poles
+
+400 48 5.9 2680 0.68
+550
+2
+
+FIGURE 6. Block diagram of the parameter estimation method.
+
+(b)
+FIGURE 7. Output waveforms of the proposed estimation method based on the dead time. (a) Dead time = 1 μs; (b) Dead time = 5 μs.
+
+A. EXPERIMENTS USING THE PROPOSED ESTIMATION METHOD
+The PMSM or the inverter can malfunction owing to the sudden application of a voltage command. Therefore, the proposed method gradually increases the voltage command and estimates electrical parameters based on voltage and
+
+VOLUME XX, 2017
+
+9
+
+voltage command value of the proposed method was applied to the existing method. The frequency was set to 500 Hz, which is equivalent to Fh2 of the proposed method.
+
+(a) (a)
+
+(b)
+FIGURE 8. Parameter-estimation results of the proposed method. (a) Resistance estimation of the proposed method; (b) Inductance estimation of the proposed method.
+The output waveform of the proposed method, where the stator resistance and inductance are simultaneously estimated using DFDA injection, is illustrated in Fig. 7. The results and error rates of the proposed parameter estimation method are presented in Fig. 8. The estimation results of the stator resistance and inductance according to dead time are presented in Figs. 8(a) and 8(b), respectively. The stator resistance was estimated with an error rate of 5.74%–9.71%, regardless of the change in dead time, as shown in Fig. 8(a). The inductance was estimated with an error rate of 2.55%– 4.91%, regardless of the change in dead time, as shown in Fig. 8(b). Moreover, the proposed method simultaneously estimated the resistance and inductance within a short time (1.1 s) based on the settings.
+B. EXPERIMENTS USING THE EXISTING ESTIMATION METHOD
+To compare the results of the proposed method with that of the existing method, the same voltage as the effective
+
+(b)
+FIGURE 9. Output waveforms of the existing estimation method based on dead time. (a) Dead time = 1 μs; (b) Dead time = 5 μs.
+
+VOLUME XX, 2017
+
+9
+
+FIGURE 10. Parameter estimation results of the existing method
+The output waveform of the existing method and inductance estimation through HF injection are shown in Fig. 9, and the results and error rates of the existing parameter estimation method are illustrated in Fig. 10. The existing parameter estimation method ignores resistance components through HF injection; therefore, it is used only for inductance estimation, and the inductance-estimation error rate increases from 17.09% to 92.55% as the dead time increases.
+For the existing method, the estimated inductance value gradually increases as the dead time increases, as shown in Figs. 9 and 10. Conversely, the proposed method has almost constant inductance and resistance values when estimated considering the dead-time variation. Further, its variation width is also smaller than that of the existing method. Thus, the parameter estimation method proposed using the experimental results effectively resolved the estimation error problem caused by the VSI nonlinearity.
+C. STEP RESPONSE EXPERIMENT The current step response experiment was performed to verify the parameters obtained using the proposed method. Using these parameters, the current-controller gains are evaluated as shown in (6) and (7), and the d- and q-axis current step response experiments were performed by compensating for the feedforward terms, as shown in (9) and (10). The PI gains of the current controller are tuned using the electrical parameters obtained using the proposed method at a dead time of 1 μs, as shown in (6) and (7). The experiment was conducted by changing the cutoff frequency of the current controller from 100 Hz to 500 Hz in increments of 100 Hz. The d- and q-axis experiment results are shown in Figs. 11 and 12, respectively. The time constant was measured based on the current step response using the curve fitting of the measured d- and q-axis current signals. The curve-fitting results of the current response according to Fcc are shown in Figs. 11(b) and 12(b).
+
+(a)
+(b)
+FIGURE 11. d-axis current step response experiments. (a) d-axis current step response experimental results for Fcc = 100 Hz and curve-fitting result; (b) d-axis current step response curve-fitting results according to the changes in the cutoff frequency.
+
+VOLUME XX, 2017
+
+9
+
+(a) (a)
+
+(b)
+FIGURE 12. q-axis current step response experiments. (a) Experimental results of the d-axis current step response when Fcc = 100 Hz and curve-fitting result; (b) curve-fitting results of the d-axis current step response according to the changes in cutoff frequency.
+The error rate of the transient response characteristics of the d- and q-axis current step responses of the current controller, which were tuned using the proposed parameter estimation method, ranged from 0.1% to 8.74%, as shown in Fig. 13. Consequently, the parameters estimated using the proposed method exhibit excellent transient-response characteristics of less than 9%. Thus, the estimation accuracy of the electrical parameters is verified.
+
+(b)
+FIGURE 13. Bandwidth experimental results according to the current step response. (a) Experimental results of d-axis current step response; (b) Experimental results of q-axis current step response.
+VI. DISCUSSION In the existing method, the parameter estimation error
+increases with the increase in the dead time. However, the proposed method presented a parameter estimation error of less than 10%, regardless of the change in the dead time. Furthermore, the desired transient response characteristics can be achieved by tuning the gains of the current controller using the parameters obtained through the proposed method. The experimental results of the current step response demonstrated that the proposed parameter estimation method can accurately estimate the parameters; it obtained transient response characteristics with an error within 9%. Moreover, the procedure of the proposed electrical parameter estimation method can be completed within 1.1 s, depending on the setting, such as the slope of the applied voltage.
+The proposed method is highly effective for low-capacity PMSMs having relatively high stator resistances. Therefore, it is suitable for applications that use PMSMs in relatively
+
+VOLUME XX, 2017
+
+9
+
+small capacities, such as robots and servo control. However, one major limitation of the method is that it is not highly effective when used at low resistances. This can be attributed to the fact that when the resistance is relatively low, inductance accounts for most of the impedance, increasing the difficulty of estimating the resistance using the HF injection-based method.
+In the future, the estimation of electrical parameters applicable to PMSMs with a relatively small stator resistance and the estimation of mechanical parameters required to tune the speed and position controllers should be considered.
+VII. CONCLUSION This study proposed a simultaneous estimation method for
+stator resistance and inductance considering the VSI nonlinearity. To achieve this, two HF voltage signals were combined and injected. Accordingly, the parameter estimation time was shortened by reducing the resistance estimation step. In addition, using a simple mathematical equation without nonlinearity-compensation method, the estimation of accuracy considering the VSI nonlinearity increased.
+The accuracy of the estimated parameters was verified from the parameter estimation results and transient response characteristics. Furthermore, the effectiveness of the proposed method was verified by comparing it with the existing method. Therefore, it can be applied to PMSM drives in various industries, such as robotics.
+REFERENCES [1] Z. Q. Zhu and D. Howe, “Electrical machines and drives for electric, hybrid, and fuel cell vehicles,” Proc. IEEE, vol. 95, no. 4, pp. 746–765, Apr. 2007. [2] Lai, G. Feng, K. Mukherjee, and N. C. Kar, “Investigations of the influence of PMSM parameter variations in optimal stator current design for torque ripple minimization,” IEEE Trans. Energy Convers., vol. 32, no. 3, pp. 1052–1062, Sep. 2017. [3] G. Wang, M. Valla, and J. Solsona, “Position sensorless permanent magnet synchronous machine drives—A review,” IEEE Trans. Ind. Electron., vol. 67, no. 7, pp. 5830–5842, Jul. 2020. [4] Gong, Y. Hu, J. Gao, Y. Wang, and L. Yan, “An improved delaysuppressed sliding-mode observer for sensorless vector-controlled PMSM,” IEEE Trans. Ind. Electron., vol. 67, no. 7, pp. 5913–5923, Jul. 2020. [5] M. S. Rafaq and J. W. Jung, “A comprehensive review of state-ofthe-art parameter estimation techniques for permanent magnet synchronous motors in wide speed range,” IEEE Trans. Ind. Inform., vol. 16, no. 7, pp. 4747–4758, Jul. 2020. [6] T. Inoue, Y. Inoue, S. Morimoto, and M. Sanada, “Maximum torque per ampere control of a direct torque-controlled PMSM in a stator flux linkage synchronous frame,” IEEE Trans. Ind. Appl., vol. 52, no. 3, pp. 2360–2367, May 2016. [7] H. Yu, J. Deng, and Y. Li, ‘‘A diagnosis method of semiconductor power switch open-circuit fault in the PMSM drive system with the MPCC method,’’ IEEE Access, vol. 9, pp. 109822–109832, August 2021. [8] K. B. Nordin, D. W. Novotny, and D. S. Zinger, “The influence of motor parameter deviations in feedforward field orientation drive systems,” IEEE Trans. Ind. Appl., vol. IA-21, no. 4, pp. 1009– 1015, Jul. 1985.
+
+[9] P. Wipasuramonton, Z. Q. Zhu, and D. Howe, “Predictive current control with current-error correction for PM brushless AC drives,” IEEE Trans. Ind. Appl., vol. 42, no. 4, pp. 1071–1079, Jul. 2006.
+[10] N. Bianchi, E. Fornasiero, and S. Bolognani, “Effect of stator and rotor saturation on sensorless rotor position detection,” IEEE Trans. Ind. Appl., vol. 49, no. 3, pp. 1333–1342, May 2013.
+[11] K. Lu, X. Lei, and F. Blaabjerg, “Artificial inductance concept to compensate nonlinear inductance effects in the back EMF-based sensorless control method for PMSM,” IEEE Trans. Energy Convers., vol. 28, no. 3, pp. 593–600, Sep. 2013.
+[12] S. A. Odhano, P. Pescetto, H. A. A. Awan, M. Hinkkanen, G. Pellegrino, and R. Bojoi, “Parameter identification and selfcommissioning in AC motor drives: A technology status review,” IEEE Trans. Power Electron., vol. 34, no. 4, pp. 3603–3614, Apr. 2019.
+[13] Z. Q. Zhu, D. Liang, and K. Liu, “Online parameter estimation for permanent magnet synchronous machines: An overview,” IEEE Access, vol. 9, pp. 59059–59084, 2021.
+[14] Q. Wang, G. Wang, N. Zhao, G. Zhang, Q. Cui, and D. Xu, “An impedance model-based multiparameter identification method of PMSM for both offline and online conditions,” IEEE Trans. Power Electron., vol. 36, no. 1, pp. 727–738, Jan. 2021.
+[15] C. Lai, G. Feng, Z. Li, and N. C. Kar, “Computation-efficient decoupled multiparameter estimation of PMSMs from massive redundant measurements,” IEEE Trans. Power Electron., vol. 35, no. 10, pp. 10729–10740, Oct. 2020.
+[16] K. Liu and Z. Q. Zhu, “Position offset-based parameter estimation for permanent magnet synchronous machines under variable speed control,” IEEE Trans. Power Electron., vol. 30, no. 6, pp. 3438– 3446, Jun. 2015.
+[17] G. Wang, L. Qu, H. Zhan, J. Xu, L. Ding, G. Zhang, and D. Xu, “Self-commissioning of permanent magnet synchronous machine drives at standstill considering inverter nonlinearities,” IEEE Trans. Power Electron., vol. 29, no. 12, pp. 6615–6627, Dec. 2014.
+[18] Q. Wang, G. Zhang, G. Wang, C. Li, and D. Xu, “Offline parameter self-learning method for general-purpose PMSM drives with estimation error compensation,” IEEE Trans. Power Electron., vol. 34, no. 11, pp. 11103–11115, Nov. 2019.
+[19] Q. Wang, G. Wang, S. Liu, G. Zhang, and D. Xu, “An inverternonlinearity-immune offline inductance identification method for PMSM drives based on equivalent impedance model,” IEEE Trans. Power Electron., vol. 37, no. 6, pp. 7100–7112, Jun. 2022.
+[20] H.-C. Yeh and S.-M. Yang, ‘‘Phase inductance and rotor position estimation for sensorless permanent magnet synchronous machine drives at standstill,’’ IEEE Access, vol. 9, pp. 32897–32907, February 2021.
+[21] F. Erturk and B. Akin, ‘‘Spatial inductance estimation for current loop auto-tuning in IPMSM self-commissioning,’’ IEEE Trans. Ind. Electron., vol. 67, no. 5, pp. 3911–3920, May 2020.
+[22] K. H. Baruti, V. Gurusamy, C. Li, F. Erturk, and B. Akin, “Drive integrated start-up and online ITSC fault monitoring through spatial inductance profiling,” IEEE Trans. Transp. Electrific., vol. 8, no. 1, pp. 553–564, Mar. 2022.
+[23] J. Lemmens, P. Vanassche, and J. Driesen, “PMSM drive current and voltage limiting as a constraint optimal control problem,” IEEE J. Emerg. Sel. Top. Power Electron., vol. 3, no. 2, pp. 326– 338, Jun. 2015.
+[24] S. A. Odhano, P. Giangrande, R. I. Bojoi, and C. Gerada, “Selfcommissioning of interior permanent- magnet synchronous motor drives with high-frequency current injection,” IEEE Trans. Ind. Appl., vol. 50, no. 5, pp. 3295–3303, Sep. 2014.
+[25] S. M. Yang and K. W. Lin, “Automatic control loop tuning for
+permanent-magnet AC servo motor drives,” IEEE Trans. Ind.
+Electron., vol. 63, no. 3, pp. 1499–1506, Mar. 2016.
+
+VOLUME XX, 2017
+
+9
+
+JUCHAN LEE obtained his B.S. degree in Electrical, Electronic and Control Engineering from Hankyong National University, Ansung, South Korea, in 2017, and his M.S. degree in Electrical Engineering from Konkuk University, Seoul, South Korea, in 2019. He is currently pursuing a Ph.D. His current research interests include power electronics, machine control, and simulation techniques.
+HYUNUK SEO obtained his B.S., M.S., and Ph.D. degrees from Konkuk University, Seoul, South Korea, in 2011 and 2020, respectively. He was a research engineer at VC Tech, Gunpo, South Korea. He was responsible for developing the motor drivers of EVs and MAGLEV. He has been a senior researcher at KIMM (Korea Institute of Machinery and Materials). His current research interest is in the design of robot motor drivers for cooperative robots and wheels.
+JU-SUK LEE obtained his B.S degree in electrical engineering from Korea University, Seoul, Korea, in 1993, and his M.S. and Ph.D. degrees in electrical engineering from Nagoya Institute of Technology, Nagoya, Japan in 1998 and 2000, respectively. From 2000 to 2002, he was a research engineer with Technology Research Center of Sumitomo Heavy Industries, Yokosuka, Japan. He is currently Assistant Professor in department of Architecture and Fire Safety.
+BYUNG-KIL HAN obtained his B.S. degree in mechanical and control engineering from Handong University, Pohang, South Korea, in 2008, and his M.S. and Ph.D degrees in mechanical engineering from the Korea Advanced Institute of Science and Technology, Daejeon, South Korea, in 2010 and 2019, respectively. In 2013, he was a research intern at the Human–Computer Interaction (HCI) Group, Microsoft Research Asia, Beijing. He is currently a senior researcher in Korea Institute of Machinery and Materials. His research interests include sequence learning, reinforcement learning-based robot control, and teleoperation.
+HYUNG-SOO MOK (Member, IEEE) obtained his B.Sc., M.Sc., and Ph.D. degrees from Seoul National University, Seoul, South Korea, in 1986, 1988, and 1992, respectively. He was with the Department of Control and Instrumentation Engineering, Seoul National Polytechnic University, as an Associate Professor, from 1993 to 1997. Since 1997, he has been a full professor with the Department of Electrical Engineering, Konkuk University. His current research interests include power electronics, machine control, and simulation techniques using PSpice and MATLAB.
+
+VOLUME XX, 2017
+
+9
+

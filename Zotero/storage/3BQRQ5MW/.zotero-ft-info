@@ -1,0 +1,16 @@
+Title:          High-Precision Roller Supported by Active Magnetic Bearings
+Subject:        Magnetic bearings support rotors in a non-contact way using magnetic force. Therefore, there is no friction and it is possible to measure and control the position of a rotor in the air gap. In this study, the rotational vibration of a roller was minimized using magnetic bearings, and a precision roller capable of automatic alignment using the position control function of magnetic bearings was proposed. A rotation accuracy of approximately 4.6 m (peak-to-peak) was observed, even under a rotation of 30 rev/min and a radial force load of 300 N. The rotor position control experiment for magnetic bearings showed that 1-m resolution position control is possible. To further improve the accuracy, the automatic alignment algorithm was proposed using magnetic bearings for the roller misalignment condition, and it was confirmed that alignment is possible at a level that the pressing force difference between both ends of the roller is within 0.3 N. Through this study, it was confirmed that rollers with magnetic bearings can be applied to precision equipment. It is expected that the implementation of the automatic alignment function will simplify the equipment configuration and maintenance compared to conventional rollers with ball bearings.
+Keywords:       magnetic bearings; automatic alignment; high precision roller; roller applications
+Author:         Cheol Hoon Park, Tae Gwang Yoon, Dongwoo Kang and Hugo Rodrigue
+Creator:        LaTeX with hyperref package
+Producer:       pdfTeX-1.40.18
+CreationDate:   10/17/19 16:03:01
+ModDate:        10/17/19 16:03:01
+Tagged:         no
+Form:           none
+Pages:          16
+Encrypted:      no
+Page size:      595.276 x 841.89 pts (A4) (rotated 0 degrees)
+File size:      5117881 bytes
+Optimized:      no
+PDF version:    1.5

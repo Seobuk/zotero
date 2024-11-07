@@ -1,0 +1,1234 @@
+The Design of a Hybrid DC Motor/SMA Actuated
+
+Robotic Hand Based on Physiological and
+
+Anatomical Synergies
+
+or
+
+ru TE
+
+by
+
+DEC R 7 2008
+
+Josiah Benjamin Rosmarin
+
+LIB RARIES
+
+Submitted to the Department of Mechanical Engineering in partial fulfillment of the requirements for the degree of
+
+Master of Science in Mechanical Engineering
+
+at the
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+
+September 2008
+@ Massachusetts Institute of Technology 2008. All rights reserved.
+
+Author .................
+
+...... iDepritment of Mechanical Engineering
+August 2, 2008
+
+Certified by..................
+
+V H. Harry Asada
+
+Ford Professor of Mechanical Engineering
+
+Thesis Supervisor
+
+A
+
+Accepted by ............................... ........ ......... . Lallit Anand
+Chairman, Department Committee on Graduate Students
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEC 0 20I087 LIBRARIES '
+
+ARG"W'SE
+
+The Design of a Hybrid DC Motor/SMA Actuated Robotic
+Hand Based on Physiological and Anatomical Synergies
+by
+Josiah Benjamin Rosmarin
+Submitted to the Department of Mechanical Engineering on August 2, 2008, in partial fulfillment of the requirements for the degree of Master of Science in Mechanical Engineering
+Abstract
+A new approach to the design and control of multi-fingered hands using hybrid DC motor-Shape Memory Alloy (SMA) array actuators is presented in this thesis. The fundamental design concept is based on the principle of motor control synergy, a biomechanics terminology for coordinated motion generation. Principal component analysis is used for determining the most significant direction as well as the residual directions. A single DC motor is used for driving multiple fingers at a particular velocity distribution over a vast number of finger joints corresponding to the direction of the most significant synergy. SMA array actuators are used for driving the fingers in the residual directions. Although many actuator axes are needed for spanning the residual space, the required strokes are much shorter than the most significant direction; compact and high energy-density SMA actuators meet these requirements. The thesis presents synergistic integration of these two types of actuators having diverse characteristics. This allows us to embed all the actuators and transmission mechanisms in the palm, eliminating a bundle of tendons crossing over the wrist joints. An initial prototype hand is designed and built.
+Thesis Supervisor: H. Harry Asada Title: Ford Professor of Mechanical Engineering
+
+Acknowledgments
+I'd like to thank my parents Drs. Phillip and Silvana Rosmarin for not only providing me with everything that I could possibly need for accomplishing my dreams, but also for being loving and supportive every step of the way. I see your lives as an example and I thank God every day that you live what you teach.
+I'd like to thank my sister, Maria, and my brother, Isaac. Maria you've always shown me so much love and have always been there to brighten my day. Isaac, I look up to you, and your constant challenging has pushed me and made me a better person; I usually hate to hear your advice, but I appreciate that you're not afraid to tell me tough truth.
+I'd like to thank my advisor and mentor, Professor Asada. I've grown a lot professionally under your instruction, and when I think back to when I started in the lab so many years ago I can't help but laugh at the progress I've made. You have shown me what it means to research, and you have pushed me to my maximum potential.
+I'd like to thank my pledge brother, Jon Santiago, for letting me sneak into the media lab late at night so that I could use their equipment when no one was around. I was able to fabricate a lot of things much more quickly and effectively due to your unlimited access to all of the machinery. Also your original views on life and politics have made me question my own views and grow as a person. (Though after questioning I realized you're still def wrong :-P)
+I'd like to thank all of the members of the d'Arbeloff laboratory (even the MRL) for making my experience in grad school bearable. The lab is like a family (maybe a bit disfunctional but a family nonetheless). I'd also like to thank all of the undergrads that worked for me: David Hill, Jared Sartee, Sebastian Sovero, Jesus Alvarez and Adam Leeb.
+Finally I'd like to thank all of my friends at Nu Delta, APR, the swim team and the rest of MIT. MIT is tough, but going through it together brings us together. I have made many life-long friends and have probably learned more lessons with you
+
+than I did from classes at MIT.
+
+Contents
+
+1 Introduction
+
+13
+
+1.1 Robotic Hands and Limitations in Actuator Technology ........
+
+13
+
+1.2 Previous Work In Robotic Hands and Actuator Technology ......
+
+14
+
+1.3 Biological Inspiration Leading to Actuation Scheme . .........
+
+17
+
+1.4 Goals and Organization .......................
+
+.. 19
+
+2 Synergistic Analysis 2.1 PCA Methodology for Analysis of Synergies . ............. 2.2 Grasp Data Gathering .......................... 2.3 Analysis of Grasping Synergies ................... 2.3.1 Human Hand Synergies ...................... 2.3.2 Robot Hand Synergies ......................
+
+21 21 23 ... 26 27 29
+
+3 Hybrid Actuation
+
+33
+
+3.1 Actuator Selection ............................
+
+33
+
+3.2 Integrating SMA and DC Motor Actuation . ..............
+
+37
+
+3.3 Dealing with Shape Memory Alloy . ..................
+
+39
+
+3.4 Hybrid Actuation and Interference Issues . ...............
+
+41
+
+3.5 Synergistic Approach and Force Control . ...............
+
+42
+
+4 Mechanical Design 4.1 Fingers . .................. 4.2 Digit Module . .. . ...
+
+.........
+
+. . ............... ... ... ....
+
+45 46 .. .. . 47
+
+4.3 Distributor Pulleys . .................. 4.4 Base Structure ............................
+5 Experimentation and Results 5.1 Experimental Setup ................... 5.2 Positional Accuracy ............................ 5.3 Full Hand Grasp Simulation ......................
+6 Discussion and Conclusions
+A Data From Synergistic Analysis
+B Inverse Kinematics
+
+.........
+
+48
+
+49
+
+51
+
+........
+
+51
+
+53
+
+55
+
+63
+
+65
+
+69
+
+List of Figures
+
+1-1 Human forearm, flexor digitorum superficialis and flexor digitorum pro-
+
+fundus muscles ................
+
+.. ...........
+
+18
+
+1-2 Lumbrical muscles ............................
+
+19
+
+2-1 Principal component in the n-dimensional hand posture space . . .. 21
+
+2-2 Fifteen of the sixteen measured grasps ...........
+
+. . . . . 24
+
+2-3 Photographs of human hand grasping scissors . ............
+
+25
+
+2-4 Solid models of simulated grasps . . ................
+
+.. . . 26
+
+2-5 Synergy values for the human hand grasp data . ............
+
+28
+
+2-6 Synergy values for the human hand grasp data separated into thumb
+
+(left) and fingers (right) .........................
+
+28
+
+2-7 Synergy values for the robot hand grasp data . ............
+
+30
+
+2-8 Synergy values for the robot hand grasp data separated into thumb
+
+(left) and fingers (right) .........................
+
+31
+
+3-1 General actuator schematic .......................
+
+38
+
+3-2 Actuator ordering options ........................
+
+38
+
+3-3 Binary control applied to SMA hysteresis . ...............
+
+40
+
+3-4 Digital to analog converter approach to segmented binary control . . 41
+
+3-5 SMA cross-activation ...............
+
+..........
+
+.. 41
+
+3-6 Actuator model used in synergistic analysis . ..............
+
+42
+
+3-7 Alternative actuator model ...................
+
+..... 43
+
+3-8 Identical force and positioning from varying levels of SMA activation 43
+
+4-1 Robotic hand ........... 4-2 Index finger ............ 4-3 Front view of the finger segments 4-4 Fully assembled digit module 4-5 Base structure ..........
+
+5-1 Experimental setup . . . . . .
+
+.. . .. . . . . . 52
+
+5-2 Representative experiment . .
+
+. . . . . . . . . . . . 53
+
+5-3 Single cycle of activation . . .
+
+. . . . . . . . . . . . . 54
+
+5-4 Worst case performance . . .
+
+. . .. . . . . . . . . . 55
+
+IIIII 5-5 Grasp Simulations: Calculator . . . .
+5-6 Grasp Simulations: Calipers .....
+
+. . . . . . . . . . . . . 56 . . .. . . . . . . . . . 56
+
+5-7 Grasp Simulations: Closed cell phone
+
+. . . . . . . . . . . . 57
+
+5-8 Grasp Simulations: Open cell phone.
+
+. . .. . . . . . . 57
+
+5-9 Grasp Simulations: Drill bit . . . . .
+
+. . . . . . . . . . . . . 57
+
+5-10 Grasp Simulations: dsPIC . . . . . .
+
+. . ...........
+
+58
+
+5-11 Grasp Simulations: Fire extinguisher
+
+. . . . . . . . . . . . . 58
+
+5-12 Grasp Simulations: USB flash drive
+
+. . . . . . . . . . . . . 58
+
+5-13 Grasp Simulations: Glue bottle . . .
+
+. . . . . . . . . . . . . 59
+
+5-14 Grasp Simulations: Hammer .....
+
+. . . . . . . . . .... . 59
+
+5-15 Grasp Simulations: Jumper wire ...
+
+. . . . . . . . . . . . . 6059
+
+5-16 Grasp Simulations: Knob. .......
+
+. . . . . . . . . . . . . 60
+
+5-17 Grasp Simulations: Laptop ......
+
+. . . . . . . . . . 60
+
+5-18 Grasp Simulations: DC motor ....
+
+60
+
+5-19 Grasp Simulations: Pencil . . . . . .
+
+. . . . . . . . . 61
+
+5-20 Grasp Simulations: Closed pliers . .
+
+. . . . . . . 61
+
+5-21 Grasp Simulations: Ruler. .......
+
+.. . . . . . . 61
+
+B-1 Kinematics of finger ........
+
+List of Tables
+
+2.1 Residual displacement and error using PCA-driven design .......
+
+30
+
+3.1 Relevant characteristics of actuator materials . .............
+
+36
+
+4.1 Distributor pulley diameters determined by PCA (in) .........
+
+48
+
+A.1 Mean displacement/neutral position of human hand (mm) ......
+
+65
+
+A.2 Covariance of zero-mean displacements of human hand data (mm 2) 65
+
+A.3 Mean displacement/neutral position of robotic hand (mm) ......
+
+66
+
+A.4 Covariance of zero-mean displacements of robotic hand data (mm 2) 66
+
+A.5 Residual displacements left by DC motor for robotic hand (mm) . . . 67
+
+A.6 Joint error after SMA correction for robotic hand data (mm) .... . 68
+
+Chapter 1
+Introduction
+Central to the success of humanity as a species are their dexterous hands. Humans use their hands to make and use tools, to accent communication, and even to write down ideas. MIT as a university acknowledges the importance of hands, with the motto "Mens et Manus" which means mind and hands. For the past forty years, robotic hands have been in the forefront of robotic research. However, even today, designing a robotic hand with a vast number of degrees of freedom remains a challenging problem.
+1.1 Robotic Hands and Limitations in Actuator Technology
+Designing and building a system with the grasping capabilities of the human hand is a challenging task for many reasons. The human hand itself is a very complex system with over 20 independent degrees of freedom. In addition, the surface of the hand comes with densely packed arrays of sensors which can sense not only contact but also force and even temperature. Furthermore, it is fully integrated with a computing system far more powerful than any processor made by man, the human brain. With multiple nested loops for low-level control and virtually unknown high-level algorithms, recreating the human hand proves to be a daunting challenge. Only adding to the challenge is the fact that the human hand is extremely robust,
+
+functioning for decades and decades withstanding significant wear. Even setting aside the issues of high level control and sensing, the mechanical
+design of a humanoid hand with so many degrees of freedom in such a compact space is a difficult task. Packing all of the actuators into the limited space of the hand itself requires complex mechanisms which are not only expensive, but also fragile. Introducing tendon drives with remotely placed actuators introduces different complications, as tendons passing through a three D.O.F. wrist joint would have to withstand all of these motions without significant interference to performance.
+Among the most crucial design considerations is actuator selection. The most commonly used actuators, DC motors and voice-coils, either introduce space and weight issues or require extreme complexity which makes them fragile and not robust to impact and load. Pneumatic actuators have many characteristics comparable to those of human muscle, but require an external source of compressed air, thus severely limiting mobility. Other options, such as emerging actuator materials generally fall considerably short in key attributes such as response time, strain and power density. As such, no actuator has presented itself as a clear alternative to human muscle, as will be discussed in more detail in Section 3.1.
+A large part of the reason that there is no robotic hand which is both as compact and as capable as the human hand is due to limitations in actuator technology. While no single actuator exists which demonstrates all of the capabilities of human muscles, combinations of different actuators boast the possibility of matching or even surpassing human muscle performance.
+1.2 Previous Work In Robotic Hands and Actua-
+tor Technology
+One of the most seminal works in robotic grasping was that done by Salisbury in [1]. Salisbury's work set the framework for the theory of dexterous manipulation by analytically describing the grasping process using kinematics. It defined classes of
+
+contact and described the effect that each had on the mobility of the object to be grasped. A three fingered hand, named the Stanford/JPL hand, was designed and built based upon the established principles with only nine degrees of freedom which corresponded to the established minimum number of degrees of freedom to achieve dexterity for a hard-finger manipulator. The hand itself was actuated by DC motors and was much larger than the human hand. The grasping model upon which the hand was based, however, only included first-order kinematics; stable grasps may often appear unstable when analysis does not include higher-order kinematics [2]. Thus, simpler grasping may come from less simple mathematics. Furthermore, the lack of redundancy in the Stanford/JPL hand only serves to increase the individual responsibilities of joints, resulting in very exacting configuration requirements for grasping.
+The Okada hand, a contemporary of the Stanford/JPL hand, was also a threefingered hand, but included more degrees of freedom, allowing for a level of redundancy [3]. It was designed as a first generation manipulator to be used in factory fabrication and assembly operations. It was designed to be compact, but is still significantly larger than the human hand. The Okada hand predates Stanford/JPL hand, but is much more of an applied project rather than a theoretical basis for grasping. However, Okada hand can be seen in many ways as the beginning of the modern era of robotic hands, due to its many degrees of freedom, its focus on the coordination of motion between the separate fingers, and its success in real-life grasping situations.
+The final major player in early robotic hand systems is the Utah/MIT Dexterous Hand which is described in detail in [4]. The Utah/MIT hand was designed as a platform for robotics research. It was designed to be as anthropomorphic as possible for three main reasons: 1. The human hand is proven to work, therefore a hand based on that design should function at least from a mechanical perspective. 2. An anthropomorphic design would allow for direct comparison between performance of the robotic hand with actual human hands. 3. Teleoperational control would be most natural for an anthropomorphic robotic end effector. The resulting design was very anthropomorphic, with the only major deviation being that the hand only
+
+included three fingers and a thumb instead of four fingers. An extremely high level of sophistication went into every aspect of the hand. Very stringent requirements were placed on the performance of the hand including speed, strength, range of motion, reliability, the capability for graceful behavior and the possibility of reconfiguration. The resulting design included 32 pneumatic actuators, internal tension and angle position sensors. The performance of the Utah/MIT hand was impressive for its time, and remains among the most sophisticated of robotic hands. The pneumatic actuators, however, necessitate significant mechanistic overhead, which renders it impractical for use in mobile robotic applications.
+Among the most advanced robotic hands to date is the Shadow Hand [5], a 24 degree of freedom robotic hand which is commercially available. The shadow hand is in many ways a modern day analog of the Utah/MIT hand. It employs pneumatic actuators and very closely mimics the geometry of the human hand, and it demonstrates arguably the highest level of sophistication of any robotic hand. Joint angles are internally measured with hall-effect sensors, and ample space is left for external sensors. Such care is taken in mimicking human geometry that there is an axis associated with the folding of the palm. The one major disadvantage to the shadow hand is the fact that the pneumatic actuators need a source of compressed air.
+The other notable contemporary robotic hand is Robonaut Hand [6]. Robonaut is designed with the exact opposite philosophy as shadow hand. While shadow hand was designed with 24 degrees of freedom to include any possible desired motion, Robonaut only has 14 degrees of freedom, including those in the wrist, with many degrees of freedom removed because they were determined unnecessary according to an analysis of desired functionality. The fingers are separated into two categories: the index and middle finger are classified as dexterous fingers, the ring and small finger are classified as grasping fingers. Each of the dexterous fingers has three independent degrees of freedom, the two grasping fingers share a single degree of freedom between the two of them. The hand is actuated by DC motor-lead screw assemblies, and is capable of very impressive dexterous motions. However, the reduction in independence limits the range of tasks which can be performed.
+
+In addition to these leading robotic hand systems, a multitude of other robotic hands have been designed and built. Many of these hands investigate very specific principles or demonstrate very specific ideas. This research often contributes greatly to the field as a whole. Many of these hands have contributed central ideas to this thesis. The hand described in [7] demonstrates the power of extreme underactuation. Grasping is possible with just a single degree of freedom. The work done in [8] addresses serious issues associated with SMA actuation of robotic hands. [9] demonstrates that principal component analysis can be applied to grasping data to reveal the synergistic attributes of human hand grasping.
+Finally, it must be pointed out that there already exists a robotic hand with all of the actuators in the palm. Gifu Hand III [10] is a 20 jointed 16 degree of freedom robotic hand which uses complex linkage mechanisms and gear trains. The hand comes with a distributed tactile sensor which covers the palm and fingers. This hand, as well, is designed as a grasping research platform. One thing to note is that the complex gearing is relatively fragile and does not interact well with the environment.
+The field of robotic hands has seen quite a few very impressive and very successful hands. However, the robotic hands that have been designed and built still leave significant room for improvement. Limitations in actuator technology seem to be at the heart of these issues. It would seem that improvements are necessary either in actuator technology itself, or simply in how the actuators are used.
+1.3 Biological Inspiration Leading to Actuation Scheme
+It is standard and logical in robotics to have a single actuator for every degree of freedom of a robot. In some special cases, improved performance can come from robots which have less actuators than degrees of freedom; these robots are termed to be underactuated. Robots with more actuators than degrees of freedom are overdefined; it is extremely rare to find applications where overactuation would be helpful. However, the human body has significantly more independent muscles than degrees of freedom. This more complex design may actually prove to simplify the control
+
+scheme for grasping and dexterous manipulation.
+<I
+1
+-.
+:ai-i
+a
+Figure 1-1: Human forearm, flexor digitorum superficialis and flexor digitorum profundus muscles
+Two of the most significant muscles for flexion in the fingers are the flexor digitorum superficialis and the flexor digitorum profundus. As can be seen above in Figure 1-1 which is taken from [11], the two muscles each have four tendons: one tendon connects to each finger. This sort of arrangement indicates a very high level of coupling and therefore reduced dimensionality, similar to the strategies used in [7] and [12]. However in addition to these muscles, the lumbrical muscles, shown in Figure 1-2, which is also taken from [11], serve to act on each of the fingers individually. Each joint has multiple insertion points from different muscles, indicating a level of overactuation. In addition, the hand is such that the Proximal Interphalangeal (PIP) and Distal Interphalangeal joints are not independently actuated; this underaction style is investigated in [13]. Thus, the human hand is very clearly both overactuated and underactuated.
+The extreme complexity of the anatomy of the muscles which drive the human hand is only the beginning. Even though four tendons originate in a single muscle, the actuation of the muscle can still drive the tendons at different levels; the muscles are activated by a large network of motor neurons. Direct analysis is extremely
+
+Figure 1-2: Lumbrical muscles
+difficult. The biomechanics community has already demonstrated an indirect method: Principal Component Analysis (PCA), which has been used to simplify the analysis of hand movements. The term 'motor control synergy' is used to describe coordinated motion generation [14] and [15]. Thus, the same methodology used to analyze human hand motion can be utilized to design a hand which can recreate the same motions. The logical procedure to follow would therefore be to look at the anatomy for general design inspiration and the physiology for quantitative information for implementation. It can be seen that the larger muscles which account for the majority of the force and displacement span multiple axes of the hand, while the smaller muscles are responsible for the independent motions. The exact details of how this can be applied will be discussed in Chapter 2.
+1.4 Goals and Organization
+While state of the art robotic hands like [5] and [6] have proven very successful, the actuation systems they employ take up significant space. Alternatively, [10] effectively packs all of the actuators into the palm, but the complexity and miniaturization of the components makes the hand fragile. The aim of this work is to arrive at a design
+
+for a simple robotic hand which contains all actuators elegantly placed in the palm. This will be accomplished in three steps:
+* Mathematically analyze synergies demonstrated by the human hand.
+* Find actuators which can be combined to take advantage of synergistic analysis.
+* Establish a design using the chosen actuators which is both practical and robust.
+The final design will combine DC motor and Shape Memory Alloy activation, matching their characteristics to the task specifications determined by the synergistic analysis. The resulting architecture, a single DC motor and an array of SMA wires, results in a schematic which bears a surprising resemblance to the human model. The combination of DC motor and SMA actuation allows for interesting positive interactions including an inherent compliance in SMA which serves as a buffer between the DC motor and the grasped object which protects not only the equipment but also the objects in the grasping environment.
+
+Chapter
+Synergistic Analysis
+2.1 PCA Methodology for Analysis of Synergies
+The human hand is actuated by a vast number of muscles. These muscles act on the hand in a complex yet highly coordinated manner. These seemingly independent muscles come together to exhibit a distinct synergistic behavior. This can be seen not only from an anatomical perspective but also from a functional perspective. The functional synergies can be investigated by recording and analyzing joint data throughout various grasping motions. One mathematical method to analyze the joint data is principal component analysis.
+Required hand
+Figure 2-1: Principal component in the n-dimensional hand posture space
+
+Consider a five-fingered hand with n joints. Let p = (Pl, . pn)T E Rn be generalized coordinates for describing a hand posture, be it joint angles, tendon displacements or individual actuator displacements. Assume that the task is to take various postures described by a set of posture vectors, p', i = 1 ... m. Figure 2-1 illustrates the distribution of the postures in n-dimensional space. These points represent a set of postures needed for performing a class of tasks. For home robots, these postures may be needed for performing daily chores, i.e. carrying cups, holding frying pans and turning doorknobs. These points can be generated with a simulator or by measurements of an actual hand during normal operation using a data glove [8].
+
+Collecting these posture vectors yields a data matrix:
+
+P = [p, p2...pm]
+
+nxm
+
+(2.1)
+
+Let C be the covariance matrix of the data matrix P:
+
+C = cov (P) E Rnx"
+
+(2.2)
+
+Computing the largest 1 eigenvalues and eigenvectors of the covariance matrix C, we can approximate the posture vector, p, as:
+
+pr + qlel + + - qie, < n
+
+(2.3)
+
+Where p is the average of the data p', p2 , . . pm We can call the posture given by the eigenvector ei, the i-th eigenposture. Scalars q ... q represent coordinates in the transformed space. For most data points p', the first coordinate q1 , takes a large absolute value, while the higher order eigenpostures take relatively small coordinate values.
+
+2.2 Grasp Data Gathering
+In order to properly evaluate the synergistic properties of grasping, grasp data from both a human and robotic hand were analyzed. The human data was taken much earlier and used to verify the existence of the synergies and to deliver preliminary insight for a basic actuation architecture. It was deemed necessary to take data on the robotic hand because of geometric differences between the robotic hand and the human hand, to expand the data set to include a larger range of grasps, and most importantly so that the results from the synergistic analysis could be directly applied to the design algorithm. It turns out that the slight geometric differences between the human and robotic hands had significant effects on synergy, which will be discussed in the following sections.
+Rather than measuring the joint angles throughout the entire grasping motion, the only joint angles that were measured were those in the final grasp position. This was motivated by simplicity: First, the human hand has a high dimensionality; very powerful equipment would have to be used to record the motions. Second, the grasps by the robotic hand were fully simulated; simulation of the robotic hand going through the grasping motion would be almost pure speculation and would provide little to no additional insight into the synergistic nature of human grasping.
+However, while this data gathering method allows for significantly more simplicity, it does place some limitations on the nature of the grasps that the robotic hand would be able to recreate. Thus, the nature of the desired functionality of the robotic hand would be fixturing tasks and not dexterous manipulation. However, it is common practice to operate under this limitation in robotics [2], and these tasks still represent a large subset of the tasks accomplished by the human hand. Sixteen different grasps by the human hand and 32 grasps by the robotic hand were analyzed. The following sections explain the process used to analyze the data, the methods used to gather the data, and the results of the data analysis.
+A data glove by Immersion Corporation (Cyberglove) was used for measuring the joint angles of a human hand in 16 different grasping configurations. These grasps
+
+were chosen to represent a subset of normal daily tasks. The joint data taken consisted of the three joint angles associated with flexion and extension of each of the fingers and four of the angles associated with the thumb. The joint data does not include the joint angles associated with the abduction/adduction of the fingers.
+The grasp data was taken from [8]. The grasps consist of the following: a beer bottle, brush, cell phone, cup, doorknob, fan, fist, jacket, pen, remote control, small object, toothpick, tray, umbrella, and two wineglasses. Figure 2-2 shows fifteen of the sixteen grasps, including both the physical grasp and the computer rendering. The joint angles measured can be found in Appendix A.
+Figure 2-2: Fifteen of the sixteen measured grasps The grasp simulation was done in a two step process. It was decided that the most effective way to recreate the synergies found in human grasping would be to mimic human grasping as closely as possible, using the following logic: Given solid surfaces with no friction, generally a limited set of unique grasps can be used by a specific robotic hand to fully constrain an object. However, with compliant surfaces and friction, a much wider range is possible. It would be absurd to assume that the grasps that the human hand performs would still effectively constrain the objects if there were neither friction nor compliance. Thus rather than finding all available solutions, which is unnecessary, using a single solution which closely matches the human model is not only acceptable, but desirable. Therefore, the first step in the simulation process was to photograph an actual
+
+Figure 2-3: Photographs of human hand grasping scissors
+human hand performing the grasp on the actual object. Figure 2-3 shows the photographs taken of a human hand grasping scissors. Each of the grasps was photographed from several angles so as to allow for complete knowledge of the hand configuration, even including fingers which are not involved in the grasp which do not even contact the object. The second step of the process was to make solid models of the objects and of the robotic hand. The solid models of the object were placed in the robotic hand, with the hand mimicking the human hand grasps as much as possible. The grasps were then analyzed to verify that the hand would sufficiently constrain the object. However, since the actuation method only focuses on joint angles, the analysis assumed that the actuators would deliver the appropriate forces to maintain their configuration. This assumption will be discussed in more detail in Section 3.5.
+
+i-J
+4
+r
+i
+
+C.
+Ksi~'
+
+I:~:: r-
+
+e "~""1~L~:~ !iCi~lttE
+Y Icr'
+
+n ~e?
+88~~:
+P
+
+Figure 2-4: Solid models of simulated grasps
+2.3 Analysis of Grasping Synergies
+The anatomical layout of the muscles in the hand indicates that most grasping motions should have a high level of coordination26etween the various joints of the fingers.
+
+However, the physiology is much harder to determine, the layout of motor neurons is much more complex, and the activation scheme may have a significantly greater effect on the output geometry. Therefore, the grasping motions undergone by the hand are analyzed for synergies; if a high level of synergy is found, it would indicate that the same principle could be applied to a robotic hand. The following sections analyze grasping motions for a human hand and for a robotic hand.
+2.3.1 Human Hand Synergies
+The data taken for the human hand were the angles of the joints for the various grasps. The synergies to be analyzed, however, have to do with actuators, and as such tendon displacements would give much deeper insights into the synergies associated with the muscles. Since the inverse kinematics of the joints of the hand are very complicated and direct measurements of the individual tendon displacements are impractical, it was decided that the displacements of the human hand could be projected onto the tendon space of the robotic hand, since the tendon architecture and actuation structure of the robotic hand were based on the human model. Following the procedure of principal component analysis, the mean value of the tendon displacements was taken. The covariance matrix of the associated tendon displacements with respect to this position was then taken. The values are show in Appendix A.
+The eigenvalues and eigenvectors of the covariance matrix were evaluated leading to the synergy analysis. The relative size of each eigenvalue indicates the relative amount of variation of the direction of its associated eigenvector. The ratio of the magnitude of any particular eigenvalue with the sum of all of the eigenvalues can be used to give a percentage, which can be thought of as the amount of information stored in a particular direction. In data sets with little to no synergy, the eigenvalues would be expected to be roughly equivalent; in data sets with significant synergy, a few eigenvalues would be expected to be significantly larger than the rest. Given the actuation scheme, it would be desirable for a single axis to be dominant.
+Analysis indicates that significant synergies exist between the 16 postures measured. Figure 2-5 shows each of the associated eigenvalues in decreasing order. The
+
+Figure 2-5: Synergy values for the human hand grasp data first principal component contains approximately 68% of the data associated with the grasps; a very large portion of the data is contained in a single direction. However, since the human anatomy does not indicate any synergies between the thumb and the fingers, the analysis was run again, but with the thumb and finger data taken separately.
+Figure 2-6: Synergy values for the human hand grasp data separated into thumb (left) and fingers (right)
+Upon separating the data into thumb and fingers, it becomes very clear that significant synergy exists between the fingers. Figure 2-6 shows the synergies within the thumb and within the fingers. The first principal component of the fingers contains
+
+79% of the data; the first principal component of the thumb only contains 60%. This high level of synergy within the fingers is highly desirable. However, the synergy within the thumb is significantly less.
+The results are not surprising, agreeing with the human anatomy: the fingers have multiple muscles in common, they share none with the thumb. Furthermore, the independence within the thumb is also expected due to the large number of independent muscles acting upon the thumb. The synergies found in the fingers were deemed sufficiently encouraging to expand the investigation to include a larger data set applied to an actual robotic hand.
+2.3.2 Robot Hand Synergies
+The data taken for the robotic hand included 32 separate tasks, each of which were normal daily tasks typical of grad student life. The data set was chosen so that the robotic hand could one day accomplish the menial tasks of grad students so that they could focus on more intellectually stimulating problems. The data was given in terms of tendon displacements which were determined by the inverse kinematics described in Appendix B. Appendix A shows the covariance matrix of the human hand data.
+Given the same eigenvalue analysis as was done on the human hand, it was found that only 35% of the data grasp data was preserved for the system when the thumb and finger data was taken as combined. The level of synergy in the robotic hand is therefore significantly less than what was demonstrated in the human hand. As can be seen in Figure 2-7, the data is distributed between several different principal components.
+Separation of the finger and thumb data once again significantly improves performance. 58% of the finger data is preserved by its first principal component, as is 44% of the thumb data. Interestingly, the second principal component of the thumb is nearly as large as the first; the majority of the data is split between two separate directions. The first principal component of the finger data, however, is dominant, though two other components contain a significant amount of data.
+While the large amount of data contained in the first principal component is
+
+Figure 2-7: Synergy values for the robot hand grasp data
+
+promising, it is still necessary to predict performance of the hand, given the limitations in the stroke of SMA. Given that the SMA axes must fit within the palm of the hand, a length of 2 inches of SMA was chosen to allow for room for all of the necessary components. It was found that pure DC motor actuation left a residual motion which corresponded to an RMS of 12.8% of the total stroke of the finger, and with an RMS error of 5.7% SMA correction. Table 2.1 gives the RMS error of each individual joint using the design. Appendix A gives more detailed results of the residual displacements
+and errors.
+
+Table 2.1: Residual displacement and error using PCA-driven design
+
+Joint I:DIP I:MCP M:DIP M:MCP R:DIP R:MCP P:DIP P:MCP
+
+Residual 13.6% 16.2% 11.7% 10.9% 11.5% 9.4% 11.7% 16.0%
+
+Error
+
+6.6% 8.6% 4.1%
+
+3.6% 3.7% 2.3% 3.9% 9.1%
+
+The large value of the first principal component in the fingers suggests that a simple design can easily take advantage of the demonstrated synergies. Conversely, the roughly even values of the first two principal components in the thumb indicate that neither is dominant, making significantly more complex mechanisms necessary for implementation. Thus it was decided to only implement the synergistic design on the fingers, leaving improvements to the actuation of the thumb for later work. The principal direction of variation as determined by the PCA analysis is applied to the
+
+Figure 2-8: Synergy values for the robot hand grasp data separated into thumb (left) and fingers (right)
+design in Section 4.3.
+
+Chapter 3
+Hybrid Actuation
+There seems to be a common sentiment in the robotics community that current actuators are insufficient for an equivalently compact robotic hand to perform as well as a human hand. It seems that many roboticists are just waiting around for some sort of super-actuator which will solve all of the issues. The answer, however, may not lie in an altogether new actuator, but in a combination of existing well-established actuators. Many actuators were studied, and it was found that DC motors and SMA not only have characteristics desirable for robotic hands, but that their strengths and weaknesses play together very effectively. However, often in research there exists a fundamental disconnection between theory and practical application; the seemingly complementary characteristics of SMA and DC motors do not imply that they are easily combined as actuators. Much care must be taken to address several issues, not only of the actuators in combination, but also issues associated with the individual actuators. The following sections show not only how the actuators were chosen, but also address those issues in order to produce a hybrid actuation system which is practically implementable.
+3.1 Actuator Selection
+The synergistic analysis of Chapter 2 revealed two distinct necessary modes of actuation: a single dominant mode and a large set of limited residual modes. These
+
+distinct groups would best be actuated by actuators with similarly distinct characteristics. The increased importance of the dominant mode places more stringent performance requirements on the actuator associated with the mode; however, the increased importance allows for looser requirements in areas such as space, weight and cost. Similarly, the residual modes of actuation bring with them reduced performance expectations but more strict requirements for compactness and low cost. The actuators under consideration were evaluated based on how well they matched these characteristics.
+The actuators considered for the robotic hand were classified into two separate categories: packaged actuators and actuator materials. Packaged actuators are commercially available and generally speaking well-established and optimized for performance. Actuator materials, on the other hand, are more research-oriented, with many possible improvements on the horizon, not only from a materials perspective, but also from an implementation perspective. As such, it is difficult to compare performance between the two groups.
+Among the packaged actuators are electric motors, Voice Coils, Pneumatic and Hydraulic actuators. Their performance characteristics depend greatly on manufacturing, thus making quantitative comparison between them difficult. Of these actuators, electric motors are likely the most commonly used in robotics, as they are likely the most versatile, especially since they integrate so seamlessly with gearboxes giving a wide range of torque-velocity settings depending on the application. They also demonstrate a highly linear behavior which is quite desirable from a controls engineering perspective; along with this linear behavior is the availability of precise movement and a very rapid response time. However, electric motors do have some complications in robotic hands. They only provide rotational motion which must be transformed into linear motion in order to actuate the tendons which drive the fingers. These mechanisms, usually lead screws or even pulleys, add mechanical complexity, weight and take up space, reducing not only simplicity but also compactness.
+Voice coils are another well-established actuator. They provide very rapid linear motion, but at relatively low force. Larger forces are possible but much larger voice
+
+coils are needed. This low force density creates issues when dealing with a high degree-of-freedom system like the human hand. Pneumatic actuators have many advantages in that they can be very compact and lightweight, with a very quick response and decent stroke and force density. However, they require an external source of compressed air, which adds a lot of overhead which is very much undesirable. Hydraulic actuators provide very large forces as well but present serious issues with positional accuracy and also require a considerable material overhead. Of all of the packaged actuators, electric motors boast the best performance with the least material overhead, especially for an isolated axis.
+Material actuators allow for a much more quantitative comparison. Furthermore, human muscle tissue can be used as a basis for evaluation, since it has proven itself as an effective actuator in human hands. It would seem that since muscle is a very complex nonisotropic organic tissue, the peak stress that any particular muscle would be capable of producing would widely varying and depending on a variety of parameters. It turns out that the peak stress generated by muscle is quite consistent throughout not only the entire human population, but also the entire phylum of vertebrates: 350 kPa [16]. Muscle tissue, however, is only capable of sustaining such large stresses for brief periods of time due to fatigue. Human muscle can only sustain around 30% of the maximum peak stress, or 100 kPa [17]. Human muscle is capable of undergoing a maximum strain of around 40%, has a maximum work density of approximately 40 kJ/m, and has a maximum power density of 284 W/kg [18].
+In contrast to human muscle, the shape memory alloy known as "Nitinol" (or SMA) is often called an artificial muscle, due to its superficially similar behavior to muscle tissue. Nitinol was developed in the 1960's in the Naval Ordnance Laboratory. It is known as a shape memory alloy (SMA) because it can exist in two different solid phases, depending on its energy levels, which are characterized by different crystallographic configurations. These different molecular configurations can lead to significantly different macroscopic geometries. Thus, an object made from such a material can return to a shape after being drastically changed simply by undergoing a phase transition.
+
+This phase transition can be effected in different ways, but in the context of robotics, the relevant ways are stress and heat. The material can be formed and treated in such a way as to allow up to an 8% strain in between phases [18]. The stress in the material associated with this phase transition is in excess of 200 MPa, the maximum power density is approximately 50 kW/kg [17], and the maximum associated work density is around 10 MJ/m. It should be noted that the above properties of SMA appear to outperform human muscle in excess of two orders of magnitude. However, a significant amount of additional space is needed in order to allow the material to cool.
+Another actuator material, Piezoelectric actuators (PZT), are known for their extremely high bandwidth. Piezoelectric actuators generate a stress due to an electric potential, by a separation of electric charge across the crystal lattice. PZT can produce a relatively large stress, at 4-9 MPa [19], but it can only produce a strain on the order of 0.1%. Further difficulties in PZT arise due to the large voltages necessary to activate it, which run on the order of 100V.
+Elastomer Actuators also have been proven to be an interesting actuator material option. They produce strains ranging from 19-45%, and deliver stresses from 10-120 kPa. However, they require extremely high voltages for operation, on the order of 1 kV. Conducting polymer actuators have also been proposed, with high stresses, on the order of 34 MPa, decent strains at a maximum of 12%. However these polymer actuators are proven to be most unreliable, with severe degradation over time. Table 3.1 was constructed to compare the various characteristics of the actuator materials, and was constructed from [16], [17] and [18].
+
+Table 3.1: Relevant characteristics of actuator materials Actuator Material Muscle PZT SMA PPY Elastomer
+
+Power Density (W/kg)
+
+284 20,000 50,000 150
+
+1
+
+Work Density (J/m 3 )
+
+40 900 10,000 100
+
+3-56
+
+Maximum Stress (kPa)
+
+350 9,000 200,000 34,000
+
+10-120
+
+Maximum Strain (%)
+
+40 0.1
+
+8
+
+12
+
+19-45
+
+In comparing the characteristics of the actuators, SMA stands out as clearly the most compact. It does, however, have significant issues, especially associated with
+
+speed of response and hysteretic behavior. These issues are dealt with in the following sections.
+3.2 Integrating SMA and DC Motor Actuation
+Combining DC motor and SMA actuation in order to accentuate positive attributes and mitigate negative attributes can only work if the proper configuration can be found which allows the actuators to effectively work together. The most fundamental decision is whether to use a parallel or serial arrangement. This decision is quite clear, however, because SMA provides ample stress and limited strain; thus, the motion must be summed and a serial arrangement was decided upon.
+The positive attributes of DC motors can be generally described as good performance characteristics: speed of response, linearity, unlimited stroke; the negative attributes tend to indicate a limited number: bulky, expensive and rotational motion which must be transformed to linear motion. The positive attributes of SMA indicate it as an ideal array actuator: lightweight, high power density, high stress, low cost, linear motion; the negative attributes of SMA are in its performance characteristics: low bandwidth, limited stroke, and hysteretic and nonlinear response. Given these attributes of DC motors and SMA, the general schematic shown in Figure 3-1 was decided upon, with a single DC motor acting upon all of the axes, and SMA actuators acting individually on each of the axes. This setup mimics the human anatomy described in Section 1.3, with the DC motor analogous to the flexor digitorum muscles, and with the SMA axes analogous to the lumbrical muscles.
+In order to actually implement a robotic hand which uses both DC Motors and SMA array actuators as described earlier, the motion effected by the two actuators must somehow be physically summed. Since this entails running the actuators in series, an important design decision is the order of the actuators, namely which actuator is fixed and which is floating. Figure 3-2 illustrates the two configurations: Configuration A consists of a floating pulley which sums the motion of the SMA and the DC motor; the SMA is anchored and activated by fixed electrical contacts. Con-
+
+0
+
+-Axis 1
+
+4"
+
+Axis 2
+
+- Axis 3
+
+Axis n
+
+Figure 3-1: General actuator schematic
+figuration B consists of a length of SMA effectively replacing a section of the tendon used by the DC motor to drive the finger.
+
+k S-MA
+
+DC Motor
+
+(A) DC Motor
+SMA -- mmmmmmmm---raaal~*
+
+Figure 3-2: Actuator ordering options
+Configuration B creates the complication that the SMA moves with respect to its electrical contacts, thus creating error in active SMA segments when the DC Motor moves. Configuration A, however, not only avoids this unwanted coupling; it also doubles the displacement of the SMA. Nonetheless, it introduces many more complications, including the need for floating pulley mechanisms and a much less
+
+compact design. The impact of these complications is discussed in [9]. The decision was made to employ configuration B because it is the more simple, compact and practical design.
+3.3 Dealing with Shape Memory Alloy
+Although SMA has some extremely desirable characteristics, including a peak stress orders of magnitude higher than human muscle, it also has some very negative characteristics that must be dealt with in order to be able to use it to effectively actuate a robotic hand: 1. SMA is slow. Since SMA is thermally activated; its response time is therefore limited by thermodynamic processes, which generally results in time constants on the order of 1 second. 2. SMA effects a limited strain. While certain varieties of SMA can achieve a strain of 8%, those large-strain alloys can only undergo approximately 300 cycles before failure; high life-cycle SMA only demonstrates a strain of 4.8%. 3. SMA is nonlinear and hysteretic. The strain of SMA is the result of a phase transition; the complex molecular dynamics result in a very non-linear hysteretic relationship between strain, temperature and stress. This relationship is very hard to characterize and makes accurate control almost impossible. 4. SMA is inefficient. Since the strain of SMA is the result of a phase transition in the metal, the majority of the energy is dissipated in the phase transition process and not converted to mechanical energy.
+The majority of the issues of SMA are dealt with simply by applying the earlier described hybrid actuation scheme. By achieving the majority of the displacement with the DC motor, the limited strain of the SMA is nearly sufficient to achieve desired positioning; minimizing the stroke of SMA reduces the total energy dissipated by the inefficient SMA therefore reducing energy loss. The slow response time of SMA is dealt with since the serial connection with the DC motor allows for rapid motions to be produced by the DC motor. The non-linear and hysteretic behavior, however, must be dealt with directly since the hybrid actuation scheme does not address them.
+An effective method for the control of SMA was proposed by [20]. The gen-
+
+eral methodology includes breaking the shape memory alloy into binary segments and treating them as either full-on or full off. This methodology was aptly termed segmented binary control (SBC). Since the majority of the strain due temperature variation occurs in the hysteretic region, the material can be heated and cooled to temperatures which completely avoid the hysteresis. Any overheating or overcooling beyond the hysteresis results in a negligible difference in strain, allowing for in very repeatable behavior.
+Strain
+Temperature
+OFF Figure 3-3: Binary control applied to SMA hysteresis
+Segmented binary control is demonstrated in Figure 3-3. While SBC does boast the obvious advantage of repeatability, it also completely removes continuity. Imposing a digital behavior limits the performance of the actuators. As such, it is desirable to recover continuity as much as possible. Therefore, the segments of SMA were chosen to be in exponentially increasing lengths; this architecture is identical to that used by a digital to analog converter. In order to be able to independently activate segments, nodes are placed between segments with gates connecting to both ground and the power rail, with one end being tied to ground. Depending on which segments need to be activated, the nodes follow an alternating scheme which is show in Figure 3-4.
+However, the segments are of different lengths but held at the same voltage. Thus, the resulting current and therefore heat dissipation within each segment is not identical. Rather than implementing complicated circuitry, which is undesirable due to space limitations, the gates are held open according to a duty cycle which is determined based on the resistance of the segment, resulting in a level continuity deter-
+
+4 Key: - Inactive SMA . Inactive Mosfet Switch - Activated SMA Activated Mosfet Switch
+Figure 3-4: Digital to analog converter approach to segmented binary control mined by the designer, and allowing for repeatable activation of the shape memory alloy.
+3.4 Hybrid Actuation and Interference Issues
+Figure 3-5: SMA cross-activation The decision was made in Section 3.2 to allow for floating shape memory alloy actuators. However, since SMA has a slow response, the activation scheme dictates that the SMA should be activated first, with the DC motor motion following so that the object can be grasped reactively. Since the temperature of the SMA must be actively kept above a threshold value in order to maintain contraction, the nodes are kept active throughout the grasping process. The result is that some sections of SMA can become cross-activated, causing errors. The general principal is demonstrated in Figure 3-5. However, since the strain of SMA is approximately 5%, the maximum error is only 5% of the DC motor stroke after SMA activation, which sets a clear upper bound. It was thus decided that this issue did not merit significant consideration,
+
+and experimentation would be performed to verify this claim.
+
+3.5 Synergistic Approach and Force Control
+
+One major disadvantage of the synergistic method used is that it does not directly take forces into consideration. The analysis that is run is completely based on position control. The general actuation scheme involved overlaying an initial SMA displacement over a general open/close motion of the DC motor. The implied model, which is shown in Figure 3-6, treats SMA as a pure displacement; an impedance controller is applied to the DC motor, which is depicted as a variable compliance and damping.
+
+DC motor
+
+SMA
+
+.. .................. .
+Figure 3-6: Actuator model used in synergistic analysis
+The problem with this model is that a single actuator is force controlled and distributed among many axes. The apparent 'direction' of this force (the proportional force experienced by each individual joint) is determined by the pulley structure; the pulley structure is determined by a principal component analysis of the grasp configurations. Thus, applying impedance control to the DC motor directly demonstrates an implied assumption that the desired direction of force is aligned with the principal direction of motion found by the PCA. There is no basis for this assumption, and in general it does not hold. In practice, the compliance of the SMA may still allow for the grasp to be effected, but this cannot just be assumed.
+Another possible model, shown in Figure 3-7 takes the compliance of SMA into account. The compliance of SMA in the martensite phase is approximately three times as large as when it is in the austenite phase. This wide variation in compliance can be used as a part of a control scheme.
+
+DC motor
+
+SMA
+
+Figure 3-7: Alternative actuator model
+If the grasp data set is expanded to include desired grasping forces (at nominal positions) the shape memory alloy can be activated such that its equilibrium position is past its desired position. The displacement of the equilibrium position from its desired position would be a function of the desired force and the compliance of the SMA. A range of DC motor input positions on one end of the SMA could all output the same force and position by varying SMA activation. This scheme is shown in Figure 3-8.
+iIi i,
+Figure 3-8: Identical force and positioning from varying levels of SMA activation
+It may seem more desirable to control output compliance than it would be to control output force. In this specific scheme, however, this turns out to not be the case. Since there is only one DC motor, and its output is position, controlling the compliance of the SMA would rigidly determine its activation level and therefore the equilibrium position of the fingers. By controlling the output force, more flexibility is allowed since both the SMA and DC motor contribute to position. Another advantage of the equilibrium point force control is that under identical loading conditions the range of displacement is increased since the natural length of the martensite phase is
+
+not only shorter but less compliant, which is also demonstrated in Figure 3-8.
+
+Chapter 4 Mechanical Design
+A robotic hand was designed according to the hybrid actuation scheme laid out above. The hand was designed with all of the actuators and control circuitry located within the palm. An emphasis was placed on modularity, and the hand was designed for easy troubleshooting. The hand consist of five major parts: the digit modules, the power train, the cooling system, the base structure and the thumb.
+Figure 4-1: Robotic hand
+
+Since the nature of the thumb motion does not allow for simple application of the synergistic control strategy, it was decided that an active thumb would add nothing of research value to the hand. Therefore the thumb was designed to be set by the experimenter before each grasp experiment.
+4.1 Fingers
+The human hand consists of three joints: the metacarpal-phalangeal (MCP) joint, the proximal interphalangeal (PIP) joint and the distal interphalangeal (DIP) joint. These three joints allow for four degrees of freedom, with the MCP joint providing two DOF. The robot fingers, however use four separate pin joints for maximal simplicity. The fingers are driven by Kevlar tendons which are routed internally. The fingers are underactuated, with only three sets of antagonistic pairs of tendons; one pair actuates the MCP abduction/adduction, another pair actuates the MCP flexion and extension, and the final pair distributes actuation between the flexion and extension of the MCP, PIP and DIP joints. This underactuation is very similar to the underactuation found in the human hand, and serves to greatly simplify grasping while simultaneously reducing actuator requirements.
+Figure 4-2: Index finger
+All of the tendons for flexion and extension must pass through the abduction/adduction joint. In order to avoid unnecessary cross-coupling, all of the flexion/extension tendons are therefore passed through the center, in line with the axis of rotation of the abduction/adduction joint. The tendons are anchored to their insertion points in the
+
+fingers by knots which are wedged into tapered sections of the finger. The tendons are routed between steel posts which serve to not only reduce friction, but also to very carefully control the path of the tendon, allowing for very accurate kinematic analysis which can be found in Appendix B. Between each of the fingers, the analogous segments are nearly identical, with only one dimension varying, the overall length of the segment. The arrangement of pins, however, allows for an identical joint angle to tendon displacement relationship.
+/
+Figure 4-3: Front view of the finger segments
+Integrated into the structure of the fingers are mounting points for angle-sense potentiometers. The potentiometer mounts at the front of each segment, with the wires passing through a hollow on the side. Silicon pads coat the outside of the finger to increase friction and to add compliance, increasing the robustness of the various grasps.
+4.2 Digit Module
+Each of the four fingers of the hand were designed to be contained within a digit module. The digit modules were designed to be fully independent, including integrated low level circuitry for SMA activation and a simple gear interface for the DC Motor activation. The digit modules consist of the fingers themselves, angle sense potentiometers, bushing plates, bushings, endplates, the SMA, activation pins, routing pins, control circuitry and base structure.
+The base structure of the digit module holds the copper activation pins and the steel routing pins in their proper location and serves as a mounting point for the bushing plates, circuit boards, endplate and finger. Separate plates are used for the
+
+nt
+
+Figure 4-4: Fully assembled digit module
+bushings so that the distributor pulley can be fully constrained by the bushings, and the maximum diameter of the distributor pulley can exceed the outer diameter of the bushing. The endplate serves as a mounting point for two vented screws. The vented screws allow for tension adjustment of the abduction/adduction axes of the finger.
+
+4.3 Distributor Pulleys
+
+One of the most fundamental components of the hand are the distributor pulleys. They are the interface which sums the DC motor and SMA activation. The diameters of the various sections are determined by the principal component analysis done in Section 2.3.2 and are shown below in Table 4.1.
+
+Table 4.1: Distributor pulley diameters determined by PCA (in)
+
+Index Middle Ring Pinky
+
+MCP Extension
+
+0.370 0.372 0.343 0.239
+
+MCP-DIP Extension 0.067 0.110 0.103 0.136
+
+MCP-DIP Flexion
+
+0.173 0.283 0.265 0.350
+
+MCP Flexion
+
+0.498 0.500 0.461 0.322
+
+The pulleys were designed such that the antagonistic pairs would connect, wrap-
+
+ping in opposite directions. While PCA was used to determine the diameters of the flexion sections of the pulley, the sections associated with extension were given diameters based on the ratio of its total stroke with that of its antagonistic partner.
+4.4 Base Structure
+The base structure serves as a mounting point for all of the other systems: the digit modules, the thumb, the power train and the cooling system. It is the simplest of all of the components, with no moving parts. It consists of a front plate and a rear plate separated by standoffs. It was designed with a very open structure so as to allow air flow for the cooling of not only the SMA but also the power circuitry associated with activating the SMA.
+I' 1 IIiII
+I I I
+Figure 4-5: Base structure
+
+Chapter 5
+Experimentation and Results
+5.1 Experimental Setup
+The extremely compact nature of the robotic hand greatly reduced the availability for space for sensory equipment. As such it was deemed useful to construct a setup with an isolated finger which would undergo actuation similar to the four-finger system, but with plenty of space for sensors. The setup was designed for easy reconfiguration, so that many different things could be tested with minimal effort. In some configurations, the finger was replaced by a load cell, so that both force and position could be measured.
+The isolated-finger setup consists of a solid aluminum plate for mounting, with rows of holes to allow for configuration changes. The load cell and the finger mount to one row of these holes, allowing for variation in the length of SMA. Another row of holes serve as a mounting point for acrylic plates. These plates can be laser cut and serve as a very quick and easy method for changing electrical contact pin configuration. Two bushing plates are rigidly fixed to the end of the plate; the distributor pulley is located by these bushings. A DC motor is directly connected to the distributor pulley. This is one major difference between this setup and the actual robotic hand; in the robotic hand, a gear train would connect the DC motor to the distributor pulley.
+Separate breadboards were used to power the gates for SMA activation, power
+
+Figure 5-1: Experimental setup
+the potentiometers for angle sense, and to amplify the signal from the load cell. All of the data was gathered by a Quanser WEECS unit, which was also used to control the entire setup.
+It was found that the SMA springs did not provide sufficient force for pullback, partially due to limitations in available diameter and partially due to coulomb friction. For experimentation purposes, the pullback springs were replaced by 1 kg masses, which served to provide an approximately constant force in the quasi-static operations. One major drawback to this design is that the springs turn out to be insufficient to detwin the SMA actuators, therefore further reducing the autonomy of the robotic hand, necessitating operator intervention.
+
+5.2 Positional Accuracy
+Probably the most legitimate concern with the presented hybrid actuation methodology is interference between the actuators. Theoretically summing actuation is completely different than doing it in practice. One of the most serious complications was discussed in Section 3.4. Experiments were run in which the finger was sent to a desired position. While an open-loop control scheme was used on the whole system, the a proportional controller was applied to the DC motor subsystem. This controller setup is identical to that which is to be used in the actual robotic hand. The experiments measured the final position of the finger comparing the results when the DC motor is activated before the SMA and when the DC motor is activated after the SMA. The activation of the SMA was accomplished by an initial very large spike of current followed to force the phase-transition, followed by a much lower sustained current intended to maintain the activation level. The input position was cycled between the neutral position and a set position several times, as shown in Figure 5-2.
+1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1
+0
+0 10 20 30 40 50 60 70 80 90 100 Time (s)
+Figure 5-2: Representative experiment
+In every experiment run, the output position from the first cycle was significantly
+
+different than the rest of the cycles. It was concluded that coulomb friction played a large part in these discrepancies, and the data from the first cycles were not included in the analysis. It was found that the output position of the finger varied widely when the MCP-DIP axis was activated, which is to be expected due to the level of underactuation. However, when the MCP joint was activated alone, the output position was much more reliable. No appreciable difference in output of the system was noted between activation orders. Furthermore, no peculiarities were found due to cross activation: although the SMA was activated before the DC motor, and a section that was originally heated was let to cool while a section that was not activated was exposed to the sustained lower current, the position of the finger remained constant. The SMA was left in the cross-activated configuration for 8 seconds, which is significantly longer than its cooling time. Figure 5-3 shows this phenomenon. The best available explanation is once again coulomb friction.
+
+MCP Joint Displacement
+
+0.8 0.6
+
+-IIII,
+
+,II .
+
+II
+
+II IIIIII I IIIIIII
+
+III IIIIII II II
+
+IIc~m,k~""~*L~
+
+0.2
+411~
+n-
+
+III I IIIIIII
+II I iII
+
+IIIIIIII
+I IIIIl -----
+
+Il
+
+II
+
+I
+
+I
+
+5 8 60 62 64 66
+
+I
+68 Time (s)
+
+Displacement -- - - DC Motor position
+----- SMA signal
+1
+I,
+r
+I-l- ~----~ 70 72 74 76 78
+
+Figure 5-3: Single cycle of activation
+
+Since no peculiarities were found in the simple activation scheme, it was decided
+
+that more aggressive experiments should be run. Since cross activation involves movement of the DC motor through the SMA activation sustaining current, it was decided that the worst case scenario would be rapid oscillations of a large magnitude of the DC motor. Figure 5-4 shows the system output under the above described conditions. An error on the order of 5% is found, which is larger than that predicted in Section 3.4. However, the hand is not designed to operate under these conditions.
+Aggregate Normalized Joint Displacement
+
+5
+
+10
+
+15
+
+20
+
+25
+
+Time (s)
+
+Figure 5-4: Worst case performance
+
+5.3 Full Hand Grasp Simulation
+In order to truly simulate the grasps, full knowledge of the system would be necessary, including mass distribution, compliance and orientation with respect to gravity. As such, the simulations are run without any interactions between the object and the hand. Thresholding the errors at 1 degree, 11 of the 32 grasps are accomplished with 0 error in any of the joints. 4 of the remaining grasps demonstrate no error in any of the
+
+fingers which contact the object. The error free grasps consist of the following: Allen Wrench, Alligator Clip, BNC Cable, Eraser, Floppy Disk, Open Pliers, Button, Open and Closed Scissors, Screwdriver, and White Out. The four contact-error free grasps consist of the following: Thumbtack, Pencil, Tweezers, and Battery. Shown below are the grasps which demonstrate some level of error, with the desired configuration on the right and the simulated configuration on the left.
+
+(17n
+
+i7ZI (5 :",
+
+Figure 5-5: Grasp Simulations: Calculator J;
+Figure 5-6: Grasp Simulations: Calipers
+
+Figure 5-7: Grasp Simulations: Closed cell phone
+,"VA
+Figure 5-8: Grasp Simulations: Open cell phone
+Figure 5-9: Grasp Simulations: Drill bit
+
+Figure 5-10: Grasp Simulations: dsPIC
+Figure 5-11: Grasp Simulations: Fire extinguisher
+\i
+A /
+!
+Figure 5-12: Grasp Simulations: USB flash drive
+
+Figure 5-13: Grasp Simulations: Glue bottle Figure 5-14: Grasp Simulations: Hammer
+Figure 5-15: Grasp Simulations: Jumper wire
+
+Figure 5-16: Grasp Simulations: Knob Figure 5-17: Grasp Simulations: Laptop Figure 5-18: Grasp Simulations: DC motor
+
+Figure 5-19: Grasp Simulations: Pencil Figure 5-20: Grasp Simulations: Closed pliers
+Figure 5-21: Grasp Simulations: Ruler
+
+Chapter 6
+Discussion and Conclusions
+A synergistic approach is taken to combine actuators in the hopes that, together, they would perform better than either would be able to individually. In many respects, combining DC motors and SMA for actuation of a robotic hand allows for many new aspects of performance with a very high degree of simplicity. However, an aspect of the approach inherently limits performance, setting a very clear upper limit on performance: The approach is data driven. The only grasps that the hand can effect are those which are carefully planned out, not just before the object is grasped, but before the hand is even built. These limitations contradict the very basis of the concept of robotic hands, making them never able to recreate the performance of the human hand. The beauty of the human hand is not in its speed or strength or size; it is in its amazing ability to adapt to grasp such a wide variety of objects. Thus, the hybrid-actuated hand which is built based on synergies and left open-loop can never match the versatility of the human hand.
+A further limitation of the approached used is the fact that forces were completely ignored. The data gathering and analysis did not allow for distinction between an egg and an egg-shaped piece of depleted uranium. On one hand, this led to a simplicity which allowed for very significant data reduction; on the other hand this puts severe limitations on grasping. The alternative, which is discussed in Section 3.5 requires an exorbitant amount of information and analysis of the objects to be grasped. One approach leaves grasp success to chance, the other approach sets unreasonable
+
+requirements on object knowledge; neither approach is truly desirable. It was found that application of the synergistic method to the data set allowed
+for the hand to recreate the desired grasps with an RMS error of only 5.7%. This is truly impressive since the actuation is accomplished by a single DC motor and shape memory alloy axes which can only achieve 25% of the total stroke. The datareduction method, principal component analysis, is nothing more than a coordinate transform which maintains orthogonality. The system, however, is not orthogonal. The individual SMA axes on each of the robotic axes maintain the original coordinate system. Thus, PCA cannot be established as the optimal data reduction technique. The mathematics involved in the data reduction would have to be significantly more complicated, especially since the SMA axes only provide a banded displacement. With all of the other complications in the system, any improvements on the 5.7% error would be marginal.
+Given the limitations of the approach, the hybrid actuation scheme showed some impressive results. However, given the nature of robotic hands and what they are meant to accomplish, it is doubtful that a hybrid SMA-DC motor hand will ever be able to fully recreate the grasp versatility of the human hand. The approach effectively reduced the necessary residual SMA motion to reasonable levels, and the mechanical design employed all reasonable available technology, and the result was effective object fixturing. The success of the hand, however, is overshadowed by inherent limitations in not only the approach, but also the selected actuator materials. The investigation of hybrid DC motor SMA actuation of a robotic hand is exhaustive and the conclusion is that while fully dexterity cannot be achieved with such a schematic, effective object fixturing can be achieved.
+
+Appendix A
+Data From Synergistic Analysis
+Table A.1: Mean displacement/neutral position of human hand (mm) Joint T1 T2 T3 T4 I11 121 M1 M2 R1 R2 P1i P2 Mean 2.55 3.20 4.23 2.89 3.58 3.77 4.46 4.69 4.45 4.46 4.88 4.86
+Table A.2: Covariance of zero-mean displacements of human hand data (mm2) T1 T2 T3 T4 Il 12 M1 M2 R1 R2 P1 P2 1.33 1.28 0.32 -0.22 0.93 0.74 0.76 0.74 0.71 0.58 0.92 0.47 1.28 2.21 0.54 -0.48 0.81 1.43 0.41 0.69 0.33 0.49 0.31 0.32 0.32 0.54 0.66 -0.56 -0.44 0.24 -0.39 -0.35 -0.64 -0.95 -0.56 -0.66
+-0.22 -0.48 -0.56 1.65 0.39 0.68 0.30 0.84 0.47 1.06 0.55 0.76 0.93 0.81 -0.44 0.39 3.55 2.75 3.02 2.59 3.41 3.15 3.41 2.76 0.74 1.43 0.24 0.68 2.75 5.10 2.15 3.16 2.32 2.81 2.58 2.72 0.76 0.41 -0.39 0.30 3.02 2.15 2.70 2.17 3.05 2.69 3.16 2.54 0.74 0.69 -0.35 0.84 2.59 3 .16 2.17 3.08 2.35 3.17 2.48 2.64 0.71 0.33 -0.64 0.47 3.41 2.32 3.05 2.35 3.67 3.42 3.87 3.24 0.58 0.49 -0.95 1.06 3.15 2.81 2.69 3.17 3.42 4.67 3.57 3.94 0.92 0.31 -0.56 0.55 3.41 2.58 3.16 2.48 3.87 3.57 4.54 3.81 0.47 0.32 -0.66 0.76 2.76 2.72 2.54 2.64 3.24 3.94 3.81 4.17
+
+Table A.3: Mean displacement/neutral position of robotic hand (mm)
+
+Joint
+
+11 12 M1 M2 R1I R2 P1 P2 T1 T2 T3 T4
+
+Mean 3.87 4.34 5.52 5.66 5.40 5.66 4.99 5.97 2.06 2.86 5.07 8.12
+
+Table A.4: Covariance of zero-mean displacements of robotic hand data (mm 2)
+
+Ii
+
+12 M1 M2 R1 R2 P1 P2 T1 T2 T3 T4
+
+2.22 2.16 1.18 1.12 0.73 0.65 0.62 -0.06 -0.08 0.37 0.50 0.38
+
+2.16 6.42 1.74 3.98 1.27 3.08 1.61 1.26 -1.11 -1.06 -0.08 -1.10
+
+1.18 1.74 2.57 1.66 2.32 1.41 2.16 1.08 -0.64 -0.27 1.45 0.48
+
+1.12 3.98 1.66 5.07 1.40 4.21 2.07 1.87 -0.81 0.15 -1.24 0.22
+
+0.73 1.27 2.32 1.40 2.38 1.45 2.29 1.44 -0.68 -0.84 1.54 0.56
+
+0.65 3.08 1.41 4.21 1.45 4.20 2.29 2.67 -0.98 -0.74 -0.58 0.30
+
+0.62 1.61 2.16 2.07 2.29 2.29 3.24 2.57 -0.47 -0.64 1.44 1.09
+
+-0.06 1.26 1.08 1.87 1.44 2.67 2.57 4.08 -0.18 -0.83 0.84 -0.10
+
+-0.08 -1.11 -0.64 -0.81 -0.68 -0.98 -0.47 -0.18 1.72 2.48 -1.09 -0.01
+
+0.37 -1.06 -0.27 0.15 -0.84 -0.74 -0.64 -0.83 2.48 6.21 -2.54 1.14
+
+0.50 -0.08 1.45 -1.24 1.54 -0.58 1.44 0.84 -1.09 -2.54 5.12 0.77
+
+0.38 -1.10 0.48 0.22 0.56 0.30 1.09 -0.10 -0.01 1.14 0.77 8.75
+
+Table A.5: Residual displacements left by DC motor for robotic hand (mm)
+
+Joint
+
+11 12 M1 M2 R1 R2 P1 P2
+
+Allen Wrench
+
+0.46 -0.67 -0.88 0.66 -0.73 0.49 0.22 0.21
+
+Alligator Clip
+
+-1.00 -0.55 -0.81 0.77 -0.67 0.59 0.30 0.28
+
+BNC
+
+0.46 -0.65 -0.89 0.68 -0.86 0.50 0.23 0.22
+
+Calculator
+
+2.34 0.34 -0.31 1.54 -0.95 0.72 -1.05 -3.02
+
+Calipers
+
+-1.35 -1.05 0.44 0.27 0.42 0.41 0.59 -0.04
+
+dsPIC
+
+-1.70 -2.92 0.49 -1.34 1.39 0.69 1.92 2.86
+
+Eraser
+
+1.06 0.71 0.55 -0.06 -0.09 -0.20 -1.30 -0.27
+
+Fire Extinguisher -0.21 0.22 -1.95 -1.76 -1.07 0.60 0.75 3.44
+
+Foppy Disk
+
+0.79 -0.91 0.35 0.25 0.47 0.11 -0.19 -0.05
+
+Glue Bottle
+
+-1.51 -1.17 0.65 0.15 1.37 0.02 0.71 -0.12
+
+Hammer
+
+-3.35 -0.66 -1.62 0.63 -0.66 1.95 -0.25 1.29
+
+Pliers (c)
+
+-1.35 -2.01 -0.49 0.05 0.49 0.66 1.29 1.44
+
+Pliers (o)
+
+1.02 -0.65 -0.75 0.61 -0.99 0.44 0.18 0.17
+
+Flash Drive
+
+-1.00 1.46 0.43 1.24 -0.25 -0.75 0.25 -3.03
+
+Button
+
+0.16 -0.14 -1.00 0.55 -0.82 0.38 0.14 0.14
+
+Scissors (c)
+
+-0.99 -0.53 -0.78 0.80 -0.89 0.62 0.32 0.30
+
+Scissors (o)
+
+-0.11 0.80 0.60 0.03 -0.04 -0.12 -1.24 -0.21
+
+Screwdriver
+
+1.03 0.60 0.49 -0.17 -0.14 -0.30 -0.70 -0.34
+
+Stapler
+
+0.19 1.88 0.32 -0.46 -0.30 -0.57 -0.91 -0.53
+
+Tack
+
+-0.21 -0.48 -0.81 1.41 -1.00 0.85 -1.19 0.27
+
+Knob
+
+-0.03 2.70 -0.61 -0.61 -0.32 -0.66 -0.79 -0.61
+
+White out
+
+0.68 1.00 0.68 -0.35 -0.35 -0.44 -0.57 -0.44
+
+Pencil
+
+0.84 -1.21 1.45 0.03 2.15 0.06 -0.98 -0.70
+
+Tweezers
+
+0.40 1.17 -1.25 2.53 -1.56 1.58 -2.60 -3.00
+
+Ruler
+
+-1.97 1.06 -1.51 0.33 -1.13 1.11 -1.12 0.79
+
+Battery
+
+-0.77 -0.89 -0.60 -0.12 -0.84 -0.37 -0.07 3.80
+
+Jumper
+
+0.51 -2.11 1.55 -1.53 1.81 -0.99 2.18 1.55
+
+Drill Bit
+
+0.25 3.77 -0.59 -0.08 -0.09 -2.01 -0.76 -1.54
+
+Cell (o)
+
+0.23 -0.48 2.17 -2.13 2.20 -0.88 1.81 -0.49
+
+Cell (c)
+
+1.00 -0.46 2.18 -1.98 2.18 -1.38 1.82 -0.48
+
+Laptop
+
+3.72 3.93 -0.18 -1.57 -0.76 -1.74 -0.85 -1.43
+
+DC Motor
+
+0.41 -2.09 2.66 -0.37 2.04 -1.36 1.83 -0.47
+
+Table A.6: Joint error after SMA correction for robotic hand data (mm)
+
+Joint
+
+I1 12 M1 M2 R1 R2 P1 P2
+
+Allen Wrench
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Alligator Clip
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+BNC
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Calculator
+
+1.12 0.00 0.00 0.32 0.00 0.00 0.00 -1.80
+
+Calipers
+
+-0.13 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+dsPIC
+
+-0.48 -1.70 0.00 -0.12 0.17 0.00 0.70 1.64
+
+Eraser
+
+0.00 0.00 0.00 0.00 0.00 0.00 -0.08 0.00
+
+Fire Extinguisher 0.00 0.00 -0.73 -0.54 0.00 0.00 0.00 2.22
+
+Foppy Disk
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Glue Bottle
+
+-0.29 0.00 0.00 0.00 0.15 0.00 0.00 0.00
+
+Hammer
+
+-2.13 0.00 -0.40 0.00 0.00 0.73 0.00 0.07
+
+Pliers (c)
+
+-0.13 -0.79 0.00 0.00 0.00 0.00 0.07 0.22
+
+Pliers (o)
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Flash Drive
+
+0.00 0.24 0.00 0.02 0.00 0.00 0.00 -1.81
+
+Button
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Scissors (c)
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Scissors (o)
+
+0.00 0.00 0.00 0.00 0.00 0.00 -0.02 0.00
+
+Screwdriver
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Stapler
+
+0.00 0.66 0.00 0.00 0.00 0.00 0.00 0.00
+
+Tack
+
+0.00 0.00 0.00 0.19 0.00 0.00 0.00 0.00
+
+Knob
+
+0.00 1.48 0.00 0.00 0.00 0.00 0.00 0.00
+
+White out
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+Pencil
+
+0.00 0.00 0.24 0.00 0.93 0.00 0.00 0.00
+
+Tweezers
+
+0.00 0.00 -0.03 1.31 -0.34 0.36 -1.38 -1.78
+
+Ruler
+
+-0.75 0.00 -0.29 0.00 0.00 0.00 0.00 0.00
+
+Battery
+
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 2.58
+
+Jumper
+
+0.00 -0.89 0.33 -0.31 0.59 0.00 0.96 0.33
+
+Drill Bit
+
+0.00 2.55 0.00 0.00 0.00 -0.79 0.00 -0.32
+
+Cell (o)
+
+0.00 0.00 0.95 -0.91 0.98 0.00 0.59 0.00
+
+Cell (c)
+
+0.00 0.00 0.96 -0.76 0.96 -0.16 0.60 0.00
+
+Laptop
+
+2.51 2.71 0.00 -0.36 0.00 -0.52 0.00 -0.21
+
+DC Motor
+
+0.00 -0.87 1.44 0.00 0.82 -0.15 0.61 0.00
+
+Appendix B Inverse Kinematics
+The geometry of the internal structure of the hand allows for very simple kinematics of the extensor tendons, but very complex kinematics for the flexor tendons. Almost all of the joints have the same general geometry, (all but the abduction joints) so the calculations for both the MCP and MCP-DIP joints are identical.
+Figure B-1: Kinematics of finger
+
+The change in length of the extensor due to a change in angle, 8, is simply given
+
+by the equation:
+
+Al = (R + ro) - R = ro
+
+(B.1)
+
+where 1 is the length of the tendon, and R and ro are known dimensions of the finger. Similarly, the equation for the flexor is
+
+Al = (d + ro) - R
+
+(B.2)
+
+where R and ro are once again known dimensions of the finger. However, d and 0 are configuration dependent. The length of d can be calculated from the equation
+
+d= -
+
+(B.3)
+
+where dl as well must be calculated. The length of dl can be found by calculating
+
+the distance from P1 to P2.
+
+di = P - P2
+
+(B.4)
+
+The position of P1 (distance from O) is described by the following equation:
+
+1#= -d2
+-d2
+
+(B.5)
+
+it should be noted that since P1 is fixed, it does not change when 0 is changed. The position of P2, however, is a function of 0, and as such, is significantly more complex.
+
+ro cos 0 - R sin -ro sin 0 + R cos 0
+
+(B.6) (B.6)
+
+Equations [B.3]-[B.6] fully describe d in terms of known parameters. However, in order to solve [B.2], q too must be calculated. ¢ is described by the equation
+
+0 = 7r - (01 + 02)
+
+(B.7)
+
+where 01 and 02 are expressed in radians. 01 is described by the equation
+
+cos 02 = 0
+
+(B.8)
+
+and 02 is described by the equation
+
+tan2 dly d2x
+
+(B.9)
+
+combining equations [B.2]-[B.9] we arrive at an expression for the flexion motion:
+
+( V(d2 - ro COS 0 - RsinO)2 + (d2 - rosinO + Rcos )2 - r
+
+Al =
+
+,arccos
+
+-a
+
+/(d2-rocosO-Rsin
+
+)r2o+(d 2 -rosin +Rcos )2
+
+S2arctan
+
+d2-ro -d2-ro
+
+scionsOO+-RRscions90
+
+R + ro7 -]
+
+(B.10)
+
+Bibliography
+[1] J. K. Salisbury and J. J. Craig, "Articulated hands - force control and kinematic issues," InternationalJournalof Robotics Research, vol. 1, no. 1, pp. 4-17, 1982.
+[2] A. Bicchi and V. Kumar, "Robotic grasping and contact: A review," IEEE InternationalConference on Robotics and Automation, vol. 1, pp. 348-353, 2000.
+[3] T. Okada, "Object-handling system for manual industry," IEEE Transactions on Systems, Man and Cybernetics, vol. 1, no. 2, pp. 348-353, 1979.
+[4] S. Jacobsen, E. Iversen, D. Knutti, R. Johnson, and K. Biggers, "Design of the utah/mit dextrous hand," IEEE InternationalConference on Robotics and Automation, vol. 3, pp. 1520-1532, 1986.
+[5] R. Walker, "Design of a dextrous hand for advanced clawar applications," Proceedings of the internationalConference on Climbing and Walking Robots, 2003.
+[6] C. Lovchik and M. Diftler, "The robonaut hand: A dexterous robot hand for space," IEEE International Conference on Robotics and Automation, vol. 2, pp. 907-912, 1999.
+[7] R. Cabas and C. Balaguer, "Design and development of a light weight embodied robotic hand activated with only one actuator," IEEE InternationalConference on Intelligent Robots and Systems, pp. 2369-2374, 2005.
+[8] K.-J. Cho, J. Rosmarin, and H. Asada, "Sbc hand: A lightweight robotic hand with an sma actuator array implementing c-segmentation," IEEE International Conference on Robotics and Automation, pp. 921-926, 2007.
+[9] C. Brown and H. Asada, "Inter-finger coordination and postural synergies in robot hands via mechanical implementation of principal components analysis," IEEE International Conference on Intelligent Robots and Systems, pp. 28772882, 2007.
+[10] T. Mouri, "Anthropomorphic robot hand: Gifu hand iii," Proceedings of The Internationalconference on Control, Automation and Systems, 2002.
+[11] F. H. Netter, Atlas of Human Anatomy. Novartis, 1989.
+
+[12] C. M. Gosselin, F. Pelletier, and T. Lalibert6, "An anthropomorphic underactuated robotic hand with 15 dofs and a single actuator," IEEE International Conference on Robotics and Automation, pp. 749-754, 2008.
+[13] T. Lalibert6, L. Birgleny, and C. M. Gosselin, "Underactuation in robotic grasping hands," Machine Intelligence and Robotic Control, vol. 4, no. 3, p. 111, 2002.
+[14] M. Santello, M. Flanders, and J. F. Soechting, "Postural hand synergies for tool use," The Journal of Neuroscience, vol. 18, 2003.
+[15] A. D'Avella, P. Saltiel, and E. Bizzi, "Postural hand synergies for tool use," Nature Neuroscience, vol. 6, 2003.
+[16] A. Huxley, Reflections on Muscle. Princeton, New Jersey: Princeton University Press, 1980.
+[17] I. Hunter and S. Lafontaine, "A comparison of muscle with artificial actuators," Technical Digest IEEE Solid State Sensors Actuators Workshop, pp. 178-185, 1992.
+[18] J. Madden, N. Vandesteeg, P. Anquetil, A. Takshi, R. Pytel, S. Lafontaine, P. Wieringa, and I. Hunter, "Artificial muscle technology: Physical principles and naval prospects," IEEE Journalof Oceanic Engineering,vol. 29, no. 3, 2004.
+[19] J. Huber, N. Fleck, and M. Ashby, "The selection of mechanical actuators based on performance indices," Proceedings of the Royal Society: Mathematical, Physical and Engineering Sciences, vol. 453, 1997.
+[20] B. Seldon, K.-J. Cho, and H. Asada, "Segmented binary control of shape memory alloy actuator systems using the peltier effect," IEEE International Conference on Robotics and Automation, vol. 5, 2004.
+

@@ -1,0 +1,584 @@
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP)
+
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP) | 978-1-6654-3153-8/21/$31.00 ©2021 IEEE | DOI: 10.1109/M2VIP49856.2021.9664986
+
+Design and Modeling for Hybrid Driven Knee Orthosis with SMA actuator
+
+Zhi Sun, Bin Zi, and Yuan Li
+
+
+Abstract— In this paper, a hybrid driven knee orthosis using Shape Memory Alloy (SMA) actuator is proposed. First, the mechanical design of the actuator system is presented. The device mainly consists of the DC motor module and the SMA spring actuator module, and the two independent operating actuators realize the hybrid drive through the electromagnetic clutch connection. Then, the constitutive model for SMA spring and mathematical model for DC motor system are established respectively to describe the output characteristics of the actuator. Finally, a series of numerical simulations are implemented on SMA springs and the DC motor to determine the changing parameters of the SMA actuator during the heating phase transition and the load characteristics of the motor.
+I. INTRODUCTION
+Rehabilitation training with robots instead of physicians became a hot field of research due to the lack of medical resources. Recent researches showed that repeated motion training with robots can restore the patient's body mobility [1]. Compared with physicians, robots have higher accuracy and can measure the speed, acceleration and displacement of patient movements, to provide data reference for future training [2]. Due to the successful application experience of robots in the industry, a variety of exoskeleton and traction rehabilitation robots were developed. Gong Chen et al. [3] designed a portable knee-ankle-foot robot with a novel compliant series elastic actuator for patients to implement gaiting training. In [4], a two-link robot arm with pneumatic muscles was developed to imitate the dynamic properties of human muscles to obtain elastic output. NEUROExos is a novel elbow exoskeleton robot, which can transfer the joint torque within a safe range to avoid patient injury [5]. Owing to the characteristic of large working space and flexible, cable was widely used as the actuator for rehabilitation robot [6, 7]. Chen Qiao et al. [8] proposed a cable-driven parallel waist rehabilitation robot with fuzzy-PID control algorithm, which can consider the robot security while ensuring the motion accuracy.
+When using the exoskeleton rehabilitation robot, the comfort and safety are very important, so it is required that the joint actuator has certain elasticity and flexibility. In the late stage of rehabilitation training, in order to strengthen the muscle strength of patients, it is necessary to apply reverse variable damping force to patients [9, 10]. SMA is smart material which was widely used as a power source for space
+
+engineering, precision drive structure and medical devices [11]. SMA has a special mechanical property called shape memory effect (SME). When the SMA is deformed in martensitic state and, upon the increase of temperature austenite transformation occurring, it will return to its original state. Based on the unique property and the combination of SMA and other matrix materials, various new actuating and executing integrated devices can be designed [12-14]. The SMA can be made into spring shape, which can greatly improve the output displacement and simulate the mechanical characteristics of human muscle contraction. However, these flexible actuators can not meet the requirements of structural stiffness in rehabilitation training, and provide low driving force. The traditional rigid actuators, such as motor, can make up for these defects, so the combination of the two actuators to achieve rigid flexible coupling drive can be a method to improve the performance of rehabilitation equipment.
+In this paper, a hybrid driven knee orthosis with a pair of antagonistic-arranged SMA actuators is proposed. SMA completes its shape memory effect through thermal elasticity and martensitic phase transition, so temperature is an important variable to study the actuator performance. The remainder of this paper is organized as follows. In section 2, according to the motion of human knee joint, the mechanical structure of hybrid driven knee orthosis with SMA actuator is presented. In section 3, the Liang-Rogers model is introduced to describe the thermodynamic properties of SMA during the martensitic transformation, and the physical model of DC motor system is established. Based on the mechanical model, numerical simulation results verify the output performance of actuators in section 4. Section 5 summarizes the main content of the paper.
+II. MECHANICAL DESIGN
+Compared with other parts of the human body, such as wrist, which has three degrees of freedom, and the knee joint has only one degree of freedom of rotation, which is suitable for the installation of complex driving assemblies. The hybrid driven knee orthosis is mainly composed of SMA actuator module, DC motor module, transmission module and support module. Figure 1 shows the 3D model of the hybrid driven knee orthosis.
+
+*Research supported by National Natural Science Foundation of China (5 1925502 and 91748109).
+The authors are with the School of Mechanical Engineering, Hefei Unive rsity of Technology, Hefei 230009, China. (corresponding author: Zhi Sun, email: sun_zhihfut@163.com; binzi.cumt@163.com; yuanlihfut@163.com).
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:12:26 UTC from IEEE Xplore. Restrictions apply.
+
+978-1-6654-3153-8/21/$31.00 ©2021 IEEE
+
+127
+
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP)
+plate and fixed on the support module. The motor output shaft is connected with a planetary gear reducer with a transmission ratio of 18. The output shaft of the reducer is connected with the electromagnetic clutch through the flat key, and the output shaft of the other end of the clutch is connected with the smaller pulley. The larger pulley is fixed on the rotating shaft of knee joint, and the two pulleys are connected by belt. The connection and disconnection of electromagnetic clutch can be realized by controlling the current on and off, and then the rotation of DC motor can be transmitted to knee joint shaft, or the SMA actuator can work independently.
+
+(a)
+
+(b)
+
+(c)
+
+Figure 1. (a) 3D model of the hybrid driven knee orthosis; (b) 3D model of the DC motor module; (c) 3D model of the SMA spring actuator module
+
+A. SMA Spring Actuator Module
+The SMA actuator module is composed of with a pair of antagonistic-arranged SMA actuators. Each actuator is composed of three SMA springs with the same initial state. The geometric parameters of SMA spring are given in Table I. The two actuators are connected and fixed on the knee joint shaft pulley by belt. When the actuator is installed, one set of SMA spring actuators is in the stretched state, while the other set remains in the initial unstressed state. When the SMA actuator is heated to the martensitic transformation temperature, the spring shrinks along the axis and rotates the knee joint through the pulley. The output shaft of the pulley is connected with a group of planetary acceleration gears, and the output shaft of the gears is connected with the knee joint rotation shaft. The actuator returns to the initial state and stretches another set of the SMA actuator. By heating the SMA actuators on both sides, they cycle to complete the stretch and contraction of the spring, so as to complete the knee flexion and extension.
+
+TABLE I. THE GEOMETRIC PARAMETERS OF SMA SPRINGS
+
+Parameter
+
+Meaning
+
+R
+
+Average spring radius
+
+r
+
+SMA spring wire radius
+
+N
+
+Number of effective coil
+
+L
+
+Spring length
+
+Value
+
+Unit
+
+12
+
+mm
+
+0.5
+
+mm
+
+28
+
+N/A
+
+100
+
+mm
+
+B. DC Motor Module
+When actuating knee joint rotation with the SMA actuator, it can imitate the expansion and extension of thigh muscles, which has good flexibility and provides reverse damping. However, the output torque of SMA driver is small and inaccurate. DC motor driving module can make up for these defects. Figure 2 shows the mechanism diagram of the hybrid driven knee orthosis. The DC motor module and SMA actuator module are symmetrically arranged on both sides of the human lower limb. The brushless DC motor (DJI, M3508) is connected with an electromagnetic clutch through a flange
+
+Figure 2. Mechanism diagram of the hybrid driven knee orthosis
+
+III. ACTUATORS MODELING
+
+In this section, we obtain the dynamic characteristics of the material by establishing the thermodynamic model of SMA spring, then establish the physical model of a pair of SMA spring actuators with antagonistic arrangement to obtain the output displacement, and finally derive the output characteristics of the knee joint under the coupling input combined with the brushless DC motor model.
+
+A. Constitutive Model for SMA Springs
+The shape memory properties of SMA are achieved by superelasticity and martensitic transformation. The Liang-Rogers model is introduced to describe the characteristics of SMA during martensitic transformation [15]. When the material parameters are constant, the one-dimensional thermodynamic equation can be written as
+
+ -0  E   0    0   T T0 
+
+(1)
+
+where E,  and  represent the Young’s modulus,
+transformation tensor, and thermal coefficient of expansion, respectively.  , , and T represent the stress, strain,
+martensite volume fraction and temperature of the material.  0 ,0 , 0 , and T0 represent their initial value. Figure 3 shows
+the relationship between stress and strain during SMA transformation, and introduces the properties of the SMA structure at different stress states. The Young’s modulus is closely related to the volume fraction of martensite, which can be expressed as
+
+E  ,,T   Ea    Em  Ea 
+
+(2)
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:12:26 UTC from IEEE Xplore. Restrictions apply.
+128
+
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP)
+
+where Ea and Em represent the Young’s modulus of SMA
+
+in austenite state and martensite, respectively. The
+
+transformation tensor in the process of phase transformation
+
+can be expressed as
+
+=- L E
+
+(3)
+
+where  L represents the maximum residual stress.
+
+SMA's material parameters change with the phase transition, and the shear stress of SMA spring can be expressed as [15], [16]
+
+  G   
+
+(8)
+
+3
+
+where  represents the rotation angle of the SMA spring wire. The displacement of the SMA Spring can be expressed as
+
+Figure 3. SMA stress-strain curve
+When SMA is heated and transformed from martensite phase to austenite phase, the volume fraction of martensite can be expressed as
+
+ = M 2
+
+cos
+
+ 
+
+aA
+
+ 
+
+T
+
+  
+
+
+
+As
+
+ CA
+
+ 
+
+
+
+1
+
+ 
+
+(4)
+
+When SMA is cooled and transformed from austenite phase to martensite phase, the volume fraction of martensite can be expressed as
+
+ H  R 2 RN  dx  4R3N F  2N R2 
+
+0r
+
+Gr 4
+
+3Gr
+
+(9)
+
+The structure of SMA spring actuator is shown in the Figure 4. The simplified kinematic model can be equivalent to the two tendons with stiffness k1 and k2 arranged on both sides of the pulley respectively. The rotation angle of the knee joint can be expressed as
+
+  h1  p  h10  rp p (10)
+  h2  p  h20  rp p
+
+where h1 and h2 represent the displacement of the SMA spring and the subscript ‘0’ indicate their initial state. rp and  p represent the radio and rotation angle of the pulley.
+
+=1A 2
+
+ cos aM
+
+
+ T 
+
+Mf
+
+ 
+CM
+
+  
+
+
+
+1
+
+ 2
+
+A
+
+(5)
+
+where aA and aM can be defined as
+
+
+
+
+
+aM  M s  M f , aA  Af  As
+
+(6)
+
+where Ms , M f , As and Af represent temperature representing
+the beginning and end of the martensite phase transformation, the beginning and end of the austenite phase transformation, respectively.
+
+B. Mechanical Model for SMA Spring
+The calculation formula of SMA spring can follow the calculation method of ordinary spring, but its shear modulus is not constant. For ordinary springs, the displacement and stiffness can be expressed as
+
+y  4FR3N ，k  r4G
+
+(7)
+
+r4G
+
+4R3N
+
+where F is the external load on the spring, R is the average radius of the spring, N is the effective turns of the coil, r is the radius of the spring wire, and G is the shear modulus of the spring
+
+Figure 4. Mechanism structure of SMA spring actuator
+
+The coupling matrix is P introduced to represent the relationship between the force at the end of joint and actuators, and the stiffness matrix K represents the equivalent stiffness at the end of actuators. The output rotation angle of SMA actuator can be expressed as
+
+    PK h  p  h0  r2 k1  k2  p
+
+(11)
+
+  where
+
+h P
+
+p
+
+
+
+,
+
+K
+
+
+
+k1
+
+ 
+
+0
+
+0
+
+k2
+
+ 
+
+.
+
+The
+
+stiffness
+
+of
+
+SMA
+
+spring can be obtained by (7) in the martensite and austenite
+
+phase, and the stiffness in phase transformation process can
+
+be expressed as
+
+K    KA   KM  KA 
+
+(12)
+
+where KA and KM represent the stiffness of the SMA spring in austenite phase and martensite phase, respectively.
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:12:26 UTC from IEEE Xplore. Restrictions apply.
+129
+
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP)
+
+C. Mathematical Model for DC Motor System
+As the main actuating force of knee joint, the dynamic equation of brushless DC motor system can be expressed as
+
+um
+
+t
+
+
+
+Rmi t
+
+
+
+
+
+Lm
+
+di t
+dt
+
+
+
+
+
+Kbm
+
+t
+
+Jm
+
+d
+
+m dt
+
+
+
+t
+
+
+
+
+
+T
+
+fm
+
+
+
+Td Nm
+
+ Tm t 
+
+(13)
+
+where um t  , Rm , Lm , Kb , m , Jm , Tfm , Td , N m and Tm
+
+represent the DC motor voltage, armature resistance,
+
+armature inductance, induction electromotive force
+
+coefficient, angular speed of the motor, inertia of rotation of
+
+the motor, friction torque of the motor, load torque,
+
+deceleration ratio of the motor and output torque of the motor,
+
+respectively. The friction torque of the motor can be
+
+simplified as
+
+Tfm
+
+
+
+Tm t   Td t ,if
+
+ 
+
+K f m t ,
+
+if
+
+Tm Tm
+
+d   Td d   Td
+
+t t
+
+c c
+
+(14)
+
+where K f is the damped coefficient of the motor, which
+depends on the structural parameters of the motor.  c
+represents the maximum friction torque of the motor. When the electromagnetic clutch is disconnected, the output of the motor is not transmitted to the knee joint shaft. When the electromagnetic clutch is closed, the rotation of the motor output shaft is transmitted to the knee joint shaft through the pulley, which drives the knee joint and lower limbs to move, and the equation of motion can be expressed as
+
+Jc
+
+dc t 
+dt
+
+
+
+Tm Nm
+
+ Tc
+
+ Tfc
+
+-Tfm
+
+(15)
+
+where J c , c , Tc and Tfm represent the inertia of rotation of
+
+the electromagnetic clutch, angular speed of the pulley,
+
+output torque of the electromagnetic clutch and the friction
+
+torque of the clutch. When the electromagnetic clutch is
+
+closed and the SMA spring actuator and DC motor on both
+
+sides of the joint shaft actuate the joint shaft together, the load
+
+torque on the joint shaft can be expressed as
+
+    Tj 
+
+KSMA A  KSMAB
+
+ prp2
+
+
+
+Il
+
+d j dt
+
+t
+
+(16)
+
+where Il represents the moment of inertia of the lower limbs and the motion equation of the knee joint shaft can be expressed as
+
+JJ
+
+dj t
+dt
+
+ Tc Nb
+
+ Tj
+
+(17)
+
+where  j is the angular speed of the knee joint shaft and Nb is the transmission radio of the pulley.
+IV. MATHEMATICAL CALCULATION AND SIMULATION
+In order to obtain the specific output performance of SMA actuator module and DC motor module and determine the
+
+parameters of physical prototype parts in the future, it needs to be studied through mathematical calculation and simulation. According to the analysis in the previous sections, it can be concluded that the main parameter affecting the performance of SMA actuator is temperature, which also determines the martensite volume fraction of SMA, thus affecting the stiffness of the SMA spring. When the mechanical structure parameters of the motor module are determined, the main factors that affect the output characteristics of the motor are the input voltage and load torque.
+
+A. Characterization of the SMA spring
+Table II shows the material parameters used to calculate the mechanical properties of SMA spring by thermal constitutive model. A group of SMA springs in stretch state during installation were selected as the analysis object to study the process of spring shrinkage caused by martensite transformation. The martensite volume fraction of SMA spring during phase transformation is shown in Figure 5.
+
+TABLE II. THE MATERIAL PARAMETERS OF SMA SPRINGS
+
+Param eter
+E a
+
+Meaning Austenite Young’s modulus
+
+Value
+
+Unit
+
+75
+
+GPa
+
+E m
+
+Martensite Young’s modulus
+
+30
+
+GPa
+
+M s
+
+Martensite starting temperature
+
+52
+
+ C
+
+M f
+
+Martensite final temperature
+
+32
+
+ C
+
+A s
+
+Austenite starting temperature
+
+56
+
+ C
+
+A f
+
+Austenite final temperature
+
+34
+
+ C
+
+Figure 5. Martensite volume fraction of the SMA spring
+According to the analysis in Figure 5, when the temperature is lower than M f , the SMA spring is in martensite phase.
+When the martensite is in twin state, it will be transformed into detwinned martensite phase to counteract the strain. When heating the SMA spring, martensite transformation occurs, the material transforms from martensite to austenite, and the volume fraction of martensite decreases. When the temperature is higher than M s , the martensite structure completely transforms into austenite structure, and the volume fraction of martensite is 0. The stiffness of the SMA spring at various temperatures can be calculated by formula (7) and (12), as shown in Figure 6. The stiffness of SMA spring increases in martensite state, transformation mixing state and austenite
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:12:26 UTC from IEEE Xplore. Restrictions apply.
+130
+
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP)
+
+state in turn. This material damping effect is due to the relative motion of molecules during the phase transformation of SMA, which makes the kinetic energy of micro particles convert into heat energy.
+
+TABLE III. CHARACTERISTIC PARAMETERS OF THE DC MOTOR
+
+Param eter R 0 R N T N I N
+U m R m
+L m
+
+Meaning Load-free speed Rated speed Rated torque Rated current Voltage Phase resistance Phase inductance
+
+Value 589 469 4.6 15.7 24 0.194 0.097
+
+Unit rpm 469 N m A V  mH
+
+Figure 6. The stiffness of SMA spring during the transformation
+Figure 7 shows the relationship between stress and spring output force when heating the SMA actuator. When the temperature is higher than Af , SMA is in the stage of austenite
+elastic deformation, the stress increases gradually and the strain increases linearly. Then martensite transformation occurs and the SMA spring is in an inelastic state, while the strain remains unchanged. Finally, the SMA actuator shrinks and the strain also decreases. When the SMA spring returns to austenite state, the strain can completely return to the initial value. Without considering the friction, the driving force of the SMA spring is determined by the stiffness and displacement. At the beginning of phase transformation, although the spring stiffness increases, the rapid contraction of the spring leads to the decrease of displacement and output force. A single SMA spring can output a maximum force of 0.25N.
+
+Figure 8. The load characteristic curve
+When the input voltage of the motor is certain, the load and the motor speed are linear within the operating range. The DC motor usually changes the input voltage to adjust the speed. The amplitude of the voltage is adjusted by changing the duty cycle of the input square wave signal. The blue curve represents the load characteristic of the motor calculated by (13), which is different from the load characteristic curve measured by the manufacturer. In the example, only the influence of inductance and resistance on load characteristics is considered. Figure 9 shows the relationship between motor efficiency and power as the load increases.
+
+Figure 7. The stress and spring output force curve
+B. Load characteristics of the DC motor
+Table III shows the parameters of the brushless DC motor. The error between the theoretical output and the actual output of the DC motor drive module mainly comes from the installation error and the friction of electromagnetic clutch. The friction of electromagnetic clutch needs to measure the viscosity between planes, so it is ignored in the numerical calculation. The motor is controlled by a DC motor driver (DJI, Z650). The load characteristics of the motor are shown in Figure 8.
+
+Figure 9. The motor power and efficiency curve
+Similar to the energy loss of the SMA actuator, the energy loss of motor is mainly converted into the heat of armature resistance. As shown in Figure 9, the maximum efficiency of the motor is about 67%. In order to improve the working efficiency of the motor, the speed should be kept above 250 rpm.
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:12:26 UTC from IEEE Xplore. Restrictions apply.
+131
+
+2021 27th International Conference on Mechatronics and Machine Vision in Practice (M2VIP)
+
+V. CONCLUSION
+In this paper, a hybrid driven knee orthosis with SMA actuator is designed. Compared with the previous rigid drive rehabilitation robot system, hybrid driven knee orthosis robot has two distributed independent working actuators. The mechanical structure is firstly presented, including a pair of SMA spring actuator with antagonistic arrangement, a brushless DC motor and auxiliary module. When the SMA actuator is heated, the martensite transformation is produced to complete the contraction action, and another group of spring actuators is stretched. The spring structure can imitate the contraction and extension of human lower limb muscles, and provide reverse damping for rehabilitation training. The brushless DC motor transmits the rotation to the knee joint shaft through the electromagnetic clutch, and the SMA driver can work alone or hybrid driven with the motor through the connection and disconnection of the clutch. The thermal constitutive model of the SMA is established to determine the effect of material parameters on the output performance of the actuator. The mathematical model of the DC motor module is established to describe the load characteristics of the actuator. A series of numerical calculations are carried out, and the output characteristics of the actuators under the given material parameters and motor structure parameters are obtained. As part of our continuing work, we are working on building an actual wearable physical prototype and testing the output performance of the actuators in rehabilitation training.
+ACKNOWLEDGMENT
+This work was supported by the National Natural Science Foundation of China (51925502 and 91748109).
+REFERENCES
+[1] H. C. Fischer, K. Stubblefield, T. Kline, X. Luo, R. V. Kenyon and D. G. Kamper, “Hand rehabilitation following stroke: A pilot study of assisted finger extension training in a virtual environment,” Top Stroke Rehabil, vol. 10, no. 1, pp. 1-12, Dec 2014.
+[2] S. E. Fasoli, H. I. Krebs, J. Stein, W. R. Frontera and N. Hogan, “Effects of Robotic Therapy on Motor Impairment and Tecovery in Chronic Stroke,” Arch. Phys. Med. Rehabil., vol. 84, no. 4, pp. 477–482, Apr 2003.
+
+[3] G. Chen, P. Qi, Z. Guo and H. Yu, “Mechanical Design and Evaluation of A Compact Portable Knee–Ankle–Foot Robot for Gait Rehabilitation,” Mech Mach Theory, vol. 103, pp. 51-64, Sep 2016.
+[4] A. Hošovský, J. Piteľ, K. Židek, M. Tóthová, J. Sárosi and L. Cveticanin, “Dynamic characterization and simulation of two-link soft robot arm with pneumatic muscles,” Mech Mach Theory, vol. 103, pp.98-116, Sep 2016.
+[5] N. Vitiello, T. Lenzi, S. Roccella, S. M. M. De Rossi, E. Cattin, F. Giovacchini, F. Vecchi and M. M. Carrozza, “ NEUROExos: A powered elbow exoskeleton for physical rehabilitation,” IEEE Trans. Robot, vol. 29, no.1, pp. 220-235, Feb 2013.
+[6] B. Zi and Y. Li, “Conclusions in theory and practice for advancing the applications of cable-driven mechanisms,” Chin. J. Mech. Eng., vol. 30, no. 4, pp. 763-765, May 2017.
+[7] T. Liu, W. Xu, T. Yang and Y. Li, “A Hybrid Active and Passive Cable-Driven Segmented Redundant Manipulator Design, Kinematics and Planning,” IEEE/ASME Trans. Mechatron., vol. 26, no. 2, pp. 930-942, April 2021.
+[8] Q. Chen, B. Zi, Z. Sun, Y. Li and Q. Xu, “Design and Development of a New Cable-Driven Parallel Robot for Waist Rehabilitation,” IEEE/ASME Trans. Mechatron., vol. 24, no. 4, pp. 1497-1507, Aug 2019.
+[9] R. A. R. C. Gopura, D. S. V. Bandara, K. Kiguchi and G. K. I. Mann, “Developments in hardware systems of active upper-limb exoskeleton robots: A review,” Rob Auton Syst, vol. 75, pp.30-220, Jan 2016.
+[10] A. O. Gabriel and H. Yu, “Lower-Limb Exoskeleton With
+Variable-Structure Series Elastic Actuators: Phase-Synchronized Force Control for Gait Asymmetry Correction”, IEEE Trans. Robot, vol. 37, no.3, Jun 2021. [11] M. Jin, J. Lee and K. K. Ann, “Continuous nonsingular terminal sliding-mode control of shape memory alloy actuators using time delay estimation,” IEEE/ASME Trans. Mechatron, vol. 20, no. 2, pp.899-909, Jun 2014. [12] Y. She, J. Chen, H. Shi and H. J. Su, “Modeling and validation of a novel bending actuator for soft robotics applications,” Soft Robot, vol. 3, no. 2, pp. 71-81, Jun 2016. [13] A. Villoslada, A. Flores, D. Copaci, D. Blanco and L. Moreno, “High-displacement flexible Shape Memory Alloy actuator for soft wearable robots,” Rob Auton Syst, vol.73, pp. 91-101, Nov 2015. [14] Z. Wang, G. Hang, J. Li, Y. Wang and K. Xiao, “A micro-robot fish with embedded SMA wire actuated flexible biomimetic fin,” Sensor Actuat A-Phys, vol. 144, no. 2, pp. 354-360, Jun 2008 [15] C. Liang and C. A. Rogers, “One-dimensional thermomechanical constitutive relations for shape memory materials,” J Intell Mater Syst Struct, vol. 8, no. 4, pp. 285-302, Apr 1997.
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:12:26 UTC from IEEE Xplore. Restrictions apply.
+132
+

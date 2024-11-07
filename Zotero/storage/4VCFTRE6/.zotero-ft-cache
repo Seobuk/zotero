@@ -1,0 +1,365 @@
+We are IntechOpen,
+the world’s leading publisher of Open Access books
+Built by scientists, for scientists
+
+7,200
+Open access books available
+
+191,000
+International authors and editors
+
+205M
+Downloads
+
+154
+Countries delivered to
+
+Our authors are among the
+TOP 1%
+most cited scientists
+
+12.2%
+Contributors from top 500 universities
+
+Selection of our books indexed in the Book Citation Index in Web of Science™ Core Collection (BKCI)
+Interested in publishing with us? Contact book.department@intechopen.com
+Numbers displayed above are based on latest data collected. For more information visit www.intechopen.com
+
+Chapter
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation
+Dorin Copaci, Janeth Arias, Luis Moreno and Dolores Blanco
+Abstract
+This contribution presents the advances in the use of flexible Shape Memory Alloy (SMA)-based actuators for the development of upper limb rehabilitation exoskeletons that have been carried out by our research group. The actuator features developed by our research group maintain the SMA wire characteristics (low-weight, low-cost, noiseless operation, compact, and simplicity) and additionally presents the flexibility and its increase the work frequency. These characteristics make that its integration in rehabilitation exoskeletons provides the user more comfort, easy to use, and freedom of movement. The chapter describes some different rigid and soft rehabilitation exoskeletons for different joints such as the elbow, wrist, and hand in which this type of actuator has been successfully integrated. This gives the possibilities to expand the research line with the actuated soft exosuits systems, in a future development perspective.
+Keywords: shape memory alloy, rehabilitation devices, elbow exoskeleton, wrist exoskeleton, soft exo-glove
+1. Introduction
+According to the World Stroke Organization (WSO) [1], almost 14 million people have their first stroke every year, and worldwide over 80 million people are living with the impact of stroke or cerebrovascular accident (CVA). Additionally, researchers have estimated that, as of 2019, there are more than 17,000 new cases of SCI (spinal cord injury) each year and between 249,000 and 363,000 people are currently living with this injury in the United States [2]. These types of disorders, in most of the cases, are associated with the partial or total loss of the sensory motor and autonomic function. The persons affected by these disorders present a lower quality of life and often dependent on other persons. It is possible to recuperate one part of these loosed sensory motor function with the aid of the rehabilitation therapy, but these treatments are very expensive in health resources and very long in time.
+Today, the wearable exoskeletons are present in the hospitals and rehabilitation centers, such as support in the rehabilitation therapy. Although most of this rehabilitation devices focused on the lower limb rehabilitation, commercial solutions such Armeo Power from Hocoma [3], InMotion Arm for Neurological Rehabilitation [4],
+1
+
+Rehabilitation of the Human Bone-Muscle System
+Amadeo from Tyromotion [5] AlexARm from Kinetek [6] can be founded for the upper limb rehabilitation. Most of these solutions are static devices, with different degrees of freedom (DOF) actuated by DC motors, designed to do the rehabilitation therapy with the patients in the specialized centers. Although the development of the rehabilitation devices for the upper limb was approached in the last years, at present there is still a lack of improvements in this field, so that these devices can be used not only in rehabilitation therapy but also daily life. In this way, the exoskeleton offers the users more autonomy and at the same time improves his quality of life. To optimize the future exoskeletons, different improvements are suggested according to the patient’s opinion, which tested these devices. The order proposed by them was easy to use, small and lightweight, tailor-made, safe, comfortable, less distinctive, durable, and affordable [7]. Many of these characteristics are directly related to the actuators used in these devices.
+In the past years, the exoskeletons, especially those of the upper limb, were actuated by different types of actuators: DC and AC motors, pneumatic actuators, hydraulic actuators, and other types of actuators such as the shape memory alloy (SMA) [8]. Although the electric motors are one of the most common actuation systems for the exoskeleton, these are still limited by characteristics such the weight, need of gearboxes to reduce the velocity, and the operation noise. On the other hand, the hydraulic and pneumatic actuators present a good force-weight relation but still limited by the noise and the need of compressed air. The Shape Memory Alloy (SMA) is a metallic alloy, which has the property of recovering its original shape (the memorized shape) after being deformed when heated above the transformation temperature between a martensite phase (at low temperature) and an austenite phase (at high temperature). This presents a good force-to-weight ratio, small volume, and noiseless operation, the SMA-based actuators being considered a good actuation solution for wearable and soft robotics applications and in particularly for rehabilitation devices. The principal disadvantages of this type of actuators are represented by the hysteresis effect, which makes its control difficult, and the low work frequency. These disadvantages limit the use of this type of actuators for certain applications.
+Recently, this type of material was used as an actuator in various rehabilitation devices for lower and upper limb and for prosthesis. In [9], a glove actuated by SMA for rehabilitation exercise and assistance was presented. This soft robotic device can provide for the user in grasping 40 N force. The actuator used in this device is based on an SMA wire with diameter of 0.38 mm, cooled by air fans. In [10], the SMA wires were used as actuator for a 3 DOF wrist rehabilitation device. Similarly, in this work, to improve the cooling stage of the actuator, mini air fans were used. The proposed methods do not present the actuator flexibility, and with the air fans, the size of the device increases. In [11], the SMA was used as a hybrid actuator for a hand exoskeleton, combining the SMA springs with a servomotor. Also, the SMA springs were used as actuators for a soft wrist assistive device [12]. In [13] three SMA wires were used in parallel configuration as actuator in a suit-type elbow flexion assistance. For the lower limb, the SMA actuator was embedded in smart clothes for the ankle assistance [14]. This is a totally soft device, which can assist in the ankle with a torque of 100 Ncm. In most of the publications, the authors do not give details about the actuator position response on the cooling stage, where the actuator needs to cool to extend. This necessary time depends on the wire’s diameter, ambient temperature, and if it is or not forced to cool, and this time can affect the device performances.
+Our research group, RoboticsLab from Carlos III University of Madrid, Spain, developed different exoskeletons for the upper limb rehabilitation actuated by
+2
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation
+DOI: http://dx.doi.org/10.5772/intechopen.101751
+SMA-based actuators. For the user’s comfort, we propose lightweight exoskeletons, but maintaining the power performance of a rigid exoskeleton. Also, the proposed devices have noiseless operation, low-cost fabrication, and are more compact. These exoskeleton characteristics, in great measure, are due to the used actuator—a flexible structure based on Bowden cable without additional cooling system. According to the proposed actuator based on SMA, we developed three different exoskeletons, which will be presented in this study, for the elbow joint, the wrist joint, and hand rehabilitation. Each one presents two or more DOF according to the articulation where it operates, and the actuators have the possibility to work in antagonistic configuration. According to this configuration, the position error decreases significantly in the cooling stage.
+This study is divided into four sections. Section 2 presents the proposed SMA-based actuator used in the exoskeleton structure with its electronic hardware and its control algorithm. This section continues with the presentation of the developed exoskeletons from our laboratory, which have used the SMA-based actuator. Section 3 presents the discussions in terms of the current and future perspective of rehabilitation exoskeleton improvements. Section 4 introduces some conclusions and future works.
+
+2. Methods
+This section presents the SMA-based actuator used on the upper limb exoskeletons with its electronic hardware and its control algorithm. Also, in this section, the different exoskeletons configurations for the upper limb, elbow, wrist, and hand, will be presented.
+
+2.1 Shape memory alloy: based actuator
+The actuator used in rehabilitation devices is based on SMA and consists of one or more SMA wires, a Bowden cable, a polytetrafluoroethylene (PTFE) tube, and the terminal parts. The actuator force and its dimensions can vary depending on the number of wires and their diameter. According to the necessary force to mobilize different upper limb joint, three wire diameters was considered. The characteristics of these SMA wires used in the configuration of different actuators can be seen in Table 1, where the current represents the approximate current for 1 second contraction.
+The actuator structure with a single SMA wire can been seen in Figure 1, left side. On the right side, a schematic actuator cross section can be observed. The actuator has been adapted in length, diameter, and number of wires according to the final application. The principal components of the actuator, enumerated in Figure 1, are detailed below:
+
+Diameter size
+(mm) 0.31 0.38 0.51
+
+Resistance
+(Ω/m) 12.20 8.30 4.30
+
+Current
+(A) 1.50 2.25 4.00
+
+Force
+(N) 12.55 22.06 34.91
+
+Cooling 70∘C
+(s) 8.10 10.50 16.80
+
+Cooling 90∘C
+(s) 6.80 8.80 14.00
+
+Table 1. Properties of the SMA wires [15].
+3
+
+Rehabilitation of the Human Bone-Muscle System
+
+4
+
+1
+
+3
+
+2 3
+
+SMA wire PTFE Bowden cable
+
+Figure 1. SMA-based actuator. Right side: 1 – Bowden cable; 2 – PTFE tube; 3 – SMA wire; 4 – Terminal unit; left side, actuator cross section.
+
+• 1 – Bowden cable. It is a type of flexible cable used to transmit the force. In this case, it is composed of a metallic spiral covered with a nylon sheath. This gives the flexibility advantage of the actuator and helps to dissipate the heat when the SMA wire is in the cooling stage (recovering the initial length). In Figure 1, a Bowden cable with 3.5 mm diameter is represented. This Bowden cable is used only for actuators with only one SMA wire. For actuators with more SMA wires, a Bowden cable with diameter 6.5 mm is used. In this last case, depending on the SMA wire diameter, the actuator can have up to five wires if the SMA wires have a diameter 0.51 mm.
+• 2 – PTFE tube. It is transparent, chemically inert, and nontoxic material, which facilitates the SMA wires displacement, considered to be a solid lubricant. This is placed between the SMA wire (or the SMA wires for the multi wires actuator) and the Bowden cable, acting as an electrical insulator. In addition, it can also work at high temperatures, over 250∘C.
+• 3 – SMA wire. In Figure 1, the actuator is composed of only one SMA wire. The actuator structure can be modified to include more SMA wires, whose diameter and length are calculated according to the necessary force and the final displacement of the device.
+• 4 – Terminal unit. This is used to fix the SMA wire with the Bowden cable, at one end, and the SMA wire with the actuated system or the tendons of the actuated system, at the opposite end. The terminal unit is composed of two pieces screwed together, which permit to tense the SMA wire, after being mounted in the final application. Furthermore, those terminal units are used as connectors for power supplying the actuator.
+In the exoskeleton structures presented in this chapter, the multi-wire actuators have all the SMA wires inside of only one PTFE tube and everything in a Bowden cable.
+This flexible SMA actuator based on Bowden transmission system certainly has some features that make it a good alternative to the use of conventional actuators in soft exoskeletons. Using long SMA wires inside a flexible tube makes it possible to design an actuator that can provide the necessary displacements required by soft exoskeletons. Also, these are easy to integrate and adapt into the flexible and dynamic structures. The possibility of flexing and physical arrangement of the actuator in almost any way has allowed us to better approach the “soft-robotics” concept, so that the actuator no longer imposes rigid mechanical structures on the joints [16].
+4
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation DOI: http://dx.doi.org/10.5772/intechopen.101751
+2.1.1 Electronics hardware
+The electronic hardware consists of one or more position sensors depending of the rehabilitation device (these will be detailed when each device will be described), a microcontroller, and a power circuit required to control the SMA-based actuators.
+The electronic power circuit for SMA wires is based on MOSFET transistors. The transistors are activated by pulse width modulation (PWM) provided by the controller. The transistors open and close the circuit with a power supply for the actuators. With these electronics (developed by our research group), the control hardware architecture can manage two, four, or six different actuators (each actuator with one or more SMA wires).
+The controller board is based on the STM32F407 Discovery kit [17], from STMicroelectronics, which is programmed with Matlab/Simulink [18]. This manages signals from the sensors, executes the control algorithm for controlling the actuators, and generates the required PWM signals.
+
+2.1.2 Control algorithm
+Due to the characteristic of hysteresis and the nonlinear behavior of the SMAbased actuator, the control algorithm is a quite complex. A bilinear proportional integral derivative (BPID) controller was proposed to compensate these nonlinearities, which schematically is presented in Figure 2. This is based on previous works and the literature [19–21].
+In Figure 2, the BPID controller is schematically represented where: Yref represents the desired reference, V is the control signal generated by the proportional integral derivative (PID) controller, U represents the control signal rectified by the bilinear term, and Y represents the actuator position response. The performance of this control algorithm was previously tested and compared with other two controllers, a conventional PID and a commuted feedforward PIPD, controlling a real SMA actuator [19].
+
+2.2 Exoskeletons for upper limb rehabilitation
+In this section, different exoskeletons prototype developed by our research group is presented. According to the target joint (elbow, wrist, or hand/fingers), the proposed actuator is implemented in different configurations: with only one or more wires with different diameters and lengths.
+
+2.2.1 Elbow exoskeleton
+The elbow joint is a complex articulation that helps to position the hand in space. The humeroulnar and the humeroradial articulations are classified as hinged joints and permit the elbow flexion extension movement. On the other hand, the proximal
+
+Linearized plant
+
+Yref
+
++
+
+PID V
+
+Billinear U Nonlinear Y
+
+– controller
+
+Compensator
+
+plant
+
+Figure 2. BPID control algorithm.
+5
+
+Rehabilitation of the Human Bone-Muscle System
+radioulnar articulation permits the forearm pronation and supination movement and is classified as a trochoid joint [22]. Although the elbow joint in the flexion-extension movement permits a range of movement between 0 and 150 degrees, in a daily living (ADL), the functional range is estimated between 30 and 120 degrees. Similarly, the human body permits approximately 71 degrees of pronation and 81 degrees for supination, though in the ADL the functional range is estimated in 50 degrees of pronation and 50 degrees of supination.
+The proposed device can be seen over the human body in Figure 3 (left side frontal plane and right side sagittal plane) and was detailed in a previous work” SMA Based Elbow Exoskeleton for Rehabilitation Therapy and Patient Evaluation” [23]. This has two degrees of freedom (DOF), which permit the movement of flexion-extension and pronation-supination. For safety, the flexion-extension movement was mechanically restricted between 0 and 150 degrees and the pronation-supination movement between À60 and 60 degrees. This is a low-cost device with most of the pieces 3D printed except the pieces that are subjected to high forces made in aluminum. Although it has a rigid structure, this can be set according to the patient segments (arm and forearm) dimensions to maintain the exoskeleton rotation axis aligned with the biomechanics of human body (elbow axis). This can be easy set customizing the exoskeleton for each patient. The segments and articulation of the device are mechanically restricted according to the human body limitations, to carry out a safe rehabilitation therapy. Due to the SMA-based actuator, the exoskeleton presents a noiseless operation and more compact dimensions, which make it less distinctive. The total weight of this device including the actuators is less than 1 kg, which can be classified between the most lightweight elbow rehabilitation devices with 2 DOF.
+The actuators used in this device are based on the SMA wire with 0.51 mm of diameter. The actuators for the flexion-extension movement are composed of four SMA wires each in the same PTFE tube and a Bowden cable, as presented in the Section 2.1. Each actuator in this configuration can exert a nominal force of approximately 140 N, and considering that the linear displacement is converted to rotary displacement through a pulley with a diameter of 0.06 m, the nominal torque in the elbow exoskeleton joint is around 4.2 Nm (a maximum torque of 13.56 Nm). These two actuators work in antagonist configuration, simulating the biceps–triceps muscle
+Figure 3. Elbow exoskeleton over the human body.
+6
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation
+DOI: http://dx.doi.org/10.5772/intechopen.101751
+group. For the prono-supination movement, the actuators each are based only one SMA wire, each one presenting a force of 35 N. According to the necessary displacement, the actuators have a length of 1.5 m for the flexion-extension and 2 m for the prono-supination. The total weight of the actuators is around 0.54 kg.
+The exoskeleton was tested and evaluated with the healthy subjects and poststroke patients. In total 10 patients with age 61.8 Æ 12.98 and six physiotherapists tested the elbow joint exoskeleton and completed the usability test, QUEST 2.0 [24]. The test results were promising with a score of 33 Æ 6.90, where the most appreciated items were the weight and dimensions of the exoskeleton, both scored 4.3 Æ 0.674. The least appreciated was the item of effectiveness scored with only 3.8 Æ 1.03, followed by the comfort and simplicity. These results were influenced by the fact that during the tests, the exoskeleton was in an improvement stage and only was tested in passive mode where the patients with the activity in the motor function do not consider it useful for their rehabilitation therapy.
+An active rehabilitation therapy, with the elbow exoskeleton, based on the superficial electromyography (sEMG) signals from the biceps–triceps muscles groups was proposed in [25]. The position reference trajectory for the elbow exoskeleton was generated according to the user movement intention detected on the sEMG signals. This approach improves the exoskeleton effectiveness due that the user is motivated to participate in rehabilitation therapy. The elbow exoskeleton response according to the position reference generated in accordance with the sEMG signals can be seen in Figure 4. Here the blue signal represents the position reference generated by the highlevel control algorithm, and the red signal represents the exoskeleton angular position. The green signal represents the normalized sEMG signals from the bicep muscle. The first tc ¼ 20 seconds, the user does a flexion extension movement to calibrate the algorithm and after that the actuator is activated. In this test, the exoskeleton is placed over the subject and only the flexor actuator is used. The exoskeleton is capable of accurately following the reference signal on the flexion movement from 20 to 100 degrees. In extension movement, for example, the interval t ¼ 100 to t ¼ 120 seconds, the position error increases due to the necessary actuator cooling time. This error can
+
+Angular position (degree)
+
+120 tc 100
+
+80
+
+60
+
+40
+
+20
+
+00
+
+0.
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+00
+
+0.
+
+1
+
+1.
+
+Time (ms)
+
+1
+
+1.
+
+Time (ms)
+
+EMG normalized
+
+Figure 4. Elbow exoskeleton position response according to the sEMG signal activation.
+7
+
+EMG angular reference Exoskeleton position
+
+2
+
+2.
+
+× 10
+
+sEMG signal
+
+2
+
+2.
+
+× 10
+
+Rehabilitation of the Human Bone-Muscle System
+be minimized using an antagonistic actuators configuration, similar to that presented for the wrist exoskeleton (Section 2.2.2).
+2.2.2 Wrist exoskeleton
+The wrist or carpus is a collection of bones, ligaments, tendons and soft tissues, which connect the forearm with the hand. This complex structure offers a wide range of movement that increases the function of the hand and fingers while also giving them a considerable degree of stability [22]. The wrist articulation plays an important role on the daily life manipulation tasks because its kinematic function allows the orientation of the hand with respect to the forearm, and the kinetics allow the transfer of loads from the forearm to the hand and vice versa. The wrist is composed of several joints that make the connections between the radius and ulna bones with the metacarpal bones and the connections with the first and second row of the carpal bones (midcarpal). The wrist joint presents two movements: in the sagittal plane, presents the flexion-extension movement (90 degrees of flexion and 85 degrees of extension) and in frontal plane, presents the ulnar and radial deviation (ulnar deviation 45 degrees and radial deviation 20 degrees).
+The wrist exoskeleton actuated by SMA, proposed by our research group, can be seen in Figure 5 [26]. This presents 2 DOF, one for the flexion-extension movement and the second one for the radial deviation and ulnar deviation. The range of movement achieved with this rehabilitation device is 15 degrees for the flexion, 35 degrees for the extension, 15 degrees with the radial deviation, and 20 degrees with the ulnar deviation. A large part of the device structure is 3D printed and together with the actuators and electronic hardware weighing less than 1 kg. Similar with the elbow joint exoskeleton and the hand rehabilitation glove, due to the actuators’ properties, this is considered a lightweight rehabilitation device with a noiseless operation.
+The actuators of this device are based on SMA wires with 0.51 mm of diameter and are composed of only one SMA wire, inside the PTFE tube and everything inside the Bowden cable. According to the necessary displacements for the wrist mobilization, and according to the electronic power supply, all the actuators of this device present 2.2 m length. With these characteristics, the rehabilitation device can generate a
+Figure 5. Wrist exoskeleton actuated by SMA.
+8
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation
+DOI: http://dx.doi.org/10.5772/intechopen.101751
+torque greater than 0.5 Nm in the wrist joint. The length of the actuators does not represent an inconvenience, considering their flexibility and the possibility to adapt to the shape of the human body.
+Considering that during the rehabilitation therapy, the movements are slow, and continuous, a possible reference can be the sinusoidal one. For example, the step reference is not considered because a sudden movement can cause a muscle spasm. Figure 6 presents the wrist exoskeleton position response on the radial-ulnar deviation with a healthy subject. The control strategy used in this test was based on BPID controller in an antagonist configuration. This configuration works similar such the flexor–extensor muscles group: when the flexor muscles contract the extensors relax and vice versa. In this device, the actuator for the radial deviation was mounted in an antagonist configuration with the radial deviation actuator. The advantage of this configuration consists of decreasing the position error generated by the SMA, the necessary time in a cooling stage to recuperate the initial shape (when it was cool) and by the hysteresis effect. The disadvantage of the antagonist configuration is that after some cycles of continuous work, both actuators present a high temperature, and the system needs to stop to avoid the SMA wires breakage [23].
+In Figure 6, the actuators flowing a sinusoidal reference with one cycle each 25 seconds. The wrist exoskeleton presents three degrees of error, and the device works continuously during 150 seconds. The work frequency of this actuator is not a problem considering that the rehabilitation device is proposed for the first stage of rehabilitation where the movements are slowly. On the other hand, the number of cycles of continuous work in this case was 6, one cycle every 25 seconds. Although, after 150 seconds, the system was forced to stop, the device can alternate with the flexion-extension rehabilitation for a continuous rehabilitation therapy.
+The proposed device has considered improvements compared with the current solutions such as portability, noiseless operation, low cost of fabrication, comfort,
+Reference and real position of wrist exoskeleton 30
+
+25
+
+20
+
+15
+
+Angle (degrees)
+
+10
+
+5
+
+0
+
+5
+
+10
+
+15
+
+0
+
+50
+
+100
+
+Time (s)
+
+Figure 6. Position of wrist exoskeleton for radial-ulnar deviation [26].
+
+9
+
+Reference Real position
+150
+
+Rehabilitation of the Human Bone-Muscle System
+safety, and easy installation, largely due to the used actuator. The main disadvantage of this device is represented by the slow work frequency, which makes the system only viable for slow rehabilitation therapies. Also, this obligates the system to alternate the therapy between the flexion-extension movement and radial-ulnar deviation.
+2.2.3 Soft exo-glove
+Hand function plays a fundamental role in performing ADL, maintaining an independent and healthy quality of life. When stroke, SCI, or different neuromuscular disorders occurs, and the hand is affected, the quality of life decreases, and the affected person even becomes dependent on another person. The human hand is a highly complex and multifaceted mobile effector organ that allows it to grasp and manipulate objects. The thumb together with the fingers permits us to manipulate different small objects during daily tasks. Each finger is composed of one metacarpal and three phalanges, and the thumb is composed of one metacarpal and two phalanges, which make that the hand has in total 27 DOF.
+In Figure 7, a soft exo-glove developed by our research group can be seen. This is actuated by 12 actuators based on SMA wires in antagonistic configuration: six for the fingers flexion and six for the fingers extension. Each group of six actuators is divided into: one actuator for each finger and two actuators for the thumb (these two actuators permit complex movements such as thumb opposition). The SMA-based actuators are connected to the actuation box, where the position sensors are, and where the connection between the actuators and tendons is done. The tendons are routed and fixed over the glove, where its routing represents the key for the realization of the desired movement when the actuators are activated.
+The actuators of this device are based on SMA wires, with diameter of 0.38 mm, which presents a force of 22.06 N. According to its characteristics, this can cool after contraction in approximately 8.8 seconds. Considering that the tendon displacement with the proposed routing is around 0.07 m and the SMA actuator when activated contracts 4% of its total length, the total length of each actuator is 2 m. Due to the actuator flexibility, this can take the arm shape and easily can be collocated behind the user.
+The developed rehabilitation device is considered totally soft, except the sensors box (where also the connection between the actuators and tendons is done). The actuators, as well as in the other devices (elbow exoskeleton and wrist exoskeleton), are not in contact with the human body, found in the PTFE tube, inside in a Bowden tube, and everything in a flexible PVC tube. With this configuration, the temperature of the actuators is not felt by the user [23].
+The future works of this research will focus on integrate the Myo Armband sensor [27] for the hand gesture recognition from the superficial electromyography (sEMG)
+Figure 7. Soft exo-glove for rehabilitation therapies.
+10
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation DOI: http://dx.doi.org/10.5772/intechopen.101751
+signals. This gives the possibility to realize the active rehabilitation therapies, according to the user movement intention.
+3. Discussions
+The exoskeletons used during the daily activities offer to the users/patients more autonomy and reduce their dependence on other persons. Also, this improves users’ lives and enhances their perceived well-being and sense of community integration [28]. This perspective to integrate the exoskeletons in the patient’s daily life to offer them more autonomy is one of the principal goals currently. This implicates the improvements of the currently wearable rehabilitation devices, strictly following the appropriate procedures according to the physiotherapists feedback. The new wearable rehabilitation structures need to be more easy to use, tailor-made according to the user, small and lightweight, less distinctive and with more autonomy. These characteristics are considered some of the most important topics of improvements and are closely related to the actuation system.
+From the future perspective of the wearable exoskeletons, which can be used during the daily life, the actuators need to meet some requirements for safety, simplicity, and lightweight that human–robot interaction requires. For these reasons, recently new actuation solutions are being investigated, among which are the artificial muscles. Solutions such Pneumatic Artificial Muscles (PAM) or Shape Memory Alloy are only some of these examples, being already integrated in some prototypes of rehabilitation device. The force–weight relation makes them an excellent candidate for these devices. However, there are still limitations, in different aspects such as the control, compressed air is needed (in case of PAMs), a low work frequency, and energy efficiency (in case of SMAs). These are only a few current research topics, focused to offer viable solutions for the wearable exoskeleton actuation.
+The rigid exoskeletons limit the user’s freedom movement, complicating his interaction with the environment in a natural way. According to this, we oriented our development on soft exoskeletons or exosuits, aiming of getting closer to the natural user movement. We try to develop exoskeletons that do not constrain the joints like the rigid structures. For the user comfort, we reduce the external structure weight and the actuator weight but maintaining for the most part the performance of a rigid exoskeleton.
+The wearable exoskeletons actuated with the SMA-based actuators, developed by our research group, are accessible, easy to use, lightweight, and compact. The test of these devices with the stroke patients and physiotherapists has presented a great interest, obtaining very positive feedback, which encouraged the exoskeletons development initiative. The most appreciative five items on the elbow exoskeleton evaluation with the test QUEST 2.0 were the weight, dimensions, patient adaptation (ergonomics), and safety. These items are directly related to the actuator proposed and used in these devices. Although these have not yet been tested on patients, the wrist exoskeleton and the soft exo-glove stand out for their small dimensions, lightweight, and ergonomic configuration.
+4. Conclusions
+This contribution presented the recently work of our research group, RoboticsLab from Carlos III University of Madrid, Spain, in the field of upper limb exoskeletons.
+11
+
+Rehabilitation of the Human Bone-Muscle System
+Here were presented three different wearable exoskeletons, for elbow, wrist, and hand rehabilitation, movement of which is produced by the SMA-based actuators. Due to the actuator characteristics and proposed design, these devices present: lightweight, noiseless operation, low cost of fabrication, simplicity, and soft or semi-soft structures. According to these characteristics, the proposed devices are not only rehabilitation exoskeletons, which can be used only in the specialized rehabilitation center, but also have the perspective to be used in daily life.
+The proposed SMA-based actuator retains the advantages of SMA wires and, in addition, improves the working frequency and adds flexibility to the actuator. This is a promising solution for different applications and especially for softer exoskeletons, which can better adapt to the patient’s requirements and offer better ergonomics. The principal disadvantages of this actuator are the low work frequency (viable for slow movement such as the movements of first phase of rehabilitation therapy) and the energetic efficiency.
+The elbow joint exoskeleton was tested with the post-stroke patients and physiotherapists. The items best valued in the QUEST 2.0 test were related in great part with the used actuator: the weight, dimensions, patient adaptation (ergonomics), and safety. Although the wrist and the soft exo-glove have not been tested with patients, these devices also present the same advantages.
+The future works will focus on the improvement of the exoskeletons structure, closer to a soft and easy-to-use device, especially improving the current actuation system. Although topics such as the work frequency and efficiency were approached in the previous works [29], these represent the key to develop exoskeletons that can be used like support in daily life, giving a certain autonomy when this is needed.
+
+Acknowledgements
+The research leading to these results have received funding from the” Sistema robótico para propiciar la marcha en niños pequeños con Parálisis Cerebral” under Grant PID2019-105110RB-C32/ AEI / 10.13039/501100011033, funded by Agencia Estatal de Investigación (AEI); from RoboCity2030-DIH-CM, Madrid Robotics Digital Innovation Hub, S2018/NMT-4331, funded by Programas de Actividades I&D en la Comunidad de Madrid; and co-funded by Structural Funds of the EU.
+
+Conflict of interest
+The authors declare no conflict of interest.
+
+Abbreviations
+
+ADL BPID DOF PAM PID PTFE PWM
+
+Activities of daily living Bilineal Proportional Integral Derivative Degree of Freedom Pneumatic Artificial Muscles Proportional Integral Derivative Polytetrafluoroethylene Pulse width modulation
+
+12
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation DOI: http://dx.doi.org/10.5772/intechopen.101751
+
+SCI sEMG SMA WSO
+
+Spinal Cord Injuries Superficial electromyography Shape Memory Alloy World Stroke Organization
+
+Author details
+Dorin Copaci*†, Janeth Arias†, Luis Moreno† and Dolores Blanco† Department of Systems Engineering and Automation, Carlos III University of Madrid, Madrid, Spain
+*Address all correspondence to: dcopaci@ing.uc3m.es
+† These authors contributed equally.
+© 2022 The Author(s). Licensee IntechOpen. This chapter is distributed under the terms of the Creative Commons Attribution License (http://creativecommons.org/licenses/by/3.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+13
+
+Rehabilitation of the Human Bone-Muscle System
+
+References
+[1] World Stroke Organization. Available from: https://www.world-stroke.org/ [Accessed: November 16, 2021]
+[2] Spinal Cord Injury Facts & Statistics. Available from: https://www.sci-infopages.com/spinal-cord-injury-facts-andstatistics/ [Accessed: November 16, 2021]
+[3] Armeo Power - Hocoma. Available from: https://www.hocoma.com/ solutions/armeo-power/ [Accessed: November 16, 2021]
+[4] InMotion Arm for Neurological Rehabilitation. Available from: https:// www.bioniklabs.com/products/ inmotion-arm [Accessed: November 16, 2021]
+[5] Amadeo- Tyromotion. Available from: https://tyromotion.com/en/products/a madeo/ [Accessed: November 16, 2021]
+[6] ALEx Arm. Available from: http:// www.wearable-robotics.com/kinetek/ [Accessed: November 16, 2021]
+[7] van Dijsseldonk RB, Vriezekolk JE, Keijsers NL, Geurts AC, van Nes IJ. Needs and Wishes for the Future Exoskeleton: An Interview Study Among People With Spinal Cord Injury With Community-based Exoskeleton Experience. 2020. [Accessed: October 18, 2021]
+[8] Gopura RARC, Bandara DSV, Kiguchi K, Mann GKI. Developments in hardware systems of active upper-limb exoskeleton robots: A review. Robotics and Autonomous Systems. 2016;75(Part B): 203-220. ISSN: 0921-8890. DOI: 10.1016/j.robot.2015.10.001. [Accessed: October 18, 2021]
+[9] Hadi A, Alipour K, Kazeminasab S, Elahinia M. ASR glove: A wearable glove
+14
+
+for hand assistance and rehabilitation using shape memory alloys. Journal of Intelligent Material Systems and Structures. 2018;29(8):1575-1585. DOI: 10.1177/1045389X17742729. [Accessed: October 18, 2021]
+[10] Hope J, McDaid A. Development of wearable wrist and forearm exoskeleton with shape memory alloy actuators. Journal of Intelligent and Robotic Systems. 2017;86(3–4):397. DOI: 10.1007/s10846-016-0456-7. [Accessed: October 18, 2021]
+[11] Yang J, Wei T, Shi H. A novel hybrid actuator for the hand exoskeleton. In: 2021 IEEE 11th Annual International Conference on CYBER Technology in Automation, Control, and Intelligent Systems (CYBER). Jiaxing, China: IEEE – Institute of Electrical and Electronics Engineers; 2021. pp. 271-276. DOI: 10.1109/CYBER53097.2021.9588189. [Accessed: October 18, 2021]
+[12] Jeong J, Yasir IB, Han J, Park CH, Bok SK, Kyung KU. Design of shape memory alloy-based soft wearable robot for assisting wrist motion. Applied Sciences. 2019;9(19):4025. DOI: 10.3390/ app9194025. [Accessed: October 18, 2021]
+[13] Park SJ, Park CH. Suit-type wearable robot powered by shape-memoryalloy-based fabric muscle. Scientific Reports. 2019;9(1):1-8. DOI: 10.1038/ s41598-019-45722-x. [Accessed: October 18, 2021]
+[14] Kim C, Kim G, Lee Y, Lee G, Han S, Kang D, et al. Shape memory alloy actuator-embedded smart clothes for ankle assistance. Smart Materials and Structures. 2020;29(5):055003. DOI: 10.1088/1361-665X/ab78b5. [Accessed: October 18, 2021]
+
+Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation DOI: http://dx.doi.org/10.5772/intechopen.101751
+
+[15] Dynalloy Inc. - Flexinol Actuator Wire Technical and Design Data. Available from: https://www.dynalloy. com/. [Accessed: 16 November 2021]
+[16] Copaci DS, Blanco D, MartinClemente A, Moreno L. Flexible shape memory alloy actuators for soft robotics: Modelling and control. International Journal of Advanced Robotic Systems. 2020;17(1):1-15. DOI: 10.1177/ 1729881419886747. [Accessed: October 23, 2021]
+[17] Discovery Kit with STM32F407VG MCU. Available from: https://www.st. com/en/evaluation-tools/ stm32f4discovery.html [Accessed: October 18, 2021]
+[18] Flores Caballero A, Copaci D, Villoslada Peciña Ã, Blanco D, Moreno L. Sistema Avanzado de Protipado Rápido para Control en la Educación en Ingeniería para grupos Multidisciplinares. RIAI Revista Iberoamericana de Automatica e Informatica Industrial. 2016;13(3): 350-362. DOI: 10.1016/j.riai.2016. 05.004. [Accessed: October 18, 2021]
+[19] Villoslada Á, Escudero N, Martín F, Flores A, Rivera C, Collado M, et al. Position control of a shape memory alloy actuator using a four-term bilinear PID controller. Sensors and Actuators A: Physical. 2015;236:257-272. DOI: 10.1016/j.sna.2015.10.006. [Accessed: October 18, 2021]
+[20] Copaci D, Blanco D, Moreno L. Flexible shape-memory alloy-based actuator: Mechanical design optimization according to application. Actuators. 2019;8(3):63. DOI: 10.3390/ act8030063. [Accessed: October 18, 2021]
+
+Application of a bilinear PID compensator to an industrial furnace. IFAC Proceedings Volumes. 2002;35(1): 25-30. DOI: 10.3182/20020721-6-ES1901.00572. [Accessed: October 18, 2021]
+[22] Nordin M, Frankel V. Basic Biomechanics of the Musculoskeletal System. Philadelphia, PA 19103: Lippincott Williams and Wilkins; 2001
+[23] Copaci D, Martín F, Moreno L, Blanco D. SMA based elbow exoskeleton for rehabilitation therapy and patient evaluation. IEEE Access. 2019;7: 31473-31484. DOI: 10.1109/ ACCESS.2019.2902939. [Accessed: October 23, 2021]
+[24] Copaci D, Serrano del Cerro D, Alguacil-Diego I, Fernández Vázquez D, Molina-Rueda F, Miangolarra-Page JC, et al. Usability evaluation of SMA based exoskeleton: Pilot testing in post-stroke patients. In: International Conference on NeuroRehabilitation ICNR. Cham: Springer; 2020. pp. 153-157. DOI: 10.1007/978-3-030-70316-5_25. [Accessed: October 23, 2021]
+[25] Copaci D, Serrano D, Moreno L, Blanco D. A high-level control algorithm based on sEMG signalling for an elbow joint sma exoskeleton. Sensors. 2018; 18(8):2522. DOI: 10.3390/s18082522. [Accessed: October 23, 2021]
+[26] Serrano D, Copaci D, Moreno L, Blanco D. SMA based wrist exoskeleton for rehabilitation therapy*. In: 2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). Madrid, Spain: IEEE – Institute of Electrical and Electronics Engineers; 2018. pp. 2318-2323. DOI: 10.1109/ IROS.2018.8593987. [Accessed: October 23, 2021]
+
+[21] Martineau S, Burnham K, Minihan J, Marcroft S, Andrews G, Heeley A.
+
+[27] Huitzil-Velasco I, Pajaro-Cruz JO, Ramírez-Alfaro ID. Test of a Myo
+
+15
+
+Rehabilitation of the Human Bone-Muscle System
+Armband. Revista de Ciencias Ambientales y Recursos Naturales. 2017; 3(10):48-56 [28] Cahill A, Mc Ginley O, Bertrand C, Lennon O. Gym-based exoskeleton walking: A preliminary exploration of non-ambulatory end-user perspectives. Disability and Health Journal. 2018; 11(3):478-485. ISSN: 1936-6574. DOI: 10.1016/j.dhjo.2018.01.004. [Accessed: October 23, 2021] [29] Arias Guadalupe J, Copaci D, Serrano del Cerro D, Moreno L, Blanco D. Efficiency analysis of SMAbased actuators: Possibilities of configuration according to’the application. Actuators. 2021;10(3):63. DOI: 10.3390/act10030063. [Accessed: October 23, 2021]
+16
+

@@ -1,0 +1,639 @@
+1664
+
+Journal of Power Electronics, Vol. 15, No. 6, pp. 1664-1672, November 2015
+
+JPE 15-6-26
+
+http://dx.doi.org/10.6113/JPE.2015.15.6.1664 ISSN(Print): 1598-2092 / ISSN(Online): 2093-4718
+
+A Series Arc Fault Detection Strategy for Single-Phase Boost PFC Rectifiers
+Younghoon Cho*, Jongung Lim*, Hyunuk Seo*, Sun-Bae Bang**, and Gyu-Ha Choe†
+*,†Department of Electrical Engineering, Konkuk University, Seoul, Korea **Korea Electrical Safety Research Institute, Wanju, Korea
+
+Abstract
+This paper proposes a series arc fault detection algorithm which incorporates peak voltage and harmonic current detectors for single-phase boost power factor correction (PFC) rectifiers. The series arc fault model is also proposed to analyze the phenomenon of the arc fault and detection algorithm. For arc detection, the virtual dq transformation is utilized to detect the peak input voltage. In addition, multiple combinations of low- and high-pass filters are applied to extract the specific harmonic components which show the characteristics of the series arc fault conditions. The proposed model and the arc detection method are experimentally verified through a boost PFC rectifier prototype operating under the grid-tied condition with an artificial arc generator manufactured under the guidelines for the Underwriters Laboratories (UL) 1699 standard.
+
+Key words: Arc fault detection, Power factor correction, Series arc, UL1699
+
+I. INTRODUCTION
+
+the total harmonic distortion (THD) were utilized to detect series arcs. However, this method cannot be directly applied
+
+The installation of arc fault detectors, such as arc fault to arc fault analysis in power electronic circuits. For series
+
+circuit interrupters (AFCIs), has been required by law or arc detection, the adaption of the wavelet transform approach
+
+strongly recommended, because arc faults are considered to is considered to be a recent trend [11], [12]. However, they
+
+be the cause of most electrical fires [1]-[4]. Among the three increase the calculation load.
+
+different kinds of arc fault types, parallel, ground, and series [5], [6], the detection accuracy of series arc faults is lower than the others. The reason is that the shape of the input current under a series arc fault is similar to that of a normal nonlinear or light load condition. Several arc detection strategies, including the signal analysis and the hardware filtering techniques, have been proposed for commercial electric systems, photovoltaic converters, and AFCIs [3], [7]. However, series arc detection under low power conditions is still a big challenge. On the other hand, the growth of the renewable energy industry also demands AFCIs for protection [8], [9].
+A power quality meter which can detect series arc-faults has been proposed in [10]. In that paper, the root-mean-square (rms) values of the voltage and current, and
+
+On the other hand, the use of a simple and accurate arc model is very important to quickly analyze the arc detection mechanism. However, it is difficult to establish a well-defined arc model because of its nonlinearity. Several arc models have been proposed in [13]-[18]. However, except for the two diode models, they are somewhat complicated and not very intuitive. In addition, the accuracy of the traditional two diode models is not very high.
+To develop an arc detection apparatus or algorithm, it is important to follow the recommendations in the Underwriters Laboratories (UL) 1699 standard [19] where the functional description, the rule, and the testing method in arc fault detection are described. For series arc faults, the UL1699 states that an arc detector should be able to detect a series arc fault under an input current larger than 5A for 120V line conditions. However, this may not be directly applicable to
+
+Manuscript received Mar. 24, 2015; accepted May 17, 2015 Recommended for publication by Associate Editor Honnyong Cha. †Corresponding Author: ghchoe@konkuk.ac.kr Tel: +82-2-450-3486, Fax: +82-2-447-9186, Konkuk University *Department of Electrical Engineering, Konkuk University, Korea **Korea Electrical Safety Research Institute, Wanju, Korea
+
+220V lines, because a lower current is necessary at the same power rating when compared to 120V lines.
+In this paper, a series arc fault detection method is proposed for single-phase power factor correction (PFC) converters. The proposed method consists of the peak voltage and harmonic current detectors. For the peak voltage
+
+© 2015 KIPE
+
+A Series Arc Fault Detection Strategy for …
+
+1665
+
+detector, the virtual dq concept is applied, and the peak voltage information is obtained directly. The harmonic current detector utilizes multiple combinations of low- and high-pass filters to detect harmonic components. Both of the algorithms are implemented in software, and can be plugged into existing PFC controllers. Consequently, no additional expense is expected. Experimental results with the proposed method demonstrate the detection capability of series arc faults with less than a 3A current, which is 1.66 times worse when compared to the UL1699 standards.
+
+II. MODELING OF SERIES ARC FAULTS
+
+Fig. 1 shows the PFC converter configuration with poor
+
+connectivity dealt with in this paper. Series arc faults are
+
+mainly caused by a poor or loose connection between the grid
+
+voltage source vg and the input terminal voltage vi. The defective connection introduces highly nonlinear impedance
+
+which changes according to the phase angle. Usually, the
+
+impedance near the zero crossing point (ZCP) of vi is higher than that in other locations, and this leads a zero current as
+
+shown in the figure. The section where the input current is zero
+
+is called as a shoulder [6]. The voltage drop across nonlinear
+
+impedance during series arc faults is defined as the arc voltage
+
+varc. Then, the relationship among vg, vi, and varc is established as below.
+
+vg  varc  vi
+
+(1)
+
+From (1), it is supposed that vi decreases when varc is generated. In fact, varc contains severe harmonic components because of nonlinearity. Since the total harmonic distortion
+
+(THD) of vg is much lower than varc, it is supposed that vi will contain undesirable harmonic components. In Fig. 2, typical
+
+shapes vg, vi and varc are shown. Here, Tg is the period of the grid voltage. The section where the arc voltage is nearly flat
+
+is defined as the plateau. It can be considered as a
+
+“steady-state” for the arcing condition. As shown in this
+
+figure, vi is distorted near the ZCP because of the arc voltage varc. If the air-gap between the two terminals increases, more distortion is generated. This naturally increases the third
+
+harmonic component in the input current. It should be noticed
+
+that this ZCP voltage distortion provides important
+
+information for arc detection. Ideally, the grid voltage vg should not be changed. However, it is slightly affected due to
+
+the grid side impedance.
+
+Fig. 3 shows the proposed low frequency series arc
+
+generation model. This model mainly consists of three parts,
+
+ideal diodes, passive components, and voltage sources. In this
+
+figure, Rp, Rn, Lp, and Ln constructs the impedance models for the positive and negative cycles during a series arcing
+
+condition. The diode and the voltage source Vbias work as clipper circuits, and mainly determine the starting point of a
+
+fault current. In the existing models [13, 18], only the dc source
+
+Vbias has been considered. However, as can be seen in Fig. 2, varc includes ac components, and they cannot be modeled with
+
+ig
+
+ 
+
+
+
+vg
+
+vi
+
+
+
+ varc  
+
+iL 
+
+
+
+Cf
+
+Vdc Ro
+
+
+
+Fig. 1. PFC converter configuration under a series arc fault condition.
+
+vg
+
+Tg
+
+vi
+
+varc
+
+Fig. 2. Typical shapes of vg, vi, and varc under series arc fault conditions.
+
+Vbias. In order to cover the ac component and to improve the accuracy of the arc model, the use of ac voltage vr is proposed in this paper. By considering these components, the voltage
+equations can be established. For positive cycles with a series
+arc, the upper branch conducts, and the series arc voltage varc is written as follows:
+
+varc
+
+ Vbias
+
+ vr
+
+ ipRp
+
+ Lp
+
+dip dt
+
+(2)
+
+where ip represents the input current during the arc fault condition. The voltage equation of the lower branch which conducts for negative cycles is represented as:
+
+varc
+
+
+
+Vbias
+
+ vr
+
+ in Rn
+
+ Ln
+
+din dt
+
+(3)
+
+In (2) and (3), vr is defined as follows:
+
+vr  Krvg
+
+(4)
+
+where fg and Kr represent the fundamental frequency of the grid voltage and the model correction factor whose range varies from zero to unity. By adjusting Kr, the depth of the circular arc during fault conditions, which will be detailed, later can be changed. If the gap in the poor connection is assumed to be very narrow, the inductances Lp and Ln can be ignored. Then, (2) and (3) can be simplified as follows:
+
+varc  Vbias  vr  ip Rp
+
+(5)
+
+varc  Vbias  vr  in Rn
+
+(6)
+
+The values of Rp, Rn, and Vbias are proportional to the physical air-gap at the location where the series arc fault occurs so that
+
+the two electrical conductors are separated. Usually, Rp and Rn have the same value. Equations (5) and (6) represent the
+
+generated arc voltage for the plateau where Dp or Dn is conducting. In this case, the conditions below should be valid
+
+1666
+
+Journal of Power Electronics, Vol. 15, No. 6, November 2015
+
+ varc 
+
+ Vbias   vr  Dp
+
+Rp
+
+Lp
+
+vg
+
+ip in
+
+vi
+
+ Vbias   vr  Dn
+
+Rn
+
+Ln
+
+Fig. 3. Proposed low frequency series arc generation model.
+
+for the positive and negative input voltage cycles:
+
+  vg  vi  Vbias  vr
+
+vg  0
+
+(7)
+
+  vg  vi  Vbias  vr
+
+vg  0
+
+(8)
+
+If (7) or (8) is not satisfied, Dp or Dn does not turn on, and the input current ip or in does not flow. Then, vi is zero, and varc can be obtained as follows from (1).
+
+varc  vg
+
+(9)
+
+In summary, the series arc voltage can be modeled with (5), (6),
+
+and (9) according to the voltage and current conditions.
+
+III. PFC CONTROLLER WITH THE PROPOSED SERIES ARC FAULT DETECTION METHOD
+
+A. PFC Control Strategy
+
+Fig. 4 shows a PFC controller including the proposed arc detection algorithm which will be discussed in this section. The controller consists of a voltage controller Gv(z), a current controller Gc(z), a duty feed-forward dff, a phase-locked loop (PLL), and the proposed algorithm. Here, the voltage and the current controllers are in the form of traditional proportional-integral (PI) controllers.
+The voltage controller regulates the dc-link voltage Vdc as a voltage reference higher than the peak input ac voltage Vpk. For the voltage controller, the control bandwidth should be much less than the fundamental electrical frequency of the system to avoid the well-known double frequency power ripples in single-phase power systems.
+For PFC operation, the input current is controlled by the current controller. To improve the current control performance, the duty feed-forward dff which follows is added to the output of the current controller.
+
+d ff
+
+
+
+
+
+vi Vdc
+
+(10)
+
+By adding dff, the admittance component in the current control loop can be compensated. As a result, the excessive integration
+
+in Gc(z) is prevented. The control bandwidth of Gc(z) should be as high as possible. Usually, it is limited by one tenth of the
+
+sampling frequency with the single sampling technique.
+
+A block diagram of the PLL is shown in Fig. 5 [20]. The
+
+PLL employs an all pass filter (APF) whose pole frequency is
+
+60Hz to obtain the same shape of the input voltage with 90
+
+degree of phase delay. With the two sinusoidal signals, the dq
+
+Vd*c  
+
+Gv (z)
+
+iL* 
+
+Gc (z)
+
+d fb 
+
+d
+
+
+
+
+
+
+
+
+
+Vdc
+
+|x| |x|
+
+ig
+
+d ff
+
+sin vi
+
+Vpk
+Fig. 4. PFC converter control scheme with the proposed series arc detection algorithm.
+
+vi
+
+
+
+K pll
+
+
+
+ vd
+
+
+
+vq
+
+dq
+
+120 
+
+Vpk
+
+vd2  vq2
+
+Ts z z 1
+
+
+
+Fig. 5. The structure of the PLL.
+
+components are obtained in the synchronous reference frame.
+
+This is the so-called virtual dq transformation which
+
+decomposes the input voltage into the original and orthogonal
+
+ones. The relationship between the peak voltage Vpk and the dq reference frame voltages vd and vq is established as follows:
+
+Vpk  vd2  vq2
+
+(11)
+
+Equation (11) gives that Vpk can be continuously obtained whenever vd or vq is controlled to be zero. Here, the q axis value is taken to be zero. By doing so, the phase angles can be
+
+extracted simultaneously. The estimator is implemented with
+
+the proportional gain, Kpll. After passing the integrator, the estimated phase angle θ is obtained. This angle is again
+
+returned to the αβ to dq transformation. In fact, this PLL offers
+
+important information for the proposed series arc detection
+
+algorithm, which will be discussed in the following subsection.
+
+B. Proposed Series Arc Fault Detection Algorithm
+Fig. 6 shows the proposed series arc fault detection algorithm. The algorithm determines whether a series arc has occurred or not using three indicators, the peak voltage magnitude, the derivative of the peak voltage variation, and the harmonic current detector including multiple LPFs and HPFs. From (1), it can be seen that the PFC input voltage vi is decreased when a series arc fault has occurred so that the arc voltage varc is established. Accordingly, Vpk is also reduced with an increasing varc. For this reason, Vpk is an important indicator which divulges whether a series arc fault has occurred. The detection of Vpk is easily achieved by monitoring the virtual d axis voltage vd and its low-pass-filtered component in the PLL as shown in Fig. 5. Here, Vpk is compared with the minimum allowed peak voltage VpkL. If Vpk is less than VpkL, indicator S1 becomes true. In practice, the power grid can undergo the under-voltage (UV) condition. To minimize misreading during
+
+A Series Arc Fault Detection Strategy for …
+
+1667
+
+VpkL
+
+Vpk
+
+sdr s  dr
+
+dVpk VdpkL
+
+S1
+
+1H 1L
+
+2H 2L
+
+iL* iL
+
+1 2
+
+S2  C
+
+S3  thr
+
+n
+
+I pk
+
+kthr
+
+Fig. 6. Proposed series arc fault detection algorithm.
+
+
+
+iL* , iL
+
+  
+
+iL*  iL  ierr
+
+Fig. 7. The flowchart of the pre-processing step.
+
+the normal UV condition, VpkL is determined by averaging 600 cycles of Vpk, and taking 85 to 95 percent of the averaged Vpk in the software, when no arc fault is detected.
+
+The other criterion to detect a series arc is the derivative of
+
+Vpk. Again, equation (1) is utilized. The series arc induces the voltage drop, and it can be detected using the derivative filter
+
+as follows:
+
+GdV
+
+
+
+sdr s  dr
+
+(12)
+
+where ωdr is the pole frequency. In fact, GdV is equal to a 1st
+
+order HPF. Since the output of GdV is returned to zero at the
+
+steady-state, the latching of the output signal is necessary in the
+
+plateau region. In this paper, the latching is implemented in the
+
+software.
+
+The last stage is evaluating the harmonic components in the
+
+input current. This consists of two steps, the pre-processing and
+
+using multiple combinations of LPFs and HPFs. The
+
+pre-processor, shown in Fig. 7, checks the level of the input current error ierr between the current reference i*L and the input current iL near the ZCPs. Once this error is over a certain value Δierr, the pre-processor regards it as an abnormal situation. By using the pre-processor, the series arc detection
+
+accuracy under light load conditions, where the input current
+
+already has some harmonics, can be improved.
+
+Once the pre-processor detects an abnormal situation, certain
+
+frequency components of iL are extracted by using the LPFs and HPFs. In Fig. 8, several filtering branches are paralleled. In
+
+the figure, the subscript n represents the number of paralleled
+
+branches. Each branch is composed of one LPF and one HPF, and their cut-off frequencies are different. Either 1st or 2nd order
+
+Fig. 8. Configuration of the harmonic frequency passbands.
+
+TABLE I
+THE RELATIONSHIP BETWEEN THE AIR-GAP DISTANCE AND THE ARC VOLTAGE
+
+garc (mm) 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6
+
+vg 200.1 200.3 200.2 200.1 200.1 200.3 199.9 199.9 200.2 200 200.2 201.5
+
+vi 188 187.9 187.9 187.4 186.9 187.2 186.5 185.7 186 185.7 185.3 9.3
+
+varc 16.43 16.42 16.41 16.77 17.41 17.42
+18 18.58 18.96 19.32 19.38 202.5
+
+filters can be employed. The cut-off frequencies of the filters,
+
+LPFn and HPFn, are selected as follows:
+
+nL  n  n
+
+(13)
+
+nH  n  n
+
+where ωn, Δωn, ωnL, and ωnH represent the passband frequency, half of the passband width, and the cut-off frequencies of the
+
+LPF and the HPF in the branch, respectively. The candidates
+
+for ωn are the harmonic frequencies of the fundamental electrical frequency. The passband width affects the accuracy
+
+of the filtering effect. A wider passband shows better
+
+performance than a lower one, but the potential aliasing effect
+
+should be avoided. One simple rule to selecting the passband
+
+width is sharing the cut-off frequency of a LPF with that of a
+
+HPF in the next branch. By doing so, the aliasing problem can
+
+be solved, and the iteration cycle of the software can be
+
+considerably reduced. Once the outputs of each branch are
+
+obtained, they are multiplied by each other as follows:
+
+c  1  2      n / I pk
+
+(14)
+
+where δn and Ipk are the filtered output of the n-th branch and the peak magnitude of the input current to normalize δc for different load conditions. This multiplication process is used to
+
+maximize the detection capability of the series arcs because the
+
+multiple harmonic components are conjugated under the series
+
+arc condition. Next, the obtained δc is compared with the harmonic threshold δthr, which is determined by Ipk and the correction factor kthr. In practice, it may be necessary for δthr to be tuned by considering the signal-to-noise ratio of the sampled
+
+current information. Finally, the proposed algorithm judges the
+
+incidence of a series arc when the values of all of the indicators
+
+S1, S2 and S3 become simultaneously true.
+
+1668
+ vg 
+
+Journal of Power Electronics, Vol. 15, No. 6, November 2015
+
+ig
+
+ garc varc
+
+
+
+
+
+vi 
+
+RL
+
+Fig. 9. Test configuration for arcing voltage.
+
+TABLE II PARAMETERS FOR THE BOOST RECTIFIER
+
+System Parameter nominal grid voltage load resistance Ro dc-link capacitance Cf boost inductor Li Switching frequency fs algorithm iteration frequency fa
+
+Values 220Vrms 242Ω 680μF
+4mH 20kHz 20kHz
+
+IV. PRELIMINARY TEST AND SIMULATION
+To examine how the air-gap in the series arc path affects the arc voltage, a preliminary test was performed. Fig. 9 illustrates the configuration for the test. An arc generator which follows the guidelines outlined in UL1699 is placed between the source and the load. The length of the air-gap garc between the two terminal points can be adjusted by turning the knob. At the beginning, garc is 0mm, and vg is directly applied to RL whose resistance is 70Ω so that the 3A input current condition can be met at the steady-state. After that, the knob is turned, and garc is increased. Once garc is set by the reference distance, the rms values of vg, vi, and varc are measured.
+Table I summarizes the test results. In the results, vi gets lower as the air-gap increases because of the increasing varc. This means that a lower voltage is transferred to the load side when a series arc fault occurs. The grid voltage rarely changes because of the lower impedance. For the 3.5mm condition, varc is almost 10 percent of the input voltage. When garc is 3.6mm, the closed current path is no longer established, and the circuit is open. Fig. 10 shows the relationship between garc, vi, and varc. It is obvious that a longer air-gap induces a higher varc and a lower vi.
+For the simulation, a simulation model of the circuit in Fig. 1 has been built in PSIM software. For the arc voltage, the proposed model is implemented. Table II shows the parameters of the boost PFC rectifier. In the preliminary test results, the minimum varc is 16.43V when garc is 2.5mm. This voltage corresponds roughly to 8.21 percent of the input voltage. By considering this, Vbias in the proposed arc model is selected as 18V which is 8.21 percent of the nominal grid voltage in the
+
+Fig. 10. The relationship among garc, vi, and varc.
+(a)
+(b) Fig. 11. Measured and simulated voltages. (a) Measured vg, vi, and varc. (b) Simulated vg, vi, and varc. rms. The measured and the simulated values for vg, vi, and varc are compared in Fig. 11. As can be seen in this figure, the proposed arc voltage model reflects the practical phenomenon of the arc condition. The converter input voltage vi has distortions near the ZCPs as expected. The repetitive spike of the real varc is caused by nonlinear parasitics which are not considered in the simulation model. However, this does not affect the arc detection capability of the proposed algorithm where high frequency transients are not considered.
+Fig. 12 shows the simulated values of vi, varc, and ig for 660W and 1320W load conditions. Here, the series arc occurs at t = 0.05s. For both the 660W and 1320W cases, the magnitude of vi is slightly reduced, and ig is distorted when the series arc is applied. It should be noticed that more current distortion is observed in the higher current condition. The frequency component analyses for the input current are illustrated in Fig. 13. Figs. 13(a) and (b) compare the harmonic contents in ig for the 660W load condition, where ig is 3A. Compared to the harmonic contents in Fig. 13(a), the 13th, 15th
+
+A Series Arc Fault Detection Strategy for …
+
+1669
+
+(a)
+
+(b)
+
+Fig. 12. Simulated voltages and currents with PFC operation and arcing conditions. (a) 660W. (b) 1320W.
+
+(a)
+
+(c)
+
+(b)
+
+(d)
+
+Fig. 13. Frequency components in different load and arc conditions. (a) 660W without the arc. (b) 660W with the arc. (c) 1320W without the arc. (d) 1320W with the arc.
+
+and 17th harmonics have been markedly increased in Fig. 13(b), where the series arc has been simulated. Similarly, the harmonic contents are compared in Figs. 13(c) and (d) for the 1320W load condition. In Fig. 13(c), lower harmonic components turn up when compared to Fig. 13(a) case. This is due to the fact that a higher current is usually favorable for obtaining a lower THD in boost PFC rectifiers. When the series arc is simulated for the 1320W load condition, the 17th and 19th harmonics are noticeably increased as shown in Fig. 13(d). Additionally, an increased amplitude boost near 2kHz and 3kHz also occurs. This information is given to the fundamental criteria to determine the filtering frequency in the proposed algorithm presented in the previous section. First, the magnitude of the mid frequency ranges from the 13th to 19th harmonics is increased. Second, a larger increase of the harmonics is indicated in the higher load current condition. This means that arc detection is easier under heavy load
+
+conditions. Third, the large current error near the ZCPs cannot be avoided. This is due to the fact that the input voltage is distorted so that its magnitude is zero in the regions. Since fewer current errors are detected in other regions, this can be worked as an important indicator for arc detection. This supports the role of the pre-processor in the proposed method.
+With the above analysis, the simulation results of the proposed arc detection algorithm are shown in Fig. 14. In Fig. 14(a), the load condition is assumed as 660W. At t=0.05s, the series arc is generated, and vi decreases as previously analyzed. Simultaneously, the current distortion near the ZCPs starts. After that, the magnitude of the series arc indicator δC increases so that the series arc can be detected. Fig. 14(b) shows the simulation results for the 1320W load condition. In this case, the input current distortion is more severe than in the previous condition, and δC is much larger than before. Consequently, it is supposed that the series arc detection performance is better.
+
+1670
+
+Journal of Power Electronics, Vol. 15, No. 6, November 2015
+
+(a)
+
+(a)
+
+(b)
+Fig. 14. Simulation result of the proposed method. (a) 660W. (b) 1320W.
+
+(b) Fig. 16. Experimental results of the proposed algorithm. (a) 660W. (b) 1320W.
+
+(a)
+
+Fig. 15. Experimental configuration.
+
+V. EXPERIMENTAL RESULTS
+In order to verify the effectiveness of the series arc detection algorithm, a 2kW PFC boost rectifier prototype whose parameters are the same as the ones in Table II has been built and tested. For the algorithm implementation, a Texas Instruments’ 32 bit digital signal controller (TMS320F28335) has been employed. The control board equips a 4-channel digital to analog converter (DAC) to monitor the internal variables in real time. The power stage uses Semikron’s IGBT modules. The arc generator was built under the guidance of the UL1699 standard. The length of air-gap can be easily changed by adjusting the knob so that the depth of the series arc can be managed. The entire experimental setup, including the PFC boost rectifier and the arc generator, is shown in Fig. 15.
+
+(b) Fig. 17. Series arc fault detection performance. (a) 660W. (b) 1320W.
+Fig. 16 shows the experimental results of the proposed algorithm under 660W and 1320 load conditions. In the test, the series arc was created by the arc generator at 0.045s. Consequently, the arc voltage turns up as in the figure. Although the current distortion after the series arc is barely distinguishable, δc clearly indicates the series arc fault signals in both cases. It should be noticed that the average value of δc in the 1320W condition is higher than that in the 660W condition. This means that arc detection in the higher load
+
+A Series Arc Fault Detection Strategy for …
+
+1671
+
+condition is easier than in the lower load condition. However, the potential for misreading can also be increased. That is why the normalizing process in Fig. 6 is necessary in the proposed method.
+The arc detection performances under the 660W and 1320W load conditions are shown in Fig. 17. In both cases, the series arc can be detected in 0.025s. This almost corresponds to one and a half cycles of the fundamental period. According to the UL1699 standard [19], at least four sequential cycles are necessary before arc detection devices can judge if true arc faults have occurred. Since the proposed method can detect a series arc in one and half cycles, it can be easily modified to meet the UL1699 standard.
+VI. CONCLUSION
+A series arc fault detection algorithm for single-phase boost rectifiers has been proposed in this paper. The method mainly utilizes the peak voltage variation and harmonic contents in the phase current. The virtual dq transformation is adapted to detect the peak voltage, and multiple combinations of LPFs and the HPFs are introduced for the series arc detection. Additionally, a series arc fault model has been proposed to simply model the phenomenon of series arc faults. To verify the proposed algorithm, simulations and the experiments using a boost PFC rectifier were performed. Both the simulation and experimental results agree very well with the analyses. The proposed method was also tested under the UL1699 standard for series arc detection, and this shows the detection capability of series arc faults of less than 3A current which is a 1.66 times worse condition when compared to the standard.
+ACKNOWLEDGMENT
+This work was supported by the Power Generation & Electricity Delivery of the Korea Institute of Energy Technology Evaluation and Planning (KETEP) grant funded by the Korea government Ministry of Knowledge Economy (No. 20131020400960).
+REFERENCES
+[1] L. Kumpulainen, G. A. Hussain, M. Lehtonen, and J. A. Kay, “Preemptive arc fault detection techniques in switchgear and controlgear,” IEEE Trans. Ind. Appl., Vol. 49, No. 4, pp. 1911-1919, Jul./Aug. 2013.
+[2] G. D. Gregory and G. W. Scott, “The arc-fault circuit interrupter: an emerging product,” IEEE Trans. Ind. Appl., Vol. 34, No. 5, pp. 928-933, Sep./Oct. 1998.
+[3] K. J. Lippert and T. A. Domitrovich, “AFCIs - from a standars perspective,” IEEE Trans. Ind. Appl., Vol. 50, No. 2, pp. 1478-1482, Mar./Apr. 2014.
+[4] L. Zhu, S. Ji, and Y. Liu, “Generation and developing process of low voltage series dc arc,” IEEE Trans. Plasma Sci., Vol. 42, No. 10, pp. 2718-2719, Oct. 2014.
+[5] G. Parise and L. Parise, “Unprotected faults of electrical
+
+and extension cords in ac and dc systems,” IEEE Trans. Ind. Appl., Vol. 50, No. 1, pp. 4-9, Jan./Feb. 2014 [6] G. D. Gregory, K. Wong, and R. F. Dvorak, “More about arc-fault circuit interrupters,” IEEE Trans. Ind. Appl., Vol. 40, No. 4, pp. 1006-1011, Jul./Aug. 2004. [7] S. Barmada, M. Raugi, M. Tucci, and F. Romano, “Arc detection in pantograph-catenary systems by the use of support vector machines-based classification,” IET Electr. Syst. Transp., Vol. 4, No. 2, pp. 45-52, 2014. [8] P. Sivakumar and M. S. Arutchelvi, “Enhanced controller topology for photovoltaic sourced grid connected inverters under unbalanced nonlinear loading,” Journal of Power Electronics, Vol. 14, No. 2, pp. 369-382, 2014. [9] H.-H. Shin, H. Cha, H. Kim, and H.-G. Kim, “Extended boost single-phase qZ-source inverter for photovoltaic systems,” Journal of Power Electronics, Vol. 14, No. 5, pp. 918-925, 2014. [10] K. Koziy, B. Gou, and J. Aslakson, “A low-cost power-quality meter with series arc-fault detection capability for smart grid,” IEEE Trans. Power Del., Vol. 28, No. 3, pp. 1584-1591, Jul. 2013. [11] F. B. Costa, “Boundary wavelet coefficients for real-time detection of transients induced by faults and power-suqality disturbances,” IEEE Trans. Power. Del., Vol. 29, No. 6, pp. 2674-2687, Dec. 2014. [12] L. H. X. Yao, S. Ji, K. Zou, J. Wang, “Characteristics study and time-domain discrete-wavelet-transform based hybrid detection of series dc arc faults,” IEEE Trans. Power Electron., Vol. 29, No. 6, pp. 3103-3115, Jun. 2014. [13] S. Gautam and S. M. Brahma, “Detection of high impedance fault in power distribution systems using mathematical morphology,” IEEE Trans. Power Syst. , Vol. 28, No. 2, pp. 1226-1234, May 2013. [14] H. Livani and C. Y. Evrenosoglu, “A machine learning and wavelet-based fault location method for hybrid transmission lines,” IEEE Trans. Smart Grid, Vol. 5, No. 1, pp. 51-59, Jan. 2014. [15] A. Ahmethodzic, M. Kapetanovic, K. Sokolija, R. P. P. Smeets, and V. Kertesz, “Linking a physical arc model with a black box arc model and verification,” IEEE Trans. Dielectr. Electr. Insul., Vol. 18, No. 4, pp. 1029-1037, Aug. 2011. [16] M. M. Walter and C. M. Franck, “Optimal test current shape for accurate arc characteristics determination,” IEEE Trans. Power Del., Vol. 29, No. 4, pp. 1798-1805, Aug. 2014. [17] G. Parise, L. Martirano, and M. Laurini, “Simplified arc-fault model: the reduction factor of the arc current,” IEEE Trans. Ind. Appl., Vol. 49, No. 4, pp. 1703-1710, Jul./Aug. 2013. [18] N. Zamanan and J. K. Sykulski, “Modelling arcing high impedances faults in relation to the physical processes in the electric arc,” WSEAS Transactions on Power Systems., Vol. 1, No. 8, pp. 1507-1512, 2006. [19] U. L. Inc., “Standard for safety: arc-fault circuit-interrupters,” ed, 2008. [20] H.-S. Kim and J.-W. Choi, “PLL for unbalanced three-phase utility voltage using positive sequence voltage observer,” Transactions of Korean Institute of Power Electronics (KIPE), Vol. No. 2, pp. 145-151, Apr. 2008.
+
+1672
+
+Journal of Power Electronics, Vol. 15, No. 6, November 2015
+
+Younghoon Cho was born in Seoul, Korea, in 1980. He received his B.S. degree in Electrical Engineering from Konkuk University, Seoul, Korea, in 2002; his M.S. degree in Electrical Engineering from Seoul National University, Seoul, Korea, in 2004; and his Ph.D. degree from the Virginia Polytechnic Institute and State University, Blacksburg, VA, USA, in 2012. From 2004 to 2009, he was an Assistant Research Engineer at the Hyundai MOBIS R&D Center, Yongin, Korea. Since 2013, he has been with the Department of Electrical Engineering, Konkuk University. His current research interests include digital control techniques for the power electronic converters in vehicles and grid applications, multilevel converters, and high-performance motor drives.
+Jongung Lim was born in Seoul, Korea. He received his B.S. and M.S. degrees in Electrical Engineering from Konkuk University, Seoul, Korea, in 2011 and 2013, respectively. He is presently working towards his Ph.D. degree in Power Electronics at Konkuk University. His current research interests include renewable energy systems, and arc fault detection.
+Hyunuk Seo was born in Seoul, Korea. He received his B.S. and M.S. degrees from Konkuk University, Seoul, Korea, in 2011 and 2013, respectively. He is currently working towards his Ph.D. degree in Power Electronics at Konkuk University. He is presently a Researcher for VC Tech, Gunpo, Korea. His current research interests include motor drivers for electric vehicles, and single phase inverter control methods.
+Sun-Bae Bang received his M.S. and Ph.D. degrees in Electrical Engineering from Kangwon National University, Chuncheon, Korea, in 2003 and 2009, respectively. He is presently with the Korea Electrical Safety Research Institute, Wanju, Korea. His current research interests include arc fault detection devices, and electrical fire judgment.
+Gyu-Ha Choe was born in Pusan, Korea. He received his B.S., M.S. and Ph.D. degrees from Seoul National University, Seoul, Korea, in 1978, 1980, and 1986, respectively. Since 1980, he has been with the Department of Electrical Engineering, Konkuk University, Seoul, Korea, where he is presently working as a Professor and the Director of the Energy Electronics Research Center. From 2007 to 2008, Dr. Choe was the President of the Korean Institute of Power Electronics, Seoul, Korea. From 2012 to 2013, he was the Vice President of Konkuk University. His current research interests include harmonic cancellation and active power ﬁltering, pulse width-modulation control for ac voltage regulators and inverter welding machines, PCS design for Brown’s gas generation, photovoltaic generation, fuel-cell generation, various technologies related to DC distribution, and EV charging with smart grids.
+

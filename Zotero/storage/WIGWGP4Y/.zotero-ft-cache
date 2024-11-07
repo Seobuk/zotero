@@ -1,0 +1,642 @@
+Design, Modeling and Evaluation of a Hybrid Driven Knee-Ankle Orthosis
+with SMA Actuators
+Zhi Sun, Bin Zi*, Yuan Li, Bing Chen
+School of Mechanical Engineering, Hefei University of Technology, Hefei, Anhui 230009, China
+Abstract: This paper demonstrates the mechanical design, analysis, and evaluation of a knee-ankle orthosis (KAO) for lower limb rehabilitation, including shape memory alloy (SMA) actuators and DC brushless motor actuators. First, the mechanical structure of the KAO is detailed, including the actuator system, transmission mechanism, monitoring device, and processing method of SMA actuators. Next, based on the thermal constitutive model of SMA, the dynamic model of SMA spring actuators in the process of phase transition is established. In addition, the dynamic output response of the knee joint under three working states is analyzed, and the rotation angle of SMA soft actuator during bending is described by pseudo rigid body model. Finally, the output of SMA actuator is preliminarily evaluated through experiments. The experimental results show that the maximum displacement of SMA spring actuator is 46.10mm, the maximum error between the experimental and theoretical displacement is 11.82mm, the maximum restoring force during phase transformation is 4.14N, and the maximum rotation angle of SMA soft actuator is 44.04 °. The experimental results are consistent with the theoretical model. Keywords: Knee-ankle orthosis; Shape memory alloy actuators; Mechanical design; Kinematic simulation; Dynamic models
+1. Introduction Stroke is a brain tissue injury disease caused by cerebral vascular rupture or vascular blockage. The common
+symptoms of patients are the weakness of hands and feet, hemiplegia, loss of walking and balance ability, or coma and death [1]. According to statistics, about 80% of stroke patients have experienced different degrees of impairment of limb behavior, and less than 20% of patients have fully recovered their mobility after treatment. The disability rate of stroke is as high as 75% [2]. In addition to the limb movement disorder caused by neurological diseases caused by stroke, workers who have been engaged in repetitive physical labor for a long time also have a high probability of causing musculoskeletal diseases. Research shows that about 40% of the occupational diseases caused by long-term work are musculoskeletal diseases [3]. According to the data of the World Health Organization, the global population aged 60 and over will be 1 billion by 2019, and this number is accelerating and will increase to 2.1 billion by 2050. The main growth of the elderly population is concentrated in developing countries in Asia [4]. The decline of physical function caused by the aging of the elderly, such as muscle atrophy and bone wear, will also seriously affect daily physiological activities [5].
+At present, in the treatment of lower limb behavioral disorder caused by disease and natural degradation of human function, drugs and surgery are usually adopted. Then rehabilitation training is carried out to re-establish the connection between limbs and brain central nerve through long-term stimulation of muscles, to restore walking and balance ability [6-8]. Nowadays, rehabilitation training mainly relies on physiotherapists to assist patients with muscle weakness. This way is limited by cost and medical conditions, which is challenging to meet the rehabilitation needs of patients. In addition, the effect of artificial rehabilitation training mainly depends on the experience of physiotherapists, which is challenging to provide patients with complex driving forces in different rehabilitation stages. According to medical research, the rehabilitation treatment process of stroke patients can be divided into three stages. In the first stage, the patient's limbs passively participate in rehabilitation training to enhance the patient's muscle strength. In the second stage, patients participate in balance training, and their limbs bear part of the strength during exercise. In the third stage, the patient walks completely autonomously and maintains balance. In order to enhance the effect of rehabilitation training, it is necessary to provide a certain amount of reverse damping to stimulate the rehabilitation of brain central nervous system [9-11].
+Compared with artificial rehabilitation training, the robot system has the advantages of sizeable driving force/torque, fast response, and accurate action. It is more suitable for repeating heavy rehabilitation training actions. Many lower limb rehabilitation robots have been developed for clinical trials or early stroke rehabilitation training [12]. Lokomat is a well-known gait rehabilitation training system, which uses exoskeleton to drive human lower limbs to carry out gait training on the running belt. It evaluates the effect of rehabilitation training by detecting the activity degree of lower limb muscles during training [13-15]. The 8-DOF lower limb rehabilitation robot system Lopes II, developed by Jos meuleman of the University of Twente in the Netherlands, can provide walking support
+*Corresponding author. E-mail address: binzi.cumt@163.com (B. Zi).
+
+for severe stroke patients and help mild patients choose suitable gait training tracks to assist walking [16]. Kazerooni et al. developed an exoskeleton robot driven by linear hydraulic actuator, which can help people walk at a speed of 0.9m/s when carrying a 34 kg load [17]. Virk et al. designed a lower limb single-joint exoskeleton and coordination controller, which identifies the user's intention and required driving force through the integrated force sensor, and generates appropriate driving signals for the actuator [18]. Vitiello et al. designed an under-actuated hip assist device, which adopts adaptive control strategy and can reliably track human gait patterns [19]. However, the existing rehabilitation robots only consider imitating human body movements, often ignoring patients' comfort and the influence of rigid impact on human safety.
+Presently, most traditional lower limb rehabilitation robots use exoskeleton mechanisms to simulate the leg bone and joint structure of human lower limbs. This configuration is conducive to imitating gait, but a large number of rigid parts reduce the robot's flexibility, which is not conducive to wearing, especially easy to cause secondary injury to patients. Using compliance algorithm and adaptive control strategy can reduce the rigid impact and compensate gravity in the process of robot operation [20], but choosing a flexible actuator as the power source of rehabilitation equipment to make the mechanism have structural flexibility is a more practical design method. Wang designed a cable-driven five-finger dexterous hand with good flexibility and adaptability [21], and Zi developed a cable-driven parallel waist rehabilitation robot to realize the three DOFs rehabilitation training of the waist [22]. The series elastic actuator (SEA) controls the output force/torque of the shaft end actuator through the deformation of the elastic element, which has passive compliance and superior force tracking performance. Yu designed a symmetrical KAO by the SEA actuator to provide auxiliary gait training by simulating the flexion injury of the joint [23]. The movement diagram of the human ankle is shown in Fig. 1a, and our research team designed an ankle-foot orthosis (AFO) using the SEA and magneto-rheological brake, as shown in Fig. 1b, to assist patients in ankle movement [24].
+
+(a)
+
+(b)
+
+Fig. 1 (a) Human ankle movement diagram; and (b) developed robotic AFO
+
+As a new functional material, SMA is also widely used as a flexible actuator. SMA actuator mainly uses its shape memory effect (SME). When the material sets the deformation shape in the high-temperature parent phase, it applies plastic deformation below the critical temperature and returns to the characteristics of the set shape at high temperature after heating [25,26]. SMA wire with austenite transformation temperature higher than room temperature can recover its shape only by applying a heating load. It is widely made into linear and rotary actuators [27,28]. In addition to the conventional SMA wire and spring, the combination of SMA and other matrix materials can produce a complex structure integrating driving and sensing. Unlike the traditional rigid robot, the soft robot made of SMA does not need complex transmission devices such as bearings and joint shafts and can set the driving form freely. In theory, it has infinite DOF [29]. Using SMA material can easily design a bionic animal with a compact structure. Because the resistance, stiffness, and other material parameters of SMA will change in the process of phase transition, the shape can be estimated by observing the parameters of the material, which significantly reduces the complexity of the sensor system [30,31]. SMA material has a lightweight and high power / mass ratio, and its mechanical properties during tensile deformation and deformation recovery are similar to human muscles [32]. Villoslada et al. developed a flexible wearable wrist exoskeleton using SMA wire [33], and Simone et al. designed a bionic dexterous hand using the self-sensing effect of SMA material [34].
+According to the needs of lower limb rehabilitation training of stroke patients, the primary purpose of this study is to develop a KAO with multi-mode, pliable, and in line with human physiological characteristics, meet the needs of patients for passive training driving force and reverse damping force in rehabilitation training, and realize lower limb knee flexion/extension, and ankle dorsiflexion/plantar flexion. The rest of this paper is organized as follows. Section 2 introduces the mechanical structure and manufacturing method of the KAO. Section 3 presents the dynamic analysis of the KAO. The operational characteristics and motion performance of the KAO are evaluated experimentally and compared with the analysis results in Section 4. Finally, the conclusions of this study are outlined in Section 5.
+
+2. Mechanical Design and Manufacturing
+
+This section will introduce the mechanical structure and manufacturing method of the KAO based on SMA hybrid drive. The lower limbs of the human body are composed of the hip joint, knee joint, and ankle joint, which can be regarded as the connecting rod model connected by hinges [35]. The hip joint is located near the waist of the human body, which connects the upper and lower limbs to work together, and connects more muscle groups during rotation, resulting in complex parasitic motion [36]. The human ankle has three DOFs, which can realize valgus/varus, dorsiflexion/plantar flexion, and pronation/supination. The angle of dorsiflexion and plantar flexion is the largest in these movements. The rotation of the other two DOFs is often accompanied by the complex synchronous movement of the lower leg and tibia. Therefore, the designed lower limb orthosis selects the knee and ankle as the rehabilitation object to realize four rehabilitation movements: knee extension, knee flexion, back flexion, and plantar flexion.
+The knee joint driver is of modular design, as shown in Fig. 2. There are three driving forms during movement: SMA spring actuator, DC motor actuator, and hybrid drive of the two actuators. The switching of different driving modes is completed through the on-off of the electromagnetic clutch to meet the driving force/torque needs of rehabilitation patients in different rehabilitation stages. SMA spring actuators and DC motor actuator (Robomaster, M3508) are symmetrically installed on both sides of the thigh. Compared with the SMA spring actuator, the DC motor has the advantages of ample output torque and high reaction speed. One end of the electromagnetic clutch is equipped with a DC motor support, which is connected with the output shaft of the DC motor. A reducer is integrated into the DC motor, and the reduction ratio is 3591/187. The other end of the electromagnetic clutch is connected with a pair of synchronous pulleys through the transmission shaft, and the large pulley is connected with the knee joint shaft to convert the rotation of the motor into the knee extension and knee flexion movement of the knee joint. A rotary encoder is installed on the knee shaft bearing to determine the rotation angle of the knee joint. The specific structural parameters of the DC motor module are shown in Tab. 1.
+
+(a)
+
+(b)
+
+Fig. 2 (a) CAD model of the knee-ankle orthosis; and (b) explosive views of the DC motor module
+
+Tab. 1 Parameters of the DC motor module
+
+Parameters Rated voltage of motor Maximum torque of magnetic clutch Diameter of belt pulley Centerline spacing of belt pulley
+Speed constant Phase resistance Phase inductance Torque constant of motor
+
+Value 24 V 6 N·m 37/88 mm 200 mm 24.48 rmp/V 0.194 Ω 0.097 mH 0.3 N·m/A
+
+SMA spring actuator uses a spring with one-way shape memory characteristics. The predetermined memory shape is heating shrinkage. The detailed material parameters are shown in Tab. 2. The actual phase transition temperature has an error of ±5 ℃ due to the limitation of the heat treatment method. The SMA spring with a oneway shape effect cannot return to the tensile state after heating and contraction. Therefore, a pair of antagonistic SMA spring drivers are symmetrically arranged on both sides of the radial axis of the knee joint and installed at room temperature. One group of SMA springs is in the tensile state, and the other group of SMA springs is in the initial tight state. The actual size of SMA spring actuators is illustrated in Fig. 3. The upper support of the driver is installed on the base, and the lower support is fixed with the linear bearing installed on the guide rail through the linear bearing support to ensure that the SMA spring is driven along the axis of the guide rail during contraction/tension. The lower support of the driver is equipped with a joint bearing threaded rod, which connects the SMA spring actuator and the knee shaft through the rope, and converts the linear motion of the actuator into the rotational motion of the joint shaft. A rotary encoder is also installed on the knee shaft bearing on one side of the SMA spring actuator to detect the rotation angle of the knee shaft when the SMA spring actuator works.
+
+Tab. 2 Parameters of SMA spring actuators
+
+Parameters
+
+Value
+
+Spring radius
+
+6 mm
+
+Spring wire radius
+
+1 mm
+
+Spring length
+
+80 mm
+
+Number of effective coil
+
+56
+
+Austenite Young’s modulus
+
+75 GPa
+
+Martensite Young’s modulus
+
+30 GPa
+
+Martensite starting temperature
+
+60 ℃
+
+Martensite final temperature
+
+32 ℃
+
+Austenite starting temperature
+
+62 ℃
+
+Austenite starting temperature
+
+34 ℃
+
+Fig. 3 Dimensions model of SMA spring actuator
+The ankle is driven by the SMA soft actuator to complete dorsal flexion and plantar flexion. Generally, SMA wire is embedded in soft materials to obtain the shape memory characteristics of SMA materials and complete the actuating action while retaining the soft elastic characteristics of matrix materials to obtain better environmental adaptability [37]. We choose polydimethylsiloxane (PDMS) as the base material of SMA soft actuator. PDMS (Dow Corning, sylgard 184) is transparent and elastic after curing, resisting mechanical vibration. The material's melting point is higher than the phase transition temperature of SMA wire. Therefore, heating SMA wire to restore it to the preset initial state will not affect the base material. SMA wire is not annealed at high temperature, with a diameter of 1.2 mm and a phase transformation temperature of 41 ℃. Due to the limitation of heat treatment method, there is an error of ±5 ℃. The wire can be bent and deformed arbitrarily at room temperature, and the phase transformation temperature can be quickly reached by current heating. The soft elastic and variable stiffness characteristics of SMA enable it to simulate the contraction process of the human muscle [38]. In order to reduce the resistance of SMA soft actuator in the process of bending deformation and simulate the uneven distribution of the human lower limb muscles,
+
+the shape of SMA soft actuator matrix material as shown in Fig. 4a is designed, and its actual size is shown in Fig. 4b.
+
+(a)
+
+(b)
+
+Fig. 4 (a) CAD model of the SMA soft actuator; and (b) dimensions model of the SMA soft actuator
+SMA wire without annealing does not have shape memory characteristics and can set its memory shape. The manufacturing process of the SMA soft actuator is shown in Fig. 5. Place the SMA wire into the curved rectangular model, and bend a four-segment wire with a length of 120 mm and a spacing of 3 mm in the shape of a paper clip. Put the wire with a fixed shape into the electric heating furnace, heat it at high temperature and quench it rapidly so that the SMA wire has shape memory characteristics. Repeat the above process several times to make the material fully have the set output characteristics. The bent SMA wire is qualitatively planar at room temperature and placed in a photosensitive resin rectangular mold with a length of 120 mm, a width of 15 mm, and a thickness of 5 mm. Measure a certain amount of PDMS solution and curing agent, fully mix them according to the proportion of 10:1, pour the mixed solution from the pouring hole of the mold, and fill the corners of the mold with a syringe to make the solution fill the cavity. When PDMS is heated, the curing time can be shortened. Put the mold into the electric furnace for heating. The heating temperature is set below the phase transformation temperature of SMA wire for 12h. Take out the cured rectangular PDMS base material, put it into the second mold, and measure an appropriate amount of PDMS solution and curing agent again according to the first solution proportion. In order to ensure that the solution fills the special-shaped cavity, the upper half of the mold is provided with multiple pouring holes at the edge of the special-shaped surface, and the given draft angle is 2 ° when designing the cavity. Put the mold into the electric furnace for heating, set the temperature to 35 ℃ for 12h, and take out the SMA soft actuator after the PDMS is completely cured.
+
+Fig. 5 Manufacturing process of the SMA soft actuator
+A group of SMA soft actuators are installed on the lower limb base and symmetrically arranged on both sides of the lower limb. The lower end of the soft actuator is connected with the ankle shaft through a rope to convert the deformation deflection of the soft drive during bending into the rotation of the ankle shaft. The wire of SMA soft actuator has a one-way memory effect. When the deformed wire recovers to room temperature, the stiffness decreases, and the elasticity of PDMS substrate can restore it to a straight state. At the same time, another group of drivers arranged in antagonism can also straighten the bent wire when heated.
+
+3. Modeling
+
+3.1 Dynamic Model of the SMA Spring
+
+When the SMA material is used as the actuating element, heat is usually input to the device to observe the structural response of the actuator. Since SMA completes the material memory characteristics through thermoelasticity and martensitic transformation, we introduce the thermal constitutive equation of the material to describe the three primary parameters temperature, stress, and strain in the actuating process to observe the output. According to the one-dimensional Lagoudas model [39], the Gibbs free energy of the SMA material can be expressed as follows.
+
+( ) G σ ,T ,ξ ,ε t
+
+= − 1 2
+
+1 ρ
+
+σ
+
+:S
+
+:σ
+
+−
+
+1 ρ
+
+σ
+
+:
+
+α
+
+(T
+
+− T0
+
+)
+
++
+
+ε
+
+t
+
+
+
++c (T
+
+
+−
+
+T0
+
+)
+
+−
+
+T
+
+ln
+
+  
+
+T T0
+
+  
+
+−
+
+s0T
+
++
+
+u0
+
++
+
+1 ρ
+
+f
+
+(ξ )
+
+(1)
+
+where σ, ε, ξ, T and T0 are the stress tensor, strain tensor, martensitic volume fraction, current temperature and reference temperature of SMA spring, respectively. S, α, ρ, c, s0 and u0 represent the effective compliance tenser, effective thermal expansion tensor, density, effective specific heat, effective entropy at reference state and effective specific internal energy at reference state of SMA spring, respectively. At the same time, the one-dimensional thermal constitutive equation also satisfies that the elastic stiffness during material deformation is only related to the volume fraction of martensite, which can be expressed as follows.
+
+E =E A + ξ (E M − E A )
+
+(2)
+
+where E represents the Young's modulus of the SMA spring, and the superscript A and M represent that the material is in the state of austenite and martensite, respectively. In addition, the material parameters also change with the volume fraction of martensite in the process of phase transformation, and the stress can be expressed as follows.
+
+σ = E A + ξ (E M − E A ) ε − ξ H cur (σ ) − α (T − T0 )
+
+(3)
+
+where H cur is the recoverable strain during transformation. According to Eq. (1), the strain during phase transformation can be given as follows.
+
+ε
+
+= −ρ
+
+∂G ∂ σ
+
+= S : σ
+
++ α (T
+
+− T0 ) + ε t
+
+(4)
+
+As a parameter describing the mechanical properties of martensite phase and austenite phase, the martensite volume fraction is the critical function of the constitutive model. According to the Lagoudas model, the martensite fraction in the transformation process can be expressed as follows.
+
+f
+
+(ξ
+
+)
+
+=
+
+    
+
+1 2 1 2
+
+ρbMξ 2 ρbAξ 2
+
++ +
+
+(µ1 (µ1
+
++ −
+
+µ2 )ξ ,ξ µ2 )ξ ,ξ
+
+> <
+
+0 0
+
+(5)
+
+where bA, bM, 𝜇𝜇1 and 𝜇𝜇2 are the thermodynamic parameters in the phase transition process and can be approximately expressed as follows.
+
+bA = −∆s0 ( Af − As )
+
+bM = −∆s0 (M s − M f )
+
+= µ1
+
+1 2
+
+ρ∆s0
+
+(M s
+
++
+
+Af
+
+)
+
+−
+
+ρ∆u0
+
+(6)
+
+= µ2
+
+1 4
+
+ρ∆s0
+
+(
+
+As
+
+− Af
+
+−Mf
+
++ Ms)
+
+where A and M represent the temperature of austenite and martensite, respectively, and subscripts s and f represent the start and end states of phase transformation, respectively.
+Without phase transformation, the stiffness of the SMA spring can be calculated by the ordinary method and can be expressed as follows.
+
+= ys
+
+4= FrS4RG3 N , ks
+
+r4G 4R3 N
+
+(7)
+
+where Fs, R, N, r and G are the load applied on SMA spring, spring radius, effective turns of spring, radius spring wire and shear modulus of spring, respectively. The shear modulus of the SMA spring changes with martensite volume fraction during transformation, which can be expressed as follows.
+
+G
+
+=
+
+E 2(1 +ν
+
+)
+
+(8)
+
+where ν is Poisson's ratio. For most SMA springs, the value is 0.3 when it changes within the elastic range. For a linear tension spring, the maximum shear strain of the wire cross-section during the tension process of the spring can be expressed as follows.
+
+γ max
+
+=
+
+2Fs R π Gr3
+
+(9)
+
+Substituting Eq. (9) into Eq. (7), the relationship between the maximum shear strain on the cross-section of the spring wire and the spring displacement can be expresses as follows.
+
+γ max
+
+=
+
+rys 2π R2 N
+
+(10)
+
+According to the thermodynamic model assumption in Eq. (2), the stiffness coefficient of SMA spring during phase change can be expressed as follows.
+
+K (ξ ) =KA + ξ (KM − KA )
+
+(11)
+
+where KM and KA represent the stiffness coefficient of SMA spring when it is completely in martensitic phase and austenitic phase, respectively.
+
+3.2 Dynamic Model of the Knee Joint
+
+The knee joint structure includes two independent actuating units: the SMA spring actuator and brushless DC motor. Therefore, when establishing the knee joint dynamic model, it should be analyzed in combination with the working state of the actuating elements. The different driving elements involved in the movement can be divided into three working states: SMA spring actuator working alone, DC motor actuator working alone, and hybrid drive.
+
+Fig. 6 Mechanism structure of the SMA spring actuator
+The Knee Joint is Driven by SMA Spring Actuators: The layout structure of the SMA spring actuator is shown in the Fig. 6. The dynamic model can be simplified as two spring tendons with the stiffness of k1 and k2 arranged on both sides of the pulley. The coupling matrix H is introduced to represent the relationship between the knee joint stress and tendon end [40]. The dynamic model of the knee joint can be shown as follows.
+
+HK d (θ p ) − h0 = rp2 (k1 + k2 )θ p
+
+d1(θ=p ) d10 + rpθ p
+
+(12)
+
+d2 (θ=p ) d20 − rpθ p
+
+where H= ∂d(θp),
+∂θ
+
+K=[k01
+
+k02], the subscript 0 indicates its initial length, rp and θp are the radius of the pulley and
+
+rotation angle of the knee joint, respectively. The spring stiffness not in the process of phase transformation can be
+
+obtained from Eq. (7), and the spring stiffness in the process of phase transformation can be obtained from Eq. (11).
+
+Fig. 7 Mechanism diagram of knee-ankle orthosis
+
+The Knee Joint is Driven by DC Motor: The mechanical model of the knee joint driver is shown in the Fig. 7.
+
+When the DC motor drives the knee joint, the electromagnetic clutch is in the energized state, which can transfer the
+
+rotation of the motor shaft to the knee joint shaft through a pair of synchronous pulleys. The dynamic equation of the
+
+DC brushless motor system can be expressed as follows.
+
+um = im Rm + Lmim + Kbϕm
+
+Tm − Tfm=
+
+J mϕm
+
++
+
+Td Nm
+
+(13)
+
+Tm = Kmim
+
+where the motor parameters um, Rm, im, Lm, Kb, φb, Jm, Tfm, Td, Nm, Tm and Km are the input voltage, motor coil resistance, input current, motor inductance, back electromotive force coefficient, motor rotation angle, motor rotation inertia,
+
+motor friction moment, load torque of the motor output shaft, reduction ratio of motor reducer, motor torque, motor
+
+torque coefficient, respectively. In the process of motor rotation, only coulomb friction and viscous friction are
+
+considered, and the viscous friction is approximately linear with the rotation speed, Tfm can be expressed as follows.
+
+Tfm = − fvsϕm − fcm sgn(ϕ)
+
+(14)
+
+where fvs and fcm are the ciscous friction coefficient and coulomb friction during motor rotation, respectively. Under the condition that only the motor participates in the operation, through the parameter setting of the tension controller, the electromagnetic clutch is only used to transmit the motor torque. At this time, the loss of the electromagnetic clutch in the torque transmission process is ignored, and the dynamic equation of the knee joint can be expressed as follows.
+
+Jlθp= +τl Tm Nm Nb − Tfm
+
+(15)
+
+= τl fvslθp + fcml sgn(θp )
+
+where Jl represents the moment of inertia of the lower limb mechanism, and Nb is the transmission ratio of the synchronous pulley.
+The Knee Joint is Driven by SMA Spring actuators and DC Motor: When the knee joint is hybrid driven by SMA spring actuator and DC motor, the electromagnetic clutch is energized, and the output torque of motor drive is adjusted by tension controller. For the electromagnetic clutch with working clearance n and working face radius Rc, the torque generated during operation can be expressed as
+
+= Tc mρc fmcπ Rc3BH sgn(ϕm ) + fcmlϕm
+
+(16)
+
+where ρc, fcm, B, and H represent the magnetic particle filling rate, coulomb friction coefficient between magnetic particles, magnetic induction strength and magnetic field strength, respectively. When the transmission loss is ignored, the dynamic equation of knee joint under hybrid-driven actuators can be expressed as follows.
+
+k1 − k2 θ p rp2 + Tc Nb = Jlθp +τ l
+
+(17)
+
+3.3 SMA Soft Actuator Model
+When the SMA soft actuator does not work, it is in a straight state, one end is fixed on the base, and the other is a free end. When the SMA wire is heated, the SMA wire drives the actuator matrix to bend to one side. At this time, the flexible bending actuator can be equivalent to a rigid rod with a hinge through the pseudo rigid body model method [41], as shown in the Fig. 8.
+
+Fig. 8 Diagram of the SMA soft actuator
+
+The free end of the SMA soft actuator is connected to the ankle joint through cable. The bending moment MSMA caused by heating the SMA wire and the tangential force FC on the cable are jointly applied to the free end of the actuator, and the displacement of the driver can be expressed as follows.
+
+= Ly
+
+FC
+
+L3 SMA
+
+−
+
+M SMA LSMA2
+
+3
+
+2EI
+
+Lx
+
+=
+
+8FC 2 LSMA
+
+−
+
+25M
+
+SMA
+
+FC
+
+2
+
+L4 SMA
+
+120E2 I 2
+
++
+
+20M
+
+2 SMA
+
+L3 SMA
+
+(18)
+
+where E is the Young's modulus of the SMA soft actuator; I is the section moment of inertia of actuator; LSMA is the initial length of the SMA soft actuator. The bending curvature of the pseudo rigid rod can be expressed as follows.
+
+=θ
+
+FC
+
+L2 SMA
+
+−
+
+M SMA LSMA
+
+2EI
+
+EI
+
+(19)
+
+where θ LSMA = Ly , and the bending moment can be expressed as follows.
+
+M SMA
+
+=
+
+FC LSMA 3
+
+(20)
+
+From the geometric constraints, it can be concluded that the position of the pseudo rigid body hinge should meet the following relationship
+
+tanα = Lx
+
+Ly
+
+(21)
+
+λ LSMA sin α =
+
+Lx2 + Ly2 2
+
+where the value of α is half of the rotation angle of the pseudo rigid rod. λLSMA is the length of the characteristic radius of pseudo rigid rod. Using parameters of the pseudo rigid rod to describe the trajectory of the free end can be expressed as follows.
+
+Ly = λ LSMA sin (2α )
+
+L=x LSMA 1− λ (1− cos (2α ))
+
+(22)
+
+By introducing Eq. (22) into Eq. (18), the hinge position of the pseudo rigid rod can be approximately obtained as follows.
+
+λ = 21FCθ 2
+
+(23)
+
+110
+
+According to the force analysis, F1 is the reaction force exerted by the base on the fixed end of the actuator, and F2 is the driving force exerted by the actuator on the ankle. FC and F2 can be solved by the force balance equation as follows.
+
+= FC
+
+6L= ESMIAθ2 ，F2
+
+4EIθ L2
+SMA
+
+(24)
+
+According to Hooke's law, the bending moment of the bending driver is proportional to the bending angle. By
+
+substituting Eq. (24) into Eq. (23), the expression of the stiffness coefficient of the pseudo rigid rod can be expressed
+
+as follows.
+
+K = 4EI λ 2
+
+(25)
+
+LSMA
+
+4. Simulation and experiment
+Different from other metal materials, SMA is characterized by its shape memory effect. In order to describe this characteristic, a hysteresis curve is introduced to describe the force-displacement curve of hyperelastic SMA material under low strain amplitude, as shown in Fig. 9. In the simulation process, the strain amplitude of SMA increases periodically from 0% to 4.5%. When the initial load increases, the material is elastic, and the force and displacement increase linearly. When the load increases and the curve enters the plateau stage, the martensitic positive transformation occurs, and the inelastic deformation occurs. When the load is removed and the stress condition is reached, the reverse martensitic transformation occurs, and the material returns to its original shape. From the hysteresis curve, it can be found that there is hysteresis in the process of reverse transformation. The area surrounded by the hysteretic curve represents the energy consumed by SMA in phase transformation. The strain amplitude affects the dissipated energy, while the strain amplitude has little effect on the phase transformation force.
+
+Fig. 9 Hysteresis curve of SMA
+In order to evaluate the performance of the knee ankle orthosis, an experimental prototype, as shown in Fig. 10a, is constructed. The hardware control system is shown in Fig. 10b, including a host computer, a DC power supply, an Arduino control board (UNO, Arduino), a motor drive board (L6205PD), an infrared temperature sensor, a threedimensional camera (V120, Optitrack), and a data acquisition card. The Arduino control board and motor drive board are used to heat SMA actuators. Arduino control board sends PWM signals with different duty cycles to make the motor drive board output different voltages and change the heating speed of the SMA actuators. The infrared
+
+temperature sensor detects the temperature of the SMA actuators in real-time and transmits it to the host computer system based on LabVIEW software through the data acquisition card.
+
+(a)
+
+(b)
+
+Fig. 10 (a) Experimental prototype; and (b) hardware control system
+
+In order to evaluate the output performance of the SMA spring actuator, the voltages of 2.5 V, 3.5 V, 5 V, and 5.5 V are applied to the actuator, respectively, and the output response are observed. Fig. 11 shows the ANSYS displacement simulation results of the SMA spring actuator after heating. The steady-state thermal and static structural module are used in ANSYS software for coupling simulation. Set the SMA spring actuator to the tensile state at the room temperature with a displacement of 50mm. When the temperature rises from 22 ℃ to 60 ℃, the displacement of SMA spring is simulated. According to the thermal constitutive equation of SMA spring actuator in Section 3, it can be concluded that the factors affecting the actuator output are material parameters and martensite volume fraction. When the external load remains unchanged, the volume fraction of martensite is positively correlated with the temperature. The relationship between the same heating temperature and time under different input voltages is shown in Fig. 12. The larger the voltage applied to the driver, the faster the heating speed of SMA spring. However, an excessive driving voltage is accessible to causes material overheating and destroys the shape memory characteristics of the spring.
+
+Fig. 11 Displacement output simulation with ANSYS
+The output characteristic curve of the SMA spring actuator is shown in Fig. 13. Before conducting the experiment, stretch the actuator by 50 mm at the room temperature and connect the actuator with input voltages of 2.5 V, 3.5 V, and 5 V, respectively. The results of Fig. 11 show that the heating rate of the spring at 5.5 V is similar to that of at 5 V, and its output characteristic can refer to the curve at 5 V.
+
+Fig. 12 Time required for heating at different voltages
+At the initial stage of heating, the spring temperature is lower than the austenite transformation starts temperature, and the spring displacement remains unchanged. When the continuous heating reaches the transformation temperature, the spring shrinks. When the temperature is higher than the austenite transformation end temperature, the spring ultimately returns to the initial state, and the displacement does not increase. In the process of phase transformation, the displacement of the spring is approximately and linearly related to the relationship between Young's modulus and martensite volume fraction is described by Eqs. (2). The theoretical value of displacement and the experimental results is shown in Fig. 14a. The displacement error is shown in Fig. 14b, the maximum error in the heating process occurs at 50 ℃, and the displacement error is 11.82 mm. The primary source of the displacement error is that it is difficult to accurately pre-stretch the spring by 50 mm. When the spring is installed on the driver base, there is residual torsional stress, which leads to the transformation of part of axial displacement into circumferential rotation.
+
+(a)
+
+(b)
+
+(c) Fig.13 Experimental results of the SMA spring actuators characterization at different in put voltage:
+(a) 2.5 V; (b) 3.5 V; and (c) 5 V
+
+The theoretical value and experimental results of the restoring force of the SMA spring actuator during phase transition are shown in Fig. 15a and the force error is shown in Fig. 15b. According to Eq. (11), the stiffness coefficient of the SMA spring is positively correlated with the martensite volume fraction. The spring stiffness is the lowest when the spring temperature is lower than the starting temperature of austenite transformation. The spring stiffness increases after the phase transformation. When the phase transformation is completed and the spring is entirely in the austenite phase, the stiffness reaches the maximum. The maximum spring restoring force is 4.14 N, which occurs in the initial stage of phase change. With the increase of spring displacement, the spring elongation decreases, and the spring restoring force decreases gradually. When the phase change is completed, the restoring force decreases to 0, but at this time, the spring stiffness is the largest, which can meet the needs of rehabilitation patients for reverse damping force in the later stage. The spring stiffness can be accurately controlled by changing the heating temperature and providing corresponding training strategies for patients with different muscle strengths.
+
+(a)
+
+(b)
+
+Fig. 14 (a) Comparison of theoretical values and experiment results of the SMA spring actuator displacement; and (b) displacement error
+
+(a)
+
+(b)
+
+Fig. 15 (a) Comparison of theoretical values and experiment results of the SMA spring actuator output force; and
+
+(b) force error
+Pseudo-rigid body model and finite element model are used when simulating the output properties of the SMA soft actuator. First, through the thermal constitutive model of the SMA material, the restoring force generated by the SMA wire when heating to restore the initial shape is calculated, and the result is assumed to be a one-dimensional linear pressure load. The displacement change of soft actuator during transformation is simulated in the steady-state thermal and static structural module of ANSYS software, as shown in Fig. 16.
+The results of finite element simulation are brought into Eqs. (22) and (23), and the rotation angle and hinge position of the pseudo rigid rod are solved. The comparison between the actual rotation angle and theoretical value of the SMA soft actuator is shown in Fig. 17a, and the angle error is shown in Fig. 17b. The maximum rotation angle of the SMA soft actuator during the experiment is 44.04 °. The rotation angle error mainly comes from the hightemperature annealing of the SMA wire. Due to the processing error, the SMA wire fails to fully fit the mold when setting the initial memory shape. Second, when the SMA wire is embedded into the PDMS matrix, it fails to be placed completely along the neutral axis of the mold.
+
+Fig. 16 Rotational angle simulation with ANSYS and experiment results
+
+(a)
+
+(b)
+
+Fig. 17 (a) Comparison of theoretical values and experiment results of actuator rotational angle; and (b) angle
+
+error
+5. Conclusions In this paper, a KAO driven by the SMA actuators and DC motor is designed according to the needs of passive rehabilitation and muscle enhancement training of lower limb rehabilitation patients. The knee joint is driven by a pair of antagonistic SMA spring actuators and a DC motor. Three rehabilitation training modes are realized by controlling the state of the electromagnetic clutch. The ankle joint realizes back flexion and plantar flexion through the SMA soft actuator with PDMS as the matrix material. After introducing the actuator's mechanical design and manufacturing process in detail, the dynamic model of the SMA spring actuator based on the thermodynamic constitutive equation, the dynamic response of the knee joint under three working states, and the bending angle SMA soft actuator are analyzed. A preliminary prototype is developed to evaluate the output performance of the actuators and the correctness of the theoretical model. The relationship between the heating rate and the input voltage of the SMA spring actuator and the corresponding relationship between the displacement (angle), temperature, and time of the actuator are obtained. The experimental results show that the maximum displacement of the SMA spring actuator is 46.10 mm, the maximum error between the experimental and theoretical displacement is 11.82 mm, the maximum restoring force during phase transformation is 4.14 N, and the maximum rotation angle of the SMA soft actuator is 44.04 °. The experiment results are consistent with the numerical and finite element simulation, which verify the correctness of the theoretical model. We note that the SMA actuators have slow response speed, low position accuracy, and slow cooling speed at natural room temperature. As a part of future research work, we are researching how to improve the control bandwidth of the SMA actuators through algorithm improvement and connect other elastic components at the motor output to realize the speed matching of different actuators under hybrid drive.
+
+Acknowledgment
+
+This work was supported by the National Natural Science Foundation of China (Grant Nos. 51925502 and 91748109).
+
+REFERENCES [1] H. Lo, S. Xie. Exoskeleton robots for upper-limb rehabilitation: State of the art and future prospects, Med Eng Phys. 34 (3) (2012):
+261-268. [2] B. Kim, A.D. Deshpande. An upper-body rehabilitation exoskeleton Harmony with an anatomical shoulder mechanism: Design,
+modeling, control, and performance evaluation, Int J Rob Res. 36 (4) (2017): 414-435. [3] H.K. Ko, S.W. Lee, D.H. Koo, I. Lee, J.H. Dong. Waist-assistive exoskeleton powered by a singular actuation mechanism for
+prevention of back-injury, Rob Auton Syst. 107 (2018): 1-9. [4] World Health Organization. World report on ageing and health. World Health Organization, Luxembourg,2015. [5] W. Meng, Q. Liu, Z. Zhou, Q. Ai, B. Sheng, S. Xie. Recent development of mechanisms and control strategies for robot-assisted
+lower limb rehabilitation, Mechatronics. 31 (2015): 132-145. [6] G. Chen, P. Qi, Z. Guo, H. Yu. Mechanical design and evaluation of a compact portable knee–ankle–foot robot for gait rehabilitation,
+Mech Mach Theory. 103 (2016): 51-64. [7] P.C. Kung, C.C.K. Lin, M.S. Ju. Neuro-rehabilitation robot-assisted assessments of synergy patterns of forearm, elbow and shoulder
+joints in chronic stroke patients, Clin Biomech. 25 (7) (2010): 647-654. [8] R. Colombo, F. Pisano, S. Micera, A. Mazzone, C. Delconte, M.C. Carrozza, P. Dari, G. MinucO. Robotic techniques for upper
+limb evaluation and rehabilitation of stroke patients, IEEE Trans Neural Syst Rehabil Eng. 13 (3) (2005): 311-324. [9] C.G. Mattacola, M.K. Dwyer. Rehabilitation of the ankle after acute sprain or chronic instability, J Athl Train. 37 (4) (2002): 413. [10] J. Mehrholz, T. Platz, J. Kugler, M. Pohl. Electromechanical and robot-assisted arm training for improving arm function and
+activities of daily living after stroke, Stroke. 40 (5) (2009): 392-393. [11] A.C. Satici, A. Erdogan, V. Patoglu. Design of a reconfigurable ankle rehabilitation robot and its use for the estimation of the ankle
+impedance, in: 2009 IEEE International Conference on Rehabilitation Robotics. IEEE, 2009, pp. 257-264. [12] H.C. Fischer, K. Stubblefield, T. Kline, X. Luo, R.V. Kenyon, D.G. Kamper. Hand rehabilitation following stroke: a pilot study of
+assisted finger extension training in a virtual environment, Top Stroke Rehabil. 14 (1) (2007): 1-12. [13] M.E. Dohring, J.J. Daly. Automatic synchronization of functional electrical stimulation and robotic assisted treadmill training, IEEE
+Trans Neural Syst Rehabil Eng. 16 (3) (2008): 310-313. [14] K. Van Kammen, A.M. Boonstra, L.H. van der Woude, H.A. Reinders-Messelink, R. den Otter. The combined effects of guidance
+force, bodyweight support and gait speed on muscle activity during able-bodied walking in the Lokomat, Clin Biomech. 36 (2016): 65-73. [15] K. Van Kammen, A.M. Boonstra, L.H. van der Woude, R. den Otter. Differences in muscle activity and temporal step parameters between Lokomat guided walking and treadmill walking in post-stroke hemiparetic patients and healthy walkers, J Neuroeng Rehabil. 14 (1) (2017): 1-11. [16] K. Van Kammen, E. van Asseldonk, G. van Oort, H. Rietman, H. van der Kooij. LOPES II—design and evaluation of an admittance controlled gait training robot with shadow-leg approach, IEEE Trans Neural Syst Rehabil Eng. 24 (3) (2015): 352-363.. [17] A.B Zoss, H. Kazerooni, A. Chu. Biomechanical design of the Berkeley lower extremity exoskeleton (BLEEX), IEEE ASME Trans Mechatron. 11 (2) (2006): 128-138. [18] U. Haider, I.I. Nyoman, J.L. Coronado, G.S. Virk. User-centric harmonized control for single joint assistive exoskeletons, Int J Adv Robot Syst. 13 (3) (2016): 115. [19] E. Tricomi, N. Lotti, F. Missiroli, X. Wang. Underactuated Soft Hip Exosuit Based on Adaptive Oscillators to Assist Human Locomotion, IEEE Robot Autom Lett. 7 (2) (2021): 936-943. [20] B. Lian, T. Sun, Y. Song, et al. Passive and active gravity compensation of horizontally-mounted 3-RPS parallel kinematic machine, Mech Mach Theory. 104 (2016): 190-201. [21] D. Wang D, Y. Xiong, B.Zi B, S. Qian, Z. Wang, W. Zhu. Design, analysis and experiment of a passively adaptive underactuated robotic hand with linkage-slider and rack-pinion mechanisms, Mech Mach Theory. 155 (2021): 104092.
+
+[22] Q. Chen, B. Zi, Z. Sun, Y. Li, Q. Xu. Design and development of a new cable-driven parallel robot for waist rehabilitation, IEEE ASME Trans Mechatron. 24 (4) (2019): 1497-1507.
+[23] G. Aguirre-Ollinger, H. Yu. Lower-Limb Exoskeleton With Variable-Structure Series Elastic Actuators: Phase-Synchronized Force Control for Gait Asymmetry Correction, IEEE Trans Robot. 37 (3) (2020): 763-779.
+[24] B. Chen, B. Zi, Z. Wang, Y. Li, J. Qian. Development of Robotic Ankle–Foot Orthosis With Series Elastic Actuator and MagnetoRheological Brake, J Mech Robot. 13 (1) (2021).
+[25] J. Wang, Z. Moumni, W. Zhang, W. Zaki. A thermomechanically coupled finite deformation constitutive model for shape memory alloys based on Hencky strain, Int J Sci. 117 (2017): 51-77.
+[26] H. Rodrigue, W. Wang, M.W. Han, T.J. Kim. An overview of shape memory alloy-coupled actuators and robots, Soft Robot. 4 (1) (2017): 3-15.
+[27] C. Xiang, H. Yang, Z. Sun, B. Xue, L. Hao. The design, hysteresis modeling and control of a novel SMA-fishing-line actuator, Smart Mater Struct. 26 (3) (2017): 037004.
+[28] L. Manfredi, Y. Huan, A. Cuschieri. Low power consumption mini rotary actuator with SMA wires, Smart Mater Struct. 26 (11) (2017): 115003.
+[29] H.I. Kim, M.W. Han, S.H. Song, S.H. Ahn. Soft morphing hand driven by SMA tendon wire, Compos B Eng. 105 (2016): 138-148. [30] E.L. White, J.C. Case, R. Kramer-Bottiglio. A soft parallel kinematic mechanism, Soft Robot. 5 (1) (2018): 36-53 [31] S. Zhang, B. Liu, L. Wang L, Q. Yan, K.H. Low. Design and implementation of a lightweight bioinspired pectoral fin driven by
+SMA, IEEE ASME Trans Mechatron. 19 (6) (2014): 1773-1785. [32] J.S. Koh, K.J. Cho. Omega-shaped inchworm-inspired crawling robot with large-index-and-pitch (LIP) SMA spring actuators, IEEE
+ASME Trans Mechatron. 18 (2) (2012): 419-429. [33] A. Villoslada, A. Flores, D. Copaci D, D. Blanco, L. Moreno. High-displacement flexible shape memory alloy actuator for soft
+wearable robots, Rob Auton Syst. 73 (2015): 91-101. [34] F. Simone, G. Rizzello, S.Seelecke. Metal muscles and nerves—a self-sensing SMA-actuated hand concept, Smart Mater Struct. 26
+(9) (2017): 095007. [35] G. Qiao, G. Song, Y. Zhang, J. Zhang, Z. Li. A wheel-legged robot with active waist joint: design, analysis, and experimental results,
+J Intell Robot Syst. 83 (3) (2016): 485-502. [36] A. Erdogan, B. Celebi , A.C. Satici, V. Patoglu. Assist on-ankle: a reconfigurable ankle exoskeleton with series-elastic actuation,
+Auton Robots. 41 (3) (2017): 743-758. [37] Y. She, J. Chen, H. Shi, H. Su. Modeling and validation of a novel bending actuator for soft robotics applications, Soft Robot. 3 (2)
+(2016): 71-81. [38] J. Ko, M.B Jun, G. Gilardi G, E. Haslam, E.J. Park. Fuzzy PWM-PID control of cocontracting antagonistic shape memory alloy
+muscle pairs in an artificial finger, Mechatronics. 21 (7) (2011): 1190-1202. [39] D.C. Lagoudas. Shape memory alloys: modeling and engineering application, Springer, USA, 2008. [40] M. Grossard, N. Chaillet, S. Régnier. Flexible robotics: applications to multiscale manipulations, John Wiley & Sons, Paris, 2013. [41] S. Henein. Conception des guidages flexible, PPUR presses polytechniques, Bienne, 2001.
+

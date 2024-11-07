@@ -1,0 +1,180 @@
+2008 IEEE International Conference on Robotics and Automation Pasadena, CA, USA, May 19-23, 2008
+Synergistic Design of a Humanoid Hand with Hybrid DC Motor – SMA Array Actuators Embedded in the Palm
+Josiah B. Rosmarin and H. Harry Asada1
+
+Abstract— A new approach to the design and control of multi-fingered hands using hybrid DC motor – Shape Memory Alloy (SMA) array actuators is presented in this paper. The fundamental design concept is based on the principle of motor control “synergy”, a biomechanics terminology of coordinated motion generation. A couple of DC motors are used for driving multiple fingers with a particular velocity distribution over a vast number of finger joints corresponding to the direction of the most significant synergy. Principal component analysis is used for determining the most significant direction and the residual directions. SMA array actuators are used for driving the fingers in the residual directions. Although many actuator axes are needed for spanning the residual space, the required strokes are much shorter than the most significant direction. Compact and high energy-density SMA actuators meet these requirements. The paper presents synergistic integration of these two types of actuators having diverse characteristics. This allows us to embed all the actuators and transmission mechanisms in the palm, eliminating a bundle of tendons crossing over the wrist joints. An initial prototype hand is designed and built.
+I. INTRODUCTION
+DESIGNING a humanoid hand with a vast number of degrees of freedom in a compact body remains a challenging problem for the robotics community. Since the early 1970’s a number of research groups have developed multi-fingered hands with novel mechanisms and advanced actuator technology. These range from the seminal works by Okada [1] and Salisbury [2] to the development of the UtahMIT hand [3], the Robonaut hand [4], and others (University of Pisa [5], University of Tokyo [6], etc.). Many of these hands have already achieved dexterous motion, but with the actuators located remotely, beyond the wrist joint of the hand. Difficulties arise from these remote-activation schemes, ranging from simple space and weight issues to more complex interference issues between the wrist joint and the tendons. The mechanical design becomes significantly more complex if all of the tendons driving the fingers have to pass through the wrist joints, which must be bent, tilted and rotated, without significantly interfering with performance. As such it is highly desirable to embed all of the actuators in the palm, avoiding the above-mentioned complications. Considering the currently available actuator technology, embedding actuators for driving all twenty joints directly into the palm is a challenging design goal. One approach would be to use a large number of miniaturized components
+Manuscript received September 14, 2007. J. B. Rosmarin is with MIT, Cambridge, MA 02139, USA 617-2580813, email: josiah@mit.edu. H. H. Asada is with MIT, Cambridge, MA 02139, USA
+
+(DC motors, gears, etc.) and carefully package them to fit into the limited space of the palm, as has already been achieved by [7]. There exists, however, an alternative approach; one of which can be achieved by task space analysis.
+The objective of this paper is to explore a new design methodology with the ultimate goal of placing all the actuators for driving the twenty joints of the hand elegantly into the palm. The basic principle is to regroup the 20dimensional finger joint space into two distinct subspaces. Using Principal Component Analysis (PCA), a set of hand movements are decomposed into the two subspaces, one spanned by the first few principal components and other its orthogonal complement. The former, the primary subspace, represents the most significant direction(s) of finger movements; the actuators driving the fingers in these directions must be of high performance and have a large stroke to cover the full range of motion. As such, servomotors are assigned to this subspace. The latter, the residual subspace, represents the residual directions, which are of much higher dimension but with significantly reduced stroke length. High energy-density Shape Memory Alloy (SMA) actuators are assigned to this high-dimensional space. A large number of SMA wire actuators can be packaged in a very limited space thanks to the high stress of over 150 MPa. The limited strain of SMA (~5%) matches well with the reduced stroke of the residual subspace. This hybrid design will allow us to save space and place all of the actuators in the palm.
+PCA has been used by the biomechanics community for the analysis of hand movements. “Synergy” is a biomechanics and neuroscience terminology of coordinated motion generation [8, 9]. For robotic hand design and control, the authors group has already applied the synergy concept to various hand developments. These include fivefingered hands actuated with 32 axes of SMA array actuators [10] and with only 2 DC motors driving 16 finger joints [11]. The hybrid design using DC motors and SMA is a significant improvement to the previous designs in terms of compactness, control performance and accuracy. In the following, the synergistic design method based on the principal component analysis of required finger movements is first presented, followed by practical design consideration and prototyping.
+II. SYNERGISTIC DESIGN
+The human hand is actuated by a vast number of muscles.
+
+978-1-4244-1647-9/08/$25.00 ©2008 IEEE.
+
+773
+
+These muscles act on the hand in a complex yet highly coordinated manner. These seemingly independent muscles come together to exhibit a distinct synergistic behavior. This can be seen not only from an anatomical perspective but also from a functional perspective. This section delineates how the synergies of the hand were analyzed and used for the design of the robotic hand.
+
+Fig. 1. Principal component in the n-dimensional hand posture space.
+A. Synergies Based on PCA
+Consider a five-fingered hand with n joints. Let
+p = ( p1," pn )T ∈ ℜn be generalized coordinates for
+describing a hand posture, be it joint angles, tendon displacements or individual actuator displacements. Assume that the task is to take various postures described by a set of posture vectors, pi ,i = 1,", m . Fig. 1 illustrates the
+distribution of the posters in n-dimensional space. These points represent a set of postures needed for performing a class of tasks. For home robots, these postures may be the ones needed for performing daily chores, i.e. carrying cups, holding frying pans and turning doorknobs. These points can be generated with a simulator or by measurements of an actual hand during normal operation using a data glove [12].
+Collecting these posture vectors yields a data matrix:
+
+P = ⎡⎣p1, p2 ,"pm ⎤⎦ ∈ ℜn×m
+
+(1)
+
+Let C be the covariance matrix of the data matrix P:
+
+C = cov (P) ∈ ℜn×n
+
+(2)
+
+Computing the largest l eigenvalues and corresponding eigenvectors of the covariance matrix C, we can approximate a posture vector, p, as:
+
+p ≅ p + q1e1 +" + qlel , l < n ,
+
+(3)
+
+where p is the average of the data, p1, p2 ,"pm . We can
+
+call the posture given by the eigenvector ei, the i-th eigenposture. Scalars q1…ql represent coordinates in the transformed space. For most data points pi, the first coordinate, q1, takes a large absolute value, while the higher order eigenpostures take relatively small coordinate values.
+B. Hybrid Actuator Architecture
+PCA gives a sound foundation for the architecture of the actuator system. The primary eigenposture represents not only the most joint information, it also represents the coordinate which will most widely vary in order to form the diverse postures contained in the data matrix. This means that the actuator driving the fingers in the direction of the primary eigenposture must have a large stroke and have good control performance, i.e. speed of response, bandwidth, and accuracy. Therefore, the primary eigenposture requires high performance actuators.
+The higher order eigenpostures represent a much shorter stroke length as well as less significant contributions to posture generation in the hand posture space. Abduction of the fingers, for example, is typically involved in higher order eigenpostures. It plays an important role for grasping a class of objects, but its dynamic response is not nearly as critical as that of the flexion and extension of the finger. To gain an accurate approximation for equation (3), many of the higher order components must be included. Although a large number of these components must be included, the control performance requirements are less stringent: the stroke length and speed of response are significantly less. The large number of actuators makes compact and lightweight properties for the actuators of the residual subspace essential. It should be stressed that the required specifications for selecting actuator modality are very different between the first few eigenpostures and the higher-order eigenpostures.
+Based on this argument derived from principal component analysis, we present a hybrid actuator architecture for driving multi-fingered hands. No single actuator can meet the diverse requirements for all of the necessary eigenpostures. While DC motors have no stroke-limit and provide satisfactory control performance, they are bulky and heavy. SMA actuators have an extremely high energy density, producing a large force in a compact body. SMA can be densely packed in a very limited space for driving many axes. SMA, however, has a limited stroke, with a strain on the order of 5%, and a rather limited control performance due to slow heat transfer dynamics. Combining these two can produce synergistic effects. In our hybrid actuator architecture, the first eigenposture is driven by DC motor, and the higher-order eigenpostures are achieved with SMA array actuators.
+III. DATA ACQUISITION AND ANALYSIS
+Data acquisition and analysis was performed in two stages. Data were first acquired from an actual human hand to gain insights as to how the method works. After
+
+774
+
+confirming the methodology, the analysis was extended to a robotic hand which was designed specifically to implement this synergistic hybrid actuation scheme. A much larger set of data were acquired for the robotic hand.
+
+A. Human Hand Task Space Analysis
+
+For the initial analysis, a group of daily chore tasks were
+
+considered for applying the synergistic hand design method
+
+described above. A data glove by Immersion Corporation
+
+(Cyberglove®) was used for measuring the postures of all
+
+the fingers, and data were gathered in 16-dimensional joint
+
+space. The joint data were then converted to tendon-space
+
+based on the internal geometries of the robotic hand in [12].
+
+The tendon displacements were using Principal Component
+
+Analysis, and evaluated based on the strength of the
+
+principal synergy, which can be attained by the equation,
+
+η = λ1
+
+(4)
+
+n
+
+∑ λi
+
+1
+
+where λ1 is the largest eigenvalue of C from (2). The strength of the principal synergy, η, is analogous to the
+
+percentage of data preserved. It was found that the principal
+
+synergy accounts for 68% of the data variation.
+
+The anatomy of the human hand indicates that the synergy
+
+between the four fingers should be much higher than the
+
+synergy between them and the thumb. This concept can be
+
+applied to the PCA by treating the tendons from the thumb
+
+and the tendons from the fingers as two separate subsystems.
+
+When treated separately the synergy strength of the finger
+
+subsystem rises significantly, to 79%, while the synergy
+
+strength of the thumb is reduced to 60%.
+
+Fig. 2. Tendon displacement error after SMA residual displacement. The band shown is 5% of the total stroke of the tendons.
+Fig. 2 shows the projected error of the system which is driven along its principal direction of synergy by a DC motor and with residual displacements achievable by a limited length of SMA actuators. The stroke of SMA actuators was
+
+limited by the available space in the palm (5cm). Although limited, the overall error in terms of the tendon displacement is less than 5% of the total tendon stroke for most of the tendon axes other than Tendon 6. This analysis, however, is incomplete because the joint coordinate system associated with the data glove and that of the robot tendons are different.
+B. Robotic Hand Task Space Analysis
+For a more consistent analysis, both data acquisition and analysis were performed for a robotic hand. The number of postures was also increased to 32 postures. The postures were based on a set of tasks which correspond to work around the laboratory. These tasks were for constraining or fixturing the objects as in [13], rather than on dexterous manipulation, thus taking full advantage of the fact that all of the actuators would be located in the palm.
+Multiple steps were taken to ensure proper grasp data was recorded. Pictures were taken of a human hand performing the desired task. The objects necessary for the grasp were solid modeled and inserted into an assembly of the robotic hand. The orientation and general grasp were taken from the pictures, but care was taken to ensure force closure as described by [2]. The joint angles necessary for each task were recorded and transformed into tendon displacements.
+This much larger data set turned out to be significantly less correlated, with a synergy strength of only 35%. However, by separating the fingers and thumb into two separate subsystems as was done with the previous data set, the synergy strength is increased to 44% in the thumb and 58% in the fingers. While this is significant improvement, it allows for residual displacements which are not negligible.
+It was decided that the final source of large residual displacements could be conflicting synergies within the set of grasps. The approach, however, would not be to discard the grasps which deviate from the principal synergy, but rather to regroup them into another set of tasks. The downside to this approach is that it reduces the number of grasps achievable by any one hand. The result, however, is a marked increase in principal synergy strength.
+A simulation was run which divided each of the postures into two separate groups and tested the strength of synergy for each of the groups. The simulation tested every possible grouping of the postures and grouped them according to the highest possible combined synergy strength. The best combination turned out to result in 26 of the postures in one of the task sets and 6 of them in the other. The resulting principal synergy strengths were 70% and 82% respectively.
+The error for these synergistic designs is quite small, especially when compared to an otherwise equivalent system. Fig. 3 demonstrates the mean squared error of the PCA based system as compared to a hybrid-actuated hand with pulleys designed to uniformly contract all of the tendons; the error corresponds to the RMS of the error of the individual tendon displacements for each given posture. The grand
+
+775
+
+majority of the PCA-based grasps demonstrate reduced error, and most of them are significantly better.
+
+Fig. 3. Error from PCA based robotic hand vs. non-specialized equivalent
+IV. PROTOTYPE DESIGN AND IMPLEMENTATION
+Using the optimized actuator architecture, an actuator system was designed. The central design consideration was for the system to be practical. This consideration had the effect of many times opting for designs with inferior theoretical performance, but with significantly better performance upon implementation.
+A. Summing DC Motor and SMA Actuation
+In order to actually implement a robotic hand which uses both DC Motors and SMA array actuators as described earlier, the motion effected by the two actuators must somehow be physically summed. Since this entails running the actuators in series, an important design decision is the order of the actuators, namely which actuator is fixed and which is floating. Fig. 4 illustrates the two configurations: Configuration A consists of a floating pulley which sums the motion of the SMA and the DC motor; the SMA is anchored and activated by fixed electrical contacts. Configuration B consists of a length of SMA effectively replacing a section of the tendon used by the DC motor to drive the finger.
+Configuration B creates the complication that the SMA moves with respect to its electrical contacts, thus creating error in active SMA segments when the DC Motor moves. Configuration A, however, not only avoids this unwanted coupling; it also doubles the displacement of the SMA. Nonetheless, it introduces many more complications, including the need for floating pulley mechanisms and a much less compact design. The impact of these complications is discussed in [11]. The decision was made to employ configuration B because it is the more simple, compact and practical design.
+
+Fig. 4. Two possible configurations, (A) with anchored SMA, and (B) with floating SMA
+In order to implement configuration B, a mechanism must be designed which is capable of driving several axes in a small amount of space, since each finger has multiple axes which are driven by both the DC motor and SMA. Since DC motors rotate and the tendons travel in a linear fashion, a transformation is already necessary; this can be accomplished by many things ranging in complexity from ball-screws to pulleys.
+A simple, compact solution turns out to be the distributor mechanism shown in Fig. 5. A single rotating mechanism can drive all of the tendons associated with a single finger. As can be seen below, the diameter of the individual pulleys on this device can vary significantly; these diameters correspond directly to their respective value as determined by the principal component analysis.
+Fig. 5. Single Eigenposture Distributor Pulley
+B. SMA Array Actuators SMA has the highest energy density of any commercially available actuator material. This feature, however, comes at a price: It has an extremely low bandwidth as well as a nonlinear and hysteretic response. [9] solved many of the issues regarding the hysteresis by breaking the SMA axes into individual segments which are activated using a binary scheme. This method, known as Segmented Binary Control (SBC) offers the advantage of the actuator being reliably controlled, but at the cost of discrete response. Since real life applications require reconfiguration, it was
+
+776
+
+decided that the most desirable segmentation scheme would be that which most resembles a continuous response. The optimal configuration turns out to be quite analogous to a digital to analog converter. By making segments of length R, 2R, 4R, … and 2nR, it is possible to achieve a length of any multiple of R from 0 to (2n+1-1)R . This setup is known as digital to analog segmented binary control (D2A-SBC).
+In order to properly segment the SMA, contacts are made at exponentially increasing lengths. These nodes must be held at specific voltages in order to ensure proper activation of desired segments without introducing unwanted crosscurrents. By holding some nodes at ground, and others at the control voltage, it can be ensured that the current only flows in the desired directions, as can be seen in Fig. 6.
+
+The SMA actuators mount directly to the pulleys, effectively replacing a section of Kevlar tendon. The SMA passes through a series of electrical contacts before terminating into the tendon which drives the associated joints. These electrical contacts are fixed with respect to the module; the SMA, however, slides over them, introducing error in the SMA activation dude to DC motor motion. The alternative, electrical contacts which move with the SMA, would introduce several moving components per axis, with many axes in the system, resulting in a nontrivial increase in complexity. The electrical contacts are spaced in such a way as to implement the above described D2A-SBC strategy.
+The finger modules are anchored to stainless steel plates which serve as a hub for all of the mechanical elements: the finger modules, the DC motor, the potentiometer for DC motor position feedback, the cooling fans, and the thumb module. Fig. 7 shows the entire four-finger subsystem.
+
+Fig. 6. Proper circuit activation.
+Holding the nodes at the same voltage, however, creates a complication since current levels control the level of activation, and different lengths of SMA correspond to different resistances. Thus, a type of PWM signal must be overlaid, with a pulse width corresponding to the length of the segment. Thus, the desired level of current can be effectively delivered to the desired segments resulting in proper activation of the SMA.
+C. Design Overview
+Modularity was emphasized at every level of the design. The hand is broken into two independent subsystems, based on the actuator configuration: the thumb, and the fingers. Each subsystem is driven by a single DC motor and an array of SMA actuators. Within the subsystems each digit is a separate unit, which can be easily removed for repairs or replaced for upgrade.
+Included in each of these digit modules are all of the SMA actuators associated with the digit, all of the lower-level control circuitry, and an interface to the DC motor drive train. The modules are designed to be self-contained and fully functional before being mounted in the hand, since the compact nature of the fully assembled apparatus makes assembly and adjustment operations nearly impossible.
+The majority of the finger is made of ABS plastic using an FDM-style 3D printer. The gear, which interfaces with the DC motor, drives the distributor which is mounted in brass bushings to minimize friction. Each distributor consists of four pulleys. Since the diameters of the pulleys affects the principal eigenposture, a new workspace for the hand can be achieved by simply replacing the distributors in each of the finger modules.
+
+Fig. 7. Four finger module. The above solid model includes everything that is found in the finger subsystem.
+V. CONCLUSION
+A new design strategy for the hybrid actuation of robotic hands has been developed and implemented. This strategy takes advantage of the synergistic behavior of motor control. Using only two DC motors to drive an entire robotic hand, the task space of the hand is effectively recreated by direction the motion of the DC motors in the direction of the most significant synergy. This direction is determined via the PCA of a set of tasks. The higher order terms are actuated by SMA due to its compact nature and the relaxed performance requirements.
+The fastidious design algorithm allows for all actuators to be included in the palm, thus avoiding the need for tending routing through the wrist. The careful choice of actuators and synergistic integration takes advantage of the positive attributes of the actuators. The result is a practically implementable bionic hand with all of the actuators embedded in the palm which is specifically designed for a pre-determined set of tasks.
+REFERENCES
+[1] T. Okada, “Analysis of Finger Motion and Hand tasks,” Biomechanism 3, University of Tokyo press. pp. 133-144, 1975.
+[2] J. K. Salisbury and J. J. Craig, "Articulated hands - Force control and kinematic issues," International Journal of Robotics Research, vol. 1, pp. 4-17, 1982.
+
+777
+
+[3] S. C. Jacobsen, J. E. Wood, D. F. Knutti, and K. B. Biggers, "UTAH/MITDexterous Hand: Work in Progress.," in Robotics Research, the 1st International Symposium., 1984.
+[4] Lovchik, C., Diftler, M. "The Robonaut Hand: A Dexterous Robot Hand for Space," Proceedings of the IEEE International Conference on Automation and Robotics, Vol. 2, pp 907-912, Detroit, Michigan, May, 1999
+[5] R. Cabas and C. Balaguer, "Design and development of a light weight embodied robotic hand activated with only one actuator," in IEEE/RSJ International Conference on Intelligent Robots and Systems, 2005, pp.2369-2374.
+[6] N. Fukaya, S. Toyama, T. Asfour, and R. Dillmann, "Design of the TUAT/Karlsruhe humanoid hand," in IEEE International Conference on Intelligent Robots and Systems, 2000, pp.1754-1759.
+[7] T. Mouri, et al., “Anthropomorphic Robot Hand: Gifu Hand III”, Proceedings of The International Conference on Control, Automation and Systems, October, 2002.
+[8] M. Santello, M. Flanders and J. F. Soechting, "Postural Hand Synergies for Tool Use," J. Neurosci., vol. 18, pp. 10105-15, 1998
+[9] A. d’Avella, P. Saltiel, and E. Bizzi, "Combinations of muscle synergies in the construction of a natural motor behavior," Nature Neuroscience, vol. 6, pp. 300, 2003.
+[10] Cho, K.-J., and Asada, H., “Architecture Design of a Multi-Axis Cellular Actuator Array Using Segmented Binary Control of Shape Memory Alloy”, IEEE Transactions on Robotics, Vol. 22, No. 4, pp.831-842, Aug. 2006.
+[11] Brown, C., and Asada, H., “Inter-Finger Coordination and Postural Synergies in Robot Hands via Mechanical Implementation of Principal Components Analysis”, to appear in the proc. of 2007 IEEE/RSJ International Conference on Intelligent Robot Systems, October, 2007.
+[12] Cho, K.J., Rosmarin, J., and Asada, H.H., “SBC Hand: A Lightweight Robotic Hand with an SMA Actuator Array implementing Csegmentation,” Proc. of the 2007 IEEE International Conference on Robotics and Automation,, Rome, Italy, April 2007
+[13] Bicchi, A., Kumar, V., “Robotic Grasping and Contact: A Review”, Proc. Of the 2000 ICCC International Conference on Robotics and Automation, San Francisco, CA, USA, April 2000
+778
+

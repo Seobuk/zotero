@@ -1,0 +1,775 @@
+2013 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM) Wollongong, Australia, July 9-12, 2013
+
+System Dynamics Modeling and Prototype Investigation of a New SMA-Electric Motor Hybrid Linear Actuator*
+Erbao Dong, Min Xu, Shiwu Zhang, Jie Yang
+
+Abstract—This paper presented a new hybrid linear actuator which has significant potential to achieve both large force and large displacement based on SMA wires and DC motors. There were one screw and two locking nuts used to accumulate the small displacements of SMA wire actuators. And the SMA wires were connected in parallel to enhance the force output. A system dynamic model of this hybrid actuator was made on the present study, which was composed by the constitutive model of the SMAs, the electrical and heat transfer behavior of SMA wires, and dynamics of the linear actuation system. Our study explored the accuracy of the model and illustrated the properties of the hybrid linear actuator prototype. Preliminary tests revealed that this kind of hybrid actuator prototype could output a driving force of at least 50N and a single step displacement of 3.34mm in one step cycle. The multi-steps operation frequency under ambient atmosphere was about 0.05Hz. Both numerical simulation and experimental investigation showed that this hybrid linear actuator could achieve large force and large displacement with high stepping accuracy like a step motor.
+I. INTRODUCTION
+Linear actuators were widely applied in many fields, such as modern industry, agriculture, defense, medicine and human daily life. With the rapid development of automation, especially bionic robots and unmanned smart vehicles, there were increased demands on several respects, such as small size, light weight, low operation noise, large output force, long displacement range and high control precision linear actuators [1-3].
+Shape memory alloys (SMAs), one type of the most widely used smart materials, have many advantages, such as high power to weight ratio, high force output (the output stress can be as high as 500MPa), smooth and silent operation. It was considered as a potential smart material for the high performance linear actuator [4].
+There are mainly two challenges of the SMA linear actuators. One is how to enlarge its displacement range, and the other is that how to improve its control precision. For the first problem, many people used SMA coils to instead of SMA wires, which could induce large deformation [5]. But the prominent decreased of force output and the difficulty of precision control limited furthermore applications of the SMA
+
+coils. In order to enlarge its range without force depressed, many designs of SMA actuators had been intensely explored. The development of these actuators mainly depended on mechanical amplification by using long straight SMA fibers with pulley block, or through special intertwist methods [6, 7]. However, the complex and voluminous structures still limited their displacement ranges, and the difficulty of accurate controls also restricted their applicability.
+For the second problem, some constitutive models [8-10] and feedback control methods had been reported [11-15]. The basic thermal-mechanical properties of SMAs could be understood by the constitutive models. However, the complex thermo-mechanical coupling characteristics of SMAs under constraint condition, incomplete phase transformation and dynamic loading were still hard to describe by present models. Thus, the behaviors of many kinds of SMA actuators were still difficult to exactly forecast.
+This paper presented a new type of linear actuator combining SMA wirers and DC motors. The new actuator integrated advantages of both SMA wire actuators and DC motors. It could effectively conquer the difficulty of accurate control of SMA actuators and as a result, contribute to form a linear actuation system with low weight and compact structure as well as high force out and large displacement range.
+II. STRUCTURE OF THE HYBRID ACTUATOR
+A. Mechanical Structure
+Figure 1 showed the components of the present hybrid actuator. Among them, the SMA wires (the blue and red lines) were symmetrically located on both sides of the middle block, which is made up to a differential actuator. And then the screw which transfers the force and displacement could be driven by SMA wires through the middle block. Additionally, DC motors on each side of middle block could drive the nuts through gear matching to lock the position of the screw.
+
+* Resrach is supported by National Natural Science Foundation of China (No. 51105349, 51275501, 50975269) and the Fundamental Research Funds for the Central Universities.
+Erbao Dong*, Shiwu Zhang, Min Xu, Yongxin Li, Jie Yang are with the Department of Precision Machinery and Precision Instrumentation, University of Science and Technology of China, Hefei, Anhui Province, 230026, China (corresponding author to provide phone: 086-551-63601482 ; e-mail: ebdong@ustc.edu.cn).
+
+Figure 1. Diagram of hybrid linear actuators composed of SMA wires and DC motors
+
+978-1-4673-5320-5/13/$31.00 ©2013 IEEE
+
+367
+
+B. Actuation Principle
+The electric driven sequence of SMA wires and DC motors was showed in Figure 2. Once the left SMA wires were heated (austenitic phase) and the right were in low temperature (martensite phase), they could initiate the left shift of middle block, nuts and screw. After cooling the left SMA wires and heating the right SMA wires, the left SMA would transform into the martensite phase and the right SMA into the high-temperature austenite phase. Then the middle block would return to the original place, while the screw locked by the right nut, and the left nut driven by DC motor would follow the movement of middle block.
+
+Figure 2. Actuation sequence of SMA wires and DC motors
+III. DYNAMICS MODELING OF THE HYBRID ACTUATOR
+System dynamic model of the SMA-electric motor hybrid linear actuator was composed of SMA constitutive model with its phase transformation equations, convection heat transfer model of SMA by electrical heating and natural cooling, dynamics model of DC motor and its transmission system, dynamics model of crew-nut joint system.
+
+A. SMA Differential Actuator Dynamics Model
+There are two operations of SMA wires, shrinking actuation and extensing reposition. So the equations of the SMA wires and load are:
+
+¦ N
+V Li i1
+
+V Ri
+
+S
+
+-®FL ¯0
+
+Actuation Reposition
+
+(1)
+
+where V and V are the stresses of SMA wires, S is the
+
+Li
+
+Ri
+
+sectional area of SMA wires, N is the number of SMA wires
+
+located each side, and FL is the load force.
+
+(1) SMA wire constitutive model
+
+The SMA constitutive model shows the relationship between stress, strain, and temperature of SMAs. We chose the Brinson model[9] which was widely used in SMA actuation systems to describe the SMA wire’s constitutive law.
+
+V
+
+E[ H
+
+4T
+
+:S
+
+[
+
+[ S
+
+:T
+
+[
+
+[ T
+
+(2)
+
+where [
+
+[ S
+
+[ , T
+
+and [ , [ • ƒ TS
+
+are
+
+volume
+
+fractions
+
+of
+
+twined martensite phase and detwined martensite phase of
+
+SMAs, and E , 4 , :T , :S • ƒ are the Young’ module,
+
+thermal expansion factor, phase transformation contribution
+
+factor of twined martensite and detwined martensite.
+
+Furthermore, : T
+
+{0,
+
+and
+
+: S
+
+could
+
+be
+
+proportional
+
+to
+
+the
+
+initial
+
+strain
+
+H and L
+
+the
+
+Young’
+
+module
+
+E
+
+which
+
+can
+
+be
+
+approximated linear function of the martensite volume
+
+fraction [ of SMA wires. So equation (2) can be simplified as
+
+follow:
+
+V
+
+E[
+
+H
+
+H[ LS
+
+(3)
+
+where E [ [ EM 1 [ EA , and EM and EA are the
+
+Young’ modules of martensite and austenite.
+
+(2) SMA wires phase transformation model
+
+The phase transformations between martensite and austenite occur as a function of SMA temperature and stress. So the differential equations as follows:
+
+[ S
+
+K S1
+
+V ,T
+
+V
+
+K ST
+
+V ,T
+
+T
+
+(4)
+
+[ T
+
+K T1
+
+V ,T
+
+V
+
+K TT
+
+V ,T
+
+T
+
+(5)
+
+(3) Electrical heating and heat transfer model
+
+SMA wire’s convection heat transfer due to electrical heating and natural cooling:
+
+mcpT I 2R AhT T Tf m'H[
+
+(6)
+
+where Tf is the surrounding temperature. cp is the specific
+
+heat, m is the mass of SMA wire, hT is the heat convection coefficient between SMA wire and surrounding air, 'H is the
+
+potential energy within the SMA phase transformation, A is
+
+the surface area of SMA wire. Also R is the resistance of SMA
+
+wire, and I is the heating electric current.
+
+B. DC motor actuation system dynamics model
+The DC magneto-electric motor's dynamics model states, the output torque Ta and the rate of change in current i , depend explicitly not only on the power voltage V , the resistant Ra and inductance La of the DC motor, but also on the rotational velocityTa :
+
+Ta Kmi
+
+(7)
+
+di
+
+V
+
+K
+
+T
+ea
+
+iRa
+
+(8)
+
+dt
+
+La
+
+where Km and Ke are torque constant and back electromotive force (EMF) constant of the DC motors.
+
+The dynamic model of the nut including damping effects is
+
+I
+
+T
+N
+
+N
+
+PT NN
+
+TN
+
+T f
+
+(9)
+
+where
+
+I N
+
+is
+
+the
+
+effective
+
+mass
+
+moment
+
+of
+
+the
+
+nut,
+
+P N
+
+is
+
+the
+
+rotary damping coefficient because of the nut joint friction, Tf
+
+is the friction torque between nut and screw.
+
+The
+
+nut
+
+torques
+
+TN
+
+and
+
+the
+
+nut
+
+angular
+
+velocity
+
+T N
+
+are
+
+related as:
+
+368
+
+TN nTa
+
+(10)
+
+T 1T
+
+(11)
+
+N na
+
+where n is the speed reducing ratio of DC motor’s reducer.
+
+The angle of nut and its displacement alone x axis can be shown as:
+
+xN
+
+pT 2Œ N
+
+(12)
+
+where the p is pitch of the nut and screw.
+
+C. System states space model
+The stretched SMA wire whose temperature were under Mf is at stressed martensite transformation from twinned martensite to detwinned martensite. According to Brinson’s model, equations (4) and (5) can be represented as
+
+KS1
+
+1 2
+
+V cr s
+
+Œ V cr
+f
+
+sin
+
+ª
+
+«¬V
+
+cr s
+
+Œ V cr
+f
+
+V
+
+V cr f
+
+º »¼
+
+K T1
+
+K S1
+
+,
+
+K ST
+
+K TT
+
+0, [ { 1
+
+(13) (14)
+
+where
+
+V cr s
+
+and
+
+V cr f
+
+are the detwened martensite start and final
+
+stress.
+
+In turn, the property of stretched SMA wires can be equaled to a nonlinear spring. And its stiffness can be defined as
+
+K
+
+dV dH
+
+V H
+
+EM
+
+1
+
+EMH
+
+K
+L S1
+
+(15)
+
+When the stretched SMA wire took place of martensite varies phase transformation from twined martensite to detwined martensite, the other side SMA wire transformed from detwined martensite to austenite by electrical heated. Also though Brinson’s model, equations(4) and (5) can be represented as
+
+K S1
+
+1 2
+
+aA CA
+
+sin
+
+ª «¬aA
+
+§ ¨T ©
+
+As
+
+V ·º ¸ »
+CA ¹¼
+
+(16)
+
+K ST
+
+1 2
+
+aA
+
+sin
+
+ª « ¬
+
+aA
+
+§ ¨©
+
+T
+
+As
+
+V ·º ¸ »
+CA ¹¼
+
+(17)
+
+K T1
+
+K TT
+
+0, [
+
+[ S
+
+(18)
+
+where As is austenite final temperature, aA is material constant associated with temperature induced transformation and CA is stress influence coefficient.
+
+Thus, the dynamics model of SMA differential actuator presented above by equations (1), (3), (6), (14), (15), (16) and (17) can be represented by a set of state equations as:
+
+°T ° ° °
+
+I 2R AhT T Tf
+
+mcp
+
+m'H
+
+E
+
+KST ª¬E [K
+
+[ E
+
+[
+
+K º¼
+
+K
+
+H
+
+K
+L S1
+
+°®H °
+
+E[
+
+E[ K
+
+HK L ST
+
+E
+
+[
+
+K
+
+H
+
+K
+L S1
+
+T
+
+(19)
+
+° ° [ ° °¯V
+
+E[ E[
+
+HK H L
+
+KH
+
+IV. CONTROL STRATEGY AND SIMULATION RESULTS
+
+A. SMA wires control strategy
+The SMA differential actuator composed with a middle block and two bunches of SMA wires both sides. When one side SMA wires were heated to drive the load, the other side must be cooled down. So the control strategy could given as figure 3 showed, the actuation SMA wire and reposition SMA wire alternates be heated and cooled. And in order to maximize the output force and assure a long service life, we heated the actuation SMA wires when the other side SMA wires’ temperature was under Mf.
+V
+FL S
+V cr f
+V cr s
+
+(a) The actuation SMA wire
+V
+V cr f
+V cr s
+
+(b) The reposition SMA wire Figure 3. Thermal-mechanical cycle of SMA wires
+
+B. Model parameters and simulation results
+
+Table 1. Model parameters and values (SI units)
+
+Parameter r l m A
+
+Description SMA wire’s radius SMA wire’s length SMA wire’s mass SMA wire’s surface area
+
+Value 0.25×10-3
+0.15 1.91×10-4 2.36×10-4
+
+369
+
+R
+
+SMA wire’s resistance
+
+0.5
+
+hT
+
+Heat convection coefficient
+
+100
+
+T’
+
+Ambient temperature
+
+23
+
+cp
+
+Specific heat of SMA per unit mass
+
+500
+
+ûH
+
+Potential energy of SMA per unit mass
+
+12000
+
+EM
+
+Martensite Young’s modulus
+
+15×109
+
+EA
+
+Austenite Young’s modulus
+
+40×109
+
+0L
+
+SMA wire’s initial strain
+
+0.032
+
+Mf
+
+Martensite final temperature
+
+25
+
+Ms
+
+Martensite start temperature
+
+38
+
+As
+
+Austenite start temperature
+
+40
+
+Af
+
+Austenite final temperature
+
+60
+
+Material constant associated with
+
+aA
+
+temperature induced
+
+0.1571
+
+transformation
+
+CA
+
+Stress influence coefficient
+
+12×106
+
+1scr
+
+Detwened martensite start stress
+
+50×106
+
+1fcr
+
+Detwened martensite final stress
+
+160×106
+
+Km
+
+Torque constant of motor
+
+4.86×10-3
+
+Ke
+
+Back-EMF constant of motor
+
+4.87×10-3
+
+V
+
+Power voltage of motor
+
+6
+
+Ra
+
+Terminal resistance of motor
+
+La
+
+Coil inductance of motor
+
+IN
+
+Moment of inertia of nut
+
+Damping torque coefficient of
+
+N
+
+screw-nut
+
+Tf
+
+Friction torque of screw-nut
+
+4.6 0.1×10-3 25×10-6 1×10-3 2.5×10-3
+
+n
+
+Speed reducing ratio
+
+188
+
+p
+
+Screw-pitch
+
+2.5×10-3
+
+The values for the necessary parameters were listed in table 1. Thus the response property of the hybrid linear actuator by one step movement simulation was shown in figure 4.
+
+V. PROTOTYPE DEVELOPMENT AND EXPERIMENTAL TESTS A. Prototype design and manufacture
+The hybrid linear actuator composed of 6 SMAs and 2 DC motors was developed as shown in figure 5. The hybrid actuator contains many other components, such as the SMA differential actuating elements, the micro permanent magnet DC motor, the screw, the left and right locking nuts, the middle block and the rack. The SMA wires were made by Ni50.8%Ti material. Their diameters were 0.5 mm and the effective lengths were 150 mm. The two groups of SMA wires pulled the screw to achieve linear motion. The outer rings of the left and the right nuts were processed into gears to engage with the gear fixed on the output axis of the micro-magnet DC motor. The locking nut could be rotated by the DC motor and keep contact with the middle baffle to match the movement of the screw when the nuts were free.
+Figure 5. The prototype of the SMA-motor hybrid linear actuator
+B. Test results of the single SMA wire The output ability of the SMA-electric motor hybrid
+actuator mainly lied on the character of SMA wires, especially the displacement output when heating or cooling with constant load. And this actuation capability of a single SMA wire was tested which results showed as figure 6. So the available load of this hybrid actuator could be below 250MPa.
+
+Figure 4. The displacement output in a single-step simulation of the hybrid actuator. (Heating electric current I was set at 5A, and th=0.8s, td=0.2s)
+
+Figure 6. Displacement output of a single SMA wire with constant load when it heated and cooled
+
+370
+
+C. Prototype experiment results
+The displacement-time curves in a single-step movement and a multiple-steps movement were shown in figure 7. For the large diameter and the low electrical resistance of the SMA wires, a longer time was required for the reversible SMA phase transformation under room temperature by natural convection. Currently, a single cycle spent about 20 seconds and the frequency of the SMA hybrid linear actuator needed further improvement. The structure of the hybrid linear actuator also needs further optimization.
+
+(b) 4.5A heating cycles iteration
+
+(a) Single cycle
+(b) Multiple cycles Figure 7. Displacement output property of the hybrid linear actuator
+(a) 3.5A heating cycles iteration
+
+(c) 6.0A heating cycles iteration
+Figure 8. Single-step repeatability of the hybrid linear actuator under different heating currents
+
+The repeatability of the SMA-motor hybrid linear actuator tested under different heating currents 3.5A, 4.5A and 6.0A as figure 8 shown. Through the statistical analysis, the displacement of a single-step actuation was
+
+Ls = 3.34 ± 0.02 mm
+
+(20)
+
+Thus, the displacement of multi-step actuation could be described as
+
+L = n Ls
+
+(21)
+
+where -35 < n < 35. And n is the step movement number of this hybrid linear actuator, limited by the total length of the screw.
+
+VI. CONCLUSION
+A new type of hybrid linear actuator consisting of SMA wires and DC motors was designed in this paper. In many engineering fields, like aerospace and robotics, the hybrid linear actuators have several advantages, such as large output force, long stroke and accurate position control. But the prototype of this hybrid linear actuator was still simple and hulking. And the multi-steps operation frequency under ambient atmosphere was low limited by the cooling speed of SMA wires. In the future, we will do some other experiment to confirm its stability and advantage for increasing its actuation frequency.
+
+371
+
+REFERENCES
+[1] Jha A and Kudva J,."Morphing aircraft concepts, classifications, and challenges", in The Proceedings of SPIE Smart Structures and Materials: Industrial and Commercial Applications of Smart Structures Technologies, SPIE vol. 5388: 213-224, 2004.
+[2] Sreekumar M, Nagarajan T, Singaperumal M, et al, "Critical review of current trends in shape memory alloy actuators for intelligent robots", Industrial Robot-An International Journal, vol. 34(4): 285-294,2007.
+[3] D Hartl and D Lagoudas, "Aerospace applications of shape memory alloys", Journal of Aerospace Engineering, vol. 221(4): 535-552, 2007.
+[4] M Mertmann and G Vergani, "Design and application of shape memory actuators", The European Physical Journal Special Topics, vol. 158: 221-230, 2008.
+[5] C Liang and C Rogers, "Design of shape memory alloy actuators", Journal of Mechanical Design, vol. 114: 223-230, 1992.
+[6] E Torres-Jara, K Gilpin, J Karges, et al, "Compliant modular shape memory alloy actuators", IEEE Robotics and Automation Magazine, Vol. 17(4): 78-87, 2010.
+[7] D Mandru, I Lungu, S Noveanu, et al, "New actuation systems based on shape memory alloys", in The Proceedings of the SPIE conference on Advanced Topics in Optoelectronics, Microelectronics, and Nanotechnologies, SPIE vol. 7297: ?-?, 2009.
+[8] K Tanaka, S Kobayashi and Y Sato, "Thermomechanics of transformation pseudoelasticity and shape memory effect in alloys", Int. J. Plasticity, vol. 2:59-72. 1986.
+[9] C Liang and C Rogers, "One-dimensional thermomenchanical constitutive relations for shape memory materials", Journal of intelligent material systems and structures, vol. 1: 207-234, 1990.
+[10] L Brinson, "One-dimensional constitutive behavior of shape memory alloys: thermomechanical derivation with non-constant material functions and redefined martensite internal variable", Journal of intelligent material systems and structures, vol. 4: 229-242, 1993.
+[11] M Elahinia and H Ashrafiuon, "Nonlinear control of a shape memory alloy actuated manipulator", Journal of Vibration and Acoustics, vol. 124(4): 566-575, 2002.
+[12] D Madill and D Wang, "Modeling and L2-stability of a shape memory alloy position control system", IEEE transactions on control systems technology, vol. 6(4): 473-481, 1998.
+[13] H Ashrafiuon and V Jala, "Sliding Mode Control of Mechanical Systems Actuated by Shape Memory Alloy", Journal of Dynamic Systems, Measurement, and Control, vol. 131(1): 1-6, 2009.
+[14] M Sreekumar, T Nagarajan, M Singaperumal, et al, "Training of a fuzzy logic controller using table lookup scheme for the control of SMA actuators", International Journal of Mathematical Sciences, vol. 5(2):335-353, 2006.
+[15] P Kumagai, A Hozian and M Kirkland, "Neuro-fuzzy model based feed-back controller for shape memory alloy actuators", in The Proceedings of SPIE, vol. 3984: 291-299, 2000.
+372
+

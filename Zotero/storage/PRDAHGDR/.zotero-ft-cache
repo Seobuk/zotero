@@ -1,0 +1,2926 @@
+Author’s proof: Please see ofﬁcial ﬁnal version here http://dx.doi.org/10.1109/TRO.2016.2640183
+Proprioceptive Actuator Design in the MIT Cheetah: Impact Mitigation and High-Bandwidth Physical Interaction for Dynamic Legged Robots
+Patrick M. Wensing1, Albert Wang1, Sangok Seok2, David Otten3, Jeffrey Lang3, and Sangbae Kim1
+
+Abstract—Designing an actuator system for highly-dynamic legged robots has been one of the grand challenges in robotics research. Conventional actuators for manufacturing applications have difﬁculty satisfying design requirements for high-speed locomotion, such as the need for high torque density and the ability to manage dynamic physical interactions. To address
+
+Geared*Motor*with*
+
+GGeeaareredFGdoeMMraocroteeotd/orTrMwowoirttiqhtohurTeTwoo*riSqrteqhuuneTes(o(ForFoqror*ucrecee()F)orce)
+SSeennssoorSrensor
+
+SSSeeerirreiiesesSsEeE*lEarlailseastsistci(EcAlcaAc*scAttuticucatatuAotocartrtuoart*or
+
+HTrHTiagrianghnshGmsGmeiseHTaisrariiasgroRinhonRasnGatmitoeiiosasrioRnatioSSSSteitenfifnfsfosor rSSteinffsor LeLegg
+mmoototor r motor
+
+HHigighhGGeeHaarigrRhRaGatitoeioar RaStSpioprirningg, ,Spring, TrTarannsmsmisTisriasoinonsnmissionEEnncocoddeerErncoder
+
+Leg mmoototor r motor
+
+LeLegg
+
+Leg
+
+this challenge, this paper suggests a proprioceptive actuation
+
+paradigm which enables highly-dynamic performance in legged
+
+machines. Proprioceptive actuation uses collocated force control
+
+at the joints to effectively control contact interactions at the feet under dynamic conditions. Modal analysis of a reduced leg model and dimensional analysis of DC motors address the
+
+((aa))(a)%(% a)
+
+HHigighhtotorHqrquiguehe torque ddeennsistiytymdmeonotsotiortyr motor
+
+((bb))(b)(%b% )
+
+main principles for implementation of this paradigm. In the realm of legged machines, this paradigm provides a unique combination of high torque density, high-bandwidth force control,
+
+PPrroopPprPrriooriopoccpreeirpopitoctiecvivpeeep(tviev*e* aaccttuAuaaacttctouotruaratotor*r
+
+LoLowwinineerLtroitawialeilnegegrtia leg
+
+and the ability to mitigate impacts through backdrivability. We
+
+introduce a new metric named the ‘impact mitigation factor’
+
+(IMF) to quantify backdrivability at impact, which enables design comparison across a wide class of robots. The MIT Cheetah leg is presented, and is shown to have an IMF that is comparable to other quadrupeds with series springs to handle impact. The design enables the Cheetah to control contact forces during dynamic bounding, with contact times down to 85 ms and peak
+
+(c)%% ((cc))
+
+LoLowwGGeeaLarorRwRaGatitoeioar Ratio
+(cT)rTarannsmsmisTisriasoinonsnmission
+
+Fig. 1. Three different electromagnetic (EM) actuator concepts. (a) High-ratio geared motor with torque sensor, (b) Series elastic actuator, (c) Proprioceptive force control actuator.
+
+forces over 450 N. The unique capabilities of the MIT Cheetah,
+
+achieving impact-robust force-controlled operation in high-speed
+
+3D running and jumping, suggest wider implementation of this often conﬂicting requirements on the design of EM actua-
+
+holistic actuation approach.
+
+tors. Design processes for EM components are traditionally
+
+governed by performance metrics such as the motor con-
+
+I. INTRODUCTION
+Physical interactions with the environment play a crucial role in many emerging applications of robotics. Whether in legged locomotion or disaster response, the need to control and exploit interaction with the environment introduces unique challenges to actuator design. As we focus on these applications, it is imperative to shift our actuator paradigms away from technologies that have been optimized for the assembly line ﬂoor. Most manufacturing robots have been designed to perform rapid and accurate pick-and-place position control sequences in well-known environments. Future mobile robots, however, must be capable to manage broader dynamic and force-critical interactions in unstructured environments. The actuator paradigm presented in this paper offers an approach for electromagnetic (EM) actuators to address these needs.
+The design of actuators to manage physical interactions is particularly challenging for application to dynamic legged locomotion. Legged locomotion involves repeating dynamic events such as impact, high-force interaction with uncertain terrain, and rapid leg swing. These events place unique and
+
+stant, torque constant, peak torque, continuous torque, thermal capacity, and others [1]. Beyond the EM components, the transmission (speed reducer) is a critical additional component which affects the control bandwidth and ability to handle collisions with the environment [2]. Multi-objective design trade offs thus need to be weighed in the selections of both the EM components and transmissions. Three common EM actuator concepts that manage these trade offs for robotics are shown in Fig. 1 and are discussed throughout the paper.
+We propose to address this intricate actuator design problem through a new paradigm for EM actuators in legged machines called proprioceptive actuation. As a key feature, this allows ‘proprioceptive’ foot force control through internal torque control. This can be accomplished without exteroceptive sensory feedback that is known to cause non-collocated sensing problems upon collision which result in contact instability [3]. The paradigm of proprioceptive actuation has had success in low-force haptic devices such as the PHANTOM [4], but previously has not been employed for high-force applications such as legged locomotion. Overall, the paradigm eliminates the need for physical springs, stiffness modulating mecha-
+
+Authors are with the 1Department of Mechanical Engineering at the Massachusetts Institute of Technology, Cambridge, MA, 02139, USA, 2Naver Corporation, Seongnam, South Korea, and the 3Department of Electrical
+Engineering and Computer Science at the Massachusetts Institute of Technology, Cambridge, MA, 02139, USA. corresponding email: sangbae at mit.edu
+
+nisms, and force/torque sensors, and enables high-bandwidth force control without contact force feedback.
+Proprioceptive actuation is a unique paradigm to address many of the design challenges facing legged locomotion. These challenges are presented in Section II with a summary
+
+of the previous approaches developed to handle them. Through modal analysis of a simple prototype of a legged system, and dimensional analysis of motor performance across scale, Section III shows that the proprioceptive paradigm is uniquely situated to manage high-force, high-bandwidth contact interactions imperative to high-speed locomotion. We view handling impact as the most difﬁcult of these contact interactions, and propose a new metric in Section III-B called the Impact Mitigation Factor (IMF). The IMF quantiﬁes the normalized inertial impedance of a ﬂoating-body robot, capturing the effects of actuator design to reduce impulsive forces at impact.
+The MIT Cheetah design, presented in Section IV, embodies the principles of proprioceptive actuation. By minimizing the overall impedance of the actuator, the design is able to mitigate impacts comparably to existing quadrupeds with series elastic actuators (SEAs), while maintaining high-bandwidth openloop force control (Section V). A discussion in Section VI details the high-level beneﬁts on this paradigm which embraces a notion of ‘less is more’ in mechanical design. We believe this approach provides a robust and practical new paradigm for legged machines.
+Portions of this article (in Section III-C) have appeared previously in a conference paper [5]. Signiﬁcant additional theoretical analysis and experiments are reported here beyond the previous work.
+II. CHALLENGES IN ACTUATOR DESIGN FOR HIGH-SPEED
+LEGGED ROBOTS
+One of the main challenges in actuator design is to identify critical metrics for the target application and tradeoffs between the metrics across design parameters. For dynamic legged locomotion, we identiﬁed the following key actuator characteristics: 1) high mass-speciﬁc torque (torque density), 2) efﬁciency, and 3) impact mitigation capability. The following subsections describe these three aspects in more detail.
+A. Torque density
+Achieving high torque with a minimum actuator mass is critical in running robots. This is due to in part to the high ground reaction forces (GRFs) required to propel the body. The maximum normal GRF on each leg is about three times the bodyweight in a human running at 4.5 m/s [6]. In data for a dog galloping at 9 m/s [7], it reaches 2.6 times the bodyweight during a ground phase of approximately 70 ms (20% of gait period). While long legs provide a large workspace, they intensify the torque requirements to produce these forces. To meet GRF requirements at the foot, large moment arms dictate high joint torques. For example, the maximum torque at the knee required for a 75 kg human to jump is around 200 Nm [8]. This is remarkable considering that the torque from a 1270 kg Toyota Corolla is 170 Nm at 4000 rpm [9].
+Simply employing large motors to meet torque requirements is not viable in mobile robot design. Higher actuator masses contribute to GRF requirements, and thus increase torque requirements. This relationship highlights the importance of maximizing torque density for actuators in legged machines.
+
+The power of the motor often becomes a major metric in designing motors for traditional applications. However, the high power achieved by high-speed continuous operation does not apply to legged machines, where operation is mostly intermittent and varying directions continuously. In fact, the power density of EM actuators themselves (continuous up to 7 kW/kg [10], 3-5 kW/kg [11]) can signiﬁcantly exceed that of biological muscle (Max. 0.3 kW/kg) [12], and of most manufacturer-recommended operating speciﬁcations for commercial motors.
+B. Energy Efﬁciency
+Energy efﬁciency is a critical metric for legged machines. Locomotion is a typically energy dissipative process and the loss mechanisms are categorized into three major modes: Joule heating, transmission, and interaction losses [13]. We previously described design principles to minimize these losses for highly-efﬁcient legged robots. Their implementation, in the design of the MIT Cheetah, has led to a machine that rivals the efﬁciency of animals [13]. However, this design was not explicitly optimized for efﬁciency.
+Transmission selections in particular have coupled implications for Joule heating and interaction losses. Low gear ratios will reduce the reﬂected inertia but can cost higher energy in generating torque via Joule heating. On the other hand, if the gear ratios used in a robot are too high for its application, they may improve energetics in theory but can break a leg upon contact or even could prevent a desired dynamic motion due to excessive mechanical impedance. This tradeoff should further be considered based on the robot’s functional requirements such as payload, required travel distance per charge, and travel speed. For instance, a load-carrying robot walking at slow speeds could energetically beneﬁt from a higher gear ratio in comparison to an agile robot running at high speeds. Gear efﬁciencies and frictional properties play a large role in balancing energetic tradeoffs. Yet, while there exist many methods to identify gear energetics of a fabricated design [14], accurately modeling gear energetics a priori for design optimization is complicated by a variety of factors [15]. Still, whereas energy efﬁciency is a metric we should seek to maximize, impact mitigation is an essential requirement.
+C. Impact mitigation
+While satisfying the torque and power requirements, the leg should be able to mitigate impact forces upon collision. There are a number of approaches in the literature which may use active control or passive mechanical dynamics to minimize collisional forces surrounding an impact event.
+Researchers have developed several approaches that employ impedance control with high-gear-ratio actuators to achieve force reduction after impact. Apparent impedance can be modulated by implementing impedance control [16] with torque sensors at each joint [17], [18]. However, this control approach used with high-gear-ratio actuators has not demonstrated robustness to impacts or high-bandwidth force control capabilities for dynamic legged locomotion. Previous work has addressed human-robot impacts in industrial settings with
+
+mb
+
+mb
+
+✓
+
+m`
+
+yˆ
+
+I
+
+ki
+
+yˆ ks
+
+m`
+
+I
+
+ki
+
+(a)
+
+f
+
+(b)
+
+f
+
+Fig. 2. Prototype systems to understand the effects of actuation and leg design on mechanical bandwidth and impact force magnitude. (a) Prototype with rigid transmission and (b) prototype with series elastic actuation (SEA). The SEA rotational actuator is assumed connected to mass b, with the SEA spring between the actuator output and the pinion.
+
+the DLR Lightweight Robot III [19]. Initial impact events are detected, and effective control post impact is shown to reduce overall collision severity. As a main difference, proprioceptive actuation provides a mechanical approach to minimize the severity of initial and post-impact forces, which can otherwise be detrimental in high-speed collisions without sufﬁcient compliance.
+The series elastic actuation (SEA) paradigm [20], [21], [22] has been employed in legged machines to reduce initial rigid-body impacts by purposefully adding mechanical elasticity in series with an actuator. More recently, numerous designs have been presented for variable stiffness actuators (VSAs) to mitigate impacts. Stiffness modulation in VSAs has been achieved through a variety of mechanisms. Designs may strategically load nonlinear springs [23] to modulate stiffness or may use linear springs by stretching them in a nonlinear way [24]. Vanderborght et al. [25] provide a thorough review and classiﬁcation of the many ways to provide and modulate stiffness in VSAs. Other SEA designs, such as in the quadruped StarlETH, have demonstrated successful execution of controlled variable leg impedance using ﬁxed stiffness joint SEAs [26]. While SEAs offer a great potential actuator solution for legged robots, their force bandwidth can suffer in comparison to designs without added compliance. The next section will quantify this effect in a simple leg model.
+
+III. PROPRIOCEPTIVE FORCE CONTROL ACTUATION A. Impact force analysis in a simpliﬁed leg model
+
+This section studies how the design parameters of an
+
+actuation system affect its impact dynamics and force control.
+
+A simple model, shown in Fig. 2, was developed to capture
+
+essential design parameters for a legged system. The model
+
+consists of a body mass m at height y . Forces delivered to
+
+b
+
+b
+
+the mass are modulated by an actuated rack and pinion. A
+
+pinion of radius r is driven by an ideal actuator with output
+
+torque ⌧ . An inertia I represents the total rotational inertia of
+
+the actuator including gear transmission. The rack, with mass
+
+m , abstracts the entire leg and interfaces with the ground
+`
+through a Hookean spring with stiffness k . This stiffness
+i
+represents a lumped stiffness of the ground, foot covering, and
+
+any residual structural stiffness of the leg. We assume that this interface spring has no preload. This assumption is captured in the model by placing the origin in the vertical direction at a height which corresponds to the spring’s rest length at impact.
+Letting q y , ✓ T , the dynamics of the leg model follow =[ b ]
+
+H q K q g ST ⌧
+
+(1)
+
+¨+ + =
+
+from standard Lagrangian methods, with
+
+h
+
+i
+
+h
+
+i
+
+H =
+
+m +m
+
+b
+
+`
+
+rm
+
+rm
+
+m
+
+r2
+
+`
++
+
+I
+
+g =
+
+(m + m )g
+
+b
+
+`
+
+m gr
+
+(2)
+
+`
+
+`
+
+`
+
+h
+
+i
+
+K =
+
+k
+i
+rk
+
+rk r2k i
+
+S 0 1. =[ ]
+
+(3)
+
+i
+
+i
+
+A modal analysis of the system is tractable, providing insight
+
+into both the impact dynamics and the mechanical bandwidth
+
+of the leg. This simple linear model captures many features
+
+pertinent to the design of multi-DoF legs, such as the effects
+
+of reﬂected actuator inertia on the GRFs following impact.
+
+The
+
+ground
+
+reaction
+
+force
+
+ft ()
+
+onto
+
+the
+
+leg
+
+is
+
+provided
+
+by
+
+the interface spring
+
+ft ky t
+
+k rk q t .
+
+( ) = i `( ) = | [ i {z i}] ( )
+
+(4)
+
+:=C
+
+Letting s be the Laplace variable, the Laplace transform
+
+of
+
+the
+
+ground
+
+reaction
+
+force
+
+F
+
+s ()
+
+is
+
+related
+
+to
+
+the
+
+Laplace
+
+transform of the torque T s and initial conditions through:
+
+()
+
+Fs
+
+C s2H
+
+K
+
+1
+
+⇥ ST
+
+T
+
+s
+
+( )= ( + )
+
+()
+
+⇤
+
+g/
+s
+
++
+
+H(sq0
+
++
+
+q˙ 0)
+
+(5)
+
+To analyze properties of the GRF, drop-test conditions are
+
+assumed. The leg is assumed stationary with respect to
+
+the body at an impact with initial velocity y˙b,0. As such,
+
+q0
+
+=
+
+, [0
+
+0] ,
+
+and
+
+q˙ 0
+
+=
+
+[y˙b,0,
+
+T. 0]
+
+The
+
+Laplace
+
+transform
+
+of
+
+the
+
+ground
+
+reaction
+
+force
+
+F
+
+s ()
+
+can
+
+then
+
+be
+
+found
+
+through
+
+algebraic expansion of (5):
+
+Fs ()
+
+=
+
+rk m
+
+i
+ds
+
+bT
+
+s ( )+
+
+()
+
+k m m r2 Im Im ⇣ i( b ` + b + `) ds
+
+y˙b,0
+
++
+
+g s
+
+⌘
+
+(6)
+
+()
+
+where
+
+d s m I m I r2m m s2 k m r2 I . (7) ( ) = ( b + ` + b `) + i( b + )
+
+Tphis
+
+second-order
+
+system
+
+has
+
+a
+
+single
+
+natural
+
+frequency
+
+!
+n
+
+=
+
+k /m where m is the effective mass felt by the spring
+
+ie
+
+e
+
+m
+e
+
+=
+
+mI
+b
+
+mI + `+
+m r2
+
+r2m m
+b`
+I
+
+.
+
+(8)
+
+b+
+
+It is interesting to note that the reﬂected actuator inertia
+
+directly modulates the effective mass
+
+m m , and
+
+m m m , (9)
+
+Ili!m0 e = `
+
+l!im1 e = ` + b
+I
+
+where any increase in I leads to an increase in m
+e
+
+dm
+e
+dI =
+
+r2m2
+b
+m r2 I
+
+2
+
+>
+
+. 0
+
+(10)
+
+( b +)
+
+Further, letting
+
+
+
+J :=
+
+@y @y
+``
+@y @✓
+
+, = [1
+
+r ]
+
+(11)
+
+b
+
+Inertia (kg"m2) Inertia (kg"m2)
+Frequency (Hz)
+
+Bandwidth (Hz)
+10 4 10 2 10 0 10 -2 10 -4 10 -6
+
+104 103:5 103 102:5 102 101:5
+
+Max. Impact Force (N)
+10 4 10 2 10 0 10 -2 10 -4 10 -6
+
+104 103:5 103 102:5 102 101:5
+
+10 3
+
+!1
+
+!2
+
+q
+
+!n !˜2 =
+!~1
+
+/ ks
+
+Ir2 mb m` r2 mb m` +I(m` +mb )
+
+!~2
+
+10 2
+
+q
+
+!˜1 =
+
+/ ks
+
+Ir2 mb I+r2 mb
+
+10 1
+
+10
+
+0 10
+
+1
+
+10 2
+
+10 3
+
+10 4
+
+10 5
+
+Series Spring Constant ks (Nm/rad)
+
+10
+
+-8 10
+
+-4
+
+10 -2
+
+10 0
+
+10 2
+
+Leg Mass (kg)
+
+10
+
+-8 10
+
+-4
+
+10 -2
+
+10 0
+
+10 2
+
+Leg Mass (kg)
+
+Fig. 3. Inﬂuence of leg mass m and actuator inertia I on open-loop force
+
+`
+
+control bandwidth ! and maximum impact force assuming an initial velocity
+
+of y˙b,0 =
+
+n
+1 m/s. Parameters k
+
+= 106 N/m, r = 0.1 m, and m
+
+= 32 kg
+
+i
+
+b
+
+were used to roughly match the MIT Cheetah on rigid ground with a 3 mm
+
+rubber footpad.
+
+Fig. 4. Inﬂuence of series spring stiffness k on the natural frequencies
+s
+
+of the system, !1 and !2. The mechanical bandwidth, as determined by the
+
+lowest natural frequency, increases with k . Parameters r = 0.1 m, I =
+
+0.010 kg · m2, k
+
+= 106 N/m, m
+
+s
+= 3 kg, and m
+
+= 32 kg, roughly match
+
+i
+
+`
+
+b
+
+that of the MIT Cheetah running on rigid ground with a 3 mm rubber footpad.
+
+The system kinetic T and potential V energies take the form:
+
+as the Jacobian for leg mass, straightforward algebra veriﬁes
+
+m
+
+JH 1JT 1 .
+
+(12)
+
+e=
+
+Thus, m is precisely a task-space (operational-space) inertia
+e
+[27] measured at the foot prior to the interface spring. With this connection, Section III-B generalizes the analysis to higherDoF articulated mechanisms.
+Returning to the system (6) and examining the impact force in more detail, we assume ⌧ = 0 in order to isolate the passive mechanical properties of the mechanism. The inverse Laplace transform of (6) then provides
+
+p
+
+ft ( )=
+
+y˙b,0
+
+km ! t mg i e sin( n ) + e (1
+
+!t . cos( n ))
+
+(13)
+
+Figure 3 shows the dependency of the maximum impact force and mechanical bandwidth ! on the leg design parameters I
+n
+and m . Due to the dependence of impact force and bandwidth
+`
+on m , a combination of low leg mass and low actuator inertia
+e
+simultaneously maximizes open-loop force control bandwidth
+and minimizes impact force magnitudes. For high leg mass, the
+actuator inertia has comparatively less effect on these metrics.
+
+This analysis was extended to the case of including series compliance into the pinion actuation, as shown in Fig. 2(b). The addition of compliance helps to soften impact, but is known to have a detrimental effect on closed-loop force control bandwidth. In terms of design, the requirements of a closed-loop controller to ﬁght the natural dynamics of the system in high-frequency regimes can be minimized by designing to maximize the open-loop mechanical bandwidth of the mechanism. For this extended model, we approximate its mechanical bandwidth with its lowest natural frequency.
+
+In this extended case, the system dynamics can again be
+
+placed in the form of (1). A series spring of stiffness k is
+
+s
+
+modeled between a motor angle ✓ and a spring output angle
+
+m
+
+✓.
+
+The
+
+extended
+
+system
+
+thus
+
+has
+
+conﬁguration
+
+q
+
+=
+
+y, [b
+
+✓,
+
+✓
+m
+
+].
+
+T 1 m y2 1 I ✓˙2 1 m y2 , and
+
+(14)
+
+=
+
+b
+
+˙
+b
+
++
+
++
+m
+
+`
+
+˙
+`
+
+2
+
+2
+
+2
+
+V g m y g m y 1 k y2 1 k ✓ ✓ 2 . (15)
+
+=
+
+b b+
+
+` l+
+
+i
+
++
+`
+
+s( m
+
+)
+
+2
+
+2
+
+A Lagrangian development can be followed to derive the
+
+dynamics, again resulting in a linear system (1).
+
+Following this development, the ground reaction force for
+
+the extended system again matches (5). The torque-to-force
+
+transfer
+
+function
+
+Hs ⌧( )
+
+satisﬁes
+
+H s C s2H K ⌧( ) = ( + )
+
+1ST
+
+=
+
+k rk m
+s ib
+↵s4 s2
+
+(16)
+
+++
+
+where
+
+↵ Ir2m m ,
+
+(17)
+
+=
+
+b`
+
+k Im Im r2m m Ir2k m , = s( b + ` + b `) + i b
+
+and
+
+(18)
+
+k k m r2 I .
+
+(19)
+
+= s i( b + )
+
+Letting j represent the imaginary variable, the four poles s =
+
+±j !1 2 of (16) provide the two natural frequencies of this
+,
+
+system as
+
+sp
+
+!1,2 =
+
+⌥
+
+2
+↵
+
+↵ 4
+
+.
+
+(20)
+
+2
+
+Graphs of these two frequencies are shown in Fig. 4. As
+
+intuition
+
+may
+
+suggest,
+
+!1
+
+!
+
+!
+n
+
+as
+
+k
+s
+
+!
+
+1,
+
+where
+
+!
+n
+
+is
+
+the natural frequency for the previous prototype with rigid
+
+transmission. At low transmission stiffnesses k , the interface
+
+s
+
+spring k and leg mass m do not affect the mechanical
+
+i
+
+`
+
+bandwidth
+
+q
+
+!˜1 :=
+
+/ ⇡ ! ks
+
+Ir2 mb I+r2 mb
+
+1
+
+(21)
+
+At high stiffnesses k , a similar, yet less physically meaningful
+
+s
+
+result holds for !2 q
+
+!˜2 :=
+
+/ ⇡ ! . ks
+
+Ir2 mb m` r2 mb m` +I(m` +mb )
+
+2
+
+(22)
+
+Although it is possible to achieve a closed-loop force control bandwidth beyond the lowest natural frequency of the system, this process is sensitive to model-based information and requires additional actuation effort to ﬁght the natural dynamics
+
+of the system. This is further complicated in applications of
+
+non-collocated force control which must compensate for the
+
+detailed dynamics of potentially many transmission elements
+
+between the sensor and the actuator.
+
+Thus, we argue that the open-loop mechanical bandwidth
+
+of a mechanism ultimately limits the practical closed-loop
+
+bandwidth. Indeed, with the numbers used in the ﬁgure above
+
+!
+n
+
+=
+
+. 79 7
+
+Hz,
+
+a
+
+value
+
+similar
+
+to
+
+that
+
+reported
+
+with
+
+our
+
+frame-
+
+work
+
+in
+
+Section
+
+V.
+
+The
+
+addition
+
+of
+
+a
+
+stiffness
+
+k
+s
+
+=
+
+70
+
+Nm/rad,
+
+similar
+
+to
+
+that
+
+in
+
+StarlETH
+
+[26],
+
+provides
+
+!1
+
+=
+
+. 13 5
+
+Hz,
+
+similar to the 9 Hz closed-loop bandwidth reported in their
+
+LQR-based SEA torque control.
+
+Through this analysis, it follows that to minimize impact
+
+forces and maximize mechanical bandwidth, a design should
+
+be sought with minimal reﬂected actuator inertia, minimal leg
+
+mass, and minimal actuator compliance. Reﬂected inertia in
+
+particular has been shown to play an important role in the
+
+effective mass that governs collisional dynamics. The next
+
+section will address how to generalize and quantify these
+
+effects in more complete leg models.
+
+B. The Impact Mitigation Factor (IMF)
+In more complex mechanisms, factors such as actuator placement and the structure of the leg articulation ultimately determine how reﬂected actuator inertias affect the backdrivability of the robot. While backdrivability includes both velocity-dependent and inertia-dependent effects [2], inertiadependent effects are much more difﬁcult to shape through closed-loop impedance control [16], [28]. Thus, these passive inertial effects are purely dependent on the inherent design characteristics of the robot. Of these inherent characteristics, reﬂected actuator inertias play an important role. They directly determine the degree to which the body inertia contributes to impacts, as observed in the simple leg model in (9). As a result, the highest loads felt in the legs, gearboxes, and other transmission components are governed, in large part, by design decisions centered on reﬂected actuator inertia.
+Previous work has addressed the role of the effective contact inertia in modeling impact events [29], which is used in Section III-B1. This previous work modeled the values of impact impulses under speciﬁc impact conditions, which may be of use in comparing designs for a speciﬁc robot. For unstructured environments where impact conditions may not be known, however, maximizing overall inertial backdrivability is imperative to mitigate impact forces.
+With these impact-related motivations, this section quantiﬁes how effectively the free dynamics of the mechanism are at reducing impact impulses in a ﬂoating-body robot. To emphasize the importance of actuator design on impact dynamics, impulse reduction is evaluated through comparison to a design with worst-case reﬂected inertia, one where all joints are rigidly locked. Through this approach, a new metric, called the impact mitigation factor (IMF), is introduced to quantify the normalized inertial backdrivability of the mechanism. Despite the importance of backdrivability to physical interaction, there are not yet meaningful metrics to compare backdrivability across machines and to include EM actuator properties in
+
+such a comparison. The new development in Section III-B2 illuminates the effects of actuator design on previous impact analyses, while Section III-B3 formulates the new IMF metric to quantify inertial backdrivability across different robots.
+
+1) Rigid-Body Impact Dynamics: Given a ﬂoating-body
+
+system, with base coordinates q 2 R6 and internal (joint)
+b
+coordinates q 2 Rn its dynamics can be compactly described
+j
+through
+
+
+
+
+
+HH
+bb bj
+HH
+
+q ¨b q
+
++
+
+h q, (
+
+q˙ )
+
+=
+
+ST
+
+⌧
+
++
+
+JT
+
+f
+
+(23)
+
+jb
+
+jj ¨j
+
+where
+
+q
+
+=
+
+q ,q T [ b j]
+
+2
+
+Rn+6,
+
+h(q, q˙ )
+
+2
+
+Rn+6
+
+includes
+
+the
+
+Coriolis, gravity, and spring-dependent terms, J 2 Rm⇥(n+6)
+
+is a contact Jacobian, and f 2 Rm represents the contact force.
+
+For point-foot contacts considered here, m = 3. In a case of series compliance at the joints, q may include both joint and
+j
+motor angles. In contrast to the previous section, we do not
+
+model any ground compliance, and assume that impact can be
+
+considered as an impulsive event. As a result, the analysis is
+
+idealized in comparison to that in the previous section.
+
+Given
+
+a
+
+state
+
+q,
+
+q ˙
+
+just
+
+before
+
+a
+
+foot
+
+impact,
+
+the
+
+system
+
+hits
+
+the
+
+ground
+
+with
+
+a
+
+velocity
+
+v
+
+=
+
+Jq ˙
+
+and
+
+experiences
+
+a
+
+contact
+
+impulse ⇢ 2 R3 as given by [29]:
+
+⇢ = ⇤v .
+
+(24)
+
+⇤ 2 R3⇥3 is the operational-space inertia matrix (OSIM) [27], [30], [31] of the system felt at the contact and is given by
+
+⇤ J H 1 JT 1 . =
+
+(25)
+
+2) Actuator Effects on the OSIM: It is important to note how the reﬂected inertias of EM actuators affect the OSIM. Generally, the mass matrix H, as partitioned in (23), provides a kinetic energy metric
+
+T 1 qT Hq =˙ ˙
+
+(26)
+
+2
+
+where T includes the kinetic energy of rigid-body links as well
+
+as rotor inertias and gears of EM actuators. Thus, the mass
+
+matrix can always be partitioned into a matrix that accounts
+
+for the kinetic energy of all rigid-body links H and a matrix
+rb
+H that accounts for the kinetic energy of the moving parts
+mot
+within link-mounted actuators (rotors, gears, etc.)
+
+HH H . = rb + mot
+
+(27)
+
+H is often approximated as [32]
+mot
+
+H
+mot
+
+=
+
+diag(01⇥6,
+
+I1,
+
+.
+
+.
+
+.
+
+,
+
+I n)
+
+(28)
+
+where I represents the reﬂected rotational inertia on DoF
+i
+i and scales as the square of its associated gear ratio. This
+
+approximation is only valid for actuators with large gear ratios,
+
+where the only signiﬁcant kinetic energy of the motor elements
+
+is from rotational kinetic energy along their rotational axes.
+
+Regardless of this approximation, it can be seen from
+
+⇣ ⇤ JH H
+
+⌘ 1 JT
+
+1
+
+= ( rb + mot )
+
+(29)
+
+that any increase to the actuator inertia H (in a positive
+mot
+semideﬁnite sense) necessarily gives rise to an increase in
+
+contact inertia ⇤, generalizing the simpliﬁed result in (10).
+
+In the worst-case scenario, if reﬂected inertias become
+
+arbitrarily large on each joint, the system will roughly behave
+
+as if all the joints are locked. This worst-case design can
+
+be used as a benchmark to evaluate the effects of reﬂected
+
+inertias in designs with the joints free to move. Partitioning
+
+the Jacobian as
+
+⇥
+
+⇤
+
+J J J,
+
+(30)
+
+=b j
+
+an impact velocity v would give rise to a contact impulse in a locked system ⇢ as
+L
+
+⇢
+
+J H 1JT 1 v .
+
+(31)
+
+=
+L
+
+b bb b
+
+With this insight, we deﬁne a locked contact inertia ⇤ as
+L
+
+⇤
+
+J H 1JT 1 .
+
+L = b bb b
+
+(32)
+
+Intuitively, the apparent inertia of the system with joints locked should be greater that the inertia felt with the joints free to rotate. This can be shown more formally, that ⇤ ⇤ in a
+L
+positive semideﬁnite sense. Proof is given in the appendix. It is important to note that ⇤ is invariant with changes in gear
+L
+ratio (assuming negligible change in overall mass).
+
+3) Impact Mitigation: Development and Metric: Given an impulse that is experienced in the locked system, it is natural to consider: How effectively are the free dynamics of the mechanism at mitigating this impulse? That is, assuming the same impact velocity, how would the impact in the free system compare to its non-backdrivable equivalent? Given the locked impulse ⇢ , equal impact velocities v are achieved when the
+L
+free system experiences an impulse
+
+⇢ ⇤⇤ 1⇢ =
+
+(33)
+
+LL
+
+Roughly, the term ⇤⇤ 1 characterizes how much inertia is
+L
+felt at impact in comparison to the overall (locked) system
+inertia. The reduction in impulse is then given by
+
+⇢ ⇢ I ⇤⇤ 1 ⇢ . L = | {z L } L
+
+(34)
+
+:=⌅
+
+where ⌅ is introduced as an Impact Mitigation Matrix (IMM), and its determinant
+
+⇠
+
+⌅
+
+:= det( )
+
+(35)
+
+as the Impact Mitigation Factor (IMF). This new factor has
+
+interesting properties that pertain to backdrivability. It is shown
+
+in the appendix that 0  ⇠  1. An IMF ⇠ = 1 corresponds to a system with perfect inertial backdrivability that eliminates all
+
+impact,
+
+whereas
+
+⇠
+
+!
+
+0
+
+as
+
+⇤
+
+!
+
+⇤.
+L
+
+Due
+
+to
+
+the
+
+normalization
+
+provided from the locked case (with roughly inﬁnite reﬂected
+
+actuator inertia), the IMF is a nondimensional quantity which
+
+enables comparison across machines of different scale.
+
+Further, one may be interested in the capability of a design
+
+to mitigate impact in a particular direction, for instance in
+
+the case of a hopping robot subject to predominantly vertical
+
+impacts. Given a direction x, we deﬁne the directional IMF
+
+(DIMF) ⇠ as
+
+x
+
+⇠ x=1
+
+1 2
+
+xT
+
+⇤x
+
+1 2
+
+xT
+
+⇤
+L
+
+x
+
+(36)
+
+where ⇠ similarly inherits the property that  ⇠ 
+
+x
+
+0 x1
+
+from the fact that ⇤ ⇤. This DIMF has a clear physical
+
+L
+
+interpretation as well. The kinetic energy lost due to an impact
+
+with velocity v is
+
+T 1 v⇤v . =
+
+(37)
+
+2
+
+Thus, ⇠ quantiﬁes the percent decrease in energetic losses
+x
+afforded through the free dynamics of the mechanism when
+
+impacting in direction x.
+
+4) Series Elasticity and the IMF: When compliance is added to a stiff transmission model, portions of the actuator inertia are no longer inertially coupled to the foot. This inertial decoupling affects ⇤ and the associated impact impulse. The compliance, roughly, redistributes some of the impact impulse to a window of time following impact. Changes in the values of the stiffness modify how spread out the forces become, but do not change the initial impulse, which is governed by inertial properties alone. In this sense, adding compliance to a rigid transmission model will affect the IMF, while changes to the values of stiffness will not. Considering non-impulsive impact events over a ﬁnite window of time, which should always be the case for collisions in reality, represents an important area for future extension of the IMF. Further details on the IMF for a system with SEAs are provided in comparison to the design of the MIT Cheetah leg in Section V.
+
+C. Geometric considerations for electromagnetic motors
+From the analysis of the previous section, we seek to determine principles for actuator selection that minimize actuator inertia while providing the high torques necessary for highspeed locomotion. Many design parameters of EM actuators contribute to overall performance. However, we consider gap radius to be a critical parameter for the purposes of maximizing torque density and providing transmission transparency. The gap radius of an EM actuator is the radius of the magnetic interface between the rotor and the stator. While gap radius is one of many possible condensed indicators of performance [33], it is directly related to torque density and torque per total inertia. Torque per total inertia, in turn, is directly related to the available bandwidth of the actuator.
+Ignoring edge effects, the axial length of the motor does not affect torque density and torque per inertia because increasing axial length is equivalent to adding identical motors on the same axle. In Figure 5, Emoteq HT series motor characteristics are plotted against gap radius. Motors of the same gap radius and various lengths have overlapping values of torque density and torque per inertia, whereas gap radius directly affects those characteristics. For extreme geometries beyond these designs, edge effects degrade the metrics as length decreases.
+1) Effects of Geometry on Motor Performance Metrics: To understand the main effects of motor geometry on torque density and torque per inertia, we consider a class of designs
+
+106 104 102 100 10-2 10-4 10-6
+
+= =J / rg!1:6 = =M / rg0:8 Kt2=R / rg 4:1
+
+Stator Rotor
+
+l Assumptions: t ,t,M r s = constant
+r
+g
+
+r g : gap radius l
+
+t
+s
+
+: motor length
+
+t r : rotor thickness t Ms : stator thickness
+
+t
+r
+
+: mass
+
+range of motor geometries
+
+Fig. 6. Motor performance tradeoffs are considered for a constant mass budget under assumptions of constant rotor/stator thickness and electromagnetic similarity.
+
+100.5
+
+101
+
+101.5
+
+102
+
+Gap Radius rg (mm)
+
+Fig. 5. Motor performance metrics ⌧ /J, ⌧ /M , and K2/R extracted from
+
+Emoteq frameless HT series motors.
+
+t
+
+under the following simplifying conditions. First, the radial
+
+thickness of the rotor and stator are assumed ﬁxed. Second, the
+
+cylindrical geometries of the rotor and stator are approximated
+
+to ﬁrst order as thin walls. As a result, the actuator mass
+
+is given by M ⇡r l t ⇢ t ⇢ and rotor inertia by
+
+= 2 g ( s s + r r)
+
+J
+
+=
+
+⇡lt 2r
+
+⇢
+r
+
+r3,
+g
+
+where
+
+r
+g
+
+is
+
+the
+
+gap
+
+radius,
+
+l
+
+is
+
+the
+
+axial
+
+length, and t⇤ and ⇢⇤ are the radial thickness and density,
+
+respectively, of the stator and rotor. Third, current density is
+
+assumed constant [34]. Neglecting edge effects, this results
+
+in conditions of thermal and electromagnetic similarity, where
+
+the steady-state stator temperature and average shear stress
+s
+on the rotor are constant across designs. The resulting torque
+
+from
+
+this
+
+stress
+
+⌧
+
+=
+
+⇡r2l 2
+
+g
+
+does depend on motor geometry.
+s
+
+Therefore, within this class of designs, we predict that
+
+torque density and acceleration capability (torque per rotor
+
+inertia) scale by the following relationships with r , and we
+g
+observe no effect from axial length.
+
+⌧ /M / r
+
+(38)
+
+g
+
+⌧ /J / /r
+
+(39)
+
+1g
+
+Another important characteristic is torque production efﬁciency, which is related to the motor constant K . K2 is
+MM
+equivalent to the torque squared per unit ohmic power loss. Torque is generated from sheer stress / IBn/A where I
+s
+is the motor current, B is the ﬁeld strength of the magnets, n
+is the number of wires in a cross section perpendicular to the axis, and A / r is the area of the cross section. Using this
+g
+relationship, torque production efﬁciency is given as
+
+K2
+M
+
+=
+
+K2
+t
+R
+
+=
+
+⌧2 I2R
+
+/
+
+r2l2B2n2A
+
+g
+
+w
+
+⇢l
+
+(40)
+
+w
+
+where K is the torque constant, R is the terminal resistance,
+
+t
+
+A is the cross section area of each wire, l the total length
+
+w
+
+w
+
+of wire, and ⇢ is the the resistivity of the wire material.
+
+An additional set of assumptions is used to simplify this
+
+relationship. First, a wire length l / nl is used, which
+w
+assumes all stator wire contributes to winding coils. Second,
+
+a ﬁxed wire gauge is assumed, which implies that the number
+
+of wires in the cross section n / r . Thus, the relationship
+
+g
+
+becomes
+
+⌧2 I2R
+
+/
+
+r3l
+g
+
+.
+
+(41)
+
+2) Comparison to Catalog Data: Figure 5 shows values
+
+for these metrics across data collected from Emoteq HT
+
+series motors. The max continuous torque as reported on data
+
+sheets was used to approximate conditions of electromagnetic
+
+similarity. Within this dataset, the torque density was found
+
+proportional to r0.8; torque per rotor inertia proportional to
+
+r
+
+16 .
+
+;
+
+and
+
+g
+torque
+
+production
+
+efﬁciency
+
+proportional
+
+to
+
+r4.1.
+
+g
+These
+
+factors
+
+of
+
+proportionality,
+
+r0.8,
+
+r
+
+1.6
+
+and
+
+r4.1
+
+g
+are
+
+gg
+
+g
+
+relatively consistent with the proportions in our dimensional
+
+analysis r1, r 1, and r3 from (38), (39), and (41) respectively.
+
+gg
+
+g
+
+The similarity is to be taken considering that the dimensions
+
+of these motors used in Fig. 5 do not exactly match our
+
+assumptions, and in particular the assumption of constant
+
+stator and rotor thickness. In the Emoteq HT series motors, the
+
+stator and rotor thicknesses scale by t / r0.8 and t / r0.4
+
+sg
+
+rg
+
+respectively. The incorporation of these trends into the pre-
+
+vious analysis would lead to a lower ⌧ /J, lower ⌧ /M , and
+
+higher K2/R as observed in the motor catalog data. Changing
+t
+rotor/stator thickness, however, has a nonlinear effect on the
+
+magnitude of the magnetic ﬁeld at the rotor-stator air gap,
+
+and heavily inﬂuences stator winding design. As a result, the
+
+effects of these changes are difﬁcult to model accurately in
+
+general. The remainder of the section returns to considerations
+
+of ﬁxed rotor and stator thickness across designs. 3) Optimizing Geometry Under Design Constraints: The
+
+theoretical motor performance metrics (38) and (39) can be
+
+helpful in making initial decisions related to actuator geometry
+
+while considering design constraints. Such considerations are
+
+unique relative to previous isometric scaling analyses that
+
+ﬁxed geometry [34], [35]. Suppose a desired output torque
+
+⌧ and a ﬁxed mass budget M for an actuator in the class
+out
+considered previously. Under this mass budget, motor length
+
+is
+
+constrained
+
+to
+
+scale
+
+by
+
+l
+
+/
+
+/r 1g
+
+as
+
+shown
+
+in
+
+Fig.
+
+6.
+
+To
+
+meet the output torque requirements across different designs,
+
+suppose that a gear train with ratio N is used.
+
+As an initial approximation, assume that the gear box has
+
+negligible added mass, inertia, and friction torques from the
+
+gears themselves. The required gear ratio as a function of gap
+
+radius is then
+
+N =
+
+⌧
+out
+⇡r2l
+
+/ /r 1g
+
+(42)
+
+2 gs
+
+with a reﬂected rotor inertia through the gearbox of
+
+J
+
+J N2 ⇡r3lt ⇢ N2 / r0
+
+ref = r = 2 g r r
+
+g
+
+(43)
+
+when the scalings for l and N are considered. While the total
+
+reﬂected rotor inertia and the total torque at the output shaft
+
+stay the same, increasing the gap radius lowers the required
+
+gear ratio. In summary, in a design space where the motor
+
+mass and the output torque requirement are held constant, and
+
+gearboxes are idealized, (43) shows that total reﬂected inertia
+
+remains constant across variations in gap radius.
+
+Considering the non-idealized effects of gear transmissions,
+
+however, shows the beneﬁts of high-gap radius designs when
+
+the actuator mass budget is ﬁxed. The results of constant
+
+output torque and constant reﬂected inertia only hold across
+
+different design geometries if the mass, friction, and inertia
+
+of the gears are ignored. If we assume instead that mass,
+
+friction, and gear inertia increase monotonically with gear ratio
+
+N , this implies in turn that ⌧ will decrease and J will
+
+out
+
+r
+
+increase monotonically with N . Thus, these considerations
+
+favor a larger gap radius motor when mass budget is ﬁxed.
+
+Such a design will have a smaller gear ratio, fewer gear stages,
+
+and less gear mass, resulting in less friction loss, higher torque
+
+density, higher bandwidth, and higher IMF.
+
+Therefore, in this design space, there is no tradeoff, and in
+
+its purest form, this analysis advocates for high-gap-radius
+
+direct-drive robots [36]. However, the geometry required for
+
+direct drive to have enough torque is typically infeasible. For
+
+example, in order to design a direct-drive motor for the MIT
+
+Cheetah, one such motor would have been 76.2 cm in diameter
+
+with a 5 mm axial length. Considering these limitations, the
+
+optimal actuator for a given mass will thus consist of a motor
+
+with the largest gap radius as allowed by space and the smallest
+
+gear ratio as required by torque speciﬁcations. 4) Other Considerations: For extreme geometries, edge
+
+effects begin to degrade the beneﬁts of high-gap-radius de-
+
+signs. As a result, it is important to view this analysis as providing a guiding principle to focus design pressure for
+
+actuators in legged machines. Outside the class of motors
+
+considered, or at edges of the design space, detailed EM,
+
+winding, and manufacturing considerations should limit the
+
+degree to which gap-radius effects are regarded as dominant
+
+without further modeling.
+
+In addition to motor geometry optimization, we can increase
+
+torque density by utilizing the intermittent torque of the
+
+motor, which is much higher than the continuous torque limit.
+
+These operating regimes are depicted in Fig. 7. Many robotic
+
+actuators operate under the continuous torque limit, although
+
+the duty factor of high torque usage in most legged robots is
+
+small. In legged locomotion, the continuous torque limit of the
+
+motor does not limit torque capability. Unlike most EM motor
+
+applications, the joint torque proﬁles in legged locomotion
+
+constantly ﬂuctuate.
+
+IV. PROPRIOCEPTIVE ACTUATION IN THE MECHANICAL DESIGN OF THE MIT CHEETAH LEG
+The MIT Cheetah is designed to emulate various locomotion capabilities of quadrupeds such as walking, running, and jumping. Such behaviors involve repeated high impacts followed by
+
+τ"
+DemagneD'ezma'ago.n* toTroqruqeue
+
+SatSuarat.'on TToorrqquuee
+
+Intermittent Operation region
+
+Con'Cnonuto. us tToorqrquuee
+
+~0.3kW/kg Continuous operation
+
+region
+
+0
+
+operation range recommended by
+
+ω"
+
+motor manufacturer
+
+Fig. 7. Different operational limits of a motor in torque-speed space. The green area represents the manufacturer-recommended operation that is bounded by the voltage limit and continuous torque determined by the thermal limit. The blue area shows the extended operating range of the motor by raising voltage and speed but maintaining current under the continuous torque limit. The motor may intermittently exceed the continuous torque limit and operate in the transient operation space shown in peach color. Beyond the saturation torque, parts of iron in the stator become magnetically saturated and the torque/current relationship becomes highly nonlinear as the torque constant decreases. This nonlinearity can be compensated for in control to provide accurate torque delivery. At the demagnetization torque, magnetic ﬁelds from the stator begin to demagnetize the rotor magnets, damaging the motor.
+
+Planetary gear train (1:5.8) Knee Stator
+Knee Rotor
+Encoder mount
+
+Base
+Hip Stator
+
+CoM
+
+Hip Rotor
+Output to hip
+Encoder mount
+
+Output to linkage
+
+Fig. 8. Shoulder module section view for a front leg of the MIT Cheetah.
+
+short ground contact times. For example, the ground contact time of each leg during 6 m/s bounding is around 60 ms. In order to control the ground reaction forces during such a short period of time, the system must have high-bandwidth force control and survive frequent high impact forces. The MIT Cheetah is the ﬁrst embodiment of the proprioceptive actuation concept in legged locomotion.
+Figure 8 shows the detailed design of the leg module. The four hip modules of the robot are identical with minor differences in segment length ratios among the three links and between the front and rear legs. As discussed in Section III-C, it is critical to maximize the ratio of torque to inertia. We selected design parameters for motor with the largest radius that could ﬁt within a 12.5 cm diameter space, which is constrained by the size of the MIT Cheetah. The ﬁrst version of the MIT Cheetah, which trotted up to 6 m/s [13], used an Emoteq HT-5001 frameless motor. The second version
+
+of the MIT Cheetah, capable of bounding outdoors, uses
+
+custom motors designed by the MIT team [37]. The motor
+
+was speciﬁcally designed to maximize the saturation torque
+
+2
+for a given mass, where the major design tradeoff is between 1.5
+ohmic loss and the saturation torque. The saturation torqu1 e
+
+density of the custom designed motor is around 27 Nm/k0.5g
+
+2
+
+18 mm 220 mm
+
+Femur m1 = 1.55 kg 245 mm I1 = 80.9 kg cm2
+
+82 mm
+
+Tibia m2 = 0.157 kg I2 = 13.1 kg cm2
+
+(standalone without module or gearing), signiﬁcantly highe0 r
+
+1.5
+
+than 9 Nm/kg in the Emoteq HT-5001. Given this high torq-0u.5 e
+
+1
+
+0.5
+
+density, a cm motor length is able to be used on each axi-1s. zˆ
+
+3
+
+-1.5
+
+yˆ
+
+0
+
+The rotor inertia of the custom motor is three times that of the
+
+-0.5
+
+-2 -2 -1.5
+Emoteq HT-5001 and the attached leg inertia is slightly larger
+
+-1
+
+ˆ -0.5 0 x
+
+0.5
+
+1
+
+1.5
+
+-1
+
+2
+
+84 mm
+
+182 mm
+
+Foot m3 = 0.116 kg I3 = 7.4 kg cm2
+
+than the previous MIT cheetah.
+Given the large torque capacity of the motor, we chose the gear ratio (1:5.8)1 to meet the normal GRF generation requirements for running at a range of speeds up to 13.5 m/s.
+
+-1.5
+Fig. 9. Visual description of the conﬁguration dependence of the impact -2
+mitigation fact-o2 r (IMF), and -1.5 -1 -0.5 0 m0.5ain1 d1y.5na2mics parameters for a leg of the MIT Cheetah. The dashed line represents an ideal directional IMF (DIMF) of 1, while the blue represents the computed DIMF.
+
+We chose a one-stage planetary gear train with four planet
+
+1
+
+1
+
+gears. Such a low gear ratio provides a higher IMF, beneﬁcial
+
+for highly-dynamic locomotion. Unlike traditional serial-link
+
+0.8
+
+0.8
+
+robots in which actuators are present at every joint, two
+
+actuators and the gear train are coaxially located at the hip
+
+0.6
+
+0.6
+
+9^x
+
+IMF 9
+
+of the leg to minimize the total moment of inertia, which
+
+0.4
+
+0.4
+
+allows for a compact and robust design. One of these actuators
+
+directly actuates the hip, while the other actuates the knee
+
+0.2
+
+0.2
+
+through a parallel linkage. The structure of the leg is also designed to minimize mass and leg inertia, and thus maximize the impact mitigation factor. Bending stress is minimized in the
+
+0
+
+0
+
+1
+
+2
+
+3
+
+Knee Angle (rad)
+
+0
+
+0
+
+1
+
+2
+
+3
+
+Knee Angle (rad)
+
+leg structure by distributing tensile forces to the tendons. This
+
+method allows signiﬁcantly lower inertia of the leg without
+
+1
+
+1
+
+compromising leg strength [38]. The shoulder module contains
+
+0.8
+
+0.8
+
+the motors (2.00 kg), heat-treated steel gear trains (0.42 kg),
+
+and framing (1.23 kg) for a total mass of 3.65 kg. A leg with three ABS plastic links is attached to each module, with a combined mass of 850 g. The lightweight leg allows the center of mass to be located inside of the shoulder module. As a result, a small moment of inertia of the leg allows for rapid
+
+9^y
+
+0.6
+
+0.6
+
+Cheetah
+
+9^z
+
+0.4
+
+SEA Cheetah
+
+0.4
+
+StarlETH
+
+0.2
+
+Hubo
+
+0.2
+
+SEA Hubo
+
+movement and high-bandwidth force control.
+
+0
+
+0
+
+1
+
+2
+
+3
+
+Knee Angle (rad)
+
+0
+
+0
+
+1
+
+2
+
+3
+
+Knee Angle (rad)
+
+V. ASSESSMENT AND RESULTS
+A. Impact Mitigation Factor
+In order to assess the backdrivability of the MIT Cheetah leg design, the impact mitigation factor (IMF) was computed and compared to other legged systems. As noted in Section III-B, the IMF is conﬁguration dependent. This conﬁguration dependency is shown visually in Fig. 9. The ﬁgure shows the directional IMF (DIMF) ⇠ for directions x in the sagittal
+x
+plane. For the Cheetah, the IMF correlates most strongly with knee angle, as shown in Fig. 10. Due to the large mass and inertia of the components within the Cheetah’s motors, (28) was not used for simpliﬁcation in the calculation of the IMF. The motor rotors, for instance, have rotational inertias on outof-plane principal axes that are the same order of magnitude as for the leg links. These inertial contributions would be otherwise ignored through the use of (28). The IMF numbers account for the mass and inertias of the motor rotors and
+1This gear ratio was also driven by practical considerations, as it is the largest single-stage ratio available for a standard planetary conﬁguration with commodity English geartooth options.
+
+Fig. 10. Impact mitigation factor and directional impact mitigation factors versus knee angle. The coordinate system for these numbers is shown in Fig. 9 for the Cheetah with similar coordinate systems relative to the sagittal plane for the other morphologies.
+
+planetary gears, as estimated from CAD models. The rotor
+
+has inertia . ⇥ 4 kg m2 along its rotational axis, 3 0279 10
+
+with a 5.8:1 gear reduction, resulting in a reﬂected inertia of
+
+. 0 0102
+
+kg m2.
+
+Other
+
+main
+
+parameters
+
+of
+
+the
+
+leg
+
+are
+
+given
+
+in
+
+Fig. 9 for reference.
+
+The IMF of the Cheetah design was also compared with
+
+approximate StarlETH and HUBO Plus models. Rigid-body
+
+masses, CoM locations, and kinematics for StarlETH were
+
+taken from an available publication [26]. Previous work pro-
+
+vided estimated rotational inertias in the sagittal plane [39]. In-
+
+ertias in other directions were computed from an equi-density
+
+assumption on a bounding box estimated from graphical mod-
+
+els. No reﬂected actuator inertia was modeled for StarlETH, as
+
+its series elastic actuators decouple reﬂected inertia from the
+
+endpoint. The HUBO model was taken from a URDF of the
+
+Step Input Test (100N, Radial Direction)
+
+HUBO Plus robot [40]. The DC actuators assumed at the joints
+
+had
+
+a
+
+rotor
+
+inertia
+
+of
+
+. 3 33
+
+⇥
+
+10
+
+6
+
+kg m2
+
+with a 160:1 gear
+
+reduction, producing a total reﬂected inertia of . kg m2. 0 0852
+
+No reﬂected inertia effects of the gear reduction were modeled.
+
+IMFs were computed assuming impact in the center of the
+
+bottom of the foot.
+
+Figure 10 shows that the SEA-actuated StarlETH has the
+
+highest impact mitigation factor over a range of knee an-
+
+gles. For these computations, the virtual leg in each system
+
+remained upright, while the knee angle was used to modulate
+
+virtual leg length. Low IMFs for small knee angles are in
+
+most part due to reduced backdrivability in the zˆ direction, as
+
+indicated by ⇠ˆ. A similar degradation in ⇠ˆ is observed in
+
+z
+
+x
+
+StarlETH and Cheetah when the leg becomes fully collapsed
+
+at a knee angle of ⇡ rad. The IMF of HUBO experiences
+
+less peak-to-peak variability in IMF across knee angle. This
+
+difference can be attributed to the additional articulation in
+
+the HUBO hip and ankle which further prevent its upper-body
+
+mass from being felt at impact even for small knee angles.
+
+To assess the relative contribution of reﬂected actuator
+
+inertia to the IMF of HUBO and Cheetah, hypothetical modiﬁ-
+
+cations of these machines were considered that included SEAs
+
+at the joints. Averaged over the conﬁgurations considered, the
+
+IMF of unmodiﬁed Cheetah was 90% that of the hypothetical
+
+SEA Cheetah. In comparison, the IMF of unmodiﬁed HUBO
+
+was 52% that of a hypothetical SEA HUBO. HUBO’s design
+
+does include signiﬁcant actuator mass distally in the leg, which
+
+in part causes this difference.
+
+B. Step-input test on the MIT Cheetah leg
+To initially evaluate proprioceptive force control, the Cheetah robot leg was mounted inside of an axial material testing device (Zwick Roell BX1-EZ005.A4K-000). Its stock force sensor was replaced with a six-axis force-torque sensor (ATI delta, SI-660-60 calibration) which can measure up to 1980 N in the z-axis with 0.25 N resolution.
+To identify the open-loop force control bandwidth of the leg, a 100 N step-input test was executed. A pure radial force was commanded and mapped to desired leg torques assuming static loading conditions. Desired joint torques were then realized using closed-loop motor current control with custom motor drivers and current control taking place at a rate of 20 KHz. The currents from these drivers were used to estimate the force at the foot, again under an assumption of static loading conditions. Fig. 11 shows the results of this test. In this ﬁgure, the black line is the commanded force, the red line is the estimated force from measured motor currents, and the blue line is the force measured by the external sensor. The discrepancy between the estimated force and the exteroceptive sensed force highlights the presence of structural compliance in the leg. This structural compliance effectively decreases the bandwidth of the proprioceptive force control below that of the electrical dynamics. Assuming a second-order response, the response bandwidth of the leg system can be estimated based on the measured rising time, as seen in Table I.
+Further details on similar experiments with the MIT Cheetah leg can be found in our previous publication [5]. This previous
+
+FoFrocrec(eN()N )
+
+160
+
+140
+
+From 𝑓 × 𝑡 = 0.35
+
+120
+
+Driver & Motor Current Bandw
+
+Leg System Bandwidth: 103.7H
+
+100
+
+Stabilization Time: 55 ms
+
+80
+
+60
+
+40
+
+To fully control 400Hz Bandwid
+
+ForcFe oSerncseorSensor
+
+control frequency should be at
+
+20
+
+ComECsomtmimmaanatendddeefrddoFmForMoceortcoer
+
+Usually use x5 to x10 for good
+
+0
+
+Estimated from Motor
+
+Target: 4kHz control frequen
+
+0 10 20 30 40 50 60 70 80 90 100
+
+(250us loop time)
+
+TTimimee(m (mss))
+
+Fig. 11. Step-input test on the Cheetah robot leg. The force estimated from the motor is determined from the measured current in the stator windings using an assumption of static force transfer from the actuator to the foot.
+
+System motor driver to winding current
+motor driver to foot force
+
+Rise time T (ms)
+r
+0.875 3.38
+
+Bandwidth (Hz) 400 103.7
+
+TABLE I SYSTEM BANDWIDTH ESTIMATION FROM STEP-INPUT TEST.
+
+work demonstrated the capabilities of proprioceptive force control to realize a virtual stiffness at the foot. The next subsection goes beyond impedance control and demonstrates open-loop force control for more general force proﬁles.
+
+C. Proprioceptive Force Control Test
+
+To investigate the performance of proprioceptive force control for dynamic locomotion, we performed in situ force control tests during unconstrained 3D bounding. The robot bounded in free space using a control law from previous work [41]. The bounding controller would output desired forces f 2 R3 for each stance leg, to be realized through
+pro
+proprioceptive actuation. These desired forces were mapped to joint torques through
+
+⌧ S JT f .
+
+(44)
+
+d = ` pro
+
+Here J 2 R3⇥18 is a foot Jacobian and S 2 R3⇥18 is a
+`
+selector matrix for the joints in the leg. The desired torque
+
+⌧ 2 R3 contains torques for the two proprioceptive actuators
+d
+nominally in the sagittal xˆ-zˆ plane, as well as for a more
+
+traditional hip ab/ad actuator which nominally affects the
+
+lateral
+
+y ˆ
+
+forces.
+
+Coordinate
+
+systems
+
+follow
+
+those
+
+in
+
+Fig.
+
+10.
+
+The ATI delta force-torque sensor was embedded into the
+
+contact surface such that the front left leg of the robot could
+
+run on the sensor without interference to the gait. Figure 12
+
+shows a ﬁgure of this experimental setup.
+
+Figures 13-15 show the proprioceptive force control track-
+
+ing in the sagittal plane where the proprioceptive actuators
+
+have force control authority. The force control ﬁgures show
+
+high duty ratio bounding (Fig. 13) in comparison to medium
+
+and low duty ratio bounding (Figs. 14 and 15). Lower duty
+
+ratios require shorter contact times down to 85 ms in the most
+
+extreme case considered here. Again, we emphasize that aside
+
+from statics (Eq. 44), no model-based information was used to
+
+50
+
+Force fx (N)
+
+0
+
+-50
+
+-100
+
+Fig. 12. Experimental setup for proprioceptive force control measurements. The ATI delta force/torque sensor is embedded into the contact surface so that the front left leg could step on the sensor without interference to the gait.
+50
+
+Force fz (N)
+
+-150 0
+500 400 300 200 100
+0 0
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+Time (ms)
+
+Proprioceptive Measured Evaluation Period
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+Time (ms)
+
+Fig. 14. Force tracking for duty ratio D = 0.410 bounding.
+
+Force fx (N)
+
+0 -50 -100 -150
+0
+500 400 300 200 100
+0 0
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900 1000
+
+Time (ms)
+
+Proprioceptive Measured Evaluation Period
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900 1000
+
+Time (ms)
+
+Force fz (N)
+
+Fig. 13. Force tracking for duty ratio D = 0.579 bounding.
+
+Force fz (N)
+
+Force fx (N)
+
+50 0
+-50 -100 -150
+0
+500 400 300 200 100
+0 0
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+Time (ms)
+
+Proprioceptive
+
+Measured
+
+Evaluation Period
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+Time (ms)
+
+translate desired force into commanded motor current across any of these results.
+Table II quantiﬁes the average tracking accuracy of the proprioceptive force control approach. Force control accuracy was evaluated following each impact transient, during the periods shown in gray in Figures 13-15. These periods start when the measured vertical force crosses the proprioceptive force, and end when the proprioceptive force goes to zero. In general, higher duty ratio bounding results in lower average errors.
+High duty ratio bounding in Fig. 13 shows one of the reasons to pursue proprioceptive force control. The vertical force of the ﬁrst hop in particular, shows a low-frequency (⇡20 Hz) unforced oscillation in the vertical direction. This additional vibration mode is caused by unmodeled dynamics (compliance) of the leg structure and mechanisms. Future design efforts may be directed towards further increasing the stiffness-per-mass ratio of the legs in order to raise the natural frequency of the structural dynamics. It is these unmodeled transmission dynamics that limit the bandwidth of non-collocated force control schemes.
+VI. DISCUSSION
+The proprioceptive actuation paradigm offers a number of qualitative beneﬁts which extend beyond the analysis presented. While designing for high IMF has been motivated
+
+Fig. 15. Force tracking for duty ratio D = 0.298 bounding.
+
+to reduce impact forces, high IMF designs indicate favorable actuator characteristics more broadly related to dynamic interactions with the environment. High IMF designs capture an ability to transparently control the interaction forces, and to protect both the environment and the robot in instances of collision. These beneﬁts have practical importance, improving the lifetime of fragile transmission components, reducing the need for bulky structural designs, and reducing leg dynamics which complicate swing-leg control.
+As shown in the previous section, the IMF is also tightly related to improved bandwidth in proprioceptive force control (closed-loop torque control with open-loop ground reaction force control). In dynamic locomotion, foot force control in short stance times is critical for balance control. Noncollocated force control lacks robustness to unmodelled high-
+
+Duty Ratio (D) 0.579 0.410 0.298
+
+Avg. Err. f (%)
+x
+24.35 27.54 33.52
+
+Avg. Err. f (%)
+z
+18.20 14.19 22.91
+
+TABLE II PROPRIOCEPTIVE FORCE TRACKING ACCURACY VERSUS DUTY RATIO
+(D). GENERALLY, TRACKING IMPROVES WITH HIGHER D.
+
+Fig. 16. The ability to mitigate impacts and manage high-bandwidth contact interactions has been an important capability in results beyond those presented here, such as the execution of a running jump over large obstacles [43].
+
+the promising performance of the proposed actuator design paradigm by evaluating the force production capabilities of a leg from the MIT Cheetah.
+These results encourage broader adoption of proprioceptive actuators to manage physical interaction for emerging applications in robotics. From disaster response to assistance in the home, proprioceptive actuators may endow next generation robots with the ability to stably make and break contact, while providing the high-bandwidth and force-critical capabilities to react in unstructured environments. Through further reﬁnement directed toward these applications, we believe the proposed approach will enable the development of actuators that yet exceed the capabilities of biological muscles in every aspect.
+
+frequency dynamics incited around impact, causing contact instability [3]. The ability to stably make and break contact though proprioceptive force control motivates broader application of this paradigm for high-force interaction.
+Increasing the torque density of a EM actuator itself is critical to achieve conﬂicting speciﬁcations for high IMF and high efﬁciency. Since the gear ratio is a critical design parameter in the tradeoff between the torque generation efﬁciency and the IMF, increasing torque density of the motor itself enables a designer to the reduce actuator gear ratios without compromising either of the aspects. Through exploiting this strategy, the MIT Cheetah has already achieved a high efﬁciency (total cost of transport of 0.5) rivaling animals in a similar scale [13], [42]. Further research to understand and quantify the exact energetic tradeoffs due to gear transmission selections may yet enable operation beyond the efﬁciency envelope of legged animals in nature.
+While space and scope have prevented their description, these advances in actuator design for impact mitigation and high-bandwidth physical interaction have been paramount towards this unique platform achieving recent feats such as running at up to 6 m/s and successfully jumping over obstacles up to 80% of the Cheetah’s nominal leg length [43]. Figure 16 shows snapshots from an example jumping motion.
+VII. CONCLUSIONS
+This paper proposed a new actuator paradigm for high-speed running robots, provided analyses to demonstrate the central tenants of this paradigm, and presented experimental results of force tracking tests. While proprioceptive actuation was effectively implemented in early haptic devices, such as the PHANTOM, a prototype leg model illuminates its beneﬁts to manage impact and open-loop force control for legged machines. Geometric scaling analysis indicates that increasing the gap radius beneﬁts torque density, which plays a critical role in system energetics for locomotion. In order to quantify the backdrivability afforded through this paradigm, we have introduced the Impact Mitigation Factor (IMF) which is applicable to robots driven by EM actuators with or without series elasticity at the joints. A successful implementation of the actuator design principles was shown to allow for high-force proprioception to deliver desired forces through contact with only motor current sensing. The experimental results show
+
+ACKNOWLEDGMENT
+This research was sponsored by the DARPA M3 program through contract number W31P4Q-13-1-0014.
+
+APPENDIX IMPACT MITIGATION FACTOR
+
+In the main body of the text, the impact mitigation factor for a leg was introduced as
+
+⇠
+
+I ⇤⇤ 1
+
+= det
+
+(45)
+
+L
+
+where ⇤ 2 Rm⇥m is the contact-space inertia matrix of the
+
+leg, and ⇤ 2 Rm⇥m is the contact-space inertia matrix if all
+L
+of the joints were locked. In this appendix, we will show that
+
+⇤  ⇤ and  ⇠  .
+
+L0
+
+1
+
+Using notation from the main body of the text:
+
+⇤
+
+1
+
+=
+
+⇥ J
+
+b
+
+J
+j
+
+⇤
+
+ H
+bb
+H
+
+H
+bj
+H
+
+"#
+
+1 JT
+
+b
+JT
+
+.
+
+(46)
+
+jb
+
+jj
+
+j
+
+Then,
+
+deﬁning
+
+A
+
+:=
+
+H ( jj
+
+H H 1H jb bb bj )
+
+1 it follows from
+
+the matrix inversion lemma that
+
+⇣
+
+⇤1
+
+J
+
+H
+bb
+
+=
+
+H H 1H ⌘ 1
+bj jj jb
+AH H 1
+
+
+
+jb bb
+
+J =
+
+H 1 + H 1H AH H 1
+
+bb
+
+bb
+AH
+
+bj
+H
+
+1 jb
+
+bb
+
+jb bb
+
+H 1H A
+bj bb
+
+JT
+
+A
+
+(47)
+
+H 1H A
+bb bj
+A
+
+JT .
+
+(48)
+
+Factorizing this matrix,
+
+⇤
+
+h 1 ⇤1 J
+=+
+L
+
+H1 bIb
+
+H
+bj
+
+i
+
+A
+
+h
+
+H
+
+1H
+
+i
+T
+
+bj
+bIb
+
+JT
+
+,
+
+(49)
+
+where the second term on the right hand side is positive semideﬁnite since A is a Schur complement of H. Thus,
+
+⇤ 1 ⇤ 1 and ⇤  ⇤ .
+
+(50)
+
+L
+
+L
+
+1
+
+1
+
+From this fact, it follows that 0  ⇤ 2 ⇤⇤ 2  I. Thus
+
+L
+
+L
+
+⇣
+
+1
+
+1⌘
+
+
+
+I ⇤ 2 ⇤⇤ 2  , and
+
+(51)
+
+0 det
+
+1
+
+L
+
+L
+
+ I ⇤⇤ 1  .
+
+0 det
+
+1
+
+(52)
+
+L
+
+REFERENCES
+[1] D. C. Hanselman, Brushless permanent magnet motor design. The Writers’ Collective, 2003.
+[2] W. Townsend and J. Salisbury, “Mechanical design for whole-arm manipulation,” in Robots and Biological Systems: Towards a New Bionics?, ser. NATO ASI Series, P. Dario, G. Sandini, and P. Aebischer, Eds. Springer Berlin Heidelberg, 1993, vol. 102, pp. 153–164.
+[3] S. D. Eppinger and W. P. Seering, “Three dynamic problems in robot force control,” in IEEE International Conference on Robotics and Automation, 1989, pp. 392–397.
+[4] T. H. Massie and J. K. Salisbury, “The PHANTOM haptic interface: A device for probing virtual objects,” in Proceedings of the ASME winter annual meeting, symposium on haptic interfaces for virtual environment and teleoperator systems, vol. 55, no. 1. IOS Press, 1994, pp. 295–300.
+[5] S. Seok, A. Wang, D. Otten, and S. Kim, “Actuator design for high force proprioceptive control in fast legged locomotion,” in IEEE/RSJ International Conference on Intelligent Robots and Systems, Oct 2012, pp. 1970–1975.
+[6] M. F. Bobbert, M. R. Yeadon, and B. M. Nigg, “Mechanical analysis of the landing phase in heel-toe running,” Journal of biomechanics, vol. 25, no. 3, pp. 223–234, 1992.
+[7] R. M. Walter and D. R. Carrier, “Ground forces applied by galloping dogs,” J Exp Biol, vol. 210, no. 2, pp. 208–216, 2007.
+[8] A. Tsiokanosa, E. Kellisb, A. Jamurtasa, and S. Kellisc, “The relationship between jumping performance and isokinetic strength of hip and knee extensors and ankle plantar ﬂexors,” Isokinetics and Exercise Science, vol. 10, no. 2, pp. 107–115, 2002.
+[9] “Toyota Corolla 2016 model brochure,” 2016. [Online]. Available: http://www.toyota.com/corolla/ebrochure/
+[10] [Online]. Available: http://www.teslamotors.com [11] [Online]. Available: http://www.scorpionsystem.com [12] I. W. Hunter and S. Lafontaine, “A comparison of muscle with artiﬁcial
+actuators,” in IEEE Solid-State Sensor and Actuator Workshop, 1992, pp. 178–185. [13] S. Seok, A. Wang, M. Chuah, D. J. Hyun, J. Lee, D. Otten, J. Lang, and S. Kim, “Design principles for energy-efﬁcient legged locomotion and implementation on the MIT Cheetah robot,” IEEE/ASME Transactions on Mechatronics, vol. 20, no. 3, pp. 1117–1129, June 2015. [14] G. Abba and P. Sardain, “Modeling of frictions in the transmission elements of a robot axis for its identiﬁcation,” IFAC Proceedings Volumes, vol. 38, no. 1, pp. 7–12, 2005. [15] A. Wang and S. Kim, “Directional efﬁciency in geared transmissions: Characterization of backdrivability towards improved proprioceptive control,” in IEEE International Conference on Robotics and Automation, May 2015, pp. 1055–1062. [16] N. Hogan, “Impedance control: An approach to manipulation: Part II–implementation,” Journal of Dynamic Systems, Measurement, and Control, vol. 107, no. 1, pp. 8–16, 1985. [17] G. Hirzinger, N. Sporer, A. Albu-Schaffer, M. Hahnle, R. Krenn, A. Pascucci, and M. Schedl, “DLR’s torque-controlled light weight robot III-are we reaching the technological limits now?” in IEEE International Conference on Robotics and Automation, vol. 2, 2002, pp. 1710–1716. [18] C. Ott, A. Albu-Schaffer, A. Kugi, and G. Hirzinger, “On the passivitybased impedance control of ﬂexible joint robots,” IEEE Transactions on Robotics, vol. 24, no. 2, pp. 416–429, 2008. [19] S. Haddadin, A. Albu-Scha¨ffer, and G. Hirzinger, “Requirements for safe robots: Measurements, analysis and new insights,” The International Journal of Robotics Research, vol. 28, no. 11-12, pp. 1507–1527, 2009. [20] G. A. Pratt and M. M. Williamson, “Series elastic actuators,” in IEEE/RSJ International Conference on Intelligent Robots and Systems, vol. 1, 1995, pp. 399–406. [21] P. Gregorio, M. Ahmadi, and M. Buehler, “Experiments with an electrically actuated planar hopping robot,” in Experimental Robotics III. Springer Berlin Heidelberg, 1994, pp. 267–281. [22] M. H. Raibert, “Legged robots,” Commun. ACM, vol. 29, no. 6, pp. 499–514, Jun. 1986. [23] J. Hurst, J. Chestnutt, and A. Rizzi, “The actuator with mechanically adjustable series compliance,” IEEE Transactions on Robotics, vol. 26, no. 4, Aug 2010. [24] I. Thorson and D. Caldwell, “A nonlinear series elastic actuator for highly dynamic motions,” in 2011 IEEE/RSJ International Conference on Intelligent Robots and Systems, Sept 2011. [25] B. Vanderborght, A. Albu-Schaeffer, A. Bicchi, E. Burdet, D. Caldwell, R. Carloni, M. Catalano, O. Eiberger, W. Friedl, G. Ganesh, M. Garabini, M. Grebenstein, G. Grioli, S. Haddadin, H. Hoppner, A. Jafari, M. Laffranchi, D. Lefeber, F. Petit, S. Stramigioli, N. Tsagarakis, M. V.
+
+Damme, R. V. Ham, L. Visser, and S. Wolf, “Variable impedance actuators: A review,” Robotics and Autonomous Systems, vol. 61, no. 12, pp. 1601–1614, 2013. [26] M. Hutter, C. Gehring, M. Hopﬂinger, M. Blosch, and R. Siegwart, “Toward combining speed, efﬁciency, versatility, and robustness in an autonomous quadruped,” IEEE Transactions on Robotics, vol. 30, no. 6, pp. 1427–1440, Dec 2014. [27] O. Khatib, “A uniﬁed approach for motion and force control of robot manipulators: The operational space formulation,” IEEE Journal of Robotics and Automation, vol. 3, no. 1, pp. 43–53, Feb. 1987. [28] A. Albu-Schaffer, C. Ott, U. Frese, and G. Hirzinger, “Cartesian impedance control of redundant robots: recent results with the DLRlight-weight-arms,” in IEEE International Conference on Robotics and Automation, vol. 3, Sept. 2003, pp. 3704 – 3709. [29] Y.-F. Zheng and H. Hemami, “Mathematical modeling of a robot collision with its environment,” Journal of Robotic Systems, vol. 2, no. 3, pp. 289–307, 1985. [30] H. Asada, “Dynamic analysis and design of robot manipulators using inertia ellipsoids,” in IEEE Int. Conf. on Robotics and Automation, vol. 1, Mar 1984, pp. 94–102. [31] P. Wensing, R. Featherstone, and D. E. Orin, “A reduced-order recursive algorithm for the computation of the operational-space inertia matrix,” in IEEE Int. Conf. on Rob. and Automation, 2012, pp. 4911–4917. [32] R. Featherstone, Rigid Body Dynamics Algorithms. New York, NY: Springer, 2008. [33] J. Sensinger, “Selecting motors for robots using biomimetic trajectories: Optimum benchmarks, windings, and other considerations,” in IEEE International Conference on Robotics and Automation (ICRA), 2010, pp. 4175–4181. [34] B. Hannaford, P.-H. Marbot, P. Buttolo, M. Moreyra, and S. Venema, “Scaling of direct drive robot arms,” The International Journal of Robotics Research, vol. 15, no. 5, pp. 459–472, 1996. [35] R. S. Wallace and J. M. Selig, “Scaling direct drive robots,” in IEEE International Conference on Robotics and Automation, vol. 3, May 1995, pp. 2947–2954 vol.3. [36] H. Asada and K. Youcef-Toumi, Direct-drive robots: theory and practice. MIT press, 1987. [37] N. Farve, “Design of a low-mass high-torque brushless motor for application in quadruped robotics,” Master’s thesis, Massachusetts Institute of Technology, 2012. [38] A. Ananthanarayanan, M. Azadi, and S. Kim, “Towards a bio-inspired leg design for high-speed running,” Bioinspiration & Biomimetics, vol. 7, no. 4, p. 046005, 2012. [39] M. Hutter, C. Remy, M. Hoepﬂinger, and R. Siegwart, “Efﬁcient and versatile locomotion with highly compliant legs,” IEEE/ASME Transactions on Mechatronics, vol. 18, no. 2, pp. 449–458, April 2013. [40] “OpenRAVE model of the KHR-4 “Jaemi” Hubo,” 2013. [Online]. Available: https://github.com/daslrobotics/openHubo [41] H.-W. Park, M. Y. Chuah, and S. Kim, “Quadruped bounding control with variable duty cycle via vertical impulse scaling,” in IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2014), Sept 2014, pp. 3245–3252. [42] H.-W. Park, S. Park, and S. Kim, “Variable-speed quadrupedal bounding using impulse planning: Untethered high-speed 3D running of MIT Cheetah 2,” in IEEE International Conference on Robotics and Automation, 2015. [43] H.-W. Park, P. Wensing, and S. Kim, “Online planning for autonomous running jumps over obstacles in high-speed quadrupeds,” in Proceedings of Robotics: Science and Systems, Rome, Italy, July 2015.
+
+Patrick M. Wensing (S’09, M’15) received the B.S., M.S., and Ph.D. degrees in Electrical and Computer Engineering from The Ohio State University, Columbus, OH, USA, in 2009, 2013, and 2014 respectively. He is currently a Postdoctoral Associate in the Biomimetic Robotics Laboratory within the Department of Mechanical Engineering at the Massachusetts Institute of Technology.
+His research interests lie at the intersection of dynamics, optimization, and control as applied to agile, intelligent, and physically interactive robotic systems. He was awarded an NSF Graduate Research Fellowship for his dissertation research on balance control strategies for humanoid robots. At MIT, the results of his postdoctoral work on the MIT Cheetah 2 robot have received considerable publicity worldwide, with features from TIME, WIRED, and the Wall Street Journal. He served as Co-Chair for the Robotics and Automation Society Student Activities Committee from 2012 to 2014.
+Albert Wang (S’14) received the B.S. and M.S. degrees from the Department of Mechanical Engineering, Massachusetts Institute of Technology, Cambridge, MA, USA, in 2010 and 2012 respectively. He is currently a Ph.D. Candidate in the MIT Biomimetic Robotics Lab, working on the HERMES humanoid project. His research interests include dynamic legged locomotion, actuation systems, and system architecture, and shared autonomy for teleoperation.
+
+Jeffrey Lang (F’98) received his SB (1975), SM (1977) and PhD (1980) degrees from the Department of Electrical Engineering and Computer Science at the Massachusetts Institute of Technology. He joined the faculty of MIT in 1980 where he is now the Vitesse Professor of Electrical Engineering. He served as the Associate Director of the MIT Laboratory for Electromagnetic and Electronic Systems from 1991 to 2003 and now serves as an Associate Director of the MIT Microsystems Technology Laboratories. Professor Lang’s research and teaching interests focus on the analysis, design and control of electromechanical systems with an emphasis on: rotating machinery; micro/nano-scale (MEMS/NEMS) sensors, actuators and energy converters; ﬂexible structures; and the dual use of electromechanical actuators as motion and force sensors. He has written over 280 papers and holds 26 patents in the areas of electromechanics, MEMS, power electronics and applied control. He has been awarded 4 best-paper prizes from IEEE societies, and has received two teaching awards from MIT. He is a coauthor of ”Foundations of Analog and Digital Electronic Circuits” published by Morgan Kaufman, and the editor of, and a contributor to, ”Multi-Wafer Rotating MEMS Machines: Turbines Generators and Engines” published by Springer. Professor Lang is a Fellow of the IEEE, and a former Hertz Foundation Fellow. He served as an Associate Editor of ”Sensors and Actuators” between 1991 and 1994. He has also served as the General Co-Chair and Technical Co-Chair of the 1992 and 1993 IEEE MEMS Workshops, respectively, and the General Co-Chair of the 2013 PowerMEMS Conference.
+
+Sangok Seok (S’10, M’14) received the B.S. and M.S. degrees from the School of Mechanical and Aerospace Engineering, Seoul National University, Seoul, Korea, in 2002 and 2004, respectively, and the Ph.D. degree in Mechanical Engineering from the Massachusetts Institute of Technology, Cambridge, MA, USA, in 2014.
+He was with the Korean branch of National Instruments as an applications engineer and a marketing engineer from 2004 to 2009, and with the Mechatronics R&D center, Samsung Electronics as a principal engineer from 2014 to 2015. He is currently a leader of the robotics group at Naver Labs. His research focus is on service robot platforms, which enable ambient intelligence, utilizing space and mobility. Dr. Seok received the IEEE/ASME Transactions on Mechatronics best paper award for 2016.
+David Otten received the B.S. and S.M. degrees from the Massachusetts Institute of Technology (MIT), Cambridge in 1973 and 1974 respectively.
+In 1974 he joined the MIT Electric Power Systems Engineering Laboratory (EPSEL) as a staff engineer. Since 1984 he has been a Principal Research Engineer in the renamed Laboratory for Electromagnetic and Electronic System (LEES) at MIT. His research interests include instrumentation, power electronics, and the micromouse robot contest.
+
+Sangbae Kim (M’08) received the B.S. degree in mechanical engineering from Yonsei University in Korea, in 2001 and earned the M.S and Ph.D. degrees in the Biomimetics Laboratory, Stanford University in 2004 and 2008 respectively. Prof. Sangbae Kim is currently the director of the Biomimetic Robotics Laboratory and an Associate Professor of Mechanical Engineering at MIT.
+His research focuses on bio-inspired robotic platform design by extracting principles from complex biological systems. Kim’s achievements on bioinspired robot development include the world’s ﬁrst directional adhesive inspired from gecko lizards, and a climbing robot, Stickybot, that utilizes the directional adhesives to climb smooth surfaces, featured in TIME’s best inventions of 2006. The MIT Cheetah achieves stable outdoor running at an efﬁciency of animals, employing biomechanical principles from studies of the best runners in nature. This achievement was covered by more than 200 articles. He was a recipient of the King-Sun Fu Memorial Best Transactions on Robotics Paper Award (2008), DARPA YFA (2013), and NSF CAREER (2014) award.
+

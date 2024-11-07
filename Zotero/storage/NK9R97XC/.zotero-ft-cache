@@ -1,0 +1,381 @@
+FS-03
+
+1
+
+Slip Frequency Control of Linear Induction Motor Considering Normal Force in Semi-High Speed MAGLEV
+Hyunuk Seo1, Jae-Hoon Jeong2, Jaewon Lim3, Gyu-ha Choe4† 1EV Team, R&D Center, VCTech, Gunpo, Korea
+3Dept. Magnetic Levitation and Linear Drive, Korea Institute of Machinery & Materials, Korea 2Dept. Electrical Engineering, Chungnam National University, Korea 4Dept. Electrical Engineering, Konkuk University, Korea
+This paper presents the analysis and experimental results of the thrust and normal force of linear induction motors (LIMs) for the propulsion of semi-high speed maglev trains. The semi-high speed maglev train is composed of a levitation system using an electromagnetic suspension and a propulsion system using LIMs. The propulsion system of the maglev train with LIMs has better noise and dynamic characteristics compared to trains using rotators. However, it has nonlinear characteristics due to the effect of slips that occur in the secondary eddy current induction process, and among them, the normal force generated from the motor can negatively affect the levitation control. Therefore, a new slip control algorithm is proposed that reﬂects the normal force of the motor in the propulsion control for the safe operation of maglev trains. First, the thrust and normal force of LIM were analyzed through ﬁnite element method (FEM) for a precise analysis of slips. Second, a slip range that has a low normal force was derived based on the FEM analysis results and the results were reﬂected in the propulsion control algorithm. The proposed propulsion control algorithm was veriﬁed for efﬁciency by comparing it with existing algorithms. Finally, the new algorithm was applied to a full-sized testing apparatus to verify its validity.
+Index Terms—Normalforce, Levitation, Maglev, Power Consumption, Propulsion.
+
+I. INTRODUCTION
+S INGLE-SIDED linear induction motors (SLIMs) have merits such as high initial thrust, simple structure, ﬂexible mechanism, absence of dust emission, and low noise [1] Thus, SLIMs are broadly adopted as a traction component in many industrial applications, especially in magnetic levitation (Maglev) transportation systems or urban subway systems. One of the main advantages of an SLIM is that it generates linear motion without any rotary-to-linear motion conversion devices[2].
+The 200km/h-class semi-high-speed maglev train currently being developed in Korea uses SLIMs to propel it. SLIMs are widely used for the propulsion of maglev trains, as they are lightweight and inexpensive to produce. However, their driving characteristics are inferior to those of linear synchronous motors (LSMs) because of their low power factor and the presence of slip. In addition, it generates a normal force perpendicular to the moving direction according to slip frequency and thrust, which has adverse effects on the magnetic levitation system. Normal force in the SLIM can be described by the relationship between thrust and slip [3].
+Research has been conducted to reduce the variation of normal force by controlling the slip frequency constantly using these characteristics [4]. The constant slip frequency operation can not be the optimum operating point for thrust and efﬁciency of SLIM. This is because the optimum slip frequency changes according to the driving speed of the linear induction motor. However, a constant slip frequency operation is used to limit the nromal force of the SLIM acting as a disturbance of the levitation system.
+Manuscript received Mar. 3, 2017. Corresponding author: G. Choe (email: ghchoe@konkuk.ac.kr). Digital Object Identiﬁer inserted by IEEE
+
+Semi-high-speed Maglev Train
+
+Linear Induction Motor 2484 (mm)
+
+200 (mm)
+
+Semi-high-speed LIM(25m/s): 77slots and 12pole
+
+Fig. 1. Diagram of a semi-high-speed maglev train and associated LIM
+
+TABLE I DESIGN SPECIFICATIONS OF LIM FOR SEMI-HIGH-SPEED MAGLEV TRAIN
+
+Quantity Base speed Output power Motor length Air gap Turns per coil
+
+Value 90 (km/h) 81.25 (kW) 2484 (mm) 12 (mm)
+3
+
+Quantity Rate thrust Line voltage Motor width Conductor sheet Number of poles
+
+Value 3.25 (kN) 424 (V) 200 (m) 5 (mm)
+12
+
+In this study, the thrust and normal force of the SLIM were analyzed for the full speed and slip ranges using the 2D FEM analysis. The speed-slip condition that has a stable normal force at the rated input condition was derived. Furthermore, the effectiveness of the slip limitation area by analyzing the thrust according to speed and slip, and a slip pattern according to the speed that can be used for thrust control with low normal force was proposed. To verify the proposed slip pattern, the variation of normal force was analyzed by implementing general indirect ﬁeld oriented control (IFOC), constant slip frequency indirect vector control(CSIFOC) and
+
+FS-03
+
+2
+
+Thrust & Normal Force (kN) Efficiency (%)
+
+6
+
+70
+
+Rate Speed @ 90(km/h)
+
+Thrust
+
+4
+
+Normal Force
+
+60
+
+Efficiency
+
+50
+
+2
+
+40 0
+30
+
+-2 20
+
+-4
+
+Slip Frequency
+
+10
+
+12.5Hz
+
+-6
+
+0
+
+0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1 0.0
+
+Slip (s)
+
+Fig. 2. Thrust, normal force, and efﬁciency with respect to slip frequency
+
+Fig. 4. Normal force analysis results according to the speed and slip.
+
+Fig. 3. Thrust analysis results according to the speed and slip.
+the new propulsion control algorithm slip limited indirect ﬁeld oriented control(SLIFOC). This algorithm is proposed in this paper and validated by simulation and full-size SLIM experiment.
+
+The base speed is deﬁned as the last speed that can generate the maximum thrust in the speed-thrust characteristics of LIM, and it is very important to accurately analyze the characteristics at the base speed. Thus, the motor characteristics were analyzed by conducting FEM analysis at the rated speed of 90 km/h. The analysis conditions were 245Vmax for input voltage and 77.6Hz for frequency. The thrust-normal force-efﬁciency results analyzed according to the slip are shown in Fig. 2. The slip should be analyzed accurately because it appears in an induction motor and is a critical parameter that determines the operation capability of the motor. According to the analysis results by slip, the maximum thrust was 0.17 and the maximum efﬁciency was 0.12, and these two values occurred at different slip points. Furthermore, the normal force reacted in a very wide range from repulsive force to suction force depending on the slip. The slip point at the slip frequency of 12.5 Hz in the graph was found to be the safest operation point at the speed of 90 km/h.
+
+II. MAGNETIC FIELD ANALYSIS ACCORDING TO SLIP AND
+SPEED
+A. Analysis model
+The 200km/h-class Maglev train consisted of six cars in one set with each car composed of 6 bogies. The length for one car is 20 m, and because the train is composed of six bogies, it was decided that each LIM should have a maximum length of 2.5 m. A diagram of the semi-high-speed Maglev train and the associated LIM is shown in Fig. 1 Detailed speciﬁcations for the LIM are listed in Table I. The motor is composed of 12 poles with 77 slots and the required base velocity is 90 km/h.
+B. Rate characteristic analysis
+The base speed of the LIM for the 200 km/h-class semi-high speed maglev train, which is an analysis model, is 90 km/h.
+
+C. Force characteristic for slip and speed conditions
+The normal force generated by the LIM is a disturbance affecting the levitation system in a maglev train. This factor can hinder the stable operation of the train. Therefore, the levitation stability of the train can be improved by analyzing the normal force characteristics accurately and applying the results to train control, thereby minimizing the disturbance. Fig. 3 and Fig. 4 show a contour plot of thrust and normal force characteristics according to slip at up to the maximum speed of 200 km/h. The graph in Fig. 3 shows the range of the speed and slip conditions at which rated thrust operation is possible. From Fig. 4, a limited slip condition that has a low normal force can be derived for the stable levitation of a maglev train. The stable operation of a maglev train can be expected when the slip limit line derived here is applied to the propulsion control algorithm.
+
+FS-03
+
+TABLE II EQUIVALENT CIRCUIT PARAMETER OF LIM
+
+Quantity
+R1 Lm R2 L2
+
+Value
+0.012 (Ω) 0.93 (mH) 0.038 (Ω) 0.25 (mH)
+
+I1
+
+R1
+
+jX1
+
+I2' jX2'
+
+V1
+
+R2'
+
+  
+
+1 eQ Q
+
+  
+
+jX
+
+m
+
+1 
+
+1 eQ Q
+
+  
+
+R2' s
+
+3
+
+Te*
+
+Indirect Field
+
+Oriented Control vuvw Inverter
+
+LIM
+
+w Q i *
+
+slip
+
+uvw
+
+End-effect
+
+wm
+
+Estimator
+
+Variable Slip Frequency
+
+Fig. 6. Slip controllable IFOC for the semi-high-speed maglev train.
+
+SLIM
+( Semi-high speed Maglev)
+
+Load Cell for Normal force
+(Up to 5kN)
+
+Fig. 5. Equivalent circuit of Semi-high speed maglev
+
+III. SLIP FREQUENCY CONTROL FOR LOW NORMAL FORCE
+A. Equivalent circuit parameter calculation
+In this section, the previously interpreted FEM results are applied to LIM controls to quantitatively analyze the variation of normal force. To implement the proposed algorith for LIMs, the parameters for the equivalent circuit must be derived. Fig. 5 shows the equivalent circuit model for the LIM that considers end effects[5]. To derive the equivalent circuit parameters, noload and blocked-mover FEM analyses were made. Based on the results, the following equations were used to derive the parameters, and the results are listed in Table II.
+The end-effect estimator shown in Fig. 8 calculates the Qfactor described in Duncan’s model based on speed and also reﬂects it in the DQ current control [4]. The calculation for Q is shown in [5]:
+
+Q=
+
+τmR2
+
+(1)
+
+(Lm + Lσ2)v
+
+where τm is the length of the inductor, R2 and Lσ2 are the induced part resistance and leakage inductance, and v is the linear speed.
+01
+
+hyunuk seo B. Indirect vector control for slip frequency control
+Fig. 6 is a block diagram of a slip controllable IFOCbased control system. The steady-state torque equation for the existing rotor using ﬁeld-oriented control is as follows [6]:
+
+Te∗
+
+=
+
+3P 22
+
+Lˆ 2m L2
+
+iedsieqs
+
+(2)
+
+where Te∗ is the reference torque for speed, P is the motor pole number, ieds is magnetizing current reference ieqs is thrust current, L2 is the secondary inductance, Lˆm is the
+
+magnetizing inductance considering of end effect, ωsl−set is
+
+the reference ωslip using CSIFOC and SLIFOC. ωsl−ref is
+
+Semi-high Speed Maglev Inverter
+Fig. 7. Semi-high speed SLIM test bed
+
+Load Motor
+(250kW)
+
+the slip frequency at optimized normal force point. To control the slip using IFOC, ωslip is deﬁned as
+
+ωsl−ref
+
+= ωslip =
+
+R 2 ieqs L 2 ieds
+
+(rad/s)
+
+(3)
+
+Substituting eq. (3) into eq. (2) and simplifying it yields the following commands for the IFOC current controller.
+
+ied∗s =
+
+Te∗
+
+3 2
+
+P 2
+
+Lˆ 2m R2
+
+ωsl−ref
+
+(4)
+
+ieq∗s
+
+=
+
+L R
+
+2 2
+
+ωsl−ref
+
+ied∗s
+
+(5)
+
+where magnetizing current and thrust current are controlled
+
+through Constant Slip frequency IFOC(CSIFOC) and Slip
+
+Limited IFOC(SLIFOC) thrust current, L2 is the secondary inductance, Lˆm is the
+magnetizing inductance considering of end effect, ωsl−set is the reference ωslip using CSIFOC and SLIFOC. ωsl−ref is
+the slip frequency at optimized normal force point. To control
+
+the slip using IFOC, ωslip is deﬁned as
+
+IV. SIMULATION AND EXPERIMENT
+A. Semi-high speed maglev train test bed
+Fig. 7 shows the test bed for verifying the proposed slip controllable indirect vector control algorithm. The LIM was equalized and fabricated as an arc type in the full model size
+
+4
+
+for inﬁnite track setting. Furthermore, an actual propulsion inverter for maglev trains was used to supply propulsion power. For the dynamo system, a circular induction motor was used. A load cell was installed on top of the LIM so that the normal force for the input power could be measured.
+B. Simulation and experimental veriﬁcation
+Experiments and simulations were performed at the same speed and thrust to compare the proposed algorithm, SLIFOC, with IFOC CSIFOC. That was analyzed from 10 km/h to 90 km/h which is rated speed. Approximately 3000N rated thrust was used constantly. Fig. 8 compares the slip for the speed of each algorithm. The IFOC slip was calculated using eq. (3) for slip at each speed. The slip of the CSIFOC is a slip pattern when the slip frequency is constantly controlled to 12.5 Hz at the rated speed. Finally, the slip pattern used in SLIFOC shows the slip pattern most optimized to the minimum value of the normal force based on Fig. 4. As a result of comparison of slip patterns for each algorithm, the slip area with the lowest IFOC is used. The pattern of SLIFOC using optimized slip point shows lower normal force at low speed compared with CSIFOC. However, it is almost the same at the rated speed. This result implies that the normal force can be higher than the maximum value of the levitation system in the low speed section.
+Fig. 9 shows the results of the experiment and the simulation of the normal force when driving based on the slip pattern shown in Fig. 8. The normal force of the simulation was calculated by FEM analysis. Both simulation and experiment show that SLIFOC has the lowest normal force. As shown in the slip pattern in Fig. 8, it can be seen that a smaller normal force appears in the lower speed range than the rated speed. Simulation and experiment show that CSIFOC and SLIFOC have the same normal force at the rated speed. The optimum slip frequency of CSIFOC was determined at rated speed. FEM simulation shows that as the speed increases the normal force decreases but as the speed increases the experimental result shows an overall increase. Load cell is installed on the entry side and exit side to support the weight of the motor and to measure the normal force. Because of this position, the force by entry end effect and the normal force by arc structure were measured together[5].
+
+100
+IF O C
+
+C S IF O C
+
+80
+
+S L IF O C
+
+S p e e d (k m /h )
+
+60
+
+40
+
+20
+
+0
+
+0 .8
+
+0 .6
+
+0 .4
+
+0 .2
+
+0 .0
+
+S lip
+
+Fig. 8. Algorithm-speciﬁc slip pattern of the entire speed range
+
+N o rm a l F o rc e (k N )
+
+4 .0
+
+IF O C (E x p e rim e n t)
+
+3 .5
+
+C S IF O C (E x p e rim e n t) S L IF O C (E x p e rim e n t)
+
+IF O C (F E M )
+
+3 .0
+
+C S IF O C (F E M ) S L IF O C (F E M )
+
+2 .5
+
+2 .0
+
+1 .5
+
+1 .0
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+S p e e d (k m /h )
+
+Fig. 9. Normal force analysis of experiment and dynamic simulation
+
+results of this study according to the operating pattern of the maglev train.
+ACKNOWLEDGMENT This research was supported by the Korea Institute of Machinery & Materials under Development of core component technologies for Urban Maglev, Republic of Korea.
+
+V. CONCLUSION
+To implement indirect vector control considering normal force, the thrust and normal force of a linear indirect motor were analyzed for the full speed and slip ranges using 2D FEM analysis. In addition, the normal forces of different algorithms were analyzed through simulation based on the analysis results. IFOC, CSIFOC and SLIFOC were simulated to compare the normal force at the same speed and thrust. As a result, the proposed algorithm, SLIFOC, generated lower normal force in all speed regions than the other algorithms. Based on the analysis results, slip-limited indirect vector control was applied to the LIM performance tester and the same results as the simulation were veriﬁed. The stability and reliability of maglev trains can be improved by applying the
+
+REFERENCES
+[1] I. Boldea, Linear Electric Motors, Englewood Cliffs,” NJ. USA: PrecticeHall, 2001.
+[2] L. G. Yan, “Development and application of the maglev transportation system,” IEEE Trans. Appl. Supercond, vol. 18, pp. 92–99, june 2008.
+[3] B. t. Ooi and D. C. White, “Traction and normal forces in the linear induction motor,” IEEE Transactions on Power Apparatus and Systems, vol. PAS-89, no. 4, pp. 638–645, 1970.
+[4] K. Wang, Y. Li, Q. Ge, and L. Shi, “Indirect ﬁeld oriented control of linear induction motor based on optimized slip frequency for traction application,” in 2016 18th European Conference on Power Electronics and Applications (EPE’16 ECCE Europe), 2016, pp. 1–10.
+[5] J. Duncan, “Linear induction motor-equivalent circuit model,” IEE Proc. Electr. Power Appl., vol. 130, pp. 51–57, june 1983.
+[6] G. Kang and K. Nam, “Field-oriented control scheme for linear induction motor with the end effect,” IEE Proceedings - Electric Power Applications, vol. 152, no. 6, pp. 1565–1572, 2005.
+
+Annotations
+Slip frequency control of linear induction motor considering normal force in semi-high speed MAGLEV train
+Seo, H.; Choe, G.; Lim, J.; Jeong, J.
+
+01 hyunuk seo 14/4/2022 16:01
+
+Page 3
+

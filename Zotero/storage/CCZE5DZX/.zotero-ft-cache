@@ -1,0 +1,287 @@
+High-Speed Humanoid Robot Arm for Badminton Using Pneumatic-Electric Hybrid
+Actuators
+Shotaro Mori ⊕, Kazutoshi Tanaka ⊕, Satoshi Nishikawa ®, Ryuma Niiyama, and Yasuo Kun
+Abstract
+We describe the development of a robot configured to play badminton, a dynamic sport that requires high accuracy. We used pneumatic-electric hybrid actuators, each combining a pneumatic actuator, with high-speed and lightweight attributes, and an electric motor with good controllability. Our first objective was to develop hybrid actuators that are lightweight and compact and with integrated sections. Using parts made of lightweight materials such as plastics and aluminum coils, and using wire for power transmission, we made actuators much lighter and smaller than previous ones. In addition, for high accuracy and power, tension sensor units and a heat countermeasure mechanism were also incorporated. As practice partners, we consider badminton robots to be more useful if they were humanoid in appearance and have a variety of shots. We, therefore, developed a humanoid robot arm. By incorporating actuators as link structures, the overall weight was reduced, and both complex degrees of freedom ( DoFs ) and a large range of motion were realized. Subsequently, we developed a robot with seven DoFs, three DoFs for the shoulder, two for the elbow, and two for the wrist, similar to the configuration of human arms. The robot, therefore, roughly reproduces human movements. At 19 m/s, the maximum speed of the racket was quite fast. The hybrid control reduced the motion variance, allowing improvements in accuracy of more than three times that of motions with only pneumatic control. In addition, performing path planning and tracking control with high precision was possible, tasks that are difficult for conventional pneumatic dynamic robots.
+Index Terms-Hydraulic/pneumatic actuators, mechanism design, tendon/wire mechanism, humanoid robots, motion control.
+I. INTRODUCTION
+SPORT is a global business and expected to be a popular field for robot applications. With the recent developments in robot technology, robots are helping humans to play sports, specifically in regard to retaining and training professional athletes [1]. For other sports such as football [2], table tennis [3], and
+1
+
+pole vault [4], robots have been developed and studied in subject areas such as artificial intelligence and robot technologies.
+We chose the sport of badminton as a theme for this research. Several badminton robots have already been developed, and a simple rally has been achieved with a high degree of completion [5], [6]. It is expected that future developments of robot technology will lead to improved robot capabilities, including acting as practice partners for professional players and becoming active in sport entertainment as with conventional tournaments.
+It would be more useful if the robots were humanoid. In interpersonal sports, the effect of the opponent’s motion is great, so mimicking the same motion as a human is an important aspect of a practice partner. In addition, humans execute a variety of shots by making full use of the body’s multiple degrees of freedom (DoF). Additionally, from the perspective of tournaments, certain characteristics of humanoid robots have high entertainment value.
+Nevertheless, the shuttle and racket in badminton are lightweight and therefore agility is required. For example, the overhead smash is said to be the fastest in all racket games. Therefore, to obtain a high degree of dynamic performance of people with a robot architecture is difficult simply based on conventional electric-drive motors.
+One of the big challenges in robotics research is to make a robot act quickly. Many robots have been developed for that purpose. Barret Technology’s WAM Arm is one that has become famous as a serial-link high-speed manipulator. However, the maximum speed at the end effector is 3 m/s according to the official specifications ( 8 m/s according to Senoo et al. [7]), but which is totally inadequate for badminton. Moreover, its mass is 27 kg and hence difficult to mount on an agile mobile robot.
+In contrast, the pneumatic actuator, which is lightweight and operates at high speed, is suitable for this concept. Indeed, pneumatically driven multiDoFs robots can perform dynamic tasks such as running [8] and jumping [9]; such tasks cannot be achieved by ordinary electric-driven robots. A lightweight robotic arm driven by pneumatic artificial muscle can achieve speeds up to 13 m/s at the end effector [10]. Furthermore, the arms we have developed previously achieved speeds of 21 m/s[11].
+However, the disadvantage of pneumatic actuators is their poor controllability because of difficulties in modeling and delays in response. High accuracy
+Manuscript received February 24, 2019; accepted June 21, 2019. Date of publication July 15, 2019; date of current version July 24, 2019. This letter was recommended for publication by Associate Editor G. Endo and Editor P. Rocco upon evaluation of the reviewers’ comments. This work was supported by the Japan Society for the Promotion of Science through the KAKENHI Program under Grant JP17H06575, Grant JP18H05466, and Grant JP18K18087. (Corresponding author: Shotaro Mori.)
+The authors are with the Department of Mechano-Informatics, Graduate School of Information Science and Technology, The University of Tokyo, Tokyo 113-8656, Japan (e-mail: s-mori@isi.imi.i.u-tokyo.ac.jp; tanaka@isi.imi.i.utokyo.ac.jp; nisikawa@isi.imi.i.u-tokyo.ac.jp; niiyama@isi.imi.i.u-tokyo.ac.jp; kuniyosh@isi.imi.i.u-tokyo.ac.jp).
+This letter has supplementary downloadable material available at http://ieeexplore.ieee.org, provided by the authors.
+Digital Object Identifier 10.1109/LRA.2019.2928778
+2
+
+is required for badminton; one reason is dexterous shots or so-called "skillful shots" need to be executed, and another is how the flight of a returned
+Fig. 1. Overview of the robot developed. shuttle changes easily owing to subtle changes in motion. Such problems are difficult to solve with pneumatic drive alone.
+As a solution, a pneumatic-electric hybrid drive is considered. It improves the controllability of the pneumatic actuators. Various studies on pneumaticelectric hybrid drive have been conducted so far [12]-[14], but there has been no example in which this hybrid drive has been applied to high-speed motion or dynamic robots. Although there is a drawback in that its mass increases if both drive systems are mounted, we believe a considerably more lightweight and dynamic robot can be constructed compared with a solely electric-driven robot.
+To construct this robot, we first developed a compact and lightweight pneumaticelectric hybrid actuator. Then, we designed a robot configuration integrating these hybrid actuators into the link structure of the robot (Fig. 1). This creates a lightweight robot arm with DoFs and range of motion similar to humans. Using a hybrid control of the robot arm, we show that fine adjustments and improvements in precision can be realized, a task that is difficult with only a
+3
+
+pneumatic drive. The robot so designed is not only dynamic but also controllable and precise, and hence will contribute immensely to the robotic research field.
+II. Hybrid Actuated High-Speed and Lightweight Humanoid Robot ARM A. Development of the Lightweight and Compact Pneumatic-Electric Hybrid Actuator
+The pneumatic-electric hybrid actuator developed (Fig. 2) conforms to the robot concept we desired. The actuator is lightweight, capable of high driving speeds, and compact so as not to hinder the increase in range of the multiple DoFs. In most conventional pneumatic-electric hybrid drive systems, the motors are installed separately [12], [13]. However, some components such as those required for power transmission increase the mass and volume of the actuator. However, there are hybrid systems for which the pneumatic and electric drive sections are structurally integrated [14], [15]. By integrating as
+Fig. 2. Pneumatic-electric hybrid actuator and its mechanism. much as possible, the actuator becomes lightweight and compact and proved suitable for our robot concept. We decided to install the magnets on the piston and the coil was looped around the cylinder in the normal air cylinder as adopted
+4
+
+in the integrated pneumatic-electric hybrid linear actuator (iPEHLA) developed by Nakata et al. [14]. In addition, we added a number of features to the actuators needed for our robot. The mechanism of the actuator is shown in Fig. 2.
+Instead of a rod, we used wire as power transmission for the actuator. The rod of the air cylinder bears a large mass and extends and contracts when driven. The concern was that it would become an obstacle when configuring multiple DoFs as for a humanoid robot. Using wire makes for a very lightweight and compact configuration. There is also a commercial pneumatic air cylinder which uses a cable instead of a rod (Double-Acting Pneumatic Air Cylinders, Tolomatic, Inc.). However, the weight is 6 kg (inner diameter: ϕ25 mm, stroke: 100 mm ). The actuator we developed is more than 20 times lighter.
+Additionally, magnets for the electric drive add greater mass. However, if the number of magnets is reduced, the output force decreases proportionally. The increase in current used to increase force also caused an increase in heat. Therefore, countermeasures were taken to remove the heat. First, a temperature sensor (NXFT15XH103FA2B1, Murata Manufacturing Co., Ltd.) was attached to the coil using an adhesive. Moreover, an air flow passage was left around the coil. In consequence, depending on the temperature monitored by the sensor, compressed air can flow actively as well as exhausted air after the pneumatic drive. Air cooling can then be performed. To use the exhaust air for cooling, a quick exhaust valve (EQY-6, Nihon Pisco Co., Ltd.) is used so that the flow can be switched between exhausting and driving. During experiments with the robot arm that was finally developed, the temperature was maintained at about 50◦C, with the arm being cooled essentially by only exhausted air and a maximum current of 35 A for each actuator.
+A back yoke made of iron with ferromagnetism (SS400 series) was attached around the coil. This not only creates a passage of flow for air cooling, but also increases the output by forming a magnetic flux circuit. In addition, the back yoke also acts as
+TABLE I COMPARISON OF OUR ACTUATOR AND CONVENTIONAL INTEGRATED Actuator iPEHLA. The Electric Force, Size, and Stroke of ConVEntional Actuator Are Estimated AcCording to the Paper [14]
+
+Mass Pneu. Force Elec. Force Size Stroke Tension sensor Air cooler Temp. sensor
+
+Our actuator 391 g 343 N(0.7MPa) 32.0 N(31.7 V, 25 A) ϕ41 mm × 240 mm 84.3 mm Supported Supported Supported
+
+iPEHLA [14] 620 g 121 N(0.7MPa) 27.2 N(32 V, 3.2 A) ϕ40 mm × 240 − 320 mm 90 mm Not supported Not supported Not supported
+
+a magnetic shield that reduced the influences on the sensors. Although the
+
+5
+
+back yoke has a certain mass, about 90 g in the actuator described in Table I, we used it on this occasion for this function. However, to make the back yoke as light as possible, it was made to a thickness of 0.5 mm .
+Furthermore, a compact tension sensor unit was incorporated to ensure high precision control of, for example, the force control and the model identification. It also helps in adjusting the wire tension exerted by the tensioner. Calculating the tension of the wire is possible from the force of a load cell (FCCK 1000 N, Forsentek Co., Ltd.). The measurement range of tension can be adjusted by the load cell position and was designed to be able to measure tension at the maximum output of the actuator.
+Lightweight materials are used for other components. The inner cylinder is made of glass fiber-reinforced plastics (GFRP) instead of iron. The coil is made of aluminum wire instead of copper wire. For aluminum bonding, we used solder SN1819 (Nihon Superior Co., Ltd.), which has good permeability and resistance for galvanic action. It enabled aluminum wires to be bonded easily without adding weight. Using a 3D printer, the piston and structural parts are made not of metal but plastic or of polycarbonate to reduce the weight. Because the GFRP and polycarbonate are heat resistance, operations were possible even after the temperature sensor gave readings of about 200◦C over short durations. There are 1 mm -thick separators on the GFRP cylinder to make it easy to roll up the coil.
+For the design, we performed simulations using the magnetic field simulator FEMM (Finite Element Method Magnetics). Force and stability can be calculated and helps in deciding design issues such as magnets or coils.
+A comparison between our actuator and the reference actuator iPEHLA is shown in Table I. Although the strokes are almost the same, our actuator is multifunctional, and the output force from both the electric and pneumatic drives are also stronger. Furthermore, the mass of the actuator of a previous study was 620 g , but our actuator was 391 g ; therefore, we have reduced the mass to about 60%. The size is also almost the same when the rod of the iPEHLA contracts, but it is much more compact when expanded. In this way, a lightweight and compact pneumaticelectric hybrid actuator is realized.
+B. Proposed Robot Configuration
+Next, we present a humanoid robot configuration using the developed hybrid actuators. Human structures and DoF
+6
+
+Developed Hybrid Actuators
+Fig. 3. Proposed robot configuration using developed hybrid actuators. compositions are very complicated and difficult to reproduce perfectly. However, as stated in Section I, reproducing the appearance and skill in the badminton robot is more important than reproducing the human structure. Therefore, a serial-link-type approach was used to simplify the design and control.
+To perform accurate actions as encountered in badminton, the arm is required to have high rigidity, but weight is a main concern. Therefore, the actuator was incorporated into the structure as in our previously developed pneumatic robot [9], [11]. As the actuator is not simply lightweight and rigid but compactly integrated in the arm, creating joints with complex DoFs and wide range of motion is now also possible. A similar system with cable driven pneumatic actuator incorporated into the structure was also applied to the exoskeleton hybrid robot [13].
+Our proposed robot is composed of seven DoFs: three DoFs for the shoulder, two for the elbow, and two for the wrist. The actuators for the wrist are installed on the forearm, those for the elbow are on the upper arm, and those for the shoulder are on the body (Fig. 3). Sequentially, from body to hand, the DoFs roughly correspond to human movements of the shoulder (horizon-
+7
+
+tal extention/horizontal flexion, adduction/abduction, medial rotation/lateral rotation), the elbow (extension/flexion, pronation/supination), and the wrist (palmar flexion/dorsal flexion, and radial flexion/ulnar flexion).
+C. Overview of the Developed Robot
+With the concept proposed in Section II-B, we designed and manufactured the robot arm (Fig. 1). As shown in the shoulder mechanism with three DoFs (Fig. 4(a)), the multi-DoF joint was constructed by routing the wire via pulleys to coincide with the joint axis to mitigate slackening of the wire.
+For maintainability, the actuators can be exchanged one by one by installing from the side. Tensioners were implemented such that the wire tension can be adjusted by adjusting the pulley vertically with screws (Fig. 4(b)). This avoids backlash and thus improves accuracy, and allows the internal piston position to be estimated accurately and hence increase the output of the electric drive.
+Fig. 4. Details of the mechanism for the robot arm: wiring diagrams of (a) the shoulder and (b) compact tensioner.
+8
+
+Fig. 5. DoFs diagram and the approximate length of the developed robot arm. In comparison, the average human forearm length is about 290 mm and the upper arm is about 369 mm [16].
+TABLE II Range of Motion of the DeVEloped Robot arm. Joint Numbers, Neutral Joint Angles, and Axis Directions Are Explained in Fig. 5. In Comparison, the Range of Motion of a Human Is About −90◦ to 90◦ AT JOINT 1, −90◦ TO 140◦ AT 2, −90◦ TO 90◦ AT 3, −140◦ TO 10◦ T 4 , −80◦ TO 80◦ AT 5, −60◦ TO 60◦ AT 6 , AND 0◦ TO 50◦ AT 7[17]
+
+Joint 1
+
+2
+
+3
+
+4
+
+5
+
+67
+
+Max 90◦ 60◦ 90◦
+
+0◦
+
+90◦ 90◦ 90◦
+
+Min −90◦ −90◦ −90◦ −150◦ −90◦ −90◦ 0◦
+
+Axis z
+
+y
+
+x
+
+y
+
+x
+
+zy
+
+TABLE III TheORETICAL Maximum Torques OF THE DEVEloped Robot. THE Pneumatic Torques ARE Calculated at 0.7 MPa , AND THE EleCtric Torques Are Calculated at 35 A
+
+Joint number
+
+1, 2, 3 4
+
+5 6,7
+
+Pneu. torque [N · m] 20.3 9.62 16.89 8.07
+
+Elec. torque [N · m] 3.05 1.29 1.69 1.09
+
+The DoF configuration and the approximate link length are shown in Fig. 5 and the range of motion of the joint is given in Table II. The range of motion of a human, especially shoulder, is very large and complex. However, to avoid self-interference, this range was not completely realized. Nevertheless, it was possible to mimic a variety of postures in badminton. The mass of each section is listed inTable IV; the theoretical pneumatic
+TABLE IV Mass of Each SEction in the Developed Robot arm. Cf. The Mass of Each
+
+9
+
+Section of a 60 kg Human Are About 480 g in Hand, 1380 g in FOREARM, AND 2100 g IN UPPER ARM [18]
+
+Link num. link#1 link#2,3 link#4 link#5 link#6 link#7,8
+total
+
+Mass 1618 g 921 g 1780 g 200 g 1379 g 394 g
+6292 g
+
+Note Body, fixed to base
+Shoulder Upper arm
+Elbow Forearm Hand and racket
+
+Fig. 6. Air circuit diagram. and electric joint torques are given in Table III. Electric torques are as small as 10 − 15% of the pneumatic ones, but controllability and accuracy are expected compared with a robot driven only pneumatically. This is confirmed in experiments; see Section IV.
+D. Other Setup
+As another setup, absolute rotary encoders (MAS-18, Microtech Laboratory Inc.) were used for the joint angle sensors. A lightweight and compact motor driver (G-SOLTWIR 50/100SE1, Elmo Motion Control Ltd.) was used having small dimensions (W35 × L30 × H11.5 mm), small mass ( 18.6 g ), and capable of applying up to 100 V and 50 A per actuator. Two 6-cell LiPo batteries were used as power sources for the electric drives. The voltage was about 25 V per
+10
+
+battery with a maximum current of 600 A and the capacity is 6000 mAh . Each actuator uses 35 A of the maximum current in our experiments. Therefore, it covered the power supply demand adequately for all actuators, even if the number of actuators was increased. In our experiments, it swung over 200 times before the battery needs to be recharged. The size is 155 × 8 × 4 mm and the mass is 809 g , and therefore was mounted on the robot. Proportional pressure control valves (Tecno Basic, Hoerbiger Corp.) were used for the pneumatic drive, and on-off valves (EXA-C8, CKD Corp.) were used for active cooling of the actuator. The valve is lightweight ( 130 g ) and the maximum flow rate is large ( 350 L/min ). Air tubes of dimension ϕ6 × ϕ4 (Nihon Pisco Co., Ltd., polUC0640-20-C) were used for the pneumatic drive between valve and actuator; their lengths range from about 1.0 − 1.5 m. The air circuit diagram is shown in Fig. 6. The compressed air was always supplied by the compressor to the robot. For a sports robot, the air can be supplied from court-side through a thin tube and is applicable
+Fig. 7. Relationship between current and force of the hybrid actuator prototype showing linear behavior as derived from theory. The solid line is a linear fit to the experimental data from 5 A to 25 A .
+11
+
+Fig. 8. Setup of the one-DoF experiment. for configurations with more DoFs. A single-board computer (Beaglebone Black) was used as a control microcomputer.
+III. BASIC EVALUATION BY A SINGLE ActuAtor
+A. Force Evaluation
+The electric force produced by the developed actuator was measured using a force gauge connected to the actuator. The relation between the current and the force is almost linear and useful for control (Fig. 7). In addition, the output force is 33.5 N at 25 A and agrees well with the 32 N result obtained with the magnetic field simulator. Therefore, the simulation was effective in the design stages.
+B. Hybrid Control of Dynamic Motion by a Single Actuator
+A basic examination of the hybrid control was performed on a one-DoF system using the hybrid actuator developed. From a comparison of the control using only pneumatic force with that using a hybrid drive, we verified the effect of the latter on the dynamic motion. The experiment setup is shown in Fig. 8. The air circuit of the actuator was the same as that depicted in Fig. 6. However, only the one-sided chamber was actuated, and therefore the weight was pulled to the left by the actuator. The weight is always pulled to the right by another air cylinder at a constant pressure. By altering the force from the actuator, the motion of the weight can be controlled.
+First, a pneumatic feed-forward command was sent and produced a two-way high-speed motion for reference (labelled "Reference" in Fig. 9). When tried several times with only pneumatic drive, the standard deviation was on average about 1.5 mm during the movement. We next performed hybrid control
+12
+
+Fig. 9. Trajectories in the one-DoF experiment.
+
+Fig. 10. Tracking errors in the one-DoF experiments. The error remained on average at about 7 mm with pneumatic control but was reduced to about 1 mm with hybrid control. with corrections using an electric proportional-derivative (PD) control. That is, we commanded a target current Id,
+
+Id = KD (x˙ d − x˙ ) + KP (xd − x)
+
+(1)
+
+where KD and KP are gains, x is the position of the weight, and xd the target position. As a result, the standard deviation was on average about 0.4 mm and decreased by a factor of about 0.27 times under hybrid control.
+Next, the pressure of the air cylinder pulling the weight to the right was reduced to 0.25 MPa , and the same pneumatic command was sent. As a result, the movement shifted by 15− 30 mm from the original trajectory (Fig. 9).
+
+13
+
+Then, we attempted to track the original trajectory. Initially, a proportionalintegralderivative (PID) controller performed only pneumatic drive. However, the error remained on average at about 7 mm (Fig. 10). This result was obtained by extracting the result with the smallest error by repeating the gain adjustment. However, because the response of the pneumatic drive is slow, vibrations occur easily when the gain is increased. Next, the pneumatic drive was controlled through feed-forward command and corrections were made under electric PD control (Eq. (1)). As a result, tracking was performed very well with an error of 2 mm or less; on average, 1 mm was achieved (Fig. 10).
+From this experiment, controlling the dynamic motion by pneumatic control appears to be difficult, but hybrid control is effective.
+Fig. 11. Time series of the standard deviation at the racket head position in the precision experiment using the seven DoFs robot. Hybrid control is about 3.3 times as accurate as compared with only pneumatic control at around 1100 ms .
+IV. EXPERIMENTAL EvaluATIONS OF THE Robot
+A. Swing Speed
+The results of the robot evaluation experiment are reported next. First, we examined how fast the robot could swing. The operation was performed only with a manually designed pneumatic drive, and the maximum command value was 0.7 MPa . With reference to a human swing, that is, a maximally flexed wrist (the minus direction of joint 7) and the wrist vertical, the robot swung strongly with a supination of the forearm (the minus direction of joint 5) as the main movement, a medial rotation of the upper arm (the minus direction of joint 3), and a horizontal flexion of the shoulder (the plus direction of the joint 1). We confirmed a maximum velocity at the racket head of about 19 m/s. It was much faster compared to previous robotic arms, such as WAM arm[7](8 m/s)
+14
+
+and a lightweight robotic arm [10] (13 m/s). However, it was a little bit slower than the only pneumatic robot that we had developed previously, 21 m/s [11], although the racket speed ( 37.1 m/s at impact) in a jumping smash produced by humans is faster [19]. We suppose humans utilize their whole bodies for the smash and optimize their movements by practice. Therefore, we need to add body and improve control methods for higher speed. However, the proposed robot has potential.
+
+B. Hybrid Control
+Next, we conducted an experiment to verify the effect of hybrid control for the robot. Several control methods have been proposed for hybrid control. For example, pneumatic control is used for gravity compensation for balancing control [13]. However, just compensation is not enough for a dynamic swing. In another study, an optimal control strategy in which a different bandwidth between pneumatic and electric control was proposed [20]. An optimal control method may be suitable for dynamic swing motion. However, the precision depends highly on the accuracy of the dynamics model. In particular, the pneumatic dynamics is difficult to model precisely. Therefore, in this study, we tried a simpler method without a pneumatic dynamics model.
+First, air pressure was commanded by feed-forward control and the operation recorded. Then, the reproducibility of the operation was compared with and without electric control. Under electric control, the computed torque method in which the estimated pneumatic torque was subtracted was used. That is, a target current was commanded for the electric torque τe of
+
+v = θ¨d + KD θ˙d − θ˙ + KP (θd − θ)
+
+(2)
+
+τ e = M (θ)v + N (θ˙ , θ) − τˆp
+
+(3)
+
+where θ is the joint angle, θd the target joint angle, KD and KP are the diagonal matrices of feedback gain, and M (θ) and N (θ, θ˙ ) the matrices for the robot dynamics. Pneumatic torques were estimated using the joint trajectory in training θ˜(t) using inverse dynamics τˆp(t) = M (θ˜)¨˜θ + N (˜θ˙ , θ˜).
+First, in the experiment, the initial posture was taken using pneumatic PID control. We generated next a swing motion like the side swing performed by a human using a feedforward pneumatic pressure command for the proportional valve. In this experiment, the maximum pressure was set to 0.5 MPa to avoid breakages; nevertheless, the maximum speed at the racket head was as high as 12 m/s. The commands and motions are the same as in the shuttle hitting experiment; see next Section IV-C (Fig. 12). This swing was performed twelve times with and without hybrid control. The position of the racket head was calculated from the joint angle, and then the standard deviations were calculated.
+
+15
+
+From the results (Fig. 11), the time at which the racket head speed was fastest was roughly at 1100 ms , but the standard deviation at this time was about 100 mm when driven by only the pneumatic force. However, under hybrid control, the standard deviation decreased to about 30 mm (Fig. 11). Therefore, we had improved the accuracy by 3.3 times using hybrid control.
+Previously, we conducted an experiment where a pneumatic robot attempted to return flying shuttles with feedforward control. However, the shuttle hitting rate remained at 69.7% because of the variance associated with the robot motion [11]. Therefore, by reducing the variance by adding electric feedback as in this experiment, we believe the shuttle could be hit with even higher probability.
+C. Hitting Shuttle
+Next, to verify how much influence the higher accuracy of motion has on the hitting shuttle, we tried to make the robot hit the shuttle. The shuttle was grasped using a vacuum generated by compressed air. Then, it was released and dropped depending on the position and timing of the swing, the robot attempted to hit the shuttle; the trajectory of the shuttle was measured with the motion capture system (OptiTrack, NaturalPoint, Inc.). We measured the variability associated with the dropping of the shuttle, and the standard deviation of the position around the impact time was about 9.6 mm . The same control in the last Section IV-B was also used in this experiment. This was done twelve times with and without electric power (Fig. 12).
+For a quantitative evaluation, the dropping point of the shuttle was estimated. Because the shuttle could not be measured until it falls, the point of drop was estimated by a model that accounted for air resistance. The estimated result is shown in Fig. 13.
+Fig. 12. Sequential photographs of a shuttle being hit.
+16
+
+Fig. 13. Shuttle dropping point in the ground plane. The standard deviation of the position is 444 mm without hybrid control, and 214 mm with hybrid control.
+The standard deviation was 444 mm without hybrid control, but decreased to 214 mm when hybrid control was performed, and therefore, an accuracy of about 2.07 times higher was achieved in hitting the shuttle.
+D. Changing Swing Motion From Training
+In experiments so far, the target motion was the same as the preliminary training by only pneumatic drive. If driven under hybrid control, it is possible to perform a slightly different motion with high accuracy as planned. This enables the swing to be adjusted and to eliminate the need for manual design of the pneumatic pressure command. First, we performed motion planning to slightly shift the racket head position from its preliminary training position. In considering shuttle hitting, it is particularly important that the racket head is close to the target position pd at the time of hitting tN . A method capable of such planned motion, the iterative Linear Quadratic Regulator (iLQR) [21], was used in this study. The pneumatic torque τˆp(t) was estimated from the pneumatic preliminary training by inverse dynamics. Of course, the pneumatic torque changes slightly for different motions, but this time we considered that similar torques are obtained if the change in motion is slight. The state transition model of the robot is defined as
+17
+
+x (tk+1) = x (tk) +
+
+θ˙ (tk) θ¨ (x (tk) , τˆp (tk) + τ e (tk))
+
+∆t
+
+(4)
+
+where x (tk) = θ (tk) , θ˙ (tk) is the state of the robot (joint angle and
+angular velocity) at the discretized time tk, τe (tk) the torque exerted by electric force, and ∆t time step. A joint acceleration θ¨ (x, τ e) is calculated from the robot model by forward dynamics. Because the state transition model includes the estimated pneumatic torque τˆp(t) by preliminary training, the planning of a slight change in motion using the electric force can be performed.
+In this state transition model, if the initial state x (t0), running cost l (x (tk) , τ e (tk)), and the final cost lf (x (tN )) are defined, the cost sum can be minimized using iLQR. In other words, we can calculate the time series of states x (t0) , x (t1) , . . . , x (tN ) and the electric torques τ e (t0) , τ e (t1) , . . . , τ e (tN−1) to satisfy the formula,
+
+N −1
+
+min
+
+l (x (tk) , τ e (tk)) + lf (x (tN ))
+
+(5)
+
+T e k=0
+
+In this experiment, the costs were defined as
+
+l (x, τ e) = − Kτ ln (τ e − τ e) + ln τ e − τ e i
+
+(6)
+
+i
+
+lf (x (tN )) = Kp ∥pd − p (x (tN ))∥2
+
+(7)
+
+where τ e is the maximum electric torque, τ e the minimum electric torque, p (x (tN )) the position of the racket head at tN , and Kτ and Kp are the weights for the electric input and the position at the racket head. As a result, the motion can be planned while the position of the racket head at the time of hitting p (x (tN )) is close to the target position pd and the electric torque is limited as τ e < τ e < τ e. In this experiment, we were concerned about model error. Therefore, the optimized time series of commands τ e (t0) , τ e (t1) , . . . , τ e (tN−1) were not used; instead tracking control of the optimized states x (t0) , x (t1) , . . . , x (tN ) were conducted by feedback control.
+In the experiment, the same pneumatic pressure command as stated in Section IV-B was used in preliminary training, and the hitting time was assumed to be tN = 1100[ ms], when the racket head velocity was near its fastest. Then planning by iLQR was conducted to shift the racket head position at tN slightly in the x and z directions, which are roughly orthogonal to the swing direction. Then we attempted to make the robot track the planned new motions using the electric PD control for each joint. The
+TABLE V Experimental Results of Changes In Swing Using Hybrid Control. If the Shift Position Was About 100 mm , a Shift With Small Error Is
+Possible. The Directions of the AXes Are the Same AS in Fig. 5
+
+18
+
+Changed pos. (x, y, z)[mm] (±0, ±0, ±0) (+94.9, +3.9, −98.4) (+82.7, +2.5, −7.0) (−11.3, −1.8, +92.8) (+60.1, −1.2, +76.8)
+
+Error[mm] 25.6 23.0 29.8 18.0 51.8
+
+computed torque method used in Section IV-B was not used because it was unstable due to probably some modeling error. Although an improvement is expected by model identification, this is left as future work.
+The position of the racket head at time tN of the generated motion and the tracking accuracy are listed in Table V. If the shift position was about 100 mm , it was possible to enact the shift with an error of about 25 mm . If this method is used during badminton play, making fine adjustments will be possible, including responding to a shuttle that flies to various positions and returned in the direction we want. These adjustments are difficult with onlypneumatic control. Although it may also be important to consider the velocity and the racket surface for hitting, they are also considered in motion planning by incorporating them in the cost function. Although the error was large in some motions, the range of correction is expected to be expanded further by improvements in the control method or motion planning.
+
+V. CONCLUSIONS
+As a robot for playing badminton requires dynamics with high precision, we proposed and developed a humanoid robot arm with integrated pneumatic-electric hybrid actuators in the link structures. First, we developed a compact and lightweight pneumatic-electric hybrid actuator, which was about 60% lighter with multiple functionality than previous actuators. By integrating the actuator in the link, we produced a seven-DoFs robot that roughly reproduced the motion of a human. We developed robots of about 6.3 kg for the entire arm and about 3.7 kg for the sections from the upper arm. We achieved a maximum velocity of 19 m/s with the racket head. In addition, hybrid control enabled an accuracy in the position of the racket head to be improved by 3.3 times and the shuttle dropping point by about 2.07 times. We also succeeded in planned changes in swing motion which are difficult to achieve with conventional dynamic pneumatic robots.
+There was a further improvement in accuracy using a force sensor and control method. Additionally, combining electric control with control or learning using a pneumatic drive is expected to be effective. By planning the pneumatic command and correcting the error by hybrid control, performing a variety of swings with precision is possible. The next step in development is creating a mobile robot with the developed arm. Such robots may actually be able to play badminton with humans on court and as a result more practical experiments would be
+
+19
+
+conducted. Although other problems exist, it is expected that practical applications of our badminton robot as conceptualized can be realized.
+REFERENCES
+[1] K. Sato, K. Watanabe, S. Mizuno, M. Manabe, H. Yano, and H. Iwata, "Development and assessment of a block machine for volleyball attack training," in Proc. IEEE Int. Conf. Robot. Autom., 2017, pp. 1036-1041. H. Kitano, M. Asada, Y. Kuniyoshi, I. Noda, and E. Osawa, "RoboCup: The robot world cup initiative," in Proc. Int. Conf. Auton. Agents, 1997, pp. 340-347. K. Mülling, J. Kober, O. Kroemer, and J. Peters, "Learning to select and generalize striking movements in robot table tennis," Int. J. Robot. Res., vol. 32, pp. 263-279, 2013. S. Nishikawa, T. Kobayashi, T. Fukushima, and Y. Kuniyoshi, "Pole vaulting robot with dual articulated arms that can change reaching position using active bending motion," in Proc. IEEE-RAS 15th Int. Conf. Humanoid Robots, 2015, pp. 395-400.
+J. Stoev, S. Gillijns, A. Bartic, and W. Symens, "Badminton playing robot-A multidisciplinary test case in mechatronics," in IFAC Proc. Vol., vol. 43, pp. 725-731, 2010.
+"ROBOCON 2015—Indonesia—Official Website," 2019. [Online]. Available: http://robocon.tvri.co.id/
+T. Senoo, A. Namiki, and M. Ishikawa, "Ball control in high-speed batting motion using hybrid trajectory generator," in Proc. IEEE Int. Conf. Robot. Autom., 2006, pp. 1762-1767.
+R. Niiyama, S. Nishikawa, and Y. Kuniyoshi, "Athlete robot with applied human muscle activation patterns for bipedal running," in Proc. IEEE-RAS 10th Int. Conf. Humanoid Robots, 2010, pp. 498-503.
+K. Tanaka, S. Nishikawa, R. Niiyama, and Y. Kuniyoshi, "Humanoid robot performing jump-and-hit motions using structure-integrated pneumatic cable cylinders," in Proc. IEEE-RAS 17th Int. Conf. Humanoid Robots, 2017, pp. 696-702.
+D. Büchler, H. Ott, and J. Peters, "A lightweight robotic arm with pneumatic muscles for robot learning," in Proc. IEEE Int. Conf. Robot. Autom., 2016, pp. 4086-4092.
+S. Mori, K. Tanaka, S. Nishikawa, R. Niiyama, and Y. Kuniyoshi, "Highspeed and lightweight humanoid robot arm for a skillful badminton robot," IEEE Robot. Autom. Lett., vol. 3, no. 3, pp. 1727-1734, Jul. 2018.
+20
+
+D. Shin, O. Khatib, and M. Cutkosky, "Design methodologies of a hybrid actuation approach for a human-friendly robot," in Proc. IEEE Int. Conf. Robot. Autom., 2008, pp. 4369-4374.
+S. Hyon, T. Hayashi, A. Yagi, T. Noda, and J. Morimoto, "Design of hybrid drive exoskeleton robot XoR2," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst., 2013, pp. 4642-4648.
+Y. Nakata, T. Noda, J. Morimoto, and H. Ishiguro, "Development of a pneumaticelectromagnetic hybrid linear actuator with an integrated structure," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst., 2015, pp. 62386243.
+H. Higo, Y. Sakurai, T. Nakada, K. Tanaka, and K. Nagayama, "Dynamic characteristic and power consumption on an electro-pneumatic hybrid positioning system," in Proc. 6th JFPS Int. Symp. Fluid Power, 2005, pp. 363-368.
+C. C. Gordon et al., "Anthropometric Survey of US Army Personnel: Summary statistics, interim report for 1988," Anthropology Research Project, Inc., Yellow Springs, OH, USA, Tech. Rep. ADA209600, 1989.
+K. Luttgens, H. Deutsch, and N. Patricia, Kinesiology: Scientific Basis of Human Motion. Dubuque, IA, USA: Brown & Benchmark, 1992.
+R. Bankhead et al., "ASPEN enteral nutrition practice recommendations," J. Parenteral Enteral Nutrition, vol. 33, no. 2, pp. 122-167, 2009.
+A. S. Rambely and N. A. Abu Osman, "The contribution of upper limb joints in the development of racket velocity in the Badminton Smash," in Proc. Int. Symp. Biomech. Sports, 2005, pp. 422-426.
+K. Ishihara and J. Morimoto, "An optimal control strategy for hybrid actuator systems: Application to an artificial muscle with electric motor assist," Neural Netw., vol. 99, pp. 92-100, 2018.
+W. Li and E. Todorov, "Iterative linear quadratic regulator design for nonlinear biological movement systems," in Proc. 1st Int. Conf. Inform. Control, Autom. Robot., 2004, pp. 1-8.
+21
+

@@ -1,0 +1,16 @@
+Title:          Efficiency Improvement by Deriving the Optimal Operating Slip Frequency of a Linear-Induction-Style Maglev Train
+Subject:        While urban maglev trains have the advantage of being optimized for urban environments where noise is low and dust is less generated, their driving efficiency is low when compared to rotary induction motors owing to the structural limitations of linear devices. To compensate for these disadvantages, various studies on train control schemes have been conducted. Representative control methods include improving the efficiency of using slip frequency by directly controlling the propulsion force using vector control. However, this method has limitations in its use as it relates to the normal force that affects the train's levitation system. Therefore, in this study, mathematical analysis was conducted for each factor that mutually affects the control of the train. On this basis, the magnitude of the normal force related to the safety of the train is limited. Operating efficiency was improved by varying the slip frequency according to the operating conditions of the train. In addition, for verification, the effect was proved through a comparative experiment using an 18 ton class maglev train running at Incheon International Airport.
+Keywords:       LIM; slip frequency; linear induction motor; automatic train operation
+Author:         Sang-Uk Park, Hyung-Soo Mok, Jae-Won Lim, Hyun-Uk Seo and Sang-Hun Oh
+Creator:        LaTeX with hyperref
+Producer:       pdfTeX-1.40.21
+CreationDate:   12/14/20 11:52:28
+ModDate:        12/14/20 12:13:07
+Tagged:         no
+Form:           none
+Pages:          13
+Encrypted:      no
+Page size:      595.276 x 841.89 pts (A4) (rotated 0 degrees)
+File size:      3213667 bytes
+Optimized:      no
+PDF version:    1.7

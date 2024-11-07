@@ -1,0 +1,421 @@
+Proceedings of 11th IEEE International Conference on CYBER Technology in Automation, Control, and Intelligent Systems
+July 27 - 31, 2021, Jiaxing, China
+
+2021 IEEE 11th Annual International Conference on CYBER Technology in Automation, Control, and Intelligent Systems (CYBER) | 978-1-6654-2527-8/21/$31.00 ©2021 IEEE | DOI: 10.1109/CYBER53097.2021.9588189
+
+ $1RYHO+\EULG$FWXDWRUIRU7KH+DQG([RVNHOHWRQ
+-LDQ\X<DQJ7DR:HL+XL6KL
+
+$EVWUDFW² $V D QHZ W\SH RI LQWHOOLJHQW PDWHULDO VKDSH PHPRU\ DOOR\ 60$ KDV EHHQ JUDGXDOO\ DSSOLHG WR URERW DFWXDWRUV GXH WR LWV XQLTXH VKDSH PHPRU\ HIIHFW +RZHYHU WKHH[LVWLQJ60$DFWXDWRUVJHQHUDOO\KDYHVORZUHVSRQVHDQG KLJK HQHUJ\ FRQVXPSWLRQ ,Q WKLV SDSHU D QRYHO K\EULG DFWXDWRUDQGLWVFRQWUROPHWKRGEDVHGRQVKDSHPHPRU\DOOR\ 60$ DUH SURSRVHG IRU D ELGLUHFWLRQDO FRXSOLQJ KDQG H[RVNHOHWRQDFWXDWRU&RPSDUHGZLWKWKHWUDGLWLRQDOWZRZD\ 60$ DFWXDWRU WKLV SDSHU XVHV D WZRZD\ K\EULG DFWXDWRU FRPELQLQJ60$VSULQJVZLWKVHUYRPRWRUVZKLFKLQWHJUDWHG WKH DGYDQWDJHV RI VHUYR PRWRU DQG 60$ 7KH FRPSDFW DFWXDWRU FDQ HQVXUH UDSLG UHVSRQVH DQG IRUFH FRQWURO DW WKH WDUJHWORFDWLRQDQGLVPRUHVHFXUH
+, ,152'8&7,21
+'XH WR WKH DJLQJ RI WKH SRSXODWLRQ DQG WKH WKUHDW RI GLVHDVHV VXFK DV VWURNH SHRSOH DUH LQ XUJHQW QHHG RI HTXLSPHQWWKDWFDQDVVLVWKXPDQWRFRPSOHWHRUHQKDQFHWKH SK\VLFDO PRYHPHQW DELOLW\ DQG FRPSOHWH UHKDELOLWDWLRQ WUDLQLQJLQGDLO\OLIH3K\VLFDOUHKDELOLWDWLRQLVHVVHQWLDOIRU WKH WUHDWPHQW RI SDWLHQWV ZLWK SK\VLFDO RU QHXURORJLFDO GLVDELOLWLHV>@$VDNLQGRILQWHOOLJHQWGHYLFHWKDWLPLWDWHV WKHSK\VLRORJLFDOVWUXFWXUHRIKXPDQERG\DQGFDQEHZRUQ E\KXPDQEHLQJVWKHH[RVNHOHWRQURERWFDQFRRSHUDWHZLWK WKH ZHDUHU
+V PRYHPHQW DQG DVVLVW WKH ZHDUHU DW WKH VDPH WLPHZKLFKKDVDWWUDFWHGPRUHDQGPRUHVFKRODUV
+DWWHQWLRQ ,Q UHFHQW WHQ \HDUV WKH KDQG H[RVNHOHWRQ KDV GHYHORSHG UDSLGO\0DUFR&HPSLQL>@DQG+X+XDQJ>@HWDOGHVLJQHG WKH KDQG H[RVNHOHWRQ DFWXDWRUQ E\ PRWRU DQG WHQGRQ 0D =KXR >@ DQG *D]L $NJXQ >@ HW DO XVHG VHUYR PRWRU WR GLUHFWO\ 
+
+DFWXDWRUWKHKDQGH[RVNHOHWRQ$OWKRXJKWKHUHVSRQVHZDV IDVWWKHLPSDFWZDVODUJHDQGWKHH[RVNHOHWRQPRYHPHQW GLG QRW FRQIRUP WR WKH PRYHPHQW UXOHV RI KXPDQ KDQGV <D[L:DQJ>@GHVLJQHGDSQHXPDWLFURERW%HQMDPLQ:. $QJ >@ HW DO SURSRVHG D ' SULQWLQJ WR PDNH SQHXPDWLF JORYHVIRUKDQGUHKDELOLWDWLRQUHTXLULQJKLJKDLUWLJKWQHVV )LORPHQD >@ KDV GHVLJQHG DQ 60$DFWXDWRUQ GH[WHURXV KDQGWKDWHQDEOHVJRRGKDQGPRYHPHQW1DPVHRQ-DQJ>@ KDVGHVLJQHGDVXUJLFDOGHYLFHXVLQJDQ60$PHPRU\DOOR\ ZLWKKLJKVDIHW\DQGSUHFLVLRQ)HQJ;LDRELQ>@SURSRVHG D WZRZD\ V\PPHWULFDO PHPRU\ DOOR\DFWXDWRUQ KDQG H[RVNHOHWRQWKHVWDELOLW\RIPRWLRQKDVEHHQLPSURYHGEXW WKH UHVSRQVH LV VORZ LW LV GLIILFXOW WR DFKLHYH UHDOWLPH PRWLRQFRQWURO
+,Q YLHZ RI WKHDERYHSUREOHPVD K\EULG DFWXDWRU DQG FRQWUROPHWKRGEDVHGRQ60$VSULQJDUHSURSRVHGRQWKH EDVLVRIWKHZRUNRIWKHSUHELGLUHFWLRQDOPRWLRQFRXSOLQJ WHQGRQVFKHPH7KHVHFRQGVHFWLRQRIWKLVSDSHULQWURGXFHV WKH SRZHU V\VWHP VWUXFWXUH GHVLJQ DQG V\VWHP KDUGZDUH 7KH WKLUG VHFWLRQ HVWDEOLVKHV WKH FRQWURO PRGHO DSSOLFDEOH WR WKH WZRZD\ FRXSOLQJ VFKHPH 7KH IRXUWK VHFWLRQ DQG ILYHVHFWLRQVDUHWKHH[SHULPHQWDODQDO\VLVDQGFRQFOXVLRQ UHVSHFWLYHO\
+,, 0(&+$1,&$/6758&785($1'+$5':$5( $5&+,7(&785(2)+$1'(;26.(/(721
+,Q WKH SUHYLRXV ZRUN RXU WHDP SURSRVHG D WZRZD\ FRXSOLQJ ILQJHU WHQGRQ DUUDQJHPHQW VFKHPH >@ WKDW FRQIRUPV WR WKH ODZ RI KXPDQ ILQJHU PRYHPHQW %HFDXVH 0DLQH[W WHQGRQ DQG 0DLQIOH[ WHQGRQ XVH GLIIHUHQW PDWHULDOV WHQGRQ DFWXDWRUV DUH UHTXLUHG WR DFKLHYH WKH PRYHPHQWFKDUDFWHULVWLFVRIWKHWZRVLGHGPDLQWHQGRQ,Q
+
+ΎZĞƐƌĂĐŚƐƵƉƉŽƌƚĞĚďǇƚŚĞEĂƚŝŽŶĂůEĂƚƵƌĂů^ĐŝͲĞŶĐĞ&ŽƵŶĚĂƚŝŽŶ 
+'ƌĂŶƚEŽ͘ϱϭϱϬϱϬϳϮ͘ $OODXWKRUVDUHZLWK6FKRRORI0HFKDQLFDO(QJLQHHULQJ $XWRPDWLRQ
+1RUWKHDVWHUQ8QLYHUVLW\6KHQ\DQJ&KLQD &RQWDFWLQJ$XWKRU-LDQ\X<DQJLVZLWK6FKRRORI0HFKDQLFDO
+(QJLQHHULQJ $XWRPDWLRQ1RUWKHDVWHUQ8QLYHUVLW\6KHQ\DQJ &KLQDHPDLOM\\DQJ#PDLOQHXHGXFQ  
+
+978-1-6654-2527-8/21/$31.00 © 2021 IEEE
+
+271
+
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:04:42 UTC from IEEE Xplore. Restrictions apply.
+
+WKLV SDSHU D SRZHU V\VWHP VFKHPH FRQIRUPLQJ WR WKH ODZ RI KXPDQ PRYHPHQW LV SURSRVHG DV VKRZQ LQ )LJ  LQFOXGLQJWKHHQGILQJHUH[HFXWLRQSDUWWKHSDOPVLGHVKDSH PHPRU\ DOOR\ DFWXDWRU SDUW WKH EDFN PRWRU DFWXDWRU SDUW DQG WKH FRQWUROOHU SDUW 7KH FRXSOLQJ WHQGRQ IL[HG WR WKH ILQJHU SDUW LV DFWXDWRUQ E\ D EDFNVLGH PRWRUDFWXDWRUQ WHQGRQ ZLQFK WR DFKLHYH ILQJHU VWUHWFKLQJ PRYHPHQW DQG WKHSDOPVLGH60$VSULQJDFWXDWRUVWKHWHQGRQIL[HGWRWKH SDOP RI WKH ILQJHU WR DFKLHYH VWDEOH ILQJHU EHQGLQJ PRYHPHQW 7KHUH DUH WZR PDLQ UHDVRQV IRU XVLQJ D V\PPHWULFDOK\EULGDFWXDWRU
+
+$ &RPSDFW DQG HDV\ WR FRQWURO )RU ZHDUDEOH KDQG H[RVNHOHWRQ GHYLFHV WRR ODUJH GULYH PRWRU OHDGV WR EXON\ V\VWHP ZKLOH VPDOO GULYH PRWRU LV XQGHUSRZHUHG 1LWLQR 60$ VSULQJV KDYH D FOHDU DGYDQWDJHEHFDXVHWKH\DUHHDVLHUWRKHDWDQGSURGXFH VXIILFLHQW IRUFH ZKLOH PDLQWDLQLQJ RYHUDOO VWUXFWXUDO FRPSDFWQHVV
+% )DVWHUUHVSRQVHDQGKLJKVHFXULW\7KHUHVSRQVHWLPH RIWKH1LWLQR60$VSULQJLVVOLJKWO\VORZHUWKDQWKDW RIWKH VHUYR PRWRU DFWXDWRUZKLFK FDQEH VORZHG LI WKHVDPH1LWLQR60$VSULQJDFWXDWRULVXVHGRQERWK VLGHV RI WKH KDQG %HFDXVH WKH 1LFNHORGHRQ 60$ VSULQJ LWVHOI KDV D JRRG VWUHWFK VR WKDW ZKHQ WKH 1LFNHORGHRQ 60$ VSULQJ DV D SRZHU VRXUFH WKH JUDVSLQJRI WKH H[RVNHOHWRQ RI WKH KDQG LVEHWWHU LQ OLQHZLWKWKHPRYHPHQWODZRIWKHKDQGKLJKVDIHW\
+)LJXUH +\EULGGULYHV\VWHP
+,QWKLVSDSHUWKH0*56WHHULQJ$FWXDWRULVVHOHFWHG LQVWHDGRIWKHPRWRUZLQFKPHFKDQLVPWKHPRGHODFWXDWRU LV FRPSDFW WKH SRZHU ZHLJKW LV UHODWLYHO\ KLJK J DFWXDWRU FDQ SURYLGH D PD[LPXP WRUTXH RI .J 7KH VWHHULQJ DFWXDWRU ZKLFK VHUYHV DV D VHUYR DFWXDWRU ZLWK D URWDWLRQ UDQJH RI  WR  GHJUHHV HQDEOHV UHDOWLPH DQG DFFXUDWH PRWLRQ SRVLWLRQ FRQWURO DQG HQVXUHV IDVW ILQJHU
+
+)LJXUH ,ĂƌĚǁĂƌĞƐǇƐƚĞŵŽĨŚĂŶĚĞǆŽƐŬĞůĞƚŽŶ
+)LJXUH 2YHUDOOFRQWUROGLDJUDPRIWKHKDQGH[RVNHOHWRQ
+VWUHWFKLQJ ZLWKRXW ORDG 7KH 60$ VSULQJ ZLWK RQHZD\ PHPRU\HIIHFWLVVHOHFWHGWKHRULJLQDOOHQJWKDQGPD[LPXP UHGHIRUPDWLRQ RI WKH VSULQJ DUH PP DQG WKH PD[LPXP H[WUXVLRQLVPPWRPHHWWKHGHIRUPDWLRQRIWKHKDQG WHQGRQ 7KH KDUGZDUH V\VWHP RI WKH H[RVNHOHWRQ RI WKH KDQGDVVKRZQLQ)LJFRQVLVWVRIIRXUSDUWVWKHGULYHU OD\HUWKHFRQWUROOD\HUWKHDFWXDWRUOD\HUDQGWKHH[HFXWLYH OD\HU IRUPLQJ D JRRG LQIRUPDWLRQ LQWHUDFWLRQ 'XULQJ WKH RSHUDWLRQ WKH WHPSHUDWXUH VHQVRU FRQVLVWLQJ RI 77. 6/( WKHUPRFRXSOH ZLUH DUUDQJHG DW WKH VSULQJ DFKLHYHV WKH WHPSHUDWXUH PRQLWRULQJ RI WKH 60$ VSULQJ DQG WKH DQJOH VHQVRU RI WKH ILQJHU MRLQW LV REWDLQHG E\ WKH 0XDGD 69$&($5 DQJOH VHQVRU DUUDQJHG RQ WKHILQJHU0&3MRLQW7KHKDQGH[RVNHOHWRQLVFRPSDFWHG E\ D ZHOODUUDQJHG VHQVRU XQLW SURYLGLQJ UHDOWLPH LQIRUPDWLRQIRUWKHPRYHPHQWFRQWURORIWKHH[RVNHOHWRQ
+
+ 
+
+272
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:04:42 UTC from IEEE Xplore. Restrictions apply.
+
+,,, &21752/0(7+2'
+
+$ &RQWUROV\VWHPLQIUDVWUXFWXUH 6LQFH WKH KDQG H[RVNHOHWRQ LQ WKLV DUWLFOH XVHV DQ
+XQV\PLFDOK\EULGDFWXDWRUWKLVUHTXLUHVWKHFRQWUROV\VWHP WR EH DEOH WR DFKLHYH SDUDOOHO PRWLRQ FRQWURO DV VKRZQ LQ )LJ
+
+% &RQWURODOJRULWKP 7KH FRQWURO IORZ EHJLQV ZLWK WKH SHUFHSWLRQ V\VWHP
+REWDLQLQJ IRXU PRWLRQ SDUDPHWHUV WKH WDUJHW ILQJHUWLS SRVLWLRQ 73 WKH WDUJHW ILQJHUWLS IRUFH 7) WKH FXUUHQW ILQJHUWLSSRVLWLRQ33DQGWKHFXUUHQWILQJHUWLSIRUFH3) 7KH REWDLQHG PRWLRQ SDUDPHWHUV DUH FRPSDUHG ZLWK WKH PRWLRQSDUDPHWHUV FRPSOHWHGE\ WKH ODVW PRWLRQ DQGWKH FRUUHVSRQGLQJFDOFXODWLRQVDUHSHUIRUPHGDFFRUGLQJWRWKH GLIIHUHQFH EHWZHHQ WKH WDUJHW SDUDPHWHUV DQG WKH FXUUHQW SDUDPHWHUV WR GHWHUPLQH ZKHWKHU WR KROG WKH DFWLRQ ,I WKH GLIIHUHQFH LV ]HUR WKH ODVW GDWD LV XVHG WR PDLQWDLQ WKH DFWLRQLIWKHGLIIHUHQFHLVQRW]HURWKHFRQWUROOHUWRDFKLHYH WKH FRQWURO V\VWHP
+V UHWXUQ DFWLRQ WKH VWDUW WDUJHW WHPSHUDWXUH77VHWWRႏVWDUWWKHWDUJHWILQJHUDQJOH 7)3VHWWRe
+&RUUHFWLRQ RI WKH WDUJHW ILQJHU JHVWXUH 7)3 YDOXH ,Q RUGHU WR HQVXUH WKH VDIH RSHUDWLRQ RI WKH H[RVNHOHWRQ V\VWHP LW LV QHFHVVDU\ WR OLPLW WKH HIIHFWLYH UDQJH RI 7)3 WDUJHW ILQJHU SRVWXUH 7KH 0&3 3,3 DQG ',3 RI WKH GHVLJQH[RVNHOHWRQRUJDQVKDYHDUDQJHRIPRWLRQRIe e DQG  e UHVSHFWLYHO\ VR WKH PLQLPXP YDOXH RI 7)3/)3LV e DQGWKHPD[LPXPYDOXH0)3LV e,IWKH7(3YDOXHLVHQWHUHGWKH7(3YDOXHLVFRUUHFWHG WRWKH/)30)3YDOXHLILWLVQRWZLWKLQWKHGHVLJQUDQJH
+7KH FDOFXODWLRQ RI WKH WDUJHW WHPSHUDWXUH 77 7KH WDUJHWWHPSHUDWXUH77YDOXHRIWKHFRQWURO60$VSULQJLV FDOFXODWHGE\WKHWDUJHWIRUFH7)GHILQHGE\WKHILQJHUWLS DQGWKHWDUJHWSRVLWLRQ73GHILQHGE\HDFKILQJHUVRWKH FDOFXODWLRQ RI WKH WDUJHW WHPSHUDWXUH UHTXLUHV WKUHH VWHSV WRFRQYHUWWKH73YDOXHWRWKHVWUHWFKOHQJWKRIWKH60$ VSULQJ  &RQYHUW WKH 7) YDOXH WR 60$ VSULQJ VWUHWFK IRUFH7KH77YDOXHLVFDOFXODWHGXVLQJWKH60$VWUHWFK IRUFHDQGVWUHWFKOHQJWKYDOXHV
+y &RQYHUWWKH73YDOXHWRWKHVWUHWFKOHQJWKRIWKH60$
+
+)LJXUH 5DWLRRIWKHLQSXWIRUFHRQWKHPDLQIOH[RUWHQGRQWRWKH
+
+ILQJHUWLSRXWSXW
+
+VSULQJ $FFRUGLQJ WR WKH H[SHULPHQWDO GDWD RI WKH
+
+OHQJWKRIWKHPDLQGULYLQJWHQGRQZLWKWKHFKDQJHRI
+
+ILQJHU SRVWXUH LW FDQ EH ILWWHG ZLWK WKH DPRXQW RI
+
+FKDQJH RI PDLQIOH[
+ WHQGRQ OHQJWK DV VKRZQ LQWKH
+
+HTXDWLRQ  WKH Į LQ WKH SDWWHUQ LV WKH )3 YDOXH LH 
+
+WKHWRWDODQJOHRIWKH0&33,3DQG',3MRLQWV ᶭ ݈ ൌ  െͳǤͳ݁ െ Ͳͺߙସ ൅ ͵Ǥͷ݁ െ Ͳ͸ߙଷ െ ʹǤͶ݁ െ ͲͶߙଶ ൅ ͲǤʹͳ                                 
+
+6LQFHWKH60$VSULQJLVSUHVWUHWFKHGE\PPWKH WRWDOHORQJLW\RIWKH60$VSULQJWDUJHWOHQJWK ‫ܮ‬௧௟ &DQEHH[SUHVVHGDV ‫ܮ‬௧௟ ൌᶭ ݈ ൅ ʹͲ               y &RQYHUW 7) WR 60$ VSULQJ VWUHWFK )LUVW RI DOO WKH
+
+UDWLR RI LQSXW IRUFH RQ WKH PDLQ FXUYHG WHQGRQ WR
+ILQJHUWLS RXWSXW IRUFH LV GHILQHG DV ‫ܭ‬௜௩௢ )URP WKH H[SHULPHQWDO GDWD LQ >@ ‫ܭ‬௜௩௢ FDQ EH REWDLQHG DV VKRZQLQ)LJ$QGWKHQZHFDQJHW ‫ܨ‬௧௦ 
+‫ܭ‬௜௩௢ ൌ ͳǤʹ͵ͺ݁ െ Ͳͷߙଶ െ ͳǤͺͷͷ݁ െ ͲͶߙ ൅ ͲǤͳ͸ͶͶ                       
+
+‫ܨ‬௧௦
+
+ൌ
+
+்ி ௄೔ೡ೚
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+y &DOFXODWHWKH77YDOXH
+
+6LQFH WKH 60$ VSULQJ DFWXDWRU LV EDVHG RQ DPELHQW
+
+WHPSHUDWXUH FKDQJHV LQ PHPRU\ DOOR\ PDWHULDOV LQ
+
+RUGHU WR DFKLHYH SUHFLVH FRQWURO RI WKH PRWLRQ RI WKH
+
+60$ VSULQJ D WKHUPRG\QDPLF DQDO\VLV RI WKH
+
+FKDUDFWHULVWLFVRI WKH VSULQJ LV UHTXLUHGDQG7DEOH,
+
+OLVWVWKHSK\VLFDOVLJQLILFDQFHRIDOOUHOHYDQWV\PEROV
+
+ 
+
+273
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:04:42 UTC from IEEE Xplore. Restrictions apply.
+
+XVHG LQ WKH WKHUPRG\QDPLF DQDO\VLV %HFDXVH WKH IRUFHGLVSODFHPHQW HTXDWLRQ UHODWLRQVKLS RI WKH PHPRU\ DOOR\ 60$ VSULQJ FDQ EH H[SUHVVHG DV HTXDWLRQ  ZKHUH ‫ܥ‬ଵ DQG ‫ܥ‬ଶFDQ EH UHSUHVHQWHG E\ HTXDWLRQ
+‫ܥ‬ଵሺ‫ ܨ‬െ ‫ܨ‬଴ሻ ൌ ‫ܥ‬ଶ
+ሺɁ െ Ɂ଴ሻ െ ‫ܥ‬ଶɁ௅
+ሺɌ െ Ɍ଴ሻ    
+        ‫ܥ‬ଵ ൌ ௞஠ೞ௥஽య      ‫ܥ‬ଶ ൌ ஠஽ଶ௥మே           
+7$%/(,  ^ǇŵďŽůƐĨŽƌ^DƚŚĞƌŵŽĚǇŶĂŵŝĐĂŶĂůǇƐŝƐ
+
+3DUDPHWHU1DPH
+
+3K\VLFDO0HDQLQJV
+
+ ‫ܣ‬ௌȀ‫ܣ‬௙  ‫ܯ‬௦‫ܯ‬௙  ‫ܩ‬஺‫ܩ‬ெ  ‫ܭ‬஺‫ܭ‬ெ   
+
+$XVWHQLWHVWDUWILQLVKWHPSHUDWXUH 0DUWHQVLWHVWDUWILQLVKWHPSHUDWXUH 6KHDUPRGXOXVRIDXVWHQLWHPDUWHQVLWH +RRNFRQVWDQWRIDXVWHQVLWHPDUWHQVLWH 7HQVLOHIRUFH
+
+ ‫ܨ‬଴  
+
+
+,QLWLDOWHQVLOHIRUFH 6KHDUPRGXOXVRIDQ\SKDVHVWDWH
+
+ Ɂ
+
+7HQVLOHGLVSODFHPHQW
+
+ Ɂ଴  Ɂ௅  Ɍ
+
+,QLWLDOWHQVLOHGLVSODFHPHQW 0D[UHFRYHUDEOHWHQVLOHGLVSODFHPHQW 0DUWHQVLWHYROXPHIUDFWLRQ
+
+ Ɍ଴  ݇௦
+ U
+
+,QLWLDOPDUWHQVLWHYROXPHIUDFWLRQ :DKOFRUUHFWLRQIDFWRU $YHUDJHGLDPHWHUUDGLXVRIWKHVSULQJ
+
+ 
+
+$YHUDJHGLDPHWHURIWKHVSULQJZLUH
+
+ 
+
+1XPEHURIWKHFRLOVLQWKHVSULQJ
+
+7
+
+7HPSHUDWXUH
+
+ ɐ௘௤
+
+(TXLYDOHQWVWUHVV
+
+ ɒɐ௘௥
+
+6KHDU&ULWLFDOVWUHVV
+
+ ɐ௘
+
+(ODVWLFOLPLW
+
+$VWKHPHPRU\DOOR\LQWKHSKDVHFKDQJHSURFHVVWKH
+
+PDWHULDOZLOODSSHDULQWKHPDUVRPHDQGDXVWHQXVWZR
+
+SKDVH FRPSRQHQWV VR WKH VKHDU PRG * LV QRW D
+
+FRQVWDQWFDQEHFDOFXODWHGXVLQJHTXDWLRQ
+
+
+ ൌ ‫ܩ‬஺ െ Ɍሺ‫ܩ‬஺ െ ‫ܩ‬ெሻ             
+
+7KHVHFRQGRUGHUHTXDWLRQVRIWKHȟFDQEHLQWURGXFHG E\HTXDWLRQVDQGZKLFKȟWKHH[SHFWHGHTXDWLRQ 
+
+ۖۖ‫ܦܦܦۓ‬ଶଵଵߦൌൌଶ
+
+‫۔‬ ۖۖ
+
+‫ܦ‬ଷ ൌ
+
+െ ‫ܦ‬ଶߦ ൅ ‫ܦ‬ଷ ൌ Ͳ
+
+‫ߜܧ‬௅
+
+‫ ߜܧ‬൅ ‫ܩ‬஺ߜ௅
+
+‫ܩ‬஺ሺߜ
+
+െ
+
+ߜ଴
+
+൅
+
+ߜ௅ߦ଴ሻ
+
+൅
+
+‫ߦܧ‬଴ሺߜ଴
+
+െ
+
+ߜ௅ሻ
+
+െ
+
+‫ܥ‬ଵሺ‫ ܨ‬െ ‫ܥ‬ଶ
+
+‫ܨ‬଴ሻ
+
+
+
+ሺͺሻ
+
+‫ ܧ ە‬ൌ ‫ܩ‬஺ െ ‫ܩ‬ெ
+
+ቐߦ
+
+ൌ
+
+‫ܦ‬ଶ
+
+േ
+
+ඥ‫ܦ‬ଶଶ െ ʹ‫ܦ‬ଵ
+
+Ͷ‫ܦ‬ଵ‫ܦ‬ଷ ሺͻሻ
+
+ߦ ‫ א‬ሾͲǡͳሿ
+
+$FFRUGLQJWR>@ZKHQWKH ܶ ൐ ‫ܣ‬ௌ PHPRU\DOOR\ LV LQ WKH DXVWHQLWLFSURFHVV ߦFDQ EH UHSUHVHQWHGE\ WKHHTXDWLRQZKHUHLQ ߦLVWKHWHPSHUDWXUHRIWKH 60$DQG ‫ܥ‬஺ LVWKHVORSHRI ߪ௖௥ FULWLFDOVWUHVVRYHU 7 FXUYH VORSH ‫ܥ‬஺  LV PHDVXUHG E\ H[SHULPHQWDO GDWD
+
+ۖ‫ߦߙۓ‬஺
+
+ൌ ൌ
+
+కబ ଶ
+
+ቄ
+
+ቂߙ஺
+
+ቀܶ
+
+ߨΤ൫‫ܣ‬௙ െ ‫ܣ‬ௌ൯
+
+െ
+
+‫ܣ‬ௌ
+
+െ
+
+஼ఙಲቁቃቅ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ۖ‫ ߪ ۔‬ൌ ξ͵߬
+
+‫ ߬ ە‬ൌ ‫ܥ‬ଵ‫ܨ‬
+
+7KHWDUJHWWHPSHUDWXUH77LVDYDLODEOH
+
+ܶܶ
+
+ൌ
+
+ܽ‫ܿݎ‬ሺʹߦȀߦ଴ ߙ஺
+
+െ
+
+ͳሻ
+
+൅
+
+‫ܣ‬௦
+
+൅ ߪȀ‫ܥ‬஺ሺͳͳሻ
+
+                   ǡ    Ǥ
+
+)LJXUH 7KHZKROHH[SHULPHQWDOVHWXS
+
+
+ 
+274
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:04:42 UTC from IEEE Xplore. Restrictions apply.
+
+,9 7+(6<67(0$66(660(17
+$ ([SHULPHQWVHWXS
+         ǡ ǡ   Ǥ ͷǤ   ǡ     Ǥ     Ǧ             Ǥ                  Ǥ           Ǥ       ǡ     Ǥ͸ͷǡͺ  ǡ    Ǥ ͸Ǥ              ǡ    ǡ   ǦǤ
+
+ǡ          ሺሻ  ሺሻ  Ǥ ͸  Ǥ  ǡ           ǡ          Ǥ   ǡǡ        ǡ   Ǥ
+
+% 5HVXOWDQDO\VLV ሺሻǡሺሻǡሺሻሺሻ Ǥ͸
+ǡ          ͷ ǡ    ǡ         Ǥ 
+
+7$%/(,, dŚĞŝĚĞĂůĚĂƚĂŽďƚĂŝŶĞĚďǇĐĂůĐƵůĂƚŝŽŶ
+
+,WHP
+
+'DWDO
+
+'DWD
+
+'DWD
+
+'DWD
+
+7DUJHW)RUFH
+
+1
+
+1
+
+1
+
+1
+
+7DUJHW3RVH
+
+
+
+
+
+
+
+
+
+7DUJHU7HPS ႏ
+
+ႏ
+
+ႏ ႏ
+
+60$7HQVLRQ 1
+
+1
+
+1
+
+1
+
+ሺሻǡሺሻǡሺሻሺሻ Ǥ͸ ǡ ͷǤǡ  ǡ         Ǥ  
+
+)LJXUH ([SHULPHQWDOUHVXOW
+9 &21&/86,21$1')8785(:25.
+  ǡ       ǡ   ǡ           Ǥ  
+
+275
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:04:42 UTC from IEEE Xplore. Restrictions apply.
+
+        Ǥ                Ǥ   ǡ                    Ǥ ǡ    Ǥ
+$&.12:/('*0(17       Ǧ  
+ Ǥ ͷͳͷͲͷͲ͹ʹǡ          ǡ Ǥ ͳ͸Ͳͳ͵ͲͶͲͲ͹ǡ  ǤǤ Ǥ
+5()(5(1&(6
+΀ϭ΁ ΗĨĨĞĐƚƐŽĨĂƵŐŵĞŶƚĞĚĞǆĞƌĐŝƐĞƚŚĞƌĂƉǇƚŝŵĞĂĨƚĞƌƐƚƌŽŬĞ͗ĂŵĞƚĂͲ
+ĂŶĂůǇƐŝƐ͕Η^ƚƌŽŬĞ:ŽƵƌŶĂůŽĨĞƌĞďƌĂůŝƌĐƵůĂƚŝŽŶ͕ϮϬϬϰ͘ ΀Ϯ΁  D͘ĞŵƉŝŶŝ͕^͘D͘D͘ĞZŽƐƐŝ͕d͘>ĞŶǌŝ͕E͘sŝƚŝĞůůŽ͕ĂŶĚD͘͘
+ĂƌƌŽǌǌĂ͕Η^ĞůĨͲůŝŐŶŵĞŶƚDĞĐŚĂŶŝƐŵƐĨŽƌƐƐŝƐƚŝǀĞtĞĂƌĂďůĞ ZŽďŽƚƐ͗<ŝŶĞƚŽƐƚĂƚŝĐŽŵƉĂƚŝďŝůŝƚǇDĞƚŚŽĚ͕Η/dƌĂŶƐĂĐƚŝŽŶƐ ŽŶZŽďŽƚŝĐƐ͕ǀŽů͘Ϯϵ͕ŶŽ͘ϭ͕ƉƉ͘ϮϯϲͲϮϱϬ͕ϮϬϭϯ͘ ΀ϯ΁  ,͘,ƵĂŶŐ͕͘ŚƵ͕:͘^ŽŶŐ͕z͘dƵ͕ĂŶĚ͘'ƵŽ͕ΗŚĂƌĂĐƚĞƌŝǌĂƚŝŽŶĂŶĚ ǀĂůƵĂƚŝŽŶŽĨDĂďůĞͲĐƚƵĂƚĞĚ&ůĞǆŝďůĞ,ĂŶĚǆŽƐŬĞůĞƚŽŶΎ͕ΗŝŶ ϮϬϮϬϭϳƚŚ/ŶƚĞƌŶĂƚŝŽŶĂůŽŶĨĞƌĞŶĐĞŽŶhďŝƋƵŝƚŽƵƐZŽďŽƚƐ;hZͿ͕ ϮϬϮϬ͘ ΀ϰ΁  ͘DĂŶĚW͘ĞŶͲdǌǀŝ͕ΗZD>'ůŽǀĞͶŶǆŽƐŬĞůĞƚŽŶ'ůŽǀĞ DĞĐŚĂŶŝƐŵǁŝƚŚ,ĂƉƚŝĐƐ&ĞĞĚďĂĐŬ͕Η/ͬ^DdƌĂŶƐĂĐƚŝŽŶƐŽŶ DĞĐŚĂƚƌŽŶŝĐƐ͕ǀŽů͘ϮϬ͕ŶŽ͘Ϯ͕ƉƉ͘ϲϰϭͲϲϱϮ͕ϮϬϭϰ͘ ΀ϱ΁  ͘<ĂƉůĂŶŽŐůƵ͕͘͘ĞƚŝŶ͕ĂŶĚ'͘ŬŐƵŶ͕ΗǆŽƐŬĞůĞƚŽŶĚĞƐŝŐŶĂŶĚ ĂĚĂƉƚŝǀĞĐŽŵƉůŝĂŶĐĞĐŽŶƚƌŽůĨŽƌŚĂŶĚƌĞŚĂďŝůŝƚĂƚŝŽŶ͕ΗdƌĂŶƐĂĐƚŝŽŶƐ ŽĨƚŚĞ/ŶƐƚŝƚƵƚĞŽĨDĞĂƐƵƌĞŵĞŶƚΘŽŶƚƌŽů͕ǀŽů͘ϰϮ͕ŶŽ͘ϯ͕ƉƉ͘ϰϵϯͲ ϱϬϮ͕ϮϬϮϬ͘ ΀ϲ΁  ͘z͘tĂŶŐĂŶĚY͘yƵ͕ΗĞƐŝŐŶŽĨĂEĞǁ^ŽĨƚZŽďŽƚ,ĂŶĚĨŽƌ 'ƌĂƐƉŝŶŐĂŶĚ^ŽƌƚŝŶŐKƉĞƌĂƚŝŽŶ͕ΗŝŶϮϬϮϬϭϬƚŚ/ŶƐƚŝƚƵƚĞŽĨ ůĞĐƚƌŝĐĂůĂŶĚůĞĐƚƌŽŶŝĐƐŶŐŝŶĞĞƌƐ/ŶƚĞƌŶĂƚŝŽŶĂůŽŶĨĞƌĞŶĐĞŽŶ ǇďĞƌdĞĐŚŶŽůŽŐǇŝŶƵƚŽŵĂƚŝŽŶ͕ŽŶƚƌŽů͕ĂŶĚ/ŶƚĞůůŝŐĞŶƚ^ǇƐƚĞŵƐ ;zZͿ͕ϮϬϮϬ ΀ϳ΁  ͘t͘<͘ŶŐĂŶĚ͘,͘zĞŽǁ͕ΗϯWƌŝŶƚĞĚ^ŽĨƚWŶĞƵŵĂƚŝĐ ĐƚƵĂƚŽƌƐǁŝƚŚ/ŶƚĞŶƚ^ĞŶƐŝŶŐĨŽƌ,ĂŶĚZĞŚĂďŝůŝƚĂƚŝǀĞ
+
+ǆŽƐŬĞůĞƚŽŶƐΎ͕ΗŝŶ/ŶƚĞƌŶĂƚŝŽŶĂůŽŶĨĞƌĞŶĐĞŽŶZŽďŽƚŝĐƐĂŶĚ ƵƚŽŵĂƚŝŽŶ͕ϮϬϭϵ͘ ΀ϴ΁  &͘^ŝŵŽŶĞ͕^͘ŽƌƌĞŐŐŝŶĞ͕'͘ZŝǌǌĞůůŽ͕s͘WĂůŵŝƐĂŶŽ͕ĂŶĚ^͘ ^ĞĞůĞĐŬĞ͕ΗDŽĚĞůŝŶŐĂŶĚ/ĚĞŶƚŝĨŝĐĂƚŝŽŶŽĨĂ^ŚĂƉĞDĞŵŽƌǇůůŽǇ ZŽďŽƚŝĐ&ŝŶŐĞƌĐƚƵĂƚŽƌ͕ΗŝŶϮϬϭϵƵƌŽƉĞĂŶŽŶƚƌŽůŽŶĨĞƌĞŶĐĞ ;Ϳ͕ϮϬϭϵ͘ ΀ϵ΁  E͘:ĂŶŐĞƚĂů͕͘ΗŽŵƉĂĐƚĂŶĚ>ŝŐŚƚǁĞŝŐŚƚŶĚͲĨĨĞĐƚŽƌƐƚŽ ĐƚƵĂƚŽƌ,ĂŶĚͲKƉĞƌĂƚĞĚ^ƵƌŐŝĐĂů/ŶƐƚƌƵŵĞŶƚƐĨŽƌZŽďŽƚͲƐƐŝƐƚĞĚ DŝĐƌŽƐƵƌŐĞƌǇ͕Η/ͬ^DdƌĂŶƐĂĐƚŝŽŶƐŽŶDĞĐŚĂƚƌŽŶŝĐƐ͕ǀŽů͘Ϯϱ͕ ŶŽ͘ϰ͕ƉƉ͘ϭϵϯϯͲϭϵϰϯ͕ϮϬϮϬ͘ ΀ϭϬ΁ yŝĂŽďŝŶ&ĞŶŐ͕ΗĞƐŝŐŶĂŶĚĂŶĂůǇƐŝƐŽĨĨŝŶŐĞƌƌĞŚĂďŝůŝƚĂƚŝŽŶƌŽďŽƚ ĚƌŝǀĞŶďǇƐŚĂƉĞŵĞŵŽƌǇĂůůŽǇǁŝƌĞ͕ΗzĂŶƐŚĂŶhŶŝǀ͕YŝŶŚƵĂŶŐĚĂŽ͕ ŚŝŶĂ͕ϮϬϭϵ͘ ΀ϭϭ΁  :͘zĂŶŐ͕,͘yŝĞ͕ĂŶĚ:͘^Śŝ͕ΗŶŽǀĞůŵŽƚŝŽŶͲĐŽƵƉůŝŶŐĚĞƐŝŐŶĨŽƌĂ ũŽŝŶƚůĞƐƐƚĞŶĚŽŶͲĂĐƚƵĂƚŽƌŶĨŝŶŐĞƌĞǆŽƐŬĞůĞƚŽŶĨŽƌƌĞŚĂďŝůŝƚĂƚŝŽŶ͕Η DĞĐŚĂŶŝƐŵΘDĂĐŚŝŶĞdŚĞŽƌǇ͕ǀŽů͘ϵϵ͕ƉƉ͘ϴϯͲϭϬϮ͕ϮϬϭϲ͘ ΀ϭϮ΁  ƌŝŶƐŽŶĂŶĚ͘>͕͘ΗKŶĞͲŝŵĞŶƐŝŽŶĂůŽŶƐƚŝƚƵƚŝǀĞĞŚĂǀŝŽƌŽĨ ^ŚĂƉĞDĞŵŽƌǇůůŽǇƐ͗dŚĞƌŵŽŵĞĐŚĂŶŝĐĂůĞƌŝǀĂƚŝŽŶǁŝƚŚEŽŶͲ ŽŶƐƚĂŶƚDĂƚĞƌŝĂů&ƵŶĐƚŝŽŶƐĂŶĚZĞĚĞĨŝŶĞĚDĂƌƚĞŶƐŝƚĞ/ŶƚĞƌŶĂů sĂƌŝĂďůĞ͕Η:ŽƵƌŶĂůŽĨ/ŶƚĞůůŝŐĞŶƚDĂƚĞƌŝĂů^ǇƐƚĞŵƐΘ^ƚƌƵĐƚƵƌĞƐ͕ ǀŽů͘ϰ͕ŶŽ͘Ϯ͕ƉƉ͘ϮϮϵͲϮϰϮ͕ϭϵϵϯ͘
+
+ 
+276
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on October 11,2024 at 00:04:42 UTC from IEEE Xplore. Restrictions apply.
+

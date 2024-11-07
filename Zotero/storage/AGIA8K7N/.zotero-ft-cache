@@ -1,0 +1,663 @@
+sensors
+
+Review
+Control Aspects of Shape Memory Alloys in Robotics Applications: A Review over the Last Decade
+Deivamoney Josephine Selvarani Ruth 1 , Jung-Woo Sohn 2, Kaliaperumal Dhanalakshmi 3 and Seung-Bok Choi 4,5,*
+
+1 Robert Bosch Centre for Cyber Physical Systems, Indian Institute of Science, Bengaluru 560012, India; rjosephine@iisc.ac.in
+2 Department of Mechanical Design Engineering, Kumoh National Institute of Technology, Daehak-Ro 61, Gumi-si 39177, Korea; jwsohn@kumoh.ac.kr
+3 Department of Instrumentation and Control Engineering, National Institute of Technology Tiruchirappalli, Tiruchirappalli 620015, India; dhanlak@nitt.edu
+4 Department of Mechanical Engineering, The State University of New York, Korea (SUNY Korea), 119 Songdo Moonhwa-Ro, Yeonsu-Gu, Incheon 21985, Korea
+5 Department of Mechanical Engineering, Industrial University of Ho Chi Minh City (IUH), 12 Nguyen Van Bao Street, Go Vap District, Ho Chi Minh City 70000, Vietnam
+* Correspondence: seungbok.choi@sunykorea.ac.kr
+
+Citation: Ruth, D.J.S.; Sohn, J.-W.; Dhanalakshmi, K.; Choi, S.-B. Control Aspects of Shape Memory Alloys in Robotics Applications: A Review over the Last Decade. Sensors 2022, 22, 4860. https://doi.org/10.3390/ s22134860
+Academic Editors: Ehsan Noroozinejad Farsangi, Mohammad Noori, Paolo Gardoni, Shaofan Li and Farhad Aslani
+Received: 10 April 2022 Accepted: 15 June 2022 Published: 27 June 2022
+Publisher’s Note: MDPI stays neutral with regard to jurisdictional claims in published maps and institutional afﬁliations.
+Copyright: © 2022 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license (https:// creativecommons.org/licenses/by/ 4.0/).
+
+Abstract: This paper mainly focuses on various types of robots driven or actuated by shape memory alloy (SMA) element in the last decade which has created the potential functionality of SMA in robotics technology, that is classiﬁed and discussed. The wide spectrum of increasing use of SMA in the development of robotic systems is due to the increase in the knowledge of handling its functional characteristics such as large actuating force, shape memory effect, and super-elasticity features. These inherent characteristics of SMA can make robotic systems small, ﬂexible, and soft with multi-functions to exhibit different types of moving mechanisms. This article comprehensively investigates three subsections on soft and ﬂexible robots, driving or activating mechanisms, and artiﬁcial muscles. Each section provides an insight into literature arranged in chronological order and each piece of literature will be presented with details on its conﬁguration, control, and application.
+Keywords: shape memory alloy; robotics; actuation; sensing; control
+1. Introduction Shape memory alloy (SMA) is a class of smart material wherein it undergoes changes
+in its length by contracting to nearly 4% and thereby generates a huge amount of resistance force on its thermal actuation. This property of response to thermal stimuli in this alloy makes it smart, unlike the other alloys. There are types of different compositions of SMAs Ni-Ti alloy (Nitinol), Cu–Al–Ni alloy, Cu–Zn–Al alloy, Au–Cd alloy, Ni–Mn –Ga, and Fe based alloys. Only two alloys that have achieved any level of commercial exploitation are Ni-Ti alloys and copper-based alloys. SMA can operate under two different stimuli, one is thermal stimuli wherein, when a pre-stressed SMA wire (detwinned martensite) undergoes a change in temperature to its safe heating temperature (trained temperature) it remembers its parent shape(austenite) along with the stress it will resume back to its product state and this is called the shape memory effect. This type of feature is used for many position/angle tracking control applications. The other one is stress, where the stimulus at the safe heating temperature acts like a spring enabling it to dissipate a huge amount of energy and making it the right choice for use as dampers and absorbers.
+In the early stages of SMA literature, the use of proportional derivatives was handled to operate in the systems but later on, it started to be drift to the implementation of nonlinear controllers or hybrid controllers. The control methods implemented on the
+
+Sensors 2022, 22, 4860. https://doi.org/10.3390/s22134860
+
+https://www.mdpi.com/journal/sensors
+
+Sensors 2022, 22, 4860
+
+2 of 17
+SMA-based system are mostly implemented using linear controls if the system demands just the actuation and does not need any precision or accuracy. However, there are complex systems, like when using to an instrument in higher-order systems it demands a nonlinear control for performance and efﬁcacy at higher rates. With a wide understanding of the inherent characteristics, there has been immense growth in terms of literature reports and commercial growth [1–7]. Position control in shape memory alloy (SMA) has been researched only in the last two decades and it has been growing in different areas starting from the design and development of a servo type of operation using the aSMA element in different conﬁgurations and by using different biasing elements. The different aspects of using the element to control position and force for robotic and haptic systems are also treated as principal parameters. Some of the features that are to be noted in developing an SMA-based system are to ﬁrst to ﬁrst determine the functionality that is going to operate on the system, composition of the element, structural form, and biasing element. Even though SMA is a non-linear element, there are reports in which it has been noted that the output response of the system remains linear in operation. This behavior is undertaken using an active biasing element which is an antagonistic SMA actuator and the way to make it linear is determined by choosing the inverse mechanical element. In other words, the proper selection of biasing elements can be able to maintain the linearity in the response [8].
+The main scope of this article is to timely present a state-of-art on mechanical arrangement of the SMA element along with the biasing, which will eventually provide useful guidelines to design more advanced designs for robotic systems. The control strategies that are mostly and frequently employed in SMA-based robots can be classiﬁed into two categories: passive control and active control. In the passive control, ON/OFF control and PWM (pulse width modulation) control are dominant in which the actuating force is converted to the stroke or position of the robotic systems. On the other hand, in the active control, PID (proportional-integral-derivative) control and modiﬁed PID control logic such as fuzzy-PID control are frequently used for precise position feedback control of small and soft robots.
+The manuscript has three sections they are ﬂexible/soft robots, drivers and servo actuators, and artiﬁcial muscles. At the start of each section there is a brief deﬁnition, followed by the literature papers in chronological order stating the mechanism, movement, control, and the application for which it is built.
+2. Flexible and Soft Robots
+Soft robotics were developed using bio-inspired compliance to mimic animal or human capabilities Flexible actuators and electronics are employed to design soft robots. Soft robots are made almost entirely of rigid-body architectures out of ﬂexible, soft material, making them suitable for applications in uncertain, dynamic task environments, including safe human-robot interactions with excellent ﬂexibility and adaptability, but their load capacity is limited [9,10]. The ﬂexibility of SMAs allows us to build actuation components in different conﬁgurations and shapes (e.g., helical springs, torsion springs, straight wires, cantilever strips, and torsion tubes), which allow them to be adapted to small, micro, and multi-DOF (degree-of-freedom) applications. Their high force-to-weight ratio and small volume (i.e.) SMA displays one of the highest work densities at 10 J cm−3 and can lift more than 100 times its weight—allowing the design of compact and lightweight actuators.
+The generic mechanical design for an SMA-based soft robot is an SMA element, which can be a wire or a spring or any other available conﬁguration followed by a biasing element which in soft robotics will be the chassis material by itself or passive, to enable cyclic operation in the SMA element, and the powering mechanism which is usually a joules heating current. In this section, we can discuss the various design, conﬁgurations of SMA elements, and control of the SMA actuator in soft robots [4]. The control is mostly on/off as they focus more on the type of motion to generate using SMA elements.
+In early 2010, FlexiBot (Flexible Robotic Module) was designed with two degrees of freedom and incorporated four memory alloy (SMA) springs as shown in Figure 1a, to
+
+Sensors 2022, 22, 4860
+
+3 of 17
+create relative motion between two parallel plates hinged to each other providing 30-degree displacements, which make them more suitable for robotic applications [11]. A four-legged robot [12] was created and actuated by SMA wires along with biasing springs to realize jumping motion as in Figure 1b. A ﬁnger-sized wood climbing robot [13] with SMA springs can exhibit the crawl, turn, and climb motion on a tree for search and rescue operations. Peristaltic motion [14] was realized by using the parallel conﬁguration of the SMA element for in-pipe movement as in Figure 1c which was designed to crawl for inspection purposes. A snake robot with three links [15] was designed with a PID-fuzzy controller. A biomimetic ﬁsh was actuated by SMA wires [16] in enabling bio-inspired locomotion systems using a deformable structure. The ﬁsh is controlled with gains set such that the voltage applied to SMA wires has minimum overshoot and the output of the system has minimal time to achieve stability. A novel climbing mode was developed in millirobots built with SMA wire along with a return spring to execute the climbing potential of the robot [17]. A ﬂexible pectoral ﬁn [18] uses two parallel SMA plates, which can perform a bi-directional bending action, and an elastic membrane made of thin rubber, is adhered to the ﬁn rays to function as a bias element. Flea-inspired catapults with SMA springs were used as actuators that can jump more than 200 times their body length with impulse current stimuli [19]. A biomimetic walking microrobot was designed using 11 ICPF (ionic conducting polymer ﬁlm) actuators to move and two SMA wire actuators to change motion attitude enabling two kinds of motion attitudes: lying state and standing state [20]. A structure with eight SMA springs was developed to have a helical muscular arrangement to simulate the motion of an octopus muscular hydrostat [21]. A compact external pipe crawler robot [22] was designed by deploying a compliant mechanism and SMA actuation that follows clamp-andpush motion and imitates inchworm motion. A soft robot exhibiting sequential antagonistic motion [23] is achieved in a ﬂexible braided mesh-tube structure using nickel-titanium (NiTi) coil actuators wrapped in a spiral pattern around the circumference that exhibits peristaltic locomotion. Starﬁsh-like robots driven by shape SMA spring actuators [24] were designed to accomplish crawling on ﬂat ground, climbing over viscous soil terrain, free motions in random directions, navigating through a target object, and steering as well as grasping imaginary prey as shown in Figure 1d. A ﬂexible microrobot module (FMM) was actuated by SMA springs [25] and able to provide both translational and rotational displacements. Stiquito hexapod mobile [26] robot was designed using antagonist active Nitinol (NiTi) SMA wire/passive music wire couples to produce moving insect-like legs. The starﬁsh-like soft robot with ﬂexible rays using SMA spring [27] with soft silicone material induces multi-gait movements in various environments. BaTboT, a novel bat-like MAV was studied to increase net body forces by implementing with highly articulated wings actuated by shape memory alloy actuators [28]. Soft caudal ﬁn actuators using SMAs [29] that are ﬁxed along with the soft structure of the caudal ﬁn and bend to a certain mode shape can perform steady swimming and maneuvering. The small one DOF mobile robot is actuated by a pair of SMA springs [30], and the developed mechanism can steer in addition to moving forward on a common plane. Bio-inspired multi-arm underwater robotic swimmers actuated by compliant SMA were modeled and developed by actuating spring elements [31]. A locomotive textile-based robotic system was weaved [32] wherein the fabric is integrated with a woven hybrid SMA-textile actuator based designed system. A soft compliant robot [33] exhibiting an inchworm type locomotion was built and tested. Single-caudal ﬁn propelled robot ﬁsh using shape memory alloy wire [34] were developed, as well as unique frog-inspired hind limb robots with SMA spring actuators [35] designed to jump. A biomimetic robotic worm was developed to perform a peristaltic motion by employing nine SMA springs in three sections of the soft robot [36]. A ﬂexible parallel robotic module was actuated by three SMA springs in between a triangular top and base plate connected by a universal joint at its centroid [37]. Shape Memory Alloy actuated controllable suction grippers were proposed and experimented with for a wall climbing hexapod [38]. Soft actuators used to perform actions such as bending, twisting and extending using SMA wires were embedded into actuators to power them [39]. A
+
+Sensors 2022, 22, 4860
+
+of the fish, and the movement of the whole fish body was more natural and flexible [45]. A 2DOF soft robotic neck was developed and controlled [46] actuated by a flexible SMA based actuator that allows movements of inclination and orientation. PATRICK, a soft robotic brittle star [47] was the first untethered underwater soft robot using the SMA springs to actuate as in Figure 1e and it was built with a high dimensional actuation sp4aocfe1,7 allowing deeper exploration of planning and control principles. SMALLBug, a crawling microrobot that can locomote at actuation frequencies of up to 20 Hz, was designed, fabpouralepsisdmitrorscauiordrexarofoirpadte--tvtpebsleprtieefdphoo)dllnogeyrnraiorangtitbtinarwnteooyithngdddshniesdrteeacaehthrsploenocmTa-isamaaigbdpantarnnoerbepttifedeetinlwoomclegdaauu[saar1d4teealrailtm8adavknwll]rapededo.aohaltgTsirynfidifpypsnchfdaehpehegeacvrilcctalegidrehSlilcpnoﬁoihliMiamosaytnbctipapbioaAb(colSlellStoacenMdicMiacyun.sooacsSrAAnadtftaMtuitcrh)ogtwraiyiAoencevltitolno[er-celi4ibeeenrondl1rssrana]b,asttia.tnsrwhtyerniedodeunieadltsgnsathaehraotdeaecaafseanl3tntecpr0iordocwsbrotldompioberintetrinoprchagego-tarncofrspaeliiedulsbsaniyeecsterttsliehapryrof[geeropnp4ciqow0crpiocuenet]naoei.csiiortrmrseeFraneitnonomitpd.cthlrgeeTte6adtndhtahthrmesene(eiaarivtgsctnswpeiitoontxsbachonfgthepata-endreastrmrodrolniaagmsneibarnoocleloteorghhlnteimoaiatasancghdtnieceiomiaaitcrnrnsureasg,gmma---lyal
+
+(a)
+
+(b)
+
+2, x FOR PEER REVIEW
+
+5 of 17
+
+(c)
+
+(d)
+
+Method control control M 1 M fuzzy
+
+(e)
+
+Figure 1. flexible robotFsig(au)rfeis1h. F[1le0x]i(bble) rjuobmopts-s(kae)tﬁcshh[[1110]]((cb))cjruamwpl--sskkeetctchh[1[113] ](c()dc)rsatwarl -fsikshet-cshke[t1c3h] (d) star ﬁsh-sketch [23]
+
+[23] (e) roll [41].
+
+(e) roll [41].
+
+Table 1. Control methods ofSSMMAA--bbaasseeddflRexoilblleroabnodtsaofctturoabtootrss. [42] can mimic the behavior of rolling animals as
+
+Features/Control Paradmeseitgenred in Figure A1ep. pTlhicisatiisoanmodular closed-cRheafienreronlclieng robot with compliant SMA Heat transfer and constituwtivireesmwodheiclh has the pFelrefxeicBtotterrain adaptaAbliilriteyzaanedt aml. a(2n0e1u0v)e[r1a1b]ility. An active Tendril-
+
+Short-time pulse activation
+
+Four-legged robot
+
+Thanhtam et al. (2010) [12]
+
+Force to stroke
+
+Omegabot
+
+J. Koh et al. (2010) [13]
+
+Peristaltic motion mechanism
+
+Micro in-pipe
+
+Gao et al. (2011) [14]
+
+Position control
+
+Snake robot
+
+Khodayari et al. (2011) [15]
+
+Sensors 2022, 22, 4860
+
+5 of 17
+
+Control Method
+Passive control Passive control
+PWM 1 PWM PID 2-fuzzy Passive control Passive contol Passive contol Passive control Passive control Passive control Passive control BB and IL 3 PP 4 PID and BB 5 Passive control
+Sequential control
+Passive control PID
+Passive control Closed loop controller
+Passive control PWM
+Passive control
+
+Backbone Robot (ATBR) was built [43] as the manipulator backbone and actuator which utilized the SMA helix. Fuzzy logic control is implemented to control the displacement by currents for underwater robots in [44]. A scheme to drive multiple ﬂexible ﬁns, was presented and veriﬁed the feasibility on a ﬂexible robotic ﬁsh driven by SMA wire which is inspired by the swimming mode of devil ﬁsh, that was able to achieve more stable motion of the ﬁsh, and the movement of the whole ﬁsh body was more natural and ﬂexible [45]. A 2DOF soft robotic neck was developed and controlled [46] actuated by a ﬂexible SMA based actuator that allows movements of inclination and orientation. PATRICK, a soft robotic brittle star [47] was the ﬁrst untethered underwater soft robot using the SMA springs to actuate as in Figure 1e and it was built with a high dimensional actuation space, allowing deeper exploration of planning and control principles. SMALLBug, a crawling microrobot that can locomote at actuation frequencies of up to 20 Hz, was designed, fabricated and tested [48]. The robot is driven by an electrically powered 6 mg bending actuator that is composed of a thin SMA wire and a carbon-ﬁber piece that acts as a loading leaf-spring and four legs capable of generating anisotropic friction. The papers that reported or designed and developed SMA-based soft robots are presented (in chronological order) in the Table 1 which displays the control handle and the parameters that are measured for the particular application.
+
+Table 1. Control methods of SMA-based ﬂexible and soft robots.
+
+Features/Control Parameter
+Heat transfer and constitutive model Short-time pulse activation
+Force to stroke Peristaltic motion mechanism
+Position control Continuous
+deformable structure Stroke control of a coiled SMA
+Curvature—phase transformation Stiffness to force Motion control
+Agonistic-antagonistic Circumferential motion to
+ring actuators Iterative learning control
+Path planning control Positional
+asymmetric excitation Periodic current control
+Kinematic model for motion control to
+displacement and force Controlling the modulation of
+current Bending curvature control
+Strain to steer mobility Speed and force
+Force coupled with displacement
+Differential friction Acceleration and angular
+velocity
+
+Application
+FlexiBot Four-legged robot
+Omegabot Micro in-pipe Snake robot Bio-inspired
+Millirobots Robotic pectoral ﬁn Flea inspired catapult Biomimetic microrobot Octopus muscular hydrostat.
+Pipe crawler Mesh-worm Starﬁsh-like robot Flexible microrobot Stiquito hexapod
+Starﬁsh robot
+Micro-aerial vehicle Caudal ﬁn
+Mobile robot Robotic swimmer
+Textile robots Inchworm robot
+Robotic ﬁsh
+
+Reference
+Alireza et al., (2010) [11] Thanhtam et al., (2010) [12]
+J. Koh et al., (2010) [13] Gao et al., (2011) [14] Khodayari et al., (2011) [15]
+Rossi et al., (2011) [16] Kohut et al., (2011) [17] Qin Yan et al., (2012) [18] Noh et al., (2012) [19] Guo et al., (2012) [20] Follador et al., (2012) [21] Singh et al., (2013) [22]
+Seok et al., (2013) [23] Mao et al., (2013) [24]
+Abiri et al., (2013) [25] Février et al., (2013) [26]
+Shixin et al., (2013) [27]
+Colorado et al., (2014) [28] Coral et al., (2015) [29] Hadi et al., (2015) [30]
+Sfakiotakis et al., (2015) [31] Kennedy and
+Fontecchio (2017) [32] Pillai et al., (2017) [33] Li and Li (2017) [34]
+
+Sensors 2022, 22, 4860
+
+6 of 17
+
+Table 1. Cont.
+
+Control Method
+Passive control
+PWM Control ON/OFF control Open-loop position control Open-loop testing Passive control PID controller and CCA 6 Passive control
+Passive control Simulation BPID 7
+MP and GPA 8
+Passive control
+
+Features/Control Parameter
+
+Application
+
+Reference
+
+Passive force to length of wires peristaltic motion and the orientation Liang dynamic model Shear stress control Finite element model Deformation and torque for roll yaw directions Bending movement Improved mobility and good terrain adaptability
+Bending angles—angular speed
+3D motion Inclination and orientation
+Applied current to bending
+High-speed thermally-induced
+transformations
+
+Frog like robot
+Soft robot Flexible SMA actuators Legged and non-legged
+Soft gripper Legged robots
+Soft robots Rolling robots
+Continuous manipulator Bionic Devil Fish Soft robotic neck Underwater robots
+SMALLbug
+
+Ren et al., (2017) [35]
+Alcaide et al., (2017) [36] Ranjith et al., (2018) [37] Avadhoot et al., (2018) [38] Saeed et al., (2019) [39] Ishibashi et al., (2019)[40] Yang et al., (2019) [41] Nader et al., (2020) [42]
+Sonaike et al., (2020) [43] Chen and Liu (2020) [44] Copaci et al., (2020) [45]
+Cruz et al., (2020) [46] Patterson et al., (2020) [47]
+Nguyen et al., (2020) [48]
+
+1 Pulse Width Modulation, 2 Proportional-Integral Derivative, 3 Bang Bang and Interative Learning, 4 Path Planning, 5 Bang bang, 6 Compressing Compensating Algorithm, 7 Bilinear Proportional Integral Derivative, 8
+Motion Planning and Greedy Planning Algorithm.
+
+3. Drivers and Servo Actuations
+SMA is an actuator that experiences reduced length enabling a displacement along with force to bring out the work done at that point. Here, the basic element to design is to have an SMA element and a biasing element which would be a passive spring or it can also be active by using SMA elements in an antagonistic conﬁguration to generate a bi-directional movement. The proper design and the understanding of its inherent property changes can enable design of a system with uni-directional or bi-directional linear or rotating movement and any point of application, which proves its use as a driving actuator by substitution in places of traditional classical actuators. An accurate self-sensing method [49] based on the SMA strain to resistance curves for the control of shape memory alloy (SMA) wires biased with passive spring to function as actuated ﬂexures were modeled. An SMA wire actuated gripper was developed [50] to convert the small linear displacement into the angular movement of the gripping ﬁngers to enable open and close functions. A compliant gripper using an SMA coil was fabricated [51] along with a middle ﬂexure joint replicating the behavior of a caterpillar locomotion. A MIniature SwitchAble (MISA) connection system for a stochastic modular robot was designed and implemented [52] which can be switched on and off by controlling four SMA spring actuators. A methodology of actuation to create ﬂow generation in a ﬂexible tube by inducing a variable pressure difference within the tube by external actuation by SMA wires was proposed in [53] shown in Figure 2a. A gripper with soft ﬁngers with 2-DoFs using silicone elastomer rods embedded with shape memory alloy actuators [54], displaying anthropopathic actions was created.
+The sensor-less self-sensing circuit for positioning the 1-DOF manipulator arm using antagonistic self-sensing SMA wires as shown in Figure 2b by implementing fuzzy-PID control was proposed and a real-time experiment was performed [55]. An impact drive mechanism (IDM) using SMA wires for positioning applications was found in [56]. A joint with two degrees of freedom (DOF) driven by antagonistic SMA triple wires using a resistance feedback signal in a closed-loop was designed [57]. SMA wires were characterized to function as a High Phase Order Motor (HPOM) using PWM control [58]. A
+
+Sensors 2022, 22, 4860
+
+7 of 17
+gripper was designed for a robot arm with an anti-slipping control rule to avoid grabbing an unknown object with insufﬁcient force [59]. A conventional PID controller cascaded with a bilinear compensator, known as BPID, is found to be a promising alternative for controlling the position of the SMA actuator [60]. Antagonistic SMA wires were designed in a conﬁguration to the function as a servomechanism [61] for bidirectional control in a super-articulated system. Self-sensing antagonistic SMA wires were used to establish servo mechanism with bi-directional control in a 1-DOF manipulator arm [62]. A compliant differential SMA actuator [63], composed of two antagonistic SMA wires and a mechanical joint, were coupled with a torsion spring. The master-slave system was set up [64] in which the master is equipped with antagonistic SMA wires to perform the actions to control the 2-DOF slave and also to generate force feedback. A smart soft composite (SSC) hinge actuator using SMA wire in a polydimethylsiloxane (PDMS) matrix was embedded with segmented rigid components capable of a pure bending motion concentrated on speciﬁc sections of the actuator [65]. A SMA springs actuated gripper [66] is operated to close and open by applying voltage. A tendon-driven bending actuator [67] using smart soft composite (SSC) and SMA, and a sliding mechanism, which mimics ﬂexion of the human hand were designed. A SMA springs actuated gripper is operated to close and open by applying a voltage as in [68]. Active variable stiffness ﬁbers made from shape memory alloy and thermally responsive polymers that can move to a new position and then hold that position without requiring additional power was designed [69].
+A SMA-based soft three-fingered curved gripper [70] was designed which is capable of lifting force nearly three times larger than the gripper. A SMA springs-based soft actuator module (SAM) [71] assembling a connected series of four SAM to develop a soft manipulator was designed, which is capable of three-dimensional spatial grasping motion. Finger-wearable haptic devices [72] for multi-DoF cutaneous force feedback driven by four SMA wires for tip-tilt mechanisms and the planar XY spring with four SMA helixes are employed. An artificial finger [73] is a reproduction of the human finger bone and phalangeal structure, actuated by SMA wires. Shape control [74] of compliant, articulated meshes created from shape memory alloy (SMA)-based linear actuators (Active Cells) capable of ~25% linear strain was explored as shown in Figure 2c. A gecko-like gripper [75] that uses series shape memory alloy (SMA) wire for actuation was created. A compact and modular rotary motor using embedded shape memory alloy (SMA) wire was developed as in [76]. The contraction/expansion of the SMA wires is transmitted as rotational motion that enables the motor to generate continuous rotation and provides higher torque with relatively short-length SMA wires. An antagonistically arranged SMA wire-based actuator was fabricated in [77], which can provide angular displacements in both clockwise and counter-clockwise directions with compliance. Robotic grippers with multiple SMA wires in series along with cross-shear coupler to achieve a larger stroke of actuation were designed [78]. A control method for soft robots on predicting the bending force and RBF compensation to obtain accurate positiontracking performance with adjustable stiffness in both open- and closed-loop control systems was presented in [79].
+A continuous bidirectional rotary motor driven by NiTi SMA mini springs was designed in [80]. It is noticeable that its torque/volume and torque/mass ratios are prominent when compared to other motors of the same class. An improved method was based on online data-driven control to drive the robot wrist joint driven by SMA [81]. An Adaptive Neuro-Fuzzy Inference System (ANFIS)-based modeling and control of a 1-DOF modular SMA-based rotary actuator with a compliant motion and fast response was proposed in [82]. A control algorithm for the inversion of the Preisach model for a SMA wire spring-biased actuator under time-varying stress produced accurate results and was computationally efﬁcient was formulated in [83]. A foldable nanosized shape memory actuator into 3D conﬁgurations presented in [84] can move around. A numerical was developed for reproducing the mechanical response to integration of the time evolution nonlinear equations governing the response of the SMA spring [85]. The control of a soft planar gripper for
+
+Sensors 2022, 22, 4860
+
+8 of 17
+
+grasping deformable objects without integrated sensors, in presented in [86]. The soft ﬁnger is a closed-loop PID control system to achieve the desired deformation by introducing a camera as a vision sensor, to detect the bending deformation of the soft ﬁnger in real-time. The papers that reported or designed and developed SMA-based actuator-based driving mechanisms are presented in Table 2 which displays the control handle and the parameters that are measured for the particular application.
+
+Table 2. Control methods of SMA as driving mechanisms.
+
+Control Method Passive control Passive control Passive Contol Passive control Passive control
+Passive control
+Fuzzy-PID control
+PI control
+Fuzzy-PID control PWM control
+Fuzzy sliding-mode control PID controller cascaded with a BPID Fuzzy-SMC
+
+Features/Control Parameter
+Strain to resistance modeling Linear into angular movement Gripping force changes with the
+length of the ﬂexure joint Differential actuation system Variable pressure difference Gripping force distribution
+between the ﬁnger and the object
+Strain to differential resistance Bidirectional
+strain/displacement to step movement
+Resistance feedback Enhancement of force and control
+Anti-slip control by force sensing
+Position control
+Strain to position control
+
+Sliding mode control PI and saturated PI
+PD control Passive control Passive control
+PWM Passive control Passive control Higher-order SMC
+PWM Passive control Passive control
+PD control Passive control Open-loop testing
+PID control
+Open-loop testing
+Radial basis function (RBF) + SMC
+
+Strain to differential resistance
+Stiffness and compliance Electrical resistance and force
+feedback (haptics) Pulling and grasping Bending and load holding
+Close and open Actuation and variable stiffness
+Thermoconstitutive model deformation of the actuator Differential electrical resistance SMA resistance, self-feedback Touch/pressure—shearing force Extension and ﬂexion force Shape control based linear
+actuators -Active Cells Adhesive pressure control
+Continuous and bidirectional rotation Angular displacements
+with compliance Theoretical model of grasping
+force for different capturing targets.
+Two different position controls
+
+Application Gripping ﬁngers Three-ﬁngered gripper Bio-inspired gripper
+Connection Displacement pumps
+Soft robot gripper
+1-DOF manipulator arm
+Positioning device
+Ball joint for end effector SMA based motor
+Robotic gripper
+Position control Ball balancing beam
+(underactuated) 1-DOF bidirectional servo
+actuation Servomechanism Master-slave systems Three-ﬁngered gripper
+Robotic hand Gripper
+Robotic skin Curved gripper 1-DOF manipulator arm Soft manipulator Haptic device Prosthetic hand
+MACRO Gecko inspired gripper Wearable rehabilitation
+Soft bio-inspired robotic systems
+Robotic gripper
+Soft robot
+
+Reference Chao-Chieh et al., (2010) [49] Khodayari et al., (2011) [50] Gwang-Pil et al., (2011) [51] Guoqiang et al., (2012) [52]
+Keerthi et al., (2013) [53]
+Obaji and Zhang (2013) [54]
+Josephine et al., (2013) [55]
+Shinya et al., (2013) [56]
+Zhenyun et al., (2014) [57] Rossi et al., (2014) [58]
+Shaw and Lee (2014) [59]
+Álvaro et al., (2015) [60] Sunjai et al., (2015) [61]
+Josephine et al., (2015) [62] Zhao et al., (2015) [63]
+Josephine et al., (2016) [64] Wei et al., (2016) [65]
+Hyung et al., (2016) [66] Rad et al., (2016) [67] Yuen et al., (2016) [68] Hugo et al., (2017) [69]
+Josephine et al., (2017) [70] Zhang et al., (2017) [71] Lim et al., (2017) [72] Van der et al., (2017)[73] Nawroj et al., (2017) [74] Mehdi et al., (2018) [75] Hwang et al., (2018) [76]
+Youngshik et al., (2019) [77]
+Yifan et al., (2019) [78]
+Junfeng (2019) [79]
+
+Sensors 2022, 22, 4860
+
+9 of 17
+
+Table 2. Cont.
+
+Control Method
+
+Features/Control Parameter
+
+Application
+
+Reference
+
+Numerical and experimental
+
+Open-loop control
+
+responses of angular
+
+Servo drive (motor)
+
+José et al., (2020) [80]
+
+displacement, force, and torque
+
+Data driven control
+
+Displacement control
+
+Rehabilitation medical devices Zhang et al., (2020) [81]
+
+ANFIS
+
+Closed-chain serial mechanism
+
+Sensors 2022, 22, x FOR PEER REVIEW Open-loop control
+
+Active cooling system for efﬁcient response
+
+Bio-inspired and soft robotics Wearable robotics
+
+Mansour et al., (2020) [82] 8 of 17
+Joey et al., (2020) [83]
+
+Open-loop control
+
+Curvation variation
+
+Foldable robot
+
+Cordelia (2021) [84]
+
+Backward Euler time integration algorithm and
+the predictioncorrection technique
+
+introdEuucilenrgtiamecainmteegrraataiosna vision sensor, to detect the bending deformation of the soft
+finger inalrgeoarli-tthimmea.nTdhtheepapers that repoSrMteAd aocrtudaetsoirgned and deEvspeolosiptoedetSaMl., A(2-0b2a1s)e[8d5]actuparteodri-cbtaiosne-dcodrrreivctiinogn mtecehcnhiaqnuiesms are presented in Table 2 which displays the control han-
+
+PID control
+
+dle and thGerippaprianmg feotrecres that are measuredSofoftrgtrhipeppearrticular applicaWteioi net. al., (2021) [86]
+
+(a)
+
+(b)
+
+Control Method Passive control Passive control Passive Contol Passive control Passive control Passive control
+Fuzzy-PID control
+PI control
+
+(c)
+
+FFiigguurree22..AAccttuuaattoorrmmeecchhaanniissmmss((aa))fﬂleexxiibblleeppuummpp[[5522]](b(b))bbi-id-dirireeccttioionnaallsseerrvvoo[5[544]](c(c))lilnineeaarraacctutuaatotorr–– sskkeettcchh [[7733]]..
+
+T4a. bAlert2i.ﬁCcioanltrMolumsectlheods of SMA as driving mechanisms.
+
+FeatSuMreAs/CacotnutartoolrPs,adraumeettoertheir inherenAt phipglhicafotirocne to weight ratioRfeefaetruerneceis an ideal
+
+eSletrmaienntotorerseipstlancecehmumodaenlimnguscle, skin,Gjoripnptsi,nagnfdintgheerskeleCtohnaow-Cithipehroeptearl.d(e2s0i1g0n),[c4o9n] -
+
+Lﬁignueraartionnto, angduplaorwmerovuenmitesn. tIn thisThrergeae-rfdin, gtheereydaglsroipfpoeurndKhaordeamyarki eatbalel. p(2la0c1e1)in[50th]e
+GripddpeeinvvgeellfooooppfrmectdeheecnahftlnaeonexfwguseruseﬂcwejhoxiiitnabhtlhethusemhlaaepnegmtmhimemiBcoisroyy-isnatelslmpoiy.reaIdnctgurreaicpteopnretrthyaetGarpwsr,aoonvugidr-Persielsmeetaoarrcle.h(f2rg0er1eo1du)op[m5h1a]osf mDoivffeemreennttiaalnadctbueatttieorninstyesgtreamtion in wearabCleornonbeocttsi,oenspeciallyGiunosqoifatnwgeeatraabl.le(2r0o1b2o)t[s5[28]7]. MVcaKriibabbleenpdreevsseulorpeeddifafertrieﬁnccieal muscleDaicstpulaatcoerms ewnitthpushmappse meKmeoerrythpioeltyaml.e(r2s0(1S3M) [P5)3[]88]
+GripwwpStotieirnrdaagerrisniaffviobantetrlogetcraeedoscrubihdfapofeienstpditrdocretirnojbttohtiutivienhateilteoosdrbfneaeajesnvbciceidsetcttaeatwshnweerceiesetenphoatmhrrteeueudltsiipe1ndSl-eD[oi8SfnO9tM]prF.oAambiarworsamtnitrgoieprseiupsflotpaaretboprlruislhliOntJhgobesaoeajfipntahhtnaeigndsoekZniehnitsata(nimlc.gab(2s(i2ka00s1)1i3tnh3)g)r[o.5[5uT54]gh]he
+
+Bidirectional strain/displacement to step movement
+
+Positioning device
+
+Shinya et al. (2013) [56]
+
+Sensors 2022, 22, 4860
+
+10 of 17
+
+Biomimetic control of a ﬁnger actuated by three antagonistic shape memory alloy
+
+Sensors 2022, 22, x FOR PEER REVIEW
+
+(SMA) biased
+
+muscle pairs in [90] was designed, where they are conﬁguration by implementing a fuzzy PWM-PID
+
+ceoanchtrocollnerﬁ. gAurmedodiniﬁaed1d1uHoayflss1tp7erreinsgis-
+
+Functional Link Artiﬁcial Neural Network (HFLANN) to control an SMA wire actuator [91]
+
+was developed. Artiﬁcial skeletal muscle (AM) with functions of actuating, energy-storing, robotainc dhasnedlf,-sweanssidnegveulsoipnegdSiMn A[11w3]irweshaicnhdcobniatsaisnpsrsinengsainsgs,hcoowmnpuintaFtiiognu,raen3dwacatsupatrieosnented onboianrd[9u2s].e Ashasipnegmle-ejmoionrtydarilvloiyng(SsMysAte)macotufaatobrisoninicteﬁgnragterduinsitnoganpraer-mshbaapneddtSoMgAentwlyire as squeethze tﬁhneguesresrk’selaertmonwahnedntphreejsosiunrtewisasednesseidgninedno[9v3e]l. eTloecrteroal-ifzlueibde. nTdhientgypanesdosftrliettecrhai-ng of
+
+ture tthhaet preropporotseeddoﬁrndgeesrigﬂneexdibalnyd, adecovuelpolpeeodfStMheArm-boaesleedctarcictudaetovri-cbeass(eTdEdDrsiv) iwngerme edcehpal-oyed.
+
+nismIsmarpeepdraensceencteodntirnoTl faobrlean3twaghoicnhisdtiicspshlaaypsethmeecmonotrryoal lhloanyd(SleMaAnd) athcteupaatorarsm[e9t4e]rstothoapterate
+
+are mtheaesluorwederfloimr tbheexpoasrktiecluetlaornawpapsliicmatpiolenm. ented.
+
+FigurFei3g.uArert3if.iAciartlisﬁkceialel tsoknelmetuosnclme u[9s1cl]e. [91].
+
+Control Method Passive control PID controller
+Fuzzy PWM-PID
+Predictive control Fuzzy tuned PID
+controller PI controller PID controller
+Passive control
+adaptive PID Hammerstein-Wiener
+modeled PID gains
+Passive control
+Passive control Passive control Passive control
+PWM
+Passive control
+Programmable logic controller
+Passive control
+Characterization
+Open-loop tension tests
+
+Table 3. CoFnletrxoilbmleetahrotdiﬁscoifaSl MmAusacslaertuifsiciniagl mcouislcelde asnhdafpinegmer.emory alloy (SMA) wires were cre-
+
+Featureast/eCdo[n9t5r]oltoPaersatambelitsehr bending motiAonp.plTichaetipoonssibility of using aRpefaerraelnleclearrangement TensionoﬂtfoexSlieMbnlgAetahwcrtiuerlaeatstoiaorsnusashinnipgacStMuaAtowr iinreRatohbraootbtiiosctwaicrrmhapajonpidendtwsaarosusnhdowthKceaasztweudtooipneut [la9lle6.y](.2s0hA1o0u)hs[ieg8d8h]-isntsriadine
+DistphleacBeomwednet/nStcraabinle sheath for a wRoribsot temxoasskkesleytsotnemwas desJiagynaetdila[k9e7]e.t Aal.h(y20b1ri0d) [a8c9t]uator Bi-dciimorempcrbtoiionvnienatglhmSeMortaAitoenaonfdgaraDsCpinmgAoftnootrrhcaresorpdisoeesmfciirnonirbgtpehehdreiicgnraa[r9sti8pf]iicnwigaalrsedﬂeesxiJg.unAnegdrhofybouorkt[pi9cer0oth]saatlnh. de(2tiu0c1sﬁi1nn)ggeSrMs tAo
+
+springs was developed [99] and by actuating the SMA springs, the ﬁngers can bend or opHenF.LTAhNeNsoft robotic hand designedL[i1n0k0a]guessing shape meNmgouryeanlloetya(lS.M(2A01)2a)n[d91w] oven
+
+Force–vetalryorepceliaetitnysitomaenngasdrrhtaiftspoeorsdfctewc–oilmtehnpgsoothsfittem(aStSeCr1i)aD, luOasesFdtrho7ebDuoOtnicFiteaindnktsoltetra-ufloc. toAutdred.itAioJﬁniananlgljyeu,rn1-l1eiktweaolm.v(ea2nn0i1Sp2Su)Cl[a9at2co]tru[a1t0o1rs]
+
+Straionpteorbaetenddiunsginagngalnetagonistic NiTi SMBioAnwicifriengwears reported. DSyunnametiacla.l(l2y0a1r2t)iﬁ[9c3ia]l ﬂower
+
+Imoprendaemnceentcsounstrinolg SMA wires [102] tEoxposekrfeolertmon, tshe bendingAorfasutejomest, abll.o(o2m01i2n)g[9o4f]petals, Bsgpreanresdpaidinniggnagsnuogpflpeforartgeraxnoscke,elaentodnFﬂ[la1ep0x3pib]i,nlewgAAhocircftthuibfaihuctatoiatsrelarMﬂtihueissncwlaenedreadcteivvHeeliﬁoroxpnteuadrr.ei,(Ti2sh0ce1o3wm) [ep9ao5rs]aebdleosfoafnt
+HysteresisS-MprAonwe iprehaasnedtraannsaiitriocnhamber. A bRioomboimticehtiacncdontrol methoGdewrriitthetaa5l.×(2031S5M) [A96s]prings PositioaﬁanrnnragaSnyeMdrpAusrposweteoseitrdayeplcaieoncnttkhutaraagottelohrmatseocchpharaornavicistdmeerWichsrtireigicashstioeenfnxgaeorrastgnkiyﬁeucldeniaetdolnenmsriatuycstcaulseapt[e1rd0e4sVﬁe]innwllgtoeaesdsrlafmirdnaoa[m[9t1ei7e0ot]d5na].l.a.TTn(h2hde0e1pdg5rr)roivassethpneinbtigyc Impcroonfsvottiirrnfocfgnellerimnessfgolewdvxeoaslslptfdaoegeerevdaebltowypoe-dﬁ. nItgheraesdbesoePnfrtonrsoottbheoedttiitcchfgaitrniqgpuepraenrti[t1a0t6iv]eulFysietnihgGe SakMoineAetmaﬁalb.t(iec2rs0w1a5ni)tdh[9tvh8ae] rsitaabtliec Straignrtaospbienngdfinogrcaenogfltehe soft ﬁnger caPnrobsethperteidc ifcintegderand the grAahspminadgifeotrcael.o(f20th1e5)s[o9f9t]ﬁnger Bendincogucludrvbaetaudrejucsotendtrobly changingBtihoe-mYiomuentgic’ssmofot dhuanluds. of SMAKﬁimbeertuasl.e(d20in15t)h[e1s0o0f]t ﬁnger.
+
+ThermTahleseatrttiinﬁgcitaelcmhnuisqcule embedded witRhoSbMotAic ifminpgreorves the effeDcitliivbealstertaainl. o(2f0t1h5e)S[M10A1]wires,
+
+Deafnledcthioenrecboynitmropl roves the artiﬁciaAl mrtiufisccilael mfloowduerless signiﬁcanPtalyn [e1t0a7l]..(2015) [102]
+
+Critical issues due Holdsionfgt/rgorbaosptiicnﬁgnfgoerrcewith
+
+to designing a shape a diGrercatslpyi3nDg-spurpinptoerdt
+
+smetxreoemtsckoheralyebtlaoelnlsokyiHn(-SalMsikeegAam()w2a0uca1ltt5aui)lnaa[dty1ioe0Trn3.e]Sdsyutszatucetkmiilefoserna-
+
+sor [108] were raised. Underwater experiments were conducted using a nonlinear controller
+
+DispltaoceemnaebnlteapnrdecFisoercﬁengertip force coAnrttrifoilciuaslimngufseceledback fromYtihneg ceotmalp. (li2a0n1t5t)a[c1t0il4e] sensor.
+
+UnderaActubaiotemdifminegteicr 2m-DotOioFnSMA-actuateRdorboobtoictifcinagrmer [109] controLlleeedebtyala. (w20e1a6r)ab[1le05s]leeve in real-time which can mimic users’ shoulders and elbow ﬂexion extension was designed. A
+
+Cosseratmctofhouoerslocacrenlyemt--blcioaikrdseceeudSllMagtriAaosncposiinylgsstpermin. gM, pordSeeoslefitnnrtgoedboofitntihc[e1g1hr0iap]n,pdwerraesheambiblietdadtYieoindneientxaotlhs. ek(2es0lte1rte8ot)cn[h1ea0qb6ul]eipamcteivnet
+
+Strain and weaving angle correlation
+
+Artificial muscle modules Kong et al. (2018) [107]
+
+Sensors 2022, 22, 4860
+
+11 of 17
+
+was tested on the index-ﬁnger prototype driven by SMA wire, and the ﬁnger muscle force was analyzed based on the Hill model as shown in [111]. Bioinspired composite ﬁngers used SMA wires as self-locking joints to perform long-time and high-load grasping tasks with low power consumption as proposed in [112]. An Ionic glove, wearable over a robotic hand, was developed in [113] which contains sensing, computation, and actuation onboard use shape memory alloy (SMA) actuators integrated into an armband to gently squeeze the user’s arm when pressure is sensed in novel electro-ﬂuid. The types of literature that reported or designed and developed SMA-based actuator-based driving mechanisms are presented in Table 3 which displays the control handle and the parameters that are measured for the particular application.
+
+Table 3. Control methods of SMA as artiﬁcial muscle and ﬁnger.
+
+Control Method Passive control PID controller Fuzzy PWM-PID Predictive control Fuzzy tuned PID controller
+PI controller PID controller Passive control
+adaptive PID Hammerstein-Wiener
+modeled PID gains Passive control Passive control Passive control Passive control PWM Passive control
+Programmable logic controller Passive control Characterization
+Open-loop tension tests
+PID control
+PID controller
+Open-loop control
+PWM
+
+Features/Control Parameter
+Tension to length relationship Displacement/Strain
+Bi-directional motion
+HFLANN Force–velocity and force–length relationships Strain to bending angle Impedence control
+Bending angle
+Hysteresis-prone phase transition
+Position and speed control
+Improving reﬂex speed by controlling voltage
+Strain to bending angle Bending curvature control Thermal setting technique
+Deﬂection control
+Holding/grasping force
+Displacement and Force Underactuated ﬁnger motion
+Cosserat theory-based grasping force model Strain and weaving angle
+correlation Precise ﬁngertip force control
+using feedback from the compliant tactile sensor
+Joint angular position
+Active cooling system for efﬁcient response
+Coupling dynamic model for modeling and analyze
+
+Open-loop control
+
+Self-locking joints
+
+Open-loop control
+
+Intuitive grasping
+
+Application Robotic arm joints Robot mask system Anthropomorphic
+artiﬁcial ﬁnger Linkages
+1 DOF robotic ankle-foot Bionic ﬁnger Exoskeletons
+Flexible Artiﬁcial Muscle Actuator
+Robotic hand
+Wrist exoskeleton
+Prosthetic ﬁnger Prosthetic ﬁnger Bio-mimetic soft hand.
+Robotic ﬁnger Artiﬁcial ﬂowers Grasping support exoskeleton Artiﬁcial muscle
+Robotic ﬁnger Soft robotic gripper
+Artiﬁcial muscle modules
+Underwater gripper
+Rehabilitation, haptics, and, surgical robotics Wearable robotics
+Exoskeleton Assisting UAV for perching
+and grasping bio-inspired ﬁnger
+Prosthetic hand
+
+Reference Kazuto et al., (2010) [88] Jayatilake et al., (2010) [89] Junghyuk et al., (2011) [90] Nguyen et al., (2012) [91] Jianjun et al., (2012) [92]
+Sun et al., (2012) [93] Araujo et al., (2012) [94]
+Hironari (2013) [95]
+Gerrit et al., (2015) [96]
+Villoslada et al., (2015) [97]
+Fei Gao et al., (2015) [98] Ahmadi et al., (2015) [99]
+Kim et al., (2015) [100] Dilibal et al., (2015) [101]
+Pan et al., (2015) [102] Hasegawa and T. Suzuki (2015) [103]
+Ying et al., (2015) [104] Lee et al., (2016) [105] Yin et al., (2018) [106]
+Kong et al., (2018) [107]
+Maohua et al., (2020) [108]
+Golgouneh et al., (2020) [109]
+Jeong et al., (2020) [110]
+Wang et al., (2020) [111]
+Hu et al., (2021) [112]
+Simons et al., (2021) [113]
+
+Sensors 2022, 22, 4860
+
+12 of 17
+
+5. Conclusions
+In this review article, three major subclasses of SMA-based robotic systems were investigated and discussed: soft robots designed with ﬂexible actuators, driving mechanisms to bring out both translational and rotational movement, and vital parts (artiﬁcial human parts) for developing some elements to replace the human motor system for rehabilitation or exoskeleton module use. The review analysis of each subclass is summarized as follows. (1) The ﬂexible/soft robots mainly featuring the locomotive-legged kind of robots are most commonly designed and developed. For this, the most commonly used control strategies were traditional on/off control or passive control via the open-loop manner. For the open-loop control, the on/off time remains constant and the speed of operation cannot be changed without programming it. Therefore, the types of robots activated by passive control were functioned to jump, crawl, climb, and roll which can be easily operated by SMA wires/springs in combination with proper biasing elements. (2) In the driving mechanism, the SMA element is employed to independently develop as a mechanism to facilitate movement. Thus, it can either be open or closed and uni-direction as in linear translation and bi-directional movement. In this operation, we need a little more precision when compared to the movement of the soft /ﬂexible robots. One of the widely used controllers in the driving mechanism is the fuzzy-PID controller which can be incorporated with the knowledge of the system. (3) In the development of artiﬁcial skin/muscle, the controller must be a closed-loop system so that it can handle real-time movement of human motion and mostly this is designed to be a human interface device. For example, both position and speed should be precisely controlled in the SMA-based wrist exoskeleton mechanism using the feedback controllers such as fuzzy tuned controllers. In this ﬁeld, to develop more sophisticated human-machine interface devices that should guarantee a higher precision in terms of positioning and generating force, more robust feedback control strategies such as a sliding mode controller need to be implemented for SMA actuators.
+It is ﬁnally concluded that one of the most signiﬁcant limitations of application of SMA to various types of robotic systems is a relatively slow response to input stimuli such as current/thermal input compared with other smart material actuators such as piezoelectric ceramic. The response of SMA is closely and directly related to the control bandwidth of application robotic systems exhibiting dynamic movement in a wide frequency spectrum. Recently, to resolve this problem, a new type of SMA activated by magnetic ﬁeld has been developed, but its application for control of robotic systems is burgeoning.
+Author Contributions: D.J.S.R. and J.-W.S.: Writing—original draft preparation, investigation, validation; K.D. and S.-B.C.: supervision, conceptualization, writing, reviewing, and editing. All authors have read and agreed to the published version of the manuscript.
+Funding: This research received no external funding.
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Data Availability Statement: The raw/processed data required to reproduce these ﬁndings cannot be shared at this time as the data also form part of an ongoing study. In the future, however, the raw data required to reproduce these ﬁndings will be available from the corresponding authors.
+Conﬂicts of Interest: The authors declare no conﬂict of interest. The authors also declare that they have no known competing ﬁnancial interests or personal relationships that could have appeared to inﬂuence the work reported in this paper.
+References
+1. Mohd-Jani, J.; Leary, M.; Subic, A.; Gibson, M.A. A review of shape memory alloy research, applications and opportunities. Mater. Des. 2014, 56, 1078–1113. [CrossRef]
+2. Mishra, J.; Singh, T. Shape memory alloys and their potential application: A Review. Int. J. Curr. Res. 2017, 9, 59186–59192. 3. Hu, K.; Rabenorosoa, K.; Ouisse, M. A Review of SMA-Based Actuators for Bidirectional Rotational Motion: Application to
+Origami Robots. Front. Robot. AI 2021, 8, 678486. [CrossRef] [PubMed]
+
+Sensors 2022, 22, 4860
+
+13 of 17
+
+4. Copaci, D.; Arias, J.; Moreno, L.; Blanco, D. Shape Memory Alloy (SMA)-Based Exoskeletons for Upper Limb Rehabilitation. In Artiﬁcial Muscles [Working Title]; IntechOpen: London, UK, 2022. [CrossRef]
+5. Chung, Y.S.; Lee, J.H.; Jang, J.H.; Choi, H.R.; Rodrigue, H. Jumping tensegrity robot based on torsionally prestrained SMA Springs. ACS Appl. Mater. Interfaces 2019, 11, 40793–40799. [CrossRef]
+6. Kheirikhah, M.M.; Rabiee, S.; Edalat, M.E. A Review of Shape Memory Alloy Actuators in Robotics. In RoboCup 2010: Robot Soccer World Cup XIV; Lecture Notes in Computer Science; Ruiz-del-Solar, J., Chown, E., Plöger, P.G., Eds.; Springer: Berlin/Heidelberg, Germany, 2011; Volume 6556. [CrossRef]
+7. Soother, D.K.; Jawaid, D.; Bhawani Shankar, C. Challenges for practical applications of shape memory alloy actuators. Mater. Res. Express 2020, 7, 073001. [CrossRef]
+8. Ruth, D.J.S. Design Concepts for NiTiNOL Wires to Function as a Sensor. Trans. Indian Natl. Acad. Eng. Springer 2021, 6, 523–531. [CrossRef]
+9. Terryn, S.; Brancart, J.; Lefeber, D.; Van Assche, G.; Vanderborght, B. Self-healing soft pneumatic robots. Sci. Robot. 2017, 2, 9. [CrossRef]
+10. François, S.; Olivier, P.; Laurent, B.; Bernard, B. Soft Robots Manufacturing: A Review. Front. Robot. AI 2018, 5, 84. 11. Hadi, A.; Youseﬁ-Koma, A.; Moghaddam, M.M.; Elahinia, M.; Ghazavi, A. Developing a novel SMA-actuated robotic module.
+Sens. Actuators A Phys. 2010, 162, 72–81. [CrossRef] 12. Ho, T.; Lee, S. Design of an SMA-actuated jumping robot. In Proceedings of the 2010 IEEE Conference on Robotics, Automation
+and Mechatronics, Xi’an, China, 4–7 August 2010; pp. 589–594. 13. Koh, J.; An, S.; Cho, K. Finger-sized climbing robot using artiﬁcial proleg. In Proceedings of the 2010 3rd IEEE RAS & EMBS
+International Conference on Biomedical Robotics and Biomechatronics, Tokyo, Japan, 26–29 September 2010; pp. 610–615. 14. Gao, H.; Du, J.; Tang, M.; Shi, W. Research on a new type peristaltic micro in-pipe robot. In Proceedings of the 2011 IEEE/ICME
+International Conference on Complex Medical Engineering, Harbin, China, 22–25 May 2011; pp. 26–30. 15. Khodayari, A.; Kheirikhah, M.M.; Rabiee, S. Fuzzy PID controller design for snake robot based SMA actuators. In Proceedings of
+the 2011 IEEE International Conference on Control System, Computing and Engineering, Penang, Malaysia, 25–27 November 2011; pp. 274–278. 16. Rossi, C.; Coral, W.; Colorado, J.; Barrientos, A. A motor-less and gear-less bio-mimetic robotic ﬁsh design. In Proceedings of the 2011 IEEE International Conference on Robotics and Automation, Shanghai, China, 9–13 May 2011; pp. 3646–3651. 17. Kohut, N.J.; Hoover, A.M.; Ma, K.Y.; Baek, S.S.; Fearing, R.S. MEDIC: A legged millirobot utilizing novel obstacle traversal. In Proceedings of the 2011 IEEE International Conference on Robotics and Automation, Shanghai, China, 9–13 May 2011; pp. 802–808. 18. Yan, Q.; Wang, L.; Liu, B.; Yang, J.; Zhang, S. A Novel Implementation of a Flexible Robotic Fin Actuated by Shape Memory Alloy. J. Bionic Eng. 2012, 9, 156–165. [CrossRef] 19. Noh, M.; Kim, S.-W.; An, S.; Koh, J.-S.; Cho, K.-J. Flea-Inspired Catapult Mechanism for Miniature Jumping Robots. IEEE Trans. Robot. 2012, 28, 1007–1018. [CrossRef] 20. Guo, S.; Li, M.; Shi, L.; Mao, S. A smart actuator-based underwater microrobot with two motion attitudes. In Proceedings of the 2012 IEEE International Conference on Mechatronics and Automation, Sichuan, China, 5–8 August 2012; pp. 1675–1680. 21. Follador, M.; Cianchetti, M.; Laschi, C. Development of the functional unit of a completely soft octopus-like robotic arm. In Proceedings of the 2012 4th IEEE RAS & EMBS International Conference on Biomedical Robotics and Biomechatronics (BioRob), Rome, Italy, 24–27 June 2012; pp. 640–645. 22. Singh, P.; Ananthasuresh, G.K. A Compact and Compliant External Pipe-Crawling Robot. IEEE Trans. Robot. 2012, 29, 251–260. [CrossRef] 23. Seok, S.; Onal, C.D.; Cho, K.-J.; Wood, R.J.; Rus, D.; Kim, S. Meshworm: A Peristaltic Soft Robot With Antagonistic Nickel Titanium Coil Actuators. IEEE/ASME Trans. Mechatron. 2012, 18, 1485–1497. [CrossRef] 24. Mao, S.; Dong, E.; Xu, M.; Jin, H.; Li, F.; Yang, J. Design and development of starﬁsh-like robot: Soft bionic platform with multi-motion using SMA actuators. In Proceedings of the 2013 IEEE International Conference on Robotics and Biomimetics (ROBIO), Shenzhen, China, 12–14 December 2013; pp. 91–96. 25. Abiri, R.; Kabganian, M.; Nadaﬁ, R. Fabrication, modeling and set-point control of a new ﬂexible microrobot module (FMM) by using SMA actuators. In Proceedings of the 2013 First RSI/ISM International Conference on Robotics and Mechatronics (ICRoM), Tehran, Iran, 13–15 February 2013; pp. 141–146. 26. Février, A.; Fauvel, Q.; Carbonel, N.; Tondu, B.; Soueres, P. Big-Stiquito: An enlarged and faster version of the autonomous Stiquito hexapod robot. In Proceedings of the 2013 IEEE International Conference on Mechatronics (ICM), Vicenza, Italy, 27 February–1 March 2013; pp. 329–334. 27. Mao, S.; Dong, E.; Jin, H.; Xu, M.; Zhang, S.; Yang, J.; Low, K.H. Gait study and pattern generation of a starﬁsh-like soft robot with ﬂexible rays actuated by SMAs. J. Bionic Eng. 2014, 11, 400–411. [CrossRef] 28. Colorado, J.; Rossi, C.; Barrientos, A.; Patino, D. The inﬂuence of bat wings for producing efﬁcient net body forces in bio-inspired ﬂapping robots. In Proceedings of the 2014 11th International Conference on Informatics in Control, Automation and Robotics (ICINCO), Vienna, Austria, 1–3 September 2014; pp. 528–532.
+
+Sensors 2022, 22, 4860
+
+14 of 17
+
+29. Coral, W.; Rossi, C.; Martin, I.P. Bio-inspired morphing caudal ﬁn using shape memory alloy composites for a ﬁsh-like robot: Design, fabrication and analysis. In Proceedings of the 2015 12th International Conference on Informatics in Control, Automation and Robotics (ICINCO), Colmar, France, 21–23 July 2015; pp. 336–343.
+30. Hadi, A.; Bahmani, M.M.; Davari, M.J. Developing a bio inspired steerable robot actuated by shape memory alloy springs. In Proceedings of the 2015 3rd RSI International Conference on Robotics and Mechatronics (ICROM), Tehran, Iran, 7–9 October 2015; pp. 330–335.
+31. Sfakiotakis, M.; Kazakidi, A.; Evdaimon, T.; Chatzidaki, A.; Tsakiris, D.P. Multi-arm robotic swimmer actuated by antagonistic SMA springs. In Proceedings of the 2015 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Hamburg, Germany, 28 September–2 October 2015; pp. 1540–1545.
+32. Kennedy, J.L.; Fontecchio, A.K. Textile-based shape memory alloy locomotive robot. In Proceedings of the 2017 3rd International Conference on Control, Automation and Robotics (ICCAR), Nagoya, Japan, 22–24 April 2017; pp. 237–241.
+33. Pillai, R.R.; Anas, S.; Ali, A.; Jameel, O. Design, development and locomotion control of compliant soft mobile robot. In Proceedings of the 2017 1st International Conference on Electronics, Materials Engineering and Nano-Technology (IEMENTech), Science City, Kolkata, 28–29 April 2017; pp. 1–6.
+34. Li, S.; Li, J. A robot ﬁsh of autonomous navigation with single caudal ﬁn. In Proceedings of the 2017 2nd International Conference on Robotics and Automation Engineering (ICRAE), Shanghai, China, 29–31 December 2017; pp. 276–279.
+35. Ren, Z.; Wang, H.; Chen, W. Frog-inspired hind limb for jumping robots. In Proceedings of the 2017 IEEE International Conference on Robotics and Biomimetics (ROBIO), Macau, China, 5–8 December 2017; pp. 605–610.
+36. Alcaide, J.O.; Pearson, L.; Rentschler, M.E. Design, modeling and control of a SMA-actuated biomimetic robot with novel functional skin. In Proceedings of the 2017 IEEE International Conference on Robotics and Automation (ICRA), Singapore, 29 May–3 June 2017; pp. 4338–4345.
+37. Pillai R, R.; Murali, G.; Gopal, M. Modeling and Simulation of a Shape Memory Alloy Spring Actuated Flexible Parallel Manipulator. Procedia Comput. Sci. 2018, 133, 895–904. [CrossRef]
+38. Sinkar, A.; Pandey, A.; Mehta, C.S.K.; Jayachandran, S.K.A.; Palani, I. Design and Development of wall climbing Hexapod Robot with SMA actuated suction gripper. Procedia Comput. Sci. 2018, 133, 222–229. [CrossRef]
+39. Akbari, S.; Sakhaei, A.H.; Panjwani, S.; Kowsari, K.; Serjouei, A.; Ge, Q. Multimaterial 3D Printed Soft Actuators Powered by Shape Memory Alloy Wires. Sens. Actuators A Phys. 2019, 290, 177–189. [CrossRef]
+40. Ishibashi, K.; Takanishi, A.; Ishii, H. Development of Shape Memory Alloy Driven Small Legged Robot Capable of Walking on a Flat Ground and Climbing a Leaning Tree. In Proceedings of the 2019 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM), Hong Kong, China, 8–12 July 2019; pp. 352–357.
+41. Yang, H.; Xu, M.; Li, W.; Zhang, S. Design and Implementation of a Soft Robotic Arm Driven by SMA Coils. IEEE Trans. Ind. Electron. 2018, 66, 6108–6116. [CrossRef]
+42. Mansour, N.A.; Jang, T.; Baek, H.; Shin, B.; Ryu, B.; Kim, Y. Compliant closed-chain rolling robot using modular unidirectional SMA actuators. Sens. Actuators A Phys. 2020, 310, 112024. [CrossRef]
+43. Sonaike, K.; Sadati, S.M.H.; Bergeles, C.; Walker, I.D. Exploiting the Morphology of a Shape Memory Spring as the Active Backbone of a Highly Dexterous Tendril Robot (ATBR). In Proceedings of the 2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Las Vegas, NA, USA, 25–29 October 2020; pp. 8801–8806.
+44. Chen, Z.; Liu, Y. Design and Simulation Analysis of Bionic Devil Fish. In Proceedings of the 2020 3rd International Conference on Mechatronics, Robotics and Automation (ICMRA), Shanghai, China, 16–18 October 2020; pp. 54–58.
+45. Copaci, D.; Muñoz, J.; González, I.; Monje, C.A. SMA-Driven Soft Robotic Neck: Design, Control and Validation. IEEE Access 2020, 8, 199492–199502. [CrossRef]
+46. Cruz Ulloa, C.; Terrile, S.; Barrientos, A. Soft Underwater Robot Actuated by Shape-Memory Alloys “JellyRobcib” for Path Tracking through Fuzzy Visual Control. Appl. Sci. 2020, 10, 7160. [CrossRef]
+47. Patterson, Z.J.; Sabelhaus, A.P.; Chin, K.; Hellebrekers, T.; Majidi, C. An Untethered Brittle Star-Inspired Soft Robot for ClosedLoop Underwater Locomotion. In Proceedings of the 2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Las Vegas, NA, USA, 25–29 October 2020; pp. 8758–8764.
+48. Nguyen, X.-T.; Calderón, A.A.; Rigo, A.; Ge, J.Z.; Pérez-Arancibia, N.O. SMALLBug: A 30-mg Crawling Robot Driven by a High-Frequency Flexible SMA Microactuator. IEEE Robot. Autom. Lett. 2020, 5, 6796–6803. [CrossRef]
+49. Lan, C.-C.; Fan, C.-H. An accurate self-sensing method for the control of shape memory alloy actuated ﬂexures. Sens. Actuators A Phys. 2010, 163, 323–332. [CrossRef]
+50. Khodayari, A.; Kheirikhah, M.M.; Zarefar, B. Fabrication a practical SMA actuated gripper. In Proceedings of the 2011 IEEE International Conference on Robotics and Biomimetics, Karon Beach, Thailand, 7–11 November 2011; pp. 2739–2743.
+51. Jung, G.; Koh, J.; Cho, K. Meso-scale compliant gripper inspired by caterpillar’s proleg. In Proceedings of the 2011 IEEE International Conference on Robotics and Automation, Shanghai, China, 9–13 May 2011; pp. 1831–1836.
+52. Fu, G.; Menciassi, A.; Dario, P. Design of a miniature switchable connection system for stochastic modular robots. Sens. Actuators A Phys. 2012, 173, 267–276. [CrossRef]
+53. Keerthi Sagar, S.N.; Sreekumar, M. Miniaturized Flexible Flow Pump Using SMA Actuator. Procedia Eng. 2013, 64, 896–906. [CrossRef]
+
+Sensors 2022, 22, 4860
+
+15 of 17
+
+54. Obaji, M.O.; Zhang, S. Investigation into the force distribution mechanism of a soft robot gripper modeled for picking complex objects using embedded shape memory alloy actuators. In Proceedings of the 2013 6th IEEE Conference on Robotics, Automation and Mechatronics (RAM), Manila, Philippines, 12–15 November 2013; pp. 84–90.
+55. Selvarani Ruth, J.; Nakshatharan, S.; Dhanalakshmi, K. Differential resistance feedback control of a self-sensing shape memory alloy actuated system. ISA Trans. 2014, 53, 289–297. [CrossRef]
+56. Hattori, S.; Hara, M.; Nabae, H.; Hwang, D.; Higuchi, T. Design of an impact drive actuator using a shape memory alloy wire. Sens. Actuators A Phys. 2014, 219, 47–57. [CrossRef]
+57. Shi, Z.; Wang, T.; Liu, D.; Ma, C.; Yuan, X. A fuzzy PID-controlled SMA actuator for a two-DOF joint. Chin. J. Aeronaut. 2014, 27, 453–460. [CrossRef]
+58. Rossi, C.; Yuan, Z.; Zhang, C.; Barrientos, A.; Coral, W. Shape memory alloy-based High Phase Order Motor. In Proceedings of the 2014 11th International Conference on Informatics in Control, Automation and Robotics (ICINCO), Vienna, Austria, 2–4 September 2014; pp. 562–568.
+59. Shaw, J.; Lee, J. Force control of a robot gripper featuring shape memory alloy actuators. In Proceedings of the 2014 International Conference on Advanced Robotics and Intelligent Systems (ARIS), Taipei, Taiwan, 6–8 June 2014; pp. 23–28.
+60. Villoslada, Á.; Escudero, N.; Martín, F.; Flores-Caballero, A.; Rivera, C.; Collado, M.; Moreno, L. Position control of a shape memory alloy actuator using a four-term bilinear PID controller. Sens. Actuators A Phys. 2015, 236, 257–272. [CrossRef]
+61. Nakshatharan, S.S.; Dhanalakshmi, K.; Ruth, J. Fuzzy based sliding surface for shape memory alloy wire actuated classical super-articulated control system. Appl. Soft Comput. 2015, 32, 580–589. [CrossRef]
+62. Ruth, D.J.S.; Dhanalakshmi, K.; Nakshatharan, S.S. Bidirectional angular control of an integrated sensor/actuator shape memory alloy based system. Measurement 2015, 69, 210–221. [CrossRef]
+63. Guo, Z.; Pan, Y.; Wee, L.B.; Yu, H. Design and control of a novel compliant differential shape memory alloy actuator. Sens. Actuators A Phys. 2015, 225, 71–80. [CrossRef]
+64. Josephine, S.R.; Dhanalakshmi, K. Shape memory alloy with bi-functionality in the master system to control a slave. Sens. Actuators A Phys. 2016, 238, 351–360. [CrossRef]
+65. Wang, W.; Rodrigue, H.; Kim, H., II; Han, M.-W.; Ahn, S.-H. Soft composite hinge actuator and application to compliant robotic gripper. Compos. Part B Eng. 2016, 98, 397–405. [CrossRef]
+66. Kim, H., II; Han, M.-W.; Song, S.-H.; Ahn, S.-H. Soft morphing hand driven by SMA tendon wire. Compos. Part B Eng. 2016, 105, 138–148. [CrossRef]
+67. Rad, N.F.; Youseﬁ-Koma, A.; Rezaei, H.; Bazrafshani, M.A. Design and fabrication of a gripper actuated by shape memory alloy spring. In Proceedings of the 2016 4th International Conference on Robotics and Mechatronics (ICROM), Tehran, Iran, 26–28 October 2016; pp. 455–458.
+68. Yuen, M.C.; Bilodeau, R.A.; Kramer, R.K. Active Variable Stiffness Fibers for Multifunctional Robotic Fabrics. IEEE Robot. Autom. Lett. 2016, 1, 708–715. [CrossRef]
+69. Rodrigue, H.; Wang, W.; Kim, D.-R.; Ahn, S.-H. Curved shape memory alloy-based soft actuators and application to soft gripper. Compos. Struct. 2017, 176, 398–406. [CrossRef]
+70. Josephine, S.R.; Dhanalakshmi, K. Shape memory alloy wire for self-sensing servo actuation. Mech. Syst. Signal Process. 2017, 83, 36–52. [CrossRef]
+71. Zhang, L.; Xu, M.; Yang, H. Research on soft manipulator actuated by shape memory alloy (SMA) springs. In Proceedings of the 2017 IEEE International Conference on Real-time Computing and Robotics (RCAR), Okinawa, Japan, 14–18 July 2017; pp. 74–78.
+72. Lim, B.; Kim, K.; Hwang, D. On the design of the 5-DoF ﬁnger-wearable cutaneous haptic device. In Proceedings of the 2017 IEEE International Conference on Robotics and Biomimetics (ROBIO), Macau, China, 5–8 December 2017; pp. 872–878.
+73. Van der Elst, L.A.; Quintanar-Guzmán, S.; Hadji-Minaglou, J. Design of an electromechanical prosthetic ﬁnger using shape memory alloy wires. In Proceedings of the 2017 IEEE International Symposium on Robotics and Intelligent Sensors (IRIS), Ottawa, ON, Canada, 5–7 October 2017; pp. 56–61.
+74. Nawroj, A.I.; Dollar, A.M. Shape Control of Compliant, Articulated Meshes: Towards Modular Active-Cell Robots (MACROs). IEEE Robot. Autom. Lett. 2017, 2, 1878–1884. [CrossRef]
+75. Modabberifar, M.; Spenko, M. A shape memory alloy-actuated gecko-inspired robotic gripper. Sens. Actuators A Phys. 2018, 276, 76–82. [CrossRef]
+76. Hwang, D.; Ihn, Y.S.; Kim, K. Compact Modular Cycloidal Motor With Embedded Shape Memory Alloy Wires. IEEE Trans. Ind. Electron. 2017, 65, 4028–4038. [CrossRef]
+77. Kim, Y.; Jang, T.; Gurung, H.; Mansour, N.A.; Ryu, B.; Shin, B. Bidirectional rotating actuators using shape memory alloy wires. Sens. Actuators A Phys. 2019, 295, 512–522. [CrossRef]
+78. Lu, Y.; Xie, Z.; Wang, J.; Yue, H.; Wu, M.; Liu, Y. A novel design of a parallel gripper actuated by a large-stroke shape memory alloy actuator. Int. J. Mech. Sci. 2019, 159, 74–80. [CrossRef]
+79. Li, J. Position control based on the estimated bending force in a soft robot with tunable stiffness. Mech. Syst. Signal Process. 2019, 134, 106335. [CrossRef]
+80. Sobrinho, J.M.B.; Filho, F.M.F.; Emiliavaca, A.; Cunha, M.F.; Souto, C.R.; Silva, S.A.; Ries, A. Experimental and numerical analyses of a rotary motor using shape memory alloy mini springs. Sens. Actuators A Phys. 2020, 302, 111823. [CrossRef]
+
+Sensors 2022, 22, 4860
+
+16 of 17
+
+81. Zhang, D.; Ren, Z.; Zhao, X.; Zhao, M.; Xu, Z.; Ye, D. A Novel Data-Driven Control Method for Shape Memory Alloy Actuated Robot Joint *. In Proceedings of the 2020 Chinese Automation Congress (CAC), Shanghai, China, 6–8 November 2020; pp. 6622–6627.
+82. Mansour, N.A.; Baek, H.; Jang, T.; Shin, B.; Kim, Y. ANFIS-Based System Identiﬁcation and Control of a Compliant Shape Memory Alloy (SMA) Rotating Actuator. In Proceedings of the 2020 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM), Boston, MA, USA, 6–10 July 2020; pp. 783–788.
+83. Ge, J.Z.; Chang, L.; Pérez-Arancibia, N.O. Preisach-model-based position control of a shape-memory alloy linear actuator in the presence of time-varying stress. Mechatronics 2021, 73, 102452. [CrossRef]
+84. Sealy, C. Shape memory actuators drive micro-sized robots. Nano Today 2021, 38, 101167. [CrossRef] 85. Esposito, L.; Fraldi, M.; Ruocco, E.; Sacco, E. A shape memory alloy helix model accounting for extension and torsion. Eur. J.
+Mech. A/Solids 2021, 89, 104281. [CrossRef] 86. Wang, W.; Tang, Y.; Li, C. Controlling bending deformation of a shape memory alloy-based soft planar gripper to grip deformable
+objects. Int. J. Mech. Sci. 2020, 193, 106181. [CrossRef] 87. Copaci, D.-S.; Blanco, D.; Martin-Clemente, A.; Moreno, L. Flexible shape memory alloy actuators for soft robotics: Modelling
+and control. Int. J. Adv. Robot. Syst. 2020, 17. [CrossRef] 88. Takashima, K.; Rossiter, J.; Mukai, T. McKibben artiﬁcial muscle using shape-memory polymer. Sens. Actuators A Phys. 2010,
+164, 116–124. [CrossRef] 89. Jayatilake, D.; Suzuki, K. A multiple SMA hybrid actuator to generate expressions on the face. In Proceedings of the 2010 IEEE
+International Conference on Robotics and Automation, Anchorage, AK, USA, 3–8 May 2010; pp. 2203–2208. [CrossRef] 90. Ko, J.; Jun, M.B.G.; Gilardi, G.; Haslam, E.; Park, E.J. Fuzzy PWM-PID control of co-contracting antagonistic shape memory alloy
+muscle pairs in an artiﬁcial ﬁnger. Mechatronics 2011, 21, 1190–1202. [CrossRef] 91. Tai, N.T.; Ahn, K.K. A hysteresis functional link artiﬁcial neural network for identiﬁcation and model predictive control of SMA
+actuator. J. Process Control 2012, 22, 766–777. [CrossRef] 92. Zhang, J.; Yin, Y. SMA-based bionic integration design of self-sensor–actuator-structure for artiﬁcial skeletal muscle. Sens. Actuators
+A Phys. 2012, 181, 94–102. [CrossRef] 93. Sun, B.; Zhang, J.; Wu, X.; Liao, W. Single-joint driving system of bionic ﬁnger based on shape memory alloy. In Proceedings of
+the 2012 International Symposium on Micro-NanoMechatronics and Human Science (MHS), Nagoya, Japan, 4–7 November 2012; pp. 225–228. 94. Araujo, A.A.M.; Tannuri, E.A.; Forner-Cordero, A. Simulation of model-based impedance control applied to a biomechatronic exoskeleton with shape memory alloy actuators. In Proceedings of the 2012 4th IEEE RAS & EMBS International Conference on Biomedical Robotics and Biomechatronics (BioRob), Rome, Italy, 24–27 June 2012; pp. 1567–1572. 95. Taniguchi, H. Flexible Artiﬁcial Muscle Actuator Using Coiled Shape Memory Alloy Wires. APCBEE Procedia 2013, 7, 54–59. [CrossRef] 96. Lange, G.; Lachmann, A.; Rahim, A.H.A.; Ismail, M.H.; Low, C.Y. Shape Memory Alloys as Linear Drives in Robot Hand Actuation. Procedia Comput. Sci. 2015, 76, 168–173. [CrossRef] 97. Villoslada, A.; Flores, A.; Copaci, D.; Blanco, D.; Moreno, L. High-displacement ﬂexible Shape Memory Alloy actuator for soft wearable robots. Robot. Auton. Syst. 2015, 73, 91–101. [CrossRef] 98. Gao, F.; Deng, H.; Zhang, Y. Hybrid actuator combining shape memory alloy with DC motor for prosthetic ﬁngers. Sens. Actuators A Phys. 2015, 223, 40–48. [CrossRef] 99. Ahmadi, A.; Mahdavian, M.; Rad, N.F.; Youseﬁ-Koma, A.; Alidoost, F.; Bazrafshani, M.A. Design and fabrication of a Robotic Hand using shape memory alloy actuators. In Proceedings of the 2015 3rd RSI International Conference on Robotics and Mechatronics (ICROM), Tehran, Iran, 7–9 October 2015; pp. 325–329. 100. Kim, H.; Han, M.; Wang, W.; Song, S.; Rodrigue, H.; Ahn, S. Design and development of bio-mimetic soft robotic hand with shape memory alloy. In Proceedings of the 2015 IEEE International Conference on Robotics and Biomimetics (ROBIO), Zhuhai, China, 6–9 December 2015; pp. 2330–2334. 101. Dilibal, S.; Engeberg, E.D. Finger-like manipulator driven by antagonistic nickel-titanium shape memory alloy actuators. In Proceedings of the 2015 International Conference on Advanced Robotics (ICAR), Istanbul, Turkey, 27–31 July 2015; pp. 152–157. 102. Pan, C.H.; Wang, Y.B.; Pan, H.Y. Development of dynamically artiﬁcial ﬂowers driven by shape memory alloy and pulse width modulation. In Proceedings of the 2015 IEEE International Workshop on Advanced Robotics and Its Social Impacts (ARSO), Lyon, France, 30 June–2 July 2015; pp. 1–6. 103. Hasegawa, Y.; Suzuki, T. Thin and active ﬁxture to hold ﬁnger for easy attachment and comfort of grasping support exoskeleton. In Proceedings of the 2015 IEEE International Conference on Robotics and Automation (ICRA), Seattle, WA, USA, 26–30 May 2015; pp. 4973–4978. 104. Ying, S.; Ji, S.; Cai, D.; Bao, G.; Fan, Z. A method to implement biomimetic control for a SMA springs array. In Proceedings of the 2015 IEEE International Conference on Robotics and Biomimetics (ROBIO), Zhuhai, China, 6–9 December 2015; pp. 2419–2424. 105. Lee, J.; Hwang, D.; Kim, M.; Kim, K. A feasibility test of underactuated robotic prosthetic ﬁngers actuated by shape memory alloy. In Proceedings of the 2016 6th IEEE International Conference on Biomedical Robotics and Biomechatronics (BioRob), Singapore, 26–29 June 2016; pp. 554–560. 106. Haibin, Y.; Cheng, K.; Junfeng, L.; Guilin, Y. Modeling of grasping force for a soft robotic gripper with variable stiffness. Mech. Mach. Theory 2018, 128, 254–274. [CrossRef]
+
+Sensors 2022, 22, 4860
+
+17 of 17
+
+107. Kong, X.; Jin, H.; Chen, Y.; Yang, J.; Dong, E. An Enhanced Artiﬁcial Muscle Module Based on the Decussate Weaving Shape Memory Alloy Wires for Soft Robots. In Proceedings of the 2018 IEEE International Conference on Robotics and Biomimetics (ROBIO), Kuala Lumpur, Malaysia, 12–15 December 2018; pp. 1202–1207.
+108. Lin, M.; Vatani, M.; Choi, J.-W.; Dilibal, S.; Engeberg, E.D. Compliant underwater manipulator with integrated tactile sensor for nonlinear force feedback control of an SMA actuation system. Sens. Actuators A Phys. 2020, 315, 112221. [CrossRef]
+109. Golgouneh, A.; Holschuh, B.; Dunne, L. A Controllable Biomimetic SMA-actuated Robotic Arm. In Proceedings of the 2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and Biomechatronics (BioRob), New York, NY, USA, 29 November–01 December 2020; pp. 152–157.
+110. Jeong, J.; Park, C.H.; Kyung, K.-U. Modeling and Analysis of SMA Actuator Embedded in Stretchable Coolant Vascular Pursuing Artiﬁcial Muscles. In Proceedings of the 2020 IEEE International Conference on Robotics and Automation (ICRA), Paris, France, 31 May 2020–31 August 2020; pp. 5641–5646.
+111. Wang, Y.; Zheng, S.; Song, Z.; Pang, J.; Li, J. A Coupling Dynamic Model for Studying the Physical Interaction Between a Finger Exoskeleton and a Human Finger. IEEE Access 2020, 8, 125412–125422. [CrossRef]
+112. Hu, Q.; Huang, H.; Dong, E.; Sun, D. A Bioinspired Composite Finger With Self-Locking Joints. IEEE Robot. Autom. Lett. 2021, 6, 1391–1398. [CrossRef]
+113. Simons, M.F.; Digumarti, K.M.; Le, N.H.; Chen, H.-Y.; Carreira, S.C.; Zaghloul, N.S.S.; Diteesawat, R.S.; Garrad, M.; Conn, A.T.; Kent, C.; et al. B:Ionic Glove: A Soft Smart Wearable Sensory Feedback Device for Upper Limb Robotic Prostheses. IEEE Robot. Autom. Lett. 2021, 6, 3311–3316. [CrossRef]
+
