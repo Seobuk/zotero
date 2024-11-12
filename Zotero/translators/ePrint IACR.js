@@ -1,15 +1,15 @@
 {
 	"translatorID": "04a23cbe-5f8b-d6cd-8eb1-2e23bcc8ae8f",
+	"translatorType": 4,
 	"label": "ePrint IACR",
 	"creator": "Jonas Schrieb",
 	"target": "^https://eprint\\.iacr\\.org/",
 	"minVersion": "6.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-07-21 13:48:22"
+	"lastUpdated": "2024-07-22 19:10:00"
 }
 
 /*

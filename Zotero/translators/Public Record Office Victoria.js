@@ -1,15 +1,15 @@
 {
 	"translatorID": "99592877-f698-4e14-b541-b6181f6c577f",
+	"translatorType": 4,
 	"label": "Public Record Office Victoria",
 	"creator": "Tim Sherratt (tim@timsherratt.au)",
 	"target": "^https?://prov\\.vic\\.gov\\.au/(archive|search_journey)/",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-08-21 01:51:41"
+	"lastUpdated": "2024-08-21 19:55:00"
 }
 
 /*

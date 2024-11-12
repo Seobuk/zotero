@@ -1,15 +1,15 @@
 {
 	"translatorID": "0fd5beb3-646a-4e01-960b-e7168d9292e1",
+	"translatorType": 4,
 	"label": "Europe PMC",
 	"creator": "Abe Jellinek",
 	"target": "^https?://europepmc\\.org/",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-23 01:38:15"
+	"lastUpdated": "2024-03-25 15:25:00"
 }
 
 /*

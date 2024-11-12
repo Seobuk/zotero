@@ -1,15 +1,15 @@
 {
 	"translatorID": "86c3832a-ccc6-40ab-b5e9-83892423df11",
+	"translatorType": 4,
 	"label": "TimesMachine",
 	"creator": "Abe Jellinek, Sebastian Karcher",
 	"target": "^https?://timesmachine\\.nytimes\\.com/timesmachine/",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-26 18:04:55"
+	"lastUpdated": "2024-03-27 16:00:00"
 }
 
 /*

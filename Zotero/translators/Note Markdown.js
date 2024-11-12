@@ -1,20 +1,20 @@
 {
 	"translatorID": "1412e9e2-51e1-42ec-aa35-e036a895534b",
+	"translatorType": 2,
 	"label": "Note Markdown",
 	"creator": "Martynas Bagdonas",
 	"target": "md",
 	"minVersion": "5.0.97",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 50,
+	"inRepository": true,
 	"configOptions": {
 		"noteTranslator": true
 	},
 	"displayOptions": {
 		"includeAppLinks": true
 	},
-	"inRepository": true,
-	"translatorType": 2,
-	"lastUpdated": "2024-07-10 16:00:00"
+	"lastUpdated": "2024-07-11 09:05:00"
 }
 
 /*

@@ -1,15 +1,15 @@
 {
 	"translatorID": "a714cb93-6595-482f-b371-a4ca0be14449",
+	"translatorType": 4,
 	"label": "InvenioRDM",
 	"creator": "Philipp Zumstein, Sebastian Karcher and contributors",
 	"target": "^https?://(zenodo\\.org|sandbox\\.zenodo\\.org|data\\.caltech\\.edu|repository\\.tugraz\\.at|researchdata\\.tuwien\\.at|ultraviolet\\.library\\.nyu\\.edu|adc\\.ei-basel\\.hasdai\\.org|fdat\\.uni-tuebingen\\.de|www\\.fdr\\.uni-hamburg\\.de|rodare\\.hzdr\\.de|aperta\\.ulakbim.gov\\.tr|www\\.openaccessrepository\\.it|eic-zenodo\\.sdcc\\.bnl\\.gov)",
 	"minVersion": "6.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-20 14:43:12"
+	"lastUpdated": "2024-03-20 14:55:00"
 }
 
 /*

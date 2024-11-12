@@ -1,14 +1,14 @@
 {
 	"translatorID": "5f506a9a-8076-4e1e-950c-f55d32003aae",
+	"translatorType": 8,
 	"label": "LIBRIS ISBN",
 	"creator": "Sebastian Berlin",
-	"target": "",
+	"target": null,
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 98,
 	"inRepository": true,
-	"translatorType": 8,
-	"lastUpdated": "2024-04-23 18:44:30"
+	"lastUpdated": "2024-04-23 18:50:00"
 }
 
 /*

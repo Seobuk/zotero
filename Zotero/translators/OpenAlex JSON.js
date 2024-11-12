@@ -1,14 +1,14 @@
 {
 	"translatorID": "faa53754-fb55-4658-9094-ae8a7e0409a2",
+	"translatorType": 1,
 	"label": "OpenAlex JSON",
 	"creator": "Sebastian Karcher",
 	"target": "json",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 1,
-	"lastUpdated": "2024-07-29 14:16:09"
+	"lastUpdated": "2024-07-30 14:55:00"
 }
 
 /*

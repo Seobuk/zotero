@@ -1,15 +1,15 @@
 {
 	"translatorID": "91b25fbe-6083-40ef-9ad5-1defc9047a90",
+	"translatorType": 4,
 	"label": "Library Catalog (RERO ILS)",
 	"creator": "Abe Jellinek",
 	"target": "^https://((ils\\.test|bib)\\.rero\\.ch|ils\\.bib\\.uclouvain\\.be)/[^/]+/(documents/\\d+|search/documents\\?)",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 250,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-07-24 20:02:01"
+	"lastUpdated": "2024-07-24 20:05:00"
 }
 
 /*

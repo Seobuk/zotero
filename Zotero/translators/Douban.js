@@ -1,15 +1,15 @@
 {
 	"translatorID": "fc353b26-8911-4c34-9196-f6f567c93901",
+	"translatorType": 4,
 	"label": "Douban",
 	"creator": "Ace Strong<acestrong@gmail.com>",
 	"target": "^https?://(www|book)\\.douban\\.com/(subject|doulist|people/[a-zA-Z0-9._]*/(do|wish|collect)|.*?status=(do|wish|collect)|group/[0-9]*?/collection|tag)",
 	"minVersion": "2.0rc1",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-08-07 08:46:18"
+	"lastUpdated": "2024-08-08 19:00:00"
 }
 
 /*

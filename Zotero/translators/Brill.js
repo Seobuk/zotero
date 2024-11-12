@@ -1,15 +1,15 @@
 {
 	"translatorID": "6d087de8-f858-4ac5-9fbd-2bf2b35ee41a",
+	"translatorType": 4,
 	"label": "Brill",
 	"creator": "Abe Jellinek",
 	"target": "^https?://(www\\.|referenceworks\\.|bibliographies\\.)?brill(online)?\\.com/",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-06-14 15:36:55"
+	"lastUpdated": "2024-06-14 15:45:00"
 }
 
 /*

@@ -1,15 +1,15 @@
 {
 	"translatorID": "8d1fb775-df6d-4069-8830-1dfe8e8387dd",
+	"translatorType": 4,
 	"label": "PubFactory Journals",
 	"creator": "Brendan O'Connell",
 	"target": "^https://([^/]+/view/journals/.+\\.xml|[^.]*journals\\.[^/]+/search)\\b",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 200,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-06-13 17:11:59"
+	"lastUpdated": "2024-06-14 04:50:00"
 }
 
 /*

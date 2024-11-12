@@ -1,15 +1,15 @@
 {
 	"translatorID": "1b9ed730-69c7-40b0-8a06-517a89a3a278",
+	"translatorType": 4,
 	"label": "Library Catalog (PICA)",
 	"creator": "Sean Takats, Michael Berkowitz, Sylvain Machefert, Sebastian Karcher, Stéphane Gully, Mathis Eon",
 	"target": "^https?://[^/]+(/[^/]+)*//?DB=\\d",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 248,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-09-20 15:05:33"
+	"lastUpdated": "2024-09-26 14:30:00"
 }
 
 /*

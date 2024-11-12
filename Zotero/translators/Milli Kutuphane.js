@@ -1,15 +1,15 @@
 {
 	"translatorID": "a5998785-222b-4459-9ce8-9c081d599af7",
+	"translatorType": 4,
 	"label": "Milli Kütüphane",
 	"creator": "Philipp Zumstein, Sebastian Karcher",
 	"target": "^https?://(www\\.)?kasif\\.mkutup\\.gov\\.tr/",
 	"minVersion": "4.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-15 18:16:49"
+	"lastUpdated": "2024-03-18 16:20:00"
 }
 
 /*

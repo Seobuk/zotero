@@ -1,20 +1,20 @@
 {
 	"translatorID": "897a81c2-9f60-4bec-ae6b-85a5030b8be5",
+	"translatorType": 2,
 	"label": "Note HTML",
 	"creator": "Martynas Bagdonas",
 	"target": "html",
 	"minVersion": "5.0.97",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 50,
+	"inRepository": true,
 	"configOptions": {
 		"noteTranslator": true
 	},
 	"displayOptions": {
 		"includeAppLinks": false
 	},
-	"inRepository": true,
-	"translatorType": 2,
-	"lastUpdated": "2024-07-10 15:30:00"
+	"lastUpdated": "2024-07-11 09:05:00"
 }
 
 /*

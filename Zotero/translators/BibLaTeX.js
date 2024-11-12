@@ -1,11 +1,13 @@
 {
 	"translatorID": "b6e39b57-8942-4d11-8259-342c46ce395f",
+	"translatorType": 2,
 	"label": "BibLaTeX",
 	"creator": "Simon Kornblith, Richard Karnesky and Anders Johansson",
 	"target": "bib",
 	"minVersion": "2.1.9",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
+	"inRepository": true,
 	"configOptions": {
 		"getCollections": true
 	},
@@ -15,9 +17,7 @@
 		"exportFileData": false,
 		"useJournalAbbreviation": false
 	},
-	"inRepository": true,
-	"translatorType": 2,
-	"lastUpdated": "2024-03-25 14:49:42"
+	"lastUpdated": "2024-03-25 15:15:00"
 }
 
 /*

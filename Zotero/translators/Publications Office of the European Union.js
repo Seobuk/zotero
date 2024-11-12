@@ -1,15 +1,15 @@
 {
 	"translatorID": "7d8e6337-3f52-4e8c-8915-95a2ec755b6c",
+	"translatorType": 4,
 	"label": "Publications Office of the European Union",
 	"creator": "Abe Jellinek",
 	"target": "^https?://op\\.europa\\.eu/",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-08 17:58:08"
+	"lastUpdated": "2024-03-08 18:05:00"
 }
 
 /*

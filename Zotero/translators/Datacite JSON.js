@@ -1,14 +1,14 @@
 {
 	"translatorID": "b5b5808b-1c61-473d-9a02-e1f5ba7b8eef",
+	"translatorType": 1,
 	"label": "Datacite JSON",
 	"creator": "Philipp Zumstein",
 	"target": "json",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 1,
-	"lastUpdated": "2024-03-23 00:20:22"
+	"lastUpdated": "2024-05-17 20:25:00"
 }
 
 /*

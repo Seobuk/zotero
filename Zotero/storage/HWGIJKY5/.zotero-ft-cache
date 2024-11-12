@@ -1,0 +1,1854 @@
+Direct-Drive Robots
+Theory and Practice
+
+
+
+
+Direct-Drive Robots
+Theory and Practice
+Haruhiko Asada
+Kamal Youeef-Toumi
+The MIT Press
+Cambridge, Massachusetts
+London, England
+
+
+PUBLISHER'S NOTE
+This fonnat is intended to redlK:e the cost of publishing certain works in book fonn and to shorten the gap between editorial preparation and final publication. Detailed editina and composition have been avoided by photographina the text of this book directly from the author's prepared copy.
+C 1987 Massachusetts Institute of Technology
+All rights reserved. No part of this book may be reproduced in any fonn by any electronic or mechanical means (includina photocop)'ina. recordina. or infonnation storage and retrieval) without pcnnission in writina from the publisher.
+This book was printed and bound in the United States of America.
+Library of Congress Cataloging-in-Publication Data
+Asada. H. (Haruhiko) Direct-drive robots.
+Bibliography: p. Includes index. I. Robotics. 2. Manipulators (Mechanism) I. Youcef-Toumi. Kamal. II. Title.
+TJ211.A78 1987 629.8'92 87-3174 ISBN 0-262-01088-7
+ISBN: 0-262-51176-2 (Paperback)
+
+
+To Our Parents and Families
+
+
+Contents
+Preface
+I. DIRECT-DRIVE TECHNOLOGIES
+1. Introduction
+1.1. Historical Perspectives of Robot Design
+1.2. The Direct-Drive Approach
+1.3. The State of the Art of Direct-Drive Robots
+2. Drive Systems
+2.1. Introduction
+2.2. Direct Current Torque Motors
+2.2.1. Design
+2.2.2. The Torque Constant 2.2.3. The Motor Constant
+2.2.4. The Electric Time Constant
+2.3. Brushless D.C. Torque Motors
+2.3.1. Principle 2.3.2. Commercialized Motors
+2.4. Variable Reluctance Motors
+2.4.1. Principle
+2.4.2. Commercialized Motors
+2.5. Issues in Arm Design and Control
+2.S.1. Small Payload vs.lleavy Arm Weight 2.5.2. Damping Characteristics 2.5.3. Servo Stiffness 2.5.4. Motor Inductance Effects 2.5.5. Arm Dynamics Effects 2.5.6. Overheat
+1
+1
+3
+4
+19
+19
+19
+19 20 22 25
+26
+26
+3 0
+32
+32 35
+38
+38 39 40 40 41 42
+
+
+II. ARM DESIGN THEORY
+3. Statics 4S
+3.1. Introduction 45
+3.2. Power Efficiency Analysis 45
+3.3. Kinematic Structure Design 48
+3.3.1. Parallel Drive Mechanism 48 3.3.2. MotOl' Constant Identification 52 3.3.3. Kinematic Structure Evaluation 52
+3.4. Conclusion S9
+4. Arm Design for Simplified Dynamics 63
+4.1. Introduction 63
+4.2. DecoupIing and Configuration-Invariance of Manipulator M Dynamics
+4.3. Modelling 66
+4.4. Analysis 71
+4.4.1. Off-diagonal elements 71 4.4.2. Diagonal elements 77
+4.5. Design 80
+4.5.1. Arm Design for Decoupled Inertia 80 4.5.2. Arm Design for Decoupled and Invariant Inertia 81 4.5.3. Arm Design for Invariant Inertia 86
+4.5.3.1. Two degree-of-freedom arms 86
+4.5.3.2. Three degree-or-freedom arms 88
+4.6. Discussions on the Decoupling Conditions 93
+4.7. Conclusion 95
+S. Actuator Relocation 97
+5.1. Introduction 97
+5.2. Modeling of Transmission 98
+
+
+5.2.1. Link Angular Velocity Vector 99
+5.2.2. Link Linear Velocity Vector 102
+5.3. Kinetic Energy 103
+5.3.1. Arm Inertia Tensor 103 5.3.2. Examples 106
+5.3.3. Transmission Matrices for Serial Manipulators 108
+5.4. Generalized Forces 110
+5.5. Conclusion 110
+6. Design of DecoupJed Arm Structures III
+6.1. Introduction 111
+6.2. Decoupled and Invariant Inertia Tensors for Planar III Mechanisms
+6.2.1. Necessary Conditions for a Decoupled Inertia Tensor 111 6.2.2. Sufficient Conditions for a Decoupled and Im'ariant 114 Inertia Tensor
+6.3. Parallelogram Mechanisms 117
+6.4. Decoupling of Serial Spatial Mechanisms with Actuator 120 Relocation
+6.S. Conclusion 122
+III. DESIGN APPLICATION - M.I.T. DIRECT-DRIVE MANIPULATORS
+7. Mechanisms 125
+7.1. Introduction 125
+7.2. Arm Mechanism 125
+7.3. Decoopling of Planar Dynamics 129
+7.3.1. Five·Bar-Link Mechanisms 129
+7.3.2. Six-Bar-Link Mechanisms 131
+7.4. Decoupling of Spatial DynamicS 136
+7.5. Conclusion 139
+
+
+8. Control Systems 141
+8.1. Introduction 141
+8.2. Drive System Hardware 141
+8.2.1. Actuators 141
+8.2.2. Sensors
+1
+4
+3
+8.2.3. Power Amplifier
+1
+4
+3
+8.3. Position Control Evaluation 144
+8.3.1. Actuator Modeling and Identification 144
+8.3.2. Position Control System Design 146
+8.4. Dynamic Decoupling Evaluation 149
+8.5. Torque Control 149
+8.5.1. Modeling and Estimation 149 8.5.2. Torque Control 153
+8.6. Conclusion
+1
+5
+3
+IV. SUPPORTING ARTICLES
+9. Control of a Direct·Drive Arm 159
+9.1. Introduction 160
+9.2. Outline or the Direct·Dri\'e Arm 161
+9.3. Mathematical Modeling and Identification 164
+9.3.1. Kinematics and Dynamics 164
+9.3.2. Drive Systems 168 9.3.3. Single. Link Model and Frequency Response 170
+9.4. Feedback Control 175
+9.4.1. Velocity Feedback
+1 7 5
+9.4.2. Gain Adjustment 175
+9.5. Feedforward Control 176
+9.5.1. Control Scheme 176
+9.5.2. Experiments
+1
+7
+9
+9.6. Evaluation of Steady-State Characteristics 180
+9.6.1. Positioning Accuracy 180
+
+
+9.6.2. Servo Stiffness 18-1
+9.7. Conclusion 18-1
+10. A Linkage Design for 187 Direct-Drive Robot Arms
+10.1. Introduction 188
+10.2. Force-Speed Characteristics 189
+10.3. Kinematics of Five-Bar-Link Arm Mechanism 193
+10.3.1. Kinematic Equations 193 10.3.2. Singularities and Configuration Modes 196
+10.4. Computations and Discu.ssiolls 202
+10.5. Conclusion 205
+11. Design of Joint Torque Sensors and Torque 209 Feedback Control for Direct-Drive Arms
+11.1. Introduction 210
+11.2. Torque Sensor Design 212
+11.2.1. Design Issues 212 11.2.2. Dynamic Analysis 213
+11.3. Implementation and Experimentation for the Torque 214 Sensor
+11.4. Torque Feedback Control 221
+11.4.1. Controller Design 221 11.4.2. Experiments of Torque Feedback Control 222
+11.S. Conclusion 223
+v. APPENDICES
+A. Flow Correction in Current Reading
+B. Torque Control Calibration and Software
+B.l. Setup and Calibration
+B.2. Estimation and Control Software
+233
+235
+235
+237
+
+
+c. Single Joint Drive Controller
+C.l. Controller
+C.2. Software
+D. The Jacobian Matrix
+References
+Index
+241
+241
+244
+247
+249
+259
+
+
+List of Photos
+Photo 1·1: The Carnegie.Mellon University Direct-Drive Arm 7 model I
+Photo 1·2: The M.I.T. Direct-Drive Arm Model I 9 Photo 1·3: The M.I.T. Direct-Drive robot Model II 10
+Photo 1·4: The M.I.T. Direct-Drive robot Model III 11
+Photo 1·5: The M.I.T. Direct-Drive robot Model IV 13 Photo 1-6: AdeptOne direct-drive robot (Courtesy of Adept 14 Technology, Inc.) Photo 1-7: The Matsushita Direct-Drive Robot for high speed 15 assembly, Pana Robo IIDD-I. (Courtesy of Matsushita Industrial Co., Ltd.) Photo 1·8: The Shin Meiwa Direct-Drive robot for high speed 17 laser cutting applications. (Courtesy of Shin Mciwa Industry Co., Ltd.) Photo 2·1: n (' �ryrf")lIP motor 21
+Photo 2-2: Brushless D.C. torque motors. (Courtesy of Shin 31 Meiwa Industry Co., Japan) Photo 2·3: MEGATORQUE motor. (Courtesy of Motornetics). 36 Photo 3-1: M.I.T. direct·drive robot model IV in parallel drive 61 mode
+Photo 3-2: M.I.T. direct-drive robot model IV in cross drive 62 mode. Photo 9·1: Overall view of direct-drive arm 162 Photo 9-2: Bare motor at shoulder joint (joint 1). 163 Photo 11·1: Torque sensor built into direct-drive motor. In the 218 photo are shown: (1) stator, (2) rotor, (3) shaft, (4) sensor beam, (5) strain gauges, (6) amplifier circuit
+
+
+List of Figures
+Figure 1-1: 8asic construction of a direct-drh'e joint 5 Figure 2-1: Torque.speed characteristics and power "s. speed 24 for direct current motor.
+Figure 2·2: Constructions of brushles s D.C. motor 27 and conventional D.C. motor.
+Figure 2·3: 8rushIess D.C. motor control system. 28 Figure 2·4: Force exerted in variable reluctance motor. 33 Figure 2·5: Principle of variable reluctance stepping motor. 34 Figure 2·6: Construction of MEGATORQUE motor. 37 Figure 3·1: A robot manipulator 46 Figure 3·2: Force ellipsoid. 49 Figure 3-3: 2 d.o.f serial drive arm mechanism. 50 Figure 3·4: A general five·bar·link mechanism 51 Figure 3·5: Motor constant. 53 Figure 3·6: 2 d.o.f parallel drive five-bar-link mechanism 54 . Figure 3-7: Static force characteristics 56 Figure 3-8: Mean power dissipation ratio for the parallel and 58 serial drives. Figure 3-9: Static force characteristics for the cross 60 configuration (mode II) Figure 4·1: An open kinematic manipulator with revolute joints. 67 Figure 4·2: Total mass and centroid of last (n-l+l) links. 70 Figure 4·3: Immobilizing joints of a manipulator 72 Figure 4-4: Manipulator with two orthogonal joint axes 76 Figure 4·5: A 2 d.o.f. open kinematic chain manipulator with 82 decoupled inertia tensor.
+Figure 4-6: Designs for 2 d.o.f. manipulators with decoupled 83 inertia tensor. Figure 4-7: Designs for 2 d.o.f. manipulators with decoupled and 85 configuration invariant inertia tensors. Figure 4·8: Designs for 2 d.o.f. manipulators with configuration 89 invariant inertia tensors. Figure 4-9: Design of a 3 d.o.f. manipulator with a configuration 91 invariant inertia tensor.
+Figure 5-1: A 2 d.o.f serial manipulator with motors at the joints 100 Figure 5·2: A 2 d.o.f serial manipulator with motors at the base 100 Figure 5·3: Transmission mechanism in a serial manipulator 109
+
+
+Figure 6·1: An n d.o.f. planar manipulator 112 Figu re 6-2: Parallel drive mechanism using a chain 119 Figure 6-3: Parallel drive mechanism using a five·bar 119 mechanism
+Figure 7.1: Schematic of the M.I.T. 3 d.o.f direct-drive 126 manipulator: model II Figure 7-2: Schematic of the M.I.T. 3 d.o.f direct-drh'e 127 manipulator model III: side view
+Figure 7-3: Schematic of the M.I.T. 3 d.o.f direct-drive 128 manipulator model III: front view
+Figure 7-4: 2 d.o.f. Mechanism using a Five-bar-Iink Parallel 132 drive: Dimensions and Mass Properties
+Figure 7-5: 2 d.o.f. Mechanism using a serial drive: Dimensions
+1
+3
+3
+and Mass Properties
+Figure 7-6: Skeleton of the 3 d.o.f M.I.T. direct-drive Arm model 134 III
+Figure 8-1: Brushless DC Motor 142 Figure 8-2: Dlock Diagram of PWM Drive Amplifier and motor
+1 4 5
+Figure 8-3: Open loop frequency response of Amplifier-motor 147 system Figure 8-4: Position response of motor 1 driving the link 148 mechanism
+Figure 8-5: Velocity profile of base motor 150 Figure 8-6: Calibration curve of the current torque estimator 154 Figure 8-7: Experimental data in computed torque variations 155 without correction
+Figure 9-1: Drawing of direct-drive arm 165 Figure 9-2: Disjointed links and local coordinate frames 166 Figure 9-3: Dlock diagram of single-link control system 171 Figure 9-4: Frequency response of joint 1 173 Figure 9-5: Frequency response of joint 4 174 Figure 9-6: Experiments of step response 177 Figure 9-7: Response to large step input 178 Figure 9-8: Effect of feedforward compensation for joint 4 181 Figure 9·9: Effect of feedforward compensation for multiple 182
+joints (joints 4 and 6)
+Figure 9-10: Experiments of positioning accuracy 183 Figure 10-1: Force-speed characteristics 193 Figure 10-2: Geometric representation of force-speed 194 characteristics FigUrE 10-3: A five-bar-link planar mechanism 197 Fi gUrE 10-4: Four modes of configura tion 198
+1'1 gUrE 10·5: Workspace of all modes 200 Fi gure 10·6: Plot of modes in joint space 201
+
+
+Figure 10-7: Force-speed characteristics 203 Figure 10-8: Force-speed characteristics of the mechanisms 204 Figure 10-9: Plot of major and minor axes lengths of four modes 206 Figure 11-1: Schematic construction of arm link, motor and 215 torque sensor
+Figure 11-2: Normalized natural frequency \'s. normalized 216 rotor-side inertia
+Figure 11-3: Static test of torque sensor 219 Figure 11-4: The open loop frequency response of the motor 220 Figure 11-5: Bode plot of the static torque control system 225 Figure 11·6: Motor torque versus input voltage - open loop 226 Figure 11-7: Motor torque versus input voltage - closed loop 227 Figure 11·8: Variation of torque versus rotor position 228 Figure 11-9: Transient response of the torque loop 229 Figure A·I: 3 phase windings of the direct-drive motor 23� Figure B·I: Experimental setup for the torque estimator 236 Figure C·I: Compensation circuit for velocity loop 2�2 Figure C·2: Controller implementation 243
+
+
+List of Tables
+Table 2-1: Specifications of brushless D.C. motor 32 Table 2-2: Specification of MEGATORQUE motor. 38 Table 4-1: Necessary conditions for 2 d.o.f. arm to possess 87 invariant inertia matrix Table 4-2: Possible combinations of joint types for 3 d.o.f. arms. 90 Table 8·1: Rare-Earth Brushless DC Motor Specifications 143 Table 8-2: Experimental data on interactions among actuators 151 Table 9-1: Description of arm structure in Denavit and 167 lIartenberg connntion Table 9-2: Mass, center of mass, and moment of inertia 169
+
+
+Preface
+The field of control engineering has provided valuable theoretical
+contributions to advancements in Robotics. Aspects of control engineering
+which have been utilized include: linear systems theory, mulLivariable control ,
+adaptive control and nonlinear control. The need for further development and research in these and related areas is apparent when new applications and more
+stringent performance criteria are encountered. In fact, some fundamental and
+somewhat rudimentary issues have not yet been resolved. The simplest and most common compensation technique for industrial
+robots is the PID type controller. In general, this control ler is designed with the
+assumption of independent manipUlator joint dynam ics, thus its performance is
+limited because manipulators arc n degrcc-of-freedom coupled nonlinear
+dynamic systems. The PID controllers, however, are generally designed and
+easily implemented for single-input!single-output plants. Although the overall system's performance using these controllers may not be acceptable, this
+method has been proven to guarantee global stability of robot manipulators and
+can kad to acceptable performance in some cases. To improve the
+performance, feedforward compensation has been introduced to effectively
+correct for tracking errors. This approach works reasonably well when the plant
+parameters have been identified correctly. In order to maintain acceptable
+responses in the face of changing parameters or loads. adaptive control schemes
+have been used to fe-tunc the controller gains continuously. Also, several other
+schemes have been proposed for the control of robot manipulators.
+The performance of a system, however, does not depend on the control
+system design alone. An appropriate match between system hardware design
+and controller design is a key issue, particularly when high performance is required. Thus, in the design of machines for advanced applications,
+fundamental physical understanding should refleet all aspects of the control
+system incl uding those relevant to mechanical design. The unification of
+theoretical work with mechanical design is necessary to improve system
+hardware and ultimately to permit "exact" execution of the control actions.
+These considerations are of great importance in the development of precision positioning robots for submicron assembly operations. and high speed high
+
+
+Jccuracy manipulators for trajectory control. For example, in certJin laser
+cUlling applications the end effector speed, acceleration and tracking tolerance
+are on the order of 3 mis, 3 to 5 G and 0.05 mm respectively. Thus, the
+hardware for such applications must be properly engineered to meet these
+severe control specifications.
+The gap between mechanical design and control is gradually closing.
+Advancements in control engineering have contributed strongly to the merging
+of these fundamental issues, and the development of a unified approach to robot
+design and control. The goal of this book is to present such a unified approach
+to design and control in the development of high performance robot
+manipulators -- this text is intended to provide not only theoretical
+fundamentals needed for analysis and synthesis but also practical hardware
+implementations in direct-drive robot technology.
+This book is organized into four parts: Direct-Drive Technologies, Arm
+Design Theory. Development of M.I.T. Direct-Drive Manipulators, and
+Supporting Articles.
+Chapter 1 of this book starts with a historical perspective in robot design,
+then presents the direct-drive concept Description of several direct-drive
+robots is given as an overview for the state-of-the-art in this technology. This
+includes a few models that were designed at the M.I.T. Laboratory for
+Manufacturing and Productivity, Carnegie-Mellon University and industrial
+companies that have produced products which usc this concept.
+The robot components; such as motors, drive amplifiers, sensors and arm
+linkages; are covered in Chapter 2. More importantly, the issues in arm design
+and control are also discussed in this chapler.
+Chapters 3, 4, 5 and 6 deal with ann design theory. They introduce
+analytical tools for evaluation of the static characteristics of manipulators and
+new approaches in the design of manipulators with simplified dynamics.
+The development of the M.I.T. direct-drive robot for high speed trajectory
+control is presented in chapters 7 and 8. These chapters cover not only the design of the mechanism but also the control system design.
+The last part of this book presents some supporting articles relevant to the design and control of direct-drive manipulators.
+We would like to express our sincere thanks to Professor David
+N. Wormley, Head of the Department of Mechanical Engineering at M.I.T, for
+his support and encouragement since we began writing this book in the early summer of 1985.
+
+
+Special thanks go to Professors Steven Dubowsky, Neville Hogan and
+John Hollerbach of M.LT for their comments and criticisms on parts of this book while serving as members on Youcef-Toumi's ScD thesis committee. The support of Professor David E. Hardt. Director of the MJ.T Laboratory For
+Manufacturing and Productivity is greatly appreciated.
+We deeply appreciate the intellectual stimulation and financial support of
+our Industrial sponsors Shin Mciwa Industry Co., LtD and Matsushita Electric
+Industrial Co., Ltd of Japan. Without their support this work would not have been possible. Our thanks go to Dr. Makio Kaga, Director, and Mr. Hideo Koyama, Chief Engineer, and Mr. Hirotoshi Yamamoto, Design Engineer, all
+with Shin Meiwa's Development Center. To Mr. Shinya Yamauchi, General Manager, and Mr. Tetsuya Takafumi, Engineer, of Matsushita.
+The financial aid provided by the M.LT Gordon Support is greatly
+appreciated.
+We would like to thank Professor George Chryssolouris for the generous use of his printer and Ms. Teresa Ehl ing of M.LT Pre'>s for her patience with our delayed drafts of this book and her suggestions regarding the book fonnats. We thank Mr. Neil Goldfine for proofreading the material presented in this book. and Bob Brodersen, Frank Chiricosta and Weslcy Cobb for typing the
+manuscript
+
+
+Part I
+DIRECT-DRIVE
+TECHNOLOGIES
+
+
+Chapter 1
+Introduction
+1.1 Historical Perspectives of Robot Design
+In the early 1960's, Unimation Inc., in Danbury, Connecticut, made the
+first successful installation of what we call an industrial robOl today. Their
+robot was a flvc-axis, hydraulically driven manipulator ann cnpable of carrying
+a several-pound payload along a predetermined path. After a careful task analysis. their robots were installed for the loading and unloading of workpicccs
+for dicasting machines. The task involved repetitive, tedious work in a dirty.
+noisy and dangerous environment The robot, capable of repeating instructed
+motions. mel the increasing requirement for the replacement of unpleasant
+manual operations.
+The mechanical construction of the first Unimate industrial robot departed
+from traditional machine design in many ways. The arm was basically a
+cantilevered beam structure with many degrees of freedom, most of which were
+revolute joints that formed a closed kinematic chain. This structure allows the robot to perform flexible motions and aceess a large work space compared with
+the space occupied by the robot itself. Also, the robot arm can operate in a
+crowded area as we have seen in most factory environments. Thus, the open
+kinematic chain meets the high mobility and flexibility requirements in the
+kinematic structure design. However, this kinematic structure created a number
+of difficult machine design problems. The positioning accuracy at the endpoint
+of the long cantilevered arm is considerably low; and the mechanical stiffness
+of the arm construction is inherenLly poor as well. Also, a small amount of
+error at each revol ute joint is magnified at the arm's endpoint as the arm length
+gets longer. As a result, the required accuracy for the actuator driving the
+revolute joint must be significantly high for the articulated arm. The hydraulic
+actuators used for the first Unimate robot were a reasonable choice because of
+the high performance required for Lhc drive system. Hydraulic drives are
+generally high precision, high power actuators with particularly high torquc-to
+weight ratio. In consequence, hydraulic robots arc capable of accurate motions
+
+
+2 Direct-Drive Robots
+under severe load conditions. As applications of industrial robots expanded. different types of robots were developed to meet a variety of task requirements. For light-duty applications, electrically-powered robots became the most prominent robot design. In arc weldin g, for example, electrical robots arc most widely used. Compared with hydraulic drives. electro-mechanical drives are, generally, inexpensive and clean. as well as easy to maintain. Thus, electrical robots continue to replace hydraulic robots in many applications.
+Electrical motors generally produce their maximum power at high speed. In other words, the electrical motors exert rather small torques while rotati ng at high speeds. In consequence, appropriate gearing is necessary for the electrical motors in order for these systems to drive such loads. Robot arms arc usually moved at low speeds, less than one revolution per second, while required maximum torques range from a few newton-melers to several hundred newton meters. A large gear reduction on the order of 1:100 is typically required for
+sk'mdard servo motors.
+Design of electro-mechanical drives is complicated by the need for gearing and reducers. The reducer must provide a high gear reduction while maintaining high precision. Particularly important is that the reducer should not introduce backlash or lost motion, which will directly degrade positioning accuracy. Even a small amount of backlash at a proximal joint leads to a
+significantly large error at the arm tip. Hence. backlash must be completely
+eliminated at each joint. Friction is another problem in the design of gearing. As described later. anti-backlash gears and other types of reducers with low backlash are characterized by considerably large friclion. In many cases the motor power dissipated at the gearing amounts to over 30% of the total power because of the large friction. The large friction also leads to poor control accuracy, which is a more serious problem for high precision applications. Friction is an unpredictable characteristic, and is difficult to identify, hence difficult to compensate for.
+Gearing mechanisms are often major sources of mechanical deflections or compliances. Poor m echanical stiffness not only causes static arm deflections but also limits dynamic responses. The loop gain of the servo system cannot be increased if the higher order delay resulting from the low stiffness makes the
+system unstable. This severely limits the bandwidth and accuracy of the drive
+system . Poor stiffness at the gearing may also cause undesirable vibrations.
+
+
+Chapter 1 3
+This vibration {>roblcm is a critical issue {>articularly for high speed
+manipulation. After arriving at a spccificd point, the robot cannot proceed to
+the following step of motion, until the residual vibration caused by the gearing
+compliance ceases. Thus, the reduced mechanical stiffness is a crucial problem
+when the tact time of operations is short.
+Traditionally, speed and accuracy are main issues in the de sign of
+machines. Robots are, however, somewhat di fferent in that the speed and
+accuracy are not necessarily the primary goal of de sign. Essential robot
+charactcristics are described by such words as flexibility, dexterity, intelligence,
+etc. Consequently, much research effort has addressed issues regarding how
+robots can be more flexible, dexterous and intclligent.
+In advanced manipulation tasks. such as assembly of mechanical parts,
+robots perfonn the task through mechanical interactions with the environment.
+The robot is required to accommodate contact forces as well as to control the
+location of its end effector. Force control and compliance control arc then
+necessary for those tasks which require control of mechanical interactions.
+Control schemes such as these, have been implemented on traditional robots
+that were primarily designed as positioning devices. The drive systems of these
+devices are basically position-controlled, and arc not necessarily appropriate for
+force control. Reducers in electro-mechanical drives create significantly large
+friction , which provides disturbance torques in the force control system and
+degrades the control perfonnance. It is also difficult for a hydraulic robot to
+control delicate interaction forces between the arm tip and the environment.
+Thus, we need an appropriate hardware tool for delicate force control and
+advanced manipulation.
+1.2 The Direct-Drive Approach
+Direct-drive is, basically, an electrical drive in which no gear reducer is
+used. The rotor of an electrical motor is directly coupled to the load. hence the
+mechanical gearing is completely eliminated. The direct-drive robot is defined
+to be a mechanical arm where all or part of the active arm joints are actuated with the direct drive.
+Figure 1-1 shows the basic construction of a direct-drive joint from a
+direct-drive robot The direct-drive joint consists of a pair of arm links, the
+motor. and the bearings. The motor is comprised of the stator and the rotor.
+
+
+4 DireCI·Dri�·e Robots
+The stator is housed in the case connected to one of the arm links, usually a
+proximal link, and the rotor is directly coupled to the joint shaft, which is
+connected to the other ann link, usually a distal link. Thus the distal arm link is
+rotated directly by the torque exerted between the rotor and the stator, hence
+direct drive.
+The problems that the mechanical gcaring unavoidably possesses can be
+solved completely in the direct drive method. Backlash is completely removed
+and friction is reduced significantly. It may exist only at the bearings
+supporting the joint shaft. The mechanical construction can be much stiffer
+than drive mechanisms with gcaring, wear of gcars is no longer troublesome.
+and the simple construction is more reliable and is easy to maintain.
+These features may result in excellent control performance. The accuracy
+of positioning can be improved remarkably. Since the simple mechanical
+construction possesses less uncertainties, ego low friction and no backlash, the
+repeatability of positioning can be an order of magnitude better than that of the
+gcared drives. The simplified mechanism will also allow us to identify the
+system dynamics with little difficulty. The behavior of the drive system can be
+modeled accurately, and thus the dynamic response is more predictable. These
+desirable static and dynamic characteristics make it easy and effective to apply
+advanced control schemes including force control and compliant motion
+control. Thus the direct-drive robot can be a desirable test bed for advanced
+manipulation studies.
+1.3 The State of the Art of Direct-Drive Robots
+The basic concept of a direct-drive robot was first established by H. Asada
+in 1980. He and his colleague T. Kanade developed the first prototype in 1981
+at the Robotics Institute, Carnegie-Mellon University. Photo 1-1 shows their
+robot, CMU D-D Arm Model I, a six degree-or-freedom manipulator arm
+consisting of all direct-drive revolute joints. The first joint, the most proximal
+joint at the ceiling, causes a rotation about the vertical axis, while the second
+joint rotates the upper arm about a horizontal axis. The third joint rotates the
+forcann about the center line of the upper ann . The motor driving the third
+joint is fixed to the upper ann and is located on the other side of the elbow part,
+so that the motor acts as a counterweight of the elbow parL. The gravity load of
+the second motor is then reduced with this mass balancing procedure. The
+
+
+Chapter 1 5
+Figure 1-1: Basic construction of a direct-drive joint
+
+
+6 Direct-Drive Robots
+fourth joint is the elbow, causing the bending motion of the forearm, while the
+fifth joint rotates the forearm about its center line. The motor of the fifth joint
+is located within the elbow part, so that the load of the fourth motor can be
+reduced. The last joint is at the wrist part, bending the arm tip about the axis
+perpendicular to the forearm.
+The motors used for the first three joints arc DC torque motors using
+ALNICO magnets at the stators. The maximum torque of the largest motor,
+that is, the first motor, is over 150 Nm, while the diameter of the stator is 60
+cm. The motors of the last three joints are also DC torque motors, but the
+permanent m agnets used are Samarium-Cobalt magnets, which are more than
+three times stronger than the ALNICO magnet in terms of maximum magnetic
+energy product.
+The first prototype development at the CMU Robotics Institute
+demonstrated the potential advantages and feasibility of the direct drive
+approach. The prototype design, however, revealed that the robot of this new
+type needs more powerful motors with more compact sizes. The motors used
+for the CMU Arm are not sufficient to drive the large loads, while the size of
+each motor is so large that the arm construction becomes too bulky and heavy.
+At the Massachusetts Institute of Technology, improved direct-drive robots
+were developed by H. Asada and K. Youccf-Toumi. The motors used for the
+M.I.T. Arms are brushless DC torque motors with Samarium-Cobalt magnets,
+which can exert 3 to 10 times larger torque compared with the CMU Arm. For
+example, the largest motor of one of the M.I.T. arms can produce 660 Nm of
+output torque, while its slator diameter is only 35cm. In comparison with the
+largest motor of the CMU Arm, the peak torque is therefore 3 times larger,
+while the diameter reduces to a half of the previous motor.
+Photo 1-2, shows the M.I.T. D-D Arm Model I , a three degree-of
+freedom, serial link manipulator arm. The arm was built during the period 1982
+to 1983, and is currently installed at M.I.T.'s Artificial Intelligence Laboratory.
+The robot has a unique kinematic structure, which allows it to eliminate gravity
+loads at individual motors. The first joint rotates the whole upper body about
+the vertical axis, hence no gravity load acts upon the first motor. The second
+joint rotates the forearm about the center line of the upper arm, similar to the
+third joint of the eMU Arm • but the motion of the upper arm is constrained
+within a horizontal plane. The third joint is located at the elbow. and causes the
+bending motion of the forearm. Since the mass of the forearm is balanced with
+its counterweight, the third motor docs not experience any gravity load •
+
+
+Chapter 1 7
+degrees of freedom 6
+material Aluminum
+special features Serial drive
+Photo 1-1: The Carnegie-Mellon University Direct-Drive Arm model I
+
+
+8 Direct-Drj}'e Robots
+Similarly, the axis of the second joint passes through the centroid of the
+foreann, hence no gravity load acts on the second molor. Thus all three motors
+have no gravity load for all arm configurations.
+Photo 1-3 shows the M.I.T. D-D Arm Model II, which was developed by
+the same group at M.I.T. from 1983 through 1984. For this arm, they employed
+a parallel drive mechanism with a closed-loop kinematic chain. The upper two
+motors, located on the base frame, drive the two input links of the parallelogram
+mechanism, which causes a two degrcc-of-freedom vertical motion at the arm
+tip. One of the features of this arm construction is that the heavy mOlor at the
+elbow joint of the previous model was replaced by the mOlar mounted on the
+base frame and that the drive torque is transmitted through the parallelogram
+mechanism. This remote drive mechanism reduces the arm weight significantly
+and improves the dynamic performances. Another feature of the Model II D-D
+Arm is the innovative technique for dynamic mass balancing and deeoupling,
+which arc to be discussed in detail in Chaplers 4 and 5.
+As the velocity of the arm motion increased, the dynamic characteristics of
+the arm construction have more critical influence upon thc control pcrfonnancc.
+Photo 1-4 shows thc M.I.T. D-D Arm Model III with a linkage made out of
+graphitc composite material. Since the material is lightweight and strong, the
+arm's stiffness as well as the inertia are improved significantly. The natural
+frequency of the arm construction wa s then increased to about 70 Hz, whereas
+the Model II Ann, which was made of aluminum, had a natural frequency of
+only 14 Hz. With this lightweight, high stiffness arm structure, the M.I.T. D·D
+Arm Model III has achieved an extremely fast motion: The maximum tip speed
+is 12 mls and the maximum acceleration is over 5 G.
+Photo 1-5 shows another type of dircct-drive ann developed at M.I.T., the
+M.LT. D-D Arm model IV. The two motors aligned on a vertical axis drive the
+horizontal parallelogram mcchanism. Since the link motion is constrained
+within a horizontal plane, no gravity load acts upon the two motors. Robots
+with this lype of kinematic construction arc often referred to as SCARA robots ,
+which arc widely used for assembly operations, particularly for planar assembly
+tasks.
+The simple constructio n of the SCARA robot is appropriate for direct
+drive robots: small number of degrees of freedom as wen as the no- gravity
+load construction make it easier to build practical robots. In facl, the first
+commercialized direct·drive robot employed the same kinematic construction as
+the SCARA robot. Photo 1-6 shows the AdeplOne direct·drive robot developed
+
+
+Chapter I 9
+•
+•••
+••
+degrees of freedom 3
+material Aluminum
+special features gravity balanced. serial drive
+Photo 1-2: The M.I.T. Direct-Drive Arm Model I
+
+
+10 Direcl-Dri.'e Robots
+degrees of freedom 3
+matciaI Aluminum
+decouplcd dynamics. parallel drive with a flVe-bar-1ink special features mechanism
+Photo 1-3: The M.I.T. Direct-Drive robot Model II
+
+
+Chapter 1 11
+degmcs of freedom ·3
+material Graphite Composite
+decoupled dynamics, parallel special features drive with a six-bar-liDk mechanism
+application laser cutting
+Photo 1-4: The M.I.T. Direct-Drive robot Model III
+
+
+12 Direct-Drive Robots
+by ADEPT Technology Inc., at Sunnyvale, California, in 1983. The arm has
+four degrees of freedom. Two motors are located at the base, which produce
+the horizontal link motion. The other two motors are on the forearm: one drives
+the lead screw which produces a translational motion along the vertical axis, while the other rotates the gripper about the vertical axis.
+To reduce the ann weight, some of the joints are driven remotely by
+motors located at proximal positions. The second joint. that is the elbow joint,
+is driven by one of the base motors through a steel band between the motor and
+the elbow joint. The wrist joint is driven by a motor at the elbow position
+through another steel band. Though transmission mechanisms are used. no gear
+reducers are employed in this arm design. In consequence. the features of the
+direct-drive approach are mostly maintained.
+The maximum speed of the arm is 9 mls. which is defined to be the tip
+speed when all the joints are at slew speed. The repeatability. that is. the
+maximum positioning error when reaching the same destination along the same trajectory. is determined to be ± 0.001 inch or ± 0.0254 mm. Both
+specifications are an order-of-magnitude better than traditional robots with gear
+reducers.
+The motors used for the AdeptOne direct-drive robot are specially
+designed high torque motors produced by Motometics Inc. in Santa Rosa.
+California. As described in detail in the following chapter, the motor is a
+3-phase variable reluctance motor having many teeth at the roLOr. The motor produces a large torque with small power consumption. when rotating at low
+speeds.
+Photo 1-7 shows another direct-drive robot commercialized by the
+Matsushita Electric Industrial Co., Ltd., Osaka. Japan. The robot has the same
+kinematic construction as that of the M.I.T. Arm Model IV, namely the
+horizontal parallelogram mechanism. The arm length is about 60 cm, a little
+smaller than the AdeptOne robot. The motors used for the Matsushita robot arc
+brushless torque motors with Samarium-Cobalt magnets. One of the features
+of the Matsushita robot is that the motor, when incorporated with a high
+pcrfonnance drive amplifier. has an excellent linearity. while producing a large
+torque with a small torque ripple. This allows us to improve the control
+accuracy not only positioning control but also for the torque control. One can
+also change the endpoint compliance in a wide range; it can be extremely soft or
+hard by simply changing the gains of the drive system.
+Another feature of the Matsushita robot is its high accuracy. Precision
+
+
+Chapterl 13
+degrees of frt!edom 2
+mattrla1 Aluminum
+decouplcd IIId invariant dynamics, special fealureS pnIIel drive with a fivc-bar-1iDk mecllanism
+app1icalion asembly
+Photo 1-5: The M.I.T. Direct-Drive robot Model IV
+
+
+14 Direct-Drive Robots
+Photo 1-6: AdeptOne dircct-drive robot (Courtesy of Adept Tcchnology. Inc.)
+
+
+Chapter 1
+
+•
+Photo 1·7: The Matsushita Direct-Drive Robot
+for high speed assembly, Pana Robo IIDD-l. (Courtesy of Matsushita Industrial Co., Ltd.)
+15
+
+
+16 Direct-Drive Robots
+position sensors were specially developed for the direct-drive robots. The
+sensor is a laser interferometer type e ncoder, having a high resolution. With
+this encoder and the motor drive system, the repeatability of the Matsushita
+robot is less than ± 0.010 mm or ± 0.0004 inch. This will meet increasing
+needs for high accuracy operations, particulary in precision assemblies of
+electric parts.
+Photo 1-8 shows a larger size direct-drive robot used for the laser cutting
+of sheet metal. The robot was developed by the Shin Meiwa Industry Ltd., in
+Japan. A laser beam passes inside the arm links, changes its direction at the
+arm joints and impinges against a sheet metal part. The speed and accuracy of
+the metal cutting are dependent upon the performance of the robot used. The
+direct-drive robot is capable of tracing a complex spacial curve at a high speed
+while maintaining high accuracy. In laser cutting it is particularly difficult to
+move around a sharp comer or to trace a circular curve of small radi us, because
+an extremely large acceleration is required for the robot. Shin Meiwa's direct
+drive laser cutting robot has a maximum acceleration of over 5 G at the arm tip.
+To achieve the extremely high acceleration, the arm links arc made of
+graphite composite, which reduces the arm weight and increases natural
+frequencies. A special dynamic mass balancing technique was employe d in the
+arm linkage design. Thcse techniques used for both robots by Shin Mciwa and
+Matsushita will be discussed in detail in Part II of the book.
+Thus research and development of direct-drive robots have been conducted
+both in industry and in aeadcmia during the past scveral years. It ranges from
+the development of components, such as motors and sensors, to the
+development of arm design and necessary control theory. The following
+chapters investigate the component technologies fust, and then diseuss the
+design and control problems of the direct-drive arms.
+
+
+Photo 1-8: The Shin Meiwa Direct-Drive robot for high speed laser cutting applications. (Courtesy of Shin Mciwa Industry Co., Ltd.)
+17
+
+
+Chapter 2
+Drive Systems
+2.1 Introduction
+Key components in the design and control of a direct-drive robot are the
+motors and drive amplifiers. An order of magnitude larger torque must be generated in a compact and lightweight body. F1uctualions in torque Dnd speed
+should be minimized in order to achieve accurDtc control. There arc many othcr
+requirements for motors used for the dircct-drive robot. In this section we
+analyze the characteristics of motors and discuss some performance standards,
+which are critical to the direct-drive robot applications. Motors used in direct drive robots are: 1. Direct current torque motors,
+2. Brushless D.C. torque motors ,
+3. Variable reluctance motors.
+We investigate each type of the direct-drive motors and compare their
+performances.
+2.2 Direct Current Torque Motors
+2.2.1 Design
+Direct current mOlors arc the simplest but most highly efficient motors
+widely used for robot drives. To apply the D.C. mOlor to the direct drive robot,
+the motor design must be modified so that a sufficiently large torque can be
+obtained. The motors used in the early versions of direcl·drive rObots, c.g. eMU Direct-Drive Arm • arc referred to as D.C. torque motors, or D.C. torquers. which arc capable of exerting much larger torques compared with regular D.C.
+motors. There is, however. no essential difference between regular D.C. motors
+and the direct-drive D.C. motor in principle; the latter motor is designed in such
+a way llIat the output torque. ralller than power, be maximized.
+
+
+20 Direct·Dri)'e Robots
+As shown in Photo 2·1, a typical D.C. torque motor consists of a stator, a
+rotor and a brush ring. The stator is made of pcnnanent magnets cemented on a
+metal ring, while the rotor has windings having many poles on it. The torque is
+exerted at the air gap between the rotor and the stator. The total area of the air
+gap A is detennined by the product of the length of the rotor, L" and the
+diameter of the air gap cylinder, which is approximately the same as the rotor
+diame�r, D"
+(2,1)
+The output torque is then determined! by the air gap area and the rotor diameter,
+(2.2)
+where ka is a constant determined by the magnetic field at the air gap times the
+current flowing into the windings. Thus the output torque is proportional to the
+square of the rotor diameter. Therefore a straightforward way of increasing the
+torque is to enlarge the rotor diameter rather than increasing the rotor length .
+This is why the direct-drive torque motor in Photo 2-1 has a large diameter and
+a short rotor length, which looks like a pancake.
+2.2.2 The Torque Constant
+The dynamic equation of the D.C. torque motor is the same as that of a regular D.C. motor. The electrical relationship of the armature is given by
+V=Ri+E+L di
+dl (2.3)
+where V is the voltage applied to the armature, Rand L are the resistance and
+the inductance of the windings, respectively, j is the current, and E is the back
+emf, which is given by
+E=K,OO (2.4)
+where Kl is called back e.m.r constant, and 00 is the angular velocity of the
+
+
+Chapler2 21
+Photo 2-1: D.C. torque molor
+
+
+22 Direct-Drb'e Robots
+rotor.
+The electrical power converted into mechanical power is given by P=Ei,
+that is, the voltage drop due to the back emf times the armature current. This
+amount of power is the same as the mechanical power proouced by the rotor:
+Ei='too (2.5)
+Substituting Equ. (2.4) into Equ. (2.5), we obtain the relationship between the
+torque and the current
+(2 .6)
+where K/ is called torque constant, which is the same number as the back emf
+constant when SI units are used.
+The torque constant is determined by the magnetic field and the
+geometrical parameters of the air gap. For an ideal torque motor, the torque
+constant is truly invariant. However in reality, it varies with the rotor position.
+Since the magnetic field consists of discrete poles and the commutation occurs
+discretely, the torque constant varies as the rotor rotates. This causes
+fluctuations in the output torque. The amount of fluctuation is represented by
+the torque ripple, which is the ratio of the torque deviation to the average of the
+output torque. The torque ripple is an important pcrfomance standard for the
+dircct drive application, because the torque fluctuations prevent smooth
+motions, particularly at slow speeds, and degrade control accuracy.
+To minimize the torque ripple. the rotor windings arc divided into a
+number of coil pieces that arc connected to the same number of commutator
+segments. The current is then switched from one coil to another more
+smoothly. The number of poles at the stator is also increased in order to
+smoothen the magnetic field.
+2.2.3 The Motor Constant
+Another important performance standard is concerned with the power
+performance necessary for exerting torque. Let us consider a stall condition in
+which the motor docs not rotate while exerting a torque, The power consumed
+inside the motor is evaluated by using Equs. (2.3) and (2.6), so that
+
+
+Chapter 2 23
+(2.7)
+or
+(2.8)
+where the constant Km is given by
+(2.9)
+As shown in Equ. (2.7) the output torque is proportional to the square root of the power consumed. The proportionality constant, Km, accounts for the efficiency of the torque motor in terms of the transduction of clectric power to mechanical torque. The highcr the constant is, the larger the exerted torque becomes, and the lower the power consumed. The constant is referred to as the
+motor constant -- one of the maj or specifications of a direct-drive motor.
+Let us also consider a steady-state condition when the molor is rotating at a
+constant angular velocity ro. From Equs. (2.2), (2.3), (2.5) and (2.8), we obtain
+K, 2
+'t=-V-K ro
+R
+m (2.10)
+Figure 2-1 plots the above torque-speed characteristics for a given armature voltage. The squared motor constant, Km2, designates the ncgative slope of the charactcristies curve. The negative slope accounts for a natural damping efrect, which results from the back emf. The negative slope contributes a stabilizing effect to the system.
+When rotating at a constant speed ro, the motor produces the mechanical power Pm given by
+
+
+24
+�
+w ;:)
+a:ooI-:
+Direcl-Dril'e Robots
+�. 1/2wmoK
+ANGULAR VELOCITY w
+Figure 2-1: Torque-speed characteristics and power vs,
+speed for direct current motor.
+
+
+P =tro= -V-K ro ro
+(Kl 2 )
+m Rm
+Chapter 2 25
+(2.11)
+which takes a maximum for a given armature voltage V. As shown in Figure 2-1, the power is maximum at half the maximum speed and at half the maximum torque. This provides the optimum operating condition, in which the motor can exert its maximum power. As the operating condition of the torque and speed departs from the optimum point, the efficiency declines along the parabolic curve. Note that for a larger motor constant, the optimal point moves towards the lower speed, since the maximun speed decreases for a fixed armature voltage V. Direct-drive motors are generally operated at low speeds, and in consequence a larger motor constant is desired in order to improve the efficiency.
+2.2.4 The Electric Time Constant
+Next we consider dynamic performances, particularly the response of the output torque to a sudden change of the armature voltage V. From Equs. (2.3) and (2.6), the Laplace transform of the motor torque is
+where Te is referred to as the electric time constant and is given by
+L
+T
+=
+eR
+(2.12)
+(2.13)
+The electric time constant is neglibly small for most D.C. motors, but it isn't for
+direct-drive torque motors. To generate a large torque, the direct-drive motor needs a large rotor diameter and larger windings, which possess, unavoidably, a large inductance. It is of special importance for the motor drive system to cope with the significant effect of the large electric time constant so that the control system can be stable.
+
+
+26 Direct-Dri�'e Robots
+2.3 Brushlcss D.C. Torque Motors
+2.3.1 Principle
+The D.C. torque motors. investigated in the previous section, have many
+advantages including high efficiency • low torque ripple, linear torque-speed
+characteristics, and simplicity of construction.
+A major drawback of the D.C. torque motor is that large currents arc
+delivered to the rotor through mechanical commutation. At the brush and
+commutator , large sparks arc created beca use of the large inductance at the
+rotor windings as well as the large currents and high voltages supplied to the
+rotor windings. The large sparks arc harmful , causing the brush to wear
+quickly. Such a large spark also produces unwanted noise. which is harmful to
+oLher electrical devices. The brush mecbanism increases mechanical friction,
+which degrades control performances.
+The MIT Direct-Drive Arms and other c ommercialized robots employed
+brushless D.C. torque motors . In the brushless motor. the mechanical
+commutation is replaced by electric switching circuits. so that the mechanical
+brush can be eliminated. No sparks are then produced. while the features of the
+conventional D.C. motors are mostly preserved. The efficiency is as high as the
+conventional D.C. motors, and the torque-speed characteristics arc linear in a
+wide range of speeds.
+Unlike the conventional D.C. motors, the rotor of the brushless molor
+consists of permanent magnets. while the stator consists of windings (as shown
+in Figure 2-2). Thus the rotor and the stator are interchanged. The commutation
+of currents is accomplished by measuring the rotor position using a position
+sensor. In accordance with the rotor position, currents are delivered to
+appropriate windings through electronic switching circuits.
+As mentioned in the previous seclion, the conventi onal D.C. torquer has
+many coil pieces and the same number of commutator segments , so that the
+torque ripple can be suprcssed. If, in the brushless mOlor, an individual
+electronic switch is used for each of the coil pieces, the drive amplifier becomes
+complex and costly. having many expensive switching transistors. Therefore,
+the number of independent switches is minimized in the brushless mOlor -- a
+common construction of the windings is that of a three-phase mOlor, as shown
+in Figure 2-3. This winding construction requires only independent switches,
+each of them is to draw a current into the winding at appropriate locations of the
+
+
+Chap/er 2
+'- PERMANENT
+MAGNET
+(0) Conventional DC motor
+STATOR
+RO OR
+MAGNETIC
+FLUX PERMANENT
+MAGNET
+(b) Brushless DC motor
+Figure 2·2: Constructions of brushless D.C. motor and conventional D.C. motor.
+27
+
+
+28
+reference inpul
+(onalo!!ue)
+reodr-.I:..:..:lLL,
+only memory L.....r-w..,.-l
+mulliplyin!! ,..LL.J�
+cOo/Anverler
+Wove
+Pulse
+Width
+modulalor L-....-.J
+power
+amps
+Direct-Drive Robots
+resolver
+10
+di!!ilol
+converler
+fotor
+.iodin!!s
+Figure 2-3: Brushless D.C. motor control system.
+
+
+Chapter 2 29
+rotor. A problem with this motor design is that the torque may change
+discontinuously when the switches are turned on and off as the rotor position changes. To reduce such a torque ripple. the current flowing into each winding is varied continuously with the rotor motion. Let lA' In and Ie be individual currents flowing into the three phase windings. Let them vary so that:
+fA =fosin erol
+I
+B
+=
+I
+o
+s
+i
+n
+(
+erot+�1t)
+Ie=Iosin (8rot+�1t)
+(2.14)
+where 8rot represents the rotor position and 10 is some desired motor current. The torque exerted by the motor is given by
+(2.15)
+The first term accounts for the contribution by the windings of phase A, and the
+second and the third terms by the phase B and C windings. respectively. The motor torque t is then obtained by substituting Equ. (2.14) into Equ. (2.15), and is given by
+(2.16)
+The above equation indicates a linear relationship between the output torque and the motor current. In practice, this relationship may not be linear.
+The torque current characteristics of a brushless motor are virtually the same as
+those of a DC motor. Specifically. the torque constant and motor constant can be defined in the same way as was discussed previously. The choice of the phase currents given by Equ. (2.14) is implemented using ROM's and
+
+
+30 Direct-Drive Robots
+multiplying D/A converters as shown in Figure 2-3. A descrip tion of this
+implementation is given in Chapter 8. Another feature of brcshlcss DC motors
+is their effectiveness in heat dissipation. This is because the windings arc
+mounted on the stator which is in contact with the motor housing through a
+large area.
+2.3.2 Commercialized Motors
+Photo 2-2 shows commercialized brushless D.C. torque motors developed
+by International Scientific Inc.; the same type of motors as the ones used for
+MIT Direct-Drive Arms. The permanent magnets cemented on the rotor rings
+arc high performance Samarium-Cobalt magnets , whose maximun magnetic
+energy product is over 26 MGOe. This rare earth magnet stores 3 to 10 times
+larger magnetic energy than conventional magnets, such as ferrite and AlNiCo
+magnets.
+Table 2-1 shows specifications of one of the largest brushless motors taken
+from the manufacturer's catalogue. The maximum torque of the motor is 660
+Nm, which is an order of magnitude larger than for a conventional D.C. torquer
+of the same size. The elim ination of the brush allows us to supply large currents
+to the windings, and the strong magnets produce a high flux density. Since the
+magnctic flux is attenuated somehow by the currents flowing in the stator
+windings, the maximum torque listed in the catalogue data should be decreased.
+Nevertheless, this type of motor exerts the largest torque among the three types
+of the direct-drive motors.
+A variety of techniques have been devised for reducing torque ripple. In
+the same way as conventional D.C. torquers, the number of poles is increased in
+the rotor design. As shown in Table 2-1. the 356 mm (14 inch) brushless motor
+has 30 poles. Increasing the number of slots on the stator is also effective to
+smoothen the torque.
+Another technique to reduce the torque ripple is to arrange the rotor and
+stalor pole positions to be "allo-periodic". If all the poles at the rotor and the
+stator arc aligned at the same rotor position (iso-periodic), the resultant torque
+ripple becomes prominanL To avoid this, the number of the rotor poles is made
+slightly different from that of the rotor. The brushless D.C. torque motors in
+Photo 2-2 cmploy this technique to reduce the torque ripple.
+The threc-phase wind ings have been chosen for most brushlcss motors,
+mainl,! because the cost for switchin� tmnsiS\Qr� i� minimiz.�d, li.. h.Qw�VC{.. 1h�
+number of phases is increased to five or seven, it is effective to reduce the
+
+
+Chapler2
+Photo 2-2: Brushless D.C. torque motors.
+(Courtesy of Shin Mciwa Industry Co., Japan)
+31
+
+
+32 Direct-Drive Robots
+Item Size
+Stator diameter (D) 356mm Stator length (1) 66mm
+Maximum torque 660Nm
+Motel' conSlant 7.SNm/VW
+Electrical time constant (T.) 10ms
+Weight 12Kg.
+Table 2-1: Specifications of brushless D.C. motor
+torque ripple. Yet this method has not becn adopted.
+2.4 Variable Reluctance Motors
+2.4.1 Principle
+Another type of high-torque, low-specd motors used for direct- drive robots
+are variable reluctance motors. The principle of the variable reluctance motor
+is similar to that of a stepping motor, as shown in Figure 2-4. The stator has
+windings which create the flux passing through the stator and the tooth of the
+rotor, which is made of a magnetic substance. The rotor is at a stable position
+when the teeth of the rotor and the stator are aligned, as shown in Figure 2-4(a).
+A restoring force is generated as the rolor position varies from the stable
+position; Figure 2-4 (b). Figure 2-4(c) shows the relationship betwecn the
+restoring force/and the displacement e.
+Figure 2-5 shows an extended structure of the motor in Figure 2-4. The stator has three phase windings; <h, <Ilz, and <P3' Note that the pitch of the rotor teeth is different from that of the stator. When the coil of phase <PI is excited.
+the rotor is stable at the position shown in the Figure. As the coil of phase 4>2 is
+excited consecutively, the rotor moves towards the tooth positions shown by the broken lines. As for the phase $3 coil. the stable position of the rotor is moved
+continuously by exciting the three-phase windings sequentially. Figure 2-5(b)
+shows the torque excited by the three-phase stepping motor.
+The motor of this type is referred to as a Variable Reluctance Stepping
+Motor. The motor has some desirable advantages over thc other types of
+
+
+Chapler2
+(0) Stobie position 8=0
+I®
+__�-----r------__ 8
+(e) Force vs. position
+f
+Re - storing Force
+Figure 2-4: Force exerted in variable reluctance molor.
+33
+
+
+34 Direct-Drive Robots
+Stator
+::::::::::j:__:::::::1�::::::__L:�:::::::t�-=:::::j::::::= Rotor
+(0) Configuration
+, •I , , " ' , " , " , I
+,,
+, ,,
+I " " ., " " " � 'I "
+. ( • ,I .
+. " ,\ ,� " • " I'
+,\ " , .. , • ,', ,', , . , .. ,
+..
+,. , , I "
+I
+, I\ , , , , \ . . , , , I , I
+I
+'v
+, , \ , , \ , \. ,' ,, , \ ,
+\.J " " " " J " II 'J "
+(b) Torque generated
+Figure 2-5: Principle of variable reluctance stepping motor.
+
+
+Chap/eT2 35
+motors. However, to apply the variable reluctance motors to dircct-drive robots.
+the following problems must be overcome:
+1. When an excessively high speed or high acceleration motion is commanded, the rotor motion can be out of phase with the excitation timing of the stator windings.
+2. The fluctuation in torque is prominent
+3. Since the rotor position is stable only when the teeth of the rotor are aligned with the ones of the stator. the possible positioning points are limited; namely coarse positioning resolution.
+4. The ratio of motor weight to output torque tends to be higher than other motors.
+To solve the first three problems, a closed loop current control using a
+rotor position sensor has been employed. With the rotor position information,
+the excitation of each phase windings can be accomplished correctively, thus no
+out-of-phase motion occurs.
+As in the case of the brushless D.C. torquer. sinusoidal excitation currents can be prodoced with the rotor position information. In principle the rotor can
+be positioned at an arbitrary position by this closed-loop current control along
+with the sinusoidal phase excitation. The torque ripple can be also reduced on
+the same principle as the brushless motor .
+2.4.2 Commercialized Motors
+Efficient methods [0 increase the output torque arc to reduce the air gap
+distance and to increase the number of teeth. Photo 2-3 shows the variable
+reluctance direct-drive motor developed by Motometics Co.• which employed
+the construction of increased teeth number. The number of teeth is 150 for the
+rotor and 144 for the stator. The motor consists of a rotor and the two stators;
+the inner and the outer stators as shown in Figure 2-6. This special construction
+was devised so that the drive torque is generated at both sides of the rotor. In
+fact, the number of teeth has increased to twice that of the single stator.
+Each stator has 18 poles. and 6 segments of coils arc connected in series.
+As shown in the figure, the windings arc arranged so that the flux passes
+through the rotor in the radial direction. This construction allows the motor to
+reduce the internal loss of magnetic energy, and as a result a large motor
+constant C3n be obtained.
+Table 2-2 shows major specifications of the 356 mm (14 inch) variable
+reluctance 0.0. motor developed by Motometics. Note that the motor constant
+
+
+36 Direct-Drive Robots
+Photo 2-3: MEGATORQUE motor. (Courtesy of Motomctics).
+
+
+Chap/er2 37
+- Ouler slator
+.�Rotor
+Inner slator�
+Figure 2-6: Construction of MEGATORQUE motor.
+
+
+38 Djrecl-Dri�'e Robots
+is larger than that of the brushless motor in Table 2-1. The maximum torque,
+however, is less than one half of that developed by the same size brushlcss motor. The continuous torque, on the other hand, is larger for the variable
+reluctance motor since the power dissipated in the variable reluctance motor is
+smaller than the brush1ess motor.
+Variable reluctance mOlars, in general, have more prominantlorque ripple
+and nonlinear torque-speed characteristics. Compensations for these
+nonlinearities are critical issues for their application to the direct-drive robots.
+Item Size
+Stator diameter (D) 356mm
+Stator length (L) l02mm
+Maximum torque 250Nm
+Motor constant 23.2Nmr/W
+Coil inductance 150mH
+Coil resistance 3.50
+Weight 60 Kg.
+Table 2-2: Specification of MEGATORQUE motor.
+2.S Issues in Arm Design and Control
+Fundamental characteristics of the components involved in a direct-drive system were analyzed in the previous sections. We now discuss critical issues
+in the design and control of the direct-drive systems. The direct -drive system
+has several problems that make the application to the robot drive difficult. To
+exploit the potential features described in Chapter I, we need to overcome the
+problems critical to the successful application to the robot drive.
+2.5.1 Small Payload vs. Heavy Arm Weight
+As noted in Section 1.3. the first implementation of the direct-drive robot at Carnegie-Mcllon University resulted in a heavy arm weight and a small payload capacity. Having individual molars at the joints of the serial arm
+
+
+Chapter2 39
+linkage, the robot becomes considerably heavy. The weight of the motor that
+drives a wrist joint is a load for the motor at the elbow. Both motors arc then
+loads for the motor at a shoulder joint. Thus, the torque required for succeeding joints increases exponentially down the serial arm linkage. Accordingly, the
+size and weight of the succeeding motors increase exponentially [Asada and
+Kanade, 1983].
+Alternative arm designs to suppress the exponential weight increase arc
+necessary from a practical standpoint. As adopted in the M.LT. Direct-Drive Arms and the commercialized arms, it is particularly efficient to use appropriate mechanisms for driving ann joints remotely with the motors located ncar the
+arm base. A critical issue of the remote drive is then to overcome some deficits resulting from the usc of extra mechanical transmissions.
+2.5.2 Damping Characteristics
+The direct-drive system has almost zero damping • which may cause
+difficult problems in the control system design. Mechanical damping is
+produced only at the bearings supporting the joint shafts. The mechanical time constant, which is determined by the ratio of the inertial load to the mechanical
+d.unping coefficient. is then excessively large, compared with gear-drive
+systems. The back emf at the drive motor yields a damping effect. because the voltage applied to the motor is substantially reduced by the back emf, which is in proportion with the molar speed. This electromechanical damping effect is
+far less than the amount of damping necessary to stabilize the system response. In consequence. we need to increase the damping in the control system des ign. Velocity feedback compensation is a straightforward approach to the
+improvement of the damping characteristics. As shown in Equ. (2.11), the damping coefficient increases by an amount kJ</R with velocity feedback. The control system design for the C.M.V. and M.I.T. arms revealed that onc must
+choose the velocity feedback gain kv to be a considerably large valuc in order to attain satisfactory rcsponses. Accurate velocity measurement with a low noise
+level is then neeessary to enable such a high gain velocity feedback. However, the velocity measurement for the direct-drive robot is marc difficult than gear drive robots. This is because the speed of a direct-drive motor is as slow as the link motion. while the motor speed of the gear-drive robot is much faster than the arm link. hence easier to measure the velocity. As a rcsult. we need a high performance sensor appropriate for the measurmcm of the low speed motion.
+
+
+40 Direct-Drive Robots
+2.5.3 Servo Stiffness
+A robot manipulator arm is subject to a variety of disturbance forces
+particularly at its endpoint or the end effector. In positioning control. the robot
+is required to maintain the commanded position in the face of the extemalload.
+The ability to reflect a static disturbance fo rce is often evaluated in terms of the
+endpoint stiffness [Asada and Siotine 861. that is. the ratio of the static force
+applied at the arm's endpoint to the resultant static deflection at the same point
+The higher the endpoint stiffness becomes. the better the robot can bear the
+l oad and maintain the positi oning accuracy.
+The endpoint stiffness is determined by the feedback loop gains of
+individual joint servomechanism s as well as the mechanical construction of the
+manipulator arm. For a gear-drive robot. the loop gain increases with the gear
+ratio, ni' since the motor o utput torque is amplified by the gear reducer. The
+direct-drive robot, however, cannot take this advantage of the reducer; there is
+no means to amplify the actuator torque mechanically. In consequenc e, the
+direct -drive robot needs a higher controller gain to compensate for the deficit
+of the loop gain. Again, the critical issue is the stability of the drive system.
+2.5.4 Motor Inductance Effects
+Direct-drive motors for robotics applications arc generally designcd for
+maximum output torques. To eliminate a mechanical gearing. the large output
+torque is the most importan t specification in the motor design. However, this
+requirement leads to the use of large windings, which have significantly large
+inductances. As described in Equ. (2.13), the electric time constant, which is
+determined by the motor inductance, becomes particularly slow for a large
+direct-drive motor having as large inductance. The slow time constant may
+cause a stability problem.
+For traditional servomotors used in the gear-drive robot, the mOlor
+inductance is negligibly small. Hence, the effect of the electric time constant is
+negligible, and the drive system can be treated as a sec ond- order system, unless
+other higher-order delays are prominant. Thus, the drive system is inherently
+stable with an appropriate damping. By contrast, often the direct-drive system
+can be unstable due to the motor inductance effect. To cope with this problem,
+the amplifier of the direct-drive motor must have fast dynam ic responses to
+drive motor currents quickly in spite of the large inductance. Also. the control
+system must be designed carefully so that the stability margin can be
+sufficiently large.
+
+
+Chapter2 41
+2.S.S Arm Dynamics Effects
+In general. the dynamic behavior of a manipulator arm is highly coupled and nonlinear [Asada and Slotine 86]. The arm inertia varies depending upon the arm configuration. The acceleration of one joint affects other joints due to the reaction of the accelerated joint. This reaction causes coupling among the
+multiple joints. The configuration dependency of the manipulator inertia matrix
+induces the Coriolis and centrifugal torques, which are nonlinear torques
+comprising products of joint velocities.
+When the manipulator arm is actuated with gearing, the complex arm dynamics are attenuated by the gearing when reflected to the motor shafts. Let
+nj be the gear reduction ratio of the ith drive mechanism, then the dynam ic
+equation of the ilh motor is given by
+( 1ann) •• 'tcoup 'tnoll
+1 1+ -- a·+ --+ --='t_A•
+ro 2 j n. n. """
+n, j I
+(2.17)
+where 'tmol is the torque exerted by the motor, and 'tcoup and'tlloll are,
+respectively. the coupling and nonlinear torques, which arc attenuated by the factor of nj when reflected to the motor axis. The first term of the above equation accounts for the inertial torque associated with the acceleration of the actuator, <Xj• The moment of inertia is comprised of the inertia of the motor rotor 1rOl, including the reducer inertia, and the inertia of the arm links farm' which is reduced by the square of the gear ratio nj whcn reflected to the motor axis. It should be noted that the arm link inertia varies depending upon the arm
+configuration, whilst the rotor inertia is invariant. The effect of the varying inertia is negligibly small upon the motor dynamics, if the gear ratio nj is
+sufnciently large. The system parameters can be modeled as constants for the
+manipulator arm.
+The direct-drive arm, where the gear ratio is equal to 1. is signincantly different from the gear-drive robot. The complex :arm dynamics arc directly
+reflected to the motor axes due to the direct coupling. The varying inertia effect
+as well as the effects of the coupling and nonlinear torques arc more prominant
+for the direct-drive robot. This creates difficult problems in the design of the
+control system. One should accomplish stable responses and sufnciently high
+gains despite the highly nonlinear and coupled dynamics. Considering the other
+substantial difficulties discussed above. we need to develop an efficient method to decouple the arm dynamics complexity from the control probl ems of the
+
+
+42 Direct-Dr;"e Robots
+individual actuators.
+2.5.6 Overheat
+When a manipulator arm is at rest, the weight of the arm li nks is a load to
+each joint. For the gear-drive robot, the gravity load is allenuated by the gear
+reducer by a factor of nj as shown in Equ. (2. 1 7). Moreover, the gearing
+mechanism introduces friction , which acts in the opposite direction of the joint
+motion. As a result, the gravity load can be borne in part by the friction at the
+gearing.
+As the gearing is eliminated in the direct-drive robot, the gravity load must
+be borne by the motor entirely and directly. This requi res the motor to exert a
+larger amount of continuous torque for a long time. Thus, another critical issue
+in the direct-drive robot is the overheating problem under the continuous load
+condition. Efficient arm design techniques and motor technologies must be
+developed in order to avoid the overheat of the motors.
+
+
+Part II
+ARM DESIGN THEORY
+
+
+Chapter 3
+Statics
+3.1 Introduction
+In this chapter, we focus on the static charactcristics of manipulators.
+Specifically, we consider a manipulator, such as the one shown in Figure 3-1,
+where n actuators are used to drive the ann linkage. Each actuator produces a
+torque 't which is combined with other motor ' torques through the link
+mechanism to generate a force F at the endpoint to do work. The ability to
+produce a useful force F without overheating the actuators is of great
+importance in the design of direct-drive arms, since all gearing has been
+eliminated. In order to study these characteristics, the system consisting of the
+drive mechanisms and the ann linkage must be considered. In what follows, an
+analytical tool is presented for evaluating mechanisms in terms of the power
+dissipation in the actuators and the end point force generated. This is
+particularly important in evaluating the overheating of direct-drive actuators
+under static load conditions. Two different mechanisms are selected and
+compared for use in the direct-drive approach.
+3.2 Power Efficiency Analysis
+One of the problems with the direct drive approach is that the robot cannot
+exert a large force. Because of the direct coupling of motors to their loads, the
+output torques of motors are not amplified through reducers. In consequcnce,
+the motors have to bear the loads directly, and can ovcrheat, particularly in a
+stall condition. In this section, we analyze the power dissipated in the motors
+when a force is exerted at the tip of the arm.
+An important parameter of torque motors is the motor constant as
+described in Chapter 2 and given by Equ. (2.8). It is the ratio of the output
+torque 't to the square root of power dissipated P in the motor [Electro-Craft
+80],
+
+
+46 Direct-Drire Robots
+end point.
+i
+F
+input joint n
+f'
+input joint i
+actuator
+input joint 1
+t---+--- :J.ctuator
+x�Y
+world coordinates
+Figure 3-1: A robot manipulator
+
+
+Chapler3 47
+k=...!..
+m -lP (3.1)
+The motor constant represents the efficiency with which the motor convcrts its
+input power into output torque. If km is small, the motor dissipates a large
+amount of power to exert a smalltorquc.
+When a robot bears a load at the arm tip, the load is distributed among all
+the motors of the arm mechanism. Hence, in addition to the individual motor
+characteristics, the efficiency of exerting a force at the arm tip also depends on
+the kinematic structure of the ann mechanism. Let F be the end point force
+exerted at the arm tip represented in cartesian coordinates, and let 1: be the
+vector of equivalent torques of n motors. then one obtains [paul 81]
+(3.2)
+where J is the jacobian matrix associated with the coordinate transformation
+from the joint coordinates to the cartesian coordinates of the arm tip. A brief
+note on the jacobian matrix is given in Appendix D.
+Let P be the total power dissipated in the n motors driving the arm
+mechanism and kmi be the motor constant of the i-th motor, then the total power
+dissipation, P, is given by the following quadratic fonn of end point force F.
+II 1:.2
+p= I,-'-= FTLF
+. k2
+�l mi
+where L is given by
+L=Jdiag(�• . . . •�)JT kml kmn
+(3.3)
+(3.4)
+Thus the power dissipation depends not only on the kinematic structure, but
+also on the motor constants of the actuators.
+The relation given by Equ. (3.4) is a congruence transformation, and thus
+the matrix L is positive definite as long as the Jacobian matrix is nonsingular
+[Strang 80]. Therefore. the matrix L has all real, positive eigenvalues, A,>O,
+and the quadratic form can be rewritten as
+II
+P=�AF-2
+�
+,I
+i=l (3.5)
+
+
+48 Direct-Dri.'e Robots
+where Fj is the component of end point force along the eigenvector
+corresponding to Aj• The geometrical interpretation of Equ.(3.3) is obtained by
+fixing the total power P. In this case , the quadratic form of Equ. (3.3) is that of
+an ellipsoid as shown in Figure 3-2. The principal axes of such an ellipsoid are
+aligned with the eigenvectors of the matrix L, and the length of each principal
+axis is equal to the reciprocal of the square root of the corresponding
+eigenvalue. The static characteristics will depend on arm configuration since the
+smallest (largest) eigenvalue of L corresponds to the major (minor) axis of the
+ellipsoid, the maximum (minimum) force F acts along the major (minor) axis.
+Therefore, along the major axis, the input power is most effectively converted
+into a force at the arm tip. Since the matrix L involves the Jacobian matrix J,
+which varies with the arm configuration. By examining the ellipsoid for
+different arm configurations, one can analyze the global characteristics of the
+power to force conversion.
+To evaluate the overall efficiency of the arm-motor combination. we
+define the mean power dissipation ratio, Am' which is the mean of the
+eigenvalues and is given by
+1
+Am = - trace(L)
+n
+The units of Am are Watts per square Newton.
+3.3 Kinematic Structure Design
+3.3.1 Parallel Drive Mechanism
+(3.6)
+In order to select a suitable kinematic structure for a direct-drive arm, we
+consider the following basic structures: a simple serial drive mechanism. as
+shown in Figure 3-3; and a general five-bar-link parallel drive mechanism,
+shown in Figure 3-4.
+In this section we define these two drive system methods: serial drive and
+parallel drive. Figure 3-3 shows the typical construction of a serial drive arm
+mechanism, in which the lower link is driven by a motor fixed on the base and
+the upper link is driven by a motor attached at the tip of the lower link. In this
+serial configuration, the weight of the second motor is a load to the first motor.
+Moreover, the reaction torque of the second motor acts on the first motor.
+
+
+..,."..---�
+Chapter 3
+major axis, maximum force
+'-�-----__ minor axis, Minimum Force
+Figure 3-2: Force ellipsoid.
+-'
+�).mox
+49
+
+
+50 Direct-Dril'e Robots
+motor 2
+motor
+Figure 3-3: 2 d.o.f serial drive arm mechanism.
+
+
+link
+joint -1
+link :l
+joint 2
+motor 2
+Chapter 3 51
+joint f)
+link -1 (Olltput link)
+link I (input link)
+joint
+motor 1
+base
+Figure 3·4: A general five-bar-link mechanism
+
+
+52 Direct·Dril'e Robots
+When the second motor accelerates in the clockwise direction, a counter clockwise torque acts on the first motor, and vise versa. Thus the two motors
+have significant interactions. In this book, an arm mechanism in which each motor is located at a joint of a serial linkage between the adjacent links is referred to as a serial drive mechanism. Figure 3-4 shows an alternative arm construction consisting of a five-bar link mechanism. Two motors fixed on the base drive the two inpu t links and cause a two-dimensional motion at the lip of the arm. The weight of one motor is not a load on the other. Also the reaction torque of one motor does not act directly upon the other, because the motors are fixed on the base . An arm
+mechanism in which motors are mounted on a fixture and the weight and
+reaction torque of one motor do not affect the other motors directly is referred
+to as a parallel drive mechanism. The parallel drive mechanism has been used in several models of commercial robots that have conventional
+electromechanical drives with gearings. The five-bar-link mechanism, however, is particularly useful for overcoming the inherent difficulties of the direct drive method.
+3.3.2 Motor Constant Identification
+In order to use the analysis of the previous section, the motor constants,
+kmi' have to be determined. The following experiment was conducted to
+identify the motor constant of a single active joint. First, a position control system is set up to permit the arbitrary positioning of the motor rotor using a
+computer terminal (see Chapter 8). This position control system is needed
+because the relationships derived in the previous section arc valid at stall condition. Second, known torque loads were applied to the motor shaft while under position control and the power dissipated by the system was calculated using the phase currents in the motor. These phase currents arc in error due to
+sensor limitations and must be corrected. A procedure in correcting these
+current readings is given in Appendix A. Figure 3·5 provides a plot of the
+experimental data. The square root of power measured is plottcd against the
+torque applied. A least square fit yields a motor constant of 2.366 NmNWalts.
+3.3.3 Kinematic Structure Evaluation
+The end point force for the serial drive mechanism in comparison with the parallcl drive mechanism of Figure 3-6 is evaluated. These characteristics were analyzed in CAsada and Youcef-Toumi 83a, Asada and Youccf-Toumi 84J.
+
+
+ChaplerJ
+30.0 r-----�
+Least Square Fit..!P· 0.4227 T-1.3415
+�
+200 •
+�
+'0.0
+O . O WL__�____�_____L____�____�__�
+0.0 20.0 40.0 TORQUE (NEWTON-METER)
+Figure 3-5: Motor constant.
+60.0
+53
+
+
+54 Direct-Drive Robots
+lInk 4
+Joint 3
+Figure 3-6: 2 d.o.f parallel drive five-bar-linlc mechanism
+
+
+Chapter 3 55
+For the five-bar-Iink parallel drive mechanism, the matrix L is given by
+where
+where the end point force F is represented in the coordinate system fixed at the base as shown in Figure 3-6. Figure 3-7 illustrates the static force characteristics, Equ. (3.3), for the parallel configuration. The maximum (minimum) force produced is along the major (minor) axis of the ellipsoid at the tip of the arm. Note that in this parallel configuration the force appears to be nearly isotropic in a wid� region . The maximum force based on a total power of lKW is estimated to be 190N. This value is obtained by taking the square root of the ratio of the power La the minimum eigenValue. The mean power dissipation ratio is then given by
+(3.7)
+Although the matrix L varies with the arm configuration, the mean power
+dissipation Am is uniform for all the configurations. For shorter link lengths, 11
+and 14, and larger motor constants, kml and km2• the arm-motor combination has a beller efficiency having a small mean power dissipation ratio.
+
+
+56 Direct-Dri�'e Robots
+Figure 3-7: Static force characteristics
+
+
+Chapter 3 57
+Let us compare the parallel drive mechanism with the serial drive in terms
+of the value of Am. The mean power dissipation ratio of Ihe serial drive
+mechanism of Figure 3-3 is
+1 (I? Ii Ii) 11/4
+A.
+=- - +--+- - - cos (92)
+m 2 k 2k 2k 2 k 2
+ml m2 ml ml
+(3.8)
+In this case, Am varies depending on the arm configuration. As 02 increases. Am
+becomes larger. namely. the efficiency becomes lowCf. Comparing Equ. (3.7) with Equ. (3.8), one finds the parallel drive has a smaller mean power dissipation ratio than the serial drive except when
+1°21 � cos-1 (;;)
+The mean power curves are shown in Figure 3-8.
+(3.9)
+In the case of the M.I.T. direct-drive robot Model II described in Figure
+3-6, link lengths, II and 14, are 0.40m and O.65m respectively, and the angle of joint 2 is limited by 350 $ 92 � 1700 The parallel drive mechanism has a better efficiency for all arm configurations within the limit. This is another important
+advantage of the parallel drive mechanism over the serial drive. Having the
+same motor constants and the same link lengths throughout the same
+workspace, the parallel drive mechanism can more efficiently exert force at the
+arm tip.
+Let us now consider the same mechanism, where the links arc crossed, thus yielding completely different kinematic characteristics. This cross drive configuration (mode II) depicted in Figure 3-9, shows a complete change in the
+static force characteristics. The force ellipsoid reduces to a line in the reachable
+region. The ratio between the maximum and minimum force at any point in space is greater than 11. This value is on Ihe order of 1.6 for the parallel drive
+of MODE I. The MODE II configuration of this mechanism can thus be used in
+applications where a large force is desired along the directions shown in Figure
+3-9. This force. while having a preferred direction, is much larger than what the mechanism in MODE I configuration can produce. The m<uimum payload
+based on a total power of 1 KW is 33 Kg. The M.I.T. direct-drive robot models
+II and IV have the ability to change modes [Asada and Youccf-Toumi 83a}.
+
+
+58 Direct-Dri.'e Robolf
+0.122 "rial drin
+.;;Ii!..
+a
+.!..II -!.. e-..Z �-
+paraUel drive
+••
+&,A:
+C 0.0388
+....
+�
+0
+' 2
+D es
+180
+Figure 3-8: Mean power dissipation ratio for the parallel and serial drives,
+
+
+Chapter 3 59
+The direct-drive robot model IV is shown in these two different modes in
+Photos 3-1 and 3-2. Article 2 of Part IV uses these ideas to design linkages for
+direct· drive arms.
+3.4 Conclusion
+This chapter has presented an analytical tool for evaluating actuated
+mechanisms in terms of power dissipation and endpoint force static
+characteristics. These tools arc shown to be useful in selccting an appropriate
+arm linkage design for a specific application. As an example, by analyzing the
+internal power dissipation in the motors when the manipulator exerts a force at
+the endpoint, it was shown that the parallel drive mechanism has a lower power
+dissipation than a serial drive that uses the same motors and covers the same
+w()rkspace.
+
+
+60
+. for the
+haractcriSlIcs
+Static force c . (mode II)
+F.'gure
+3-9: configurallon
+cross
+I •,
+
+
+Photo 3-1: M.I.T. direct-drive robot model IV in parallel drive mode
+61
+
+
+62
+Photo 3·2: M.I.T. direct·drive robot model IV in cross drive mode.
+
+
+Chapter 4
+Arm Design for Simplified Dynamics
+4.1 Introduction
+A manipulator design theory for reduced dynamic complexity is presented.
+The kinematic structure and mass distribution of a manipulator arm are
+designed so that the inertia matrix in the equation of motion become� diagonal
+and/or invariant for an arbitrary arm configuration. For the decoupled and
+invariant inertia matrix. the system can be treated as a linear, single-input.
+single-output system with constant parameters. Consequently. control of the
+manipulator arm is simplified. and more importantly, the reduced dynamic
+complexity permits improved control performance.
+First, the problem of designing such an arm with a decouplcd and/or
+configuration-invariant inertia matrix is defined. The inertia matri" is then
+analyzed in relation 10 thc kinematic structure and mass properties of the arm
+links. Necessary conditions for a decouplcd and/or configuration-invariant
+manipulator inertia matrix are then obtained. Using the necessary conditions,
+the kinematic structure and mass properties arc found which reduce the inertia
+matrix to a constant diagonal form. Possible arm designs for decoupled and/or
+invariant inertia malIiccs are then determi ned for 2 and 3 degree-oC-freedom
+manipulators.
+Dynamic complexity, such as coupling and nonlincaritics arc major
+concerns in the control of manipulator arms. This problem is critical in
+manipulators designed for high speed applications which have p3rticularly
+prominant dynamiC complexity. Also, in direct-drive arms and other
+manipulator arms in which the gear ratios of reducers are low, the complicated
+dynamic has a morc dircct influence upon the drive mechanisms [Asada and
+Youcef-Toumi 84}. Again the control problcm becomes more complex and
+difficult because of the prominant coupling and nonlincarities.
+A number of conlIol methods have been developed for manipulators.
+Applications of model-referenced adaptive control [Dubowsky and Des Forges
+79], [Takegaki and Arimoto 811. nonlinear feedback control [Freund 82], and
+
+
+64 Direct-Dri.'e Robots
+sliding mode control [Utkin 72, Utkin 77, Ulkin 78, Young 78, Slotine and
+Sastry 83] have made significant contributions to the improvement of control
+performance. Dynamic computation algorithms [Luh, Walker, and Paul 80], [Hollerbach 80], parameter estimation methods [Atkeson, An, and Hollerbach 85]. [Mayeda, Osuka, and Kangawa 84], and customized inverse dynamics
+methods [Kanade, Khosla and Tanaka 84] have allowed us to compensate for
+the complicated arm dynamics in realtime and in an intelligent manner.
+Another method for reducing dynamic complexity and improving
+dynamic performance involves the coordination of the controller and manipulator design efforts. In this method, the mechanical construction of a
+manipulator arm is modified so that the resultant dynamic behavior can be
+improved or becomes desirable for control [Asaela 83]. In general, the
+dynamics of a manipulator arm depends upon the mass properties of individual
+arm links and the kinematic structure of the arm linkage. Redistribution of mass
+and modification of the arm structure can provide improvements in the manipulator dynamics.
+The goal of this chapter is to explore arm linkage design for reducing
+dynamic complexity, and consequently reducing the control difficullies. First,
+some particular forms of the dynamic equations arc presented in which the inertia matrix is reduced to a diagonal and/or configuration invariant form. Then, a design theory is developed for achciving the desired manipulator
+dynamics. Finally, possible arm structures and mass distributions for reducing
+the dynamic complexity are determined.
+4.2 Decoupling and Configuration-Invariance of ManipUlator Dynamics
+Desirable forms for the manipulator dynamics arc formulated in this
+section. The significance of each of these forms is discussed with reference to
+how the control problem can be simplified, and how much the computational complication is relaxed.
+Let 9j and 'tj be the joint displacement and torque of the i'h joint,
+respectively, then the equation of motion of the manipulator arm is given by
+[Asada and Youcef-Toumi 84] [Asada and S lotinc 86]
+
+
+Chapter 4
+.. L .. LL (allij 1 allj,,) • •
+'to = 1/··9·+ 1/..9·+
+
+
+
+--
+e
+.
+9 ,,
++'t
+.
+, " ' . . I)) . ae 2 ae ) gl
+)1'1 J " " ;
+65
+(4.1)
+where l/ij is the i-j element of the manipulator inertia matrix, and 'tg; is the torque due to gravity. The first term on the right hand side represents the inertia torque generated by the acceleration of the ilh joint, while the second term is the interactive inertia torque caused by the accelerations of the other joints. The interactive inertia torque is linearly proportional to acceleration. The third term represents the nonlinear velocity torques resulting from Coriolis and centrifugal effects. In general, the dependence of the incrtia matrix on the arm configuration produces these nonlinear velocity torques.
+The inertia matrix is determined by the kinematic structure of the manipulator arm and the mass properties of individual links. The design problem discussed in this paper requires modification of both the kinematic structure and the mass properties of the arm linkage so that the inertia matrix reduces to the particular desired forms. Consider the inertia matrix that reduces to a diagonal matrix for an arbitrary arm configuration, then the second term in Equ. (4.1) vanishes and no interactive torques appear. The manipulator inertia matrix in this case is referred to as a decoupled inertia matrix. The significance of the decoupled inertia matrix is that the control system can be treated as a set of single-input, single-output subsystems associated with individual joint motions. The
+equation of motion under these conditions reduces to
+.. L (aHjj• • 1 allkk •2)
+'t·=lI··e·+ --=a.e" -- -- 9" +t ·
+1 II ' k. ae" I 2 ae; g' (4.2)
+where the second term represents the nonlinear velocity torques resulLing from the spatial dependency of the diagonal clements of the inertia matrix. Note that the number of terms inv olved in Equ. (4.2) is much smaller than the number of original nonlinear velocity torques, because all the off-diagonal elements are zcro for all e1, • • • ,en' This reduces the computational complexity of the nonlinear torques.
+Another significant form of the inertia matrix that reduces the dynamic complexity is a configuration-invariant form. The inertia matrix in this case
+
+
+66 Direcl-Dri.'e Robots
+does not vary for an arbitrary arm configuration. In other words, the matrix is
+independent of joint displacements, hence the third term in Equ. (4.1) vanishes
+and the equation of motion reduces to
+'tj==:/I;/Jj+ �Hij:aj+'r.gj
+j�j (4.3)
+Note that the coefficients IIj; and Ilij are constant for all ann configurations. Thus, the equation is linear except the last term, thal is, the gravity torque. The
+inertia matrix in this form is referred to as an invariant inertia matrix. The
+significance of this fonn is that linear control schemes can be adopted, which
+are much simpler and easier to implement.
+When the inertia matrix is both decoupled and configuration invariant, the
+equation of reduces to
+(4.4)
+The system is completely dccoupled and linearized. except the gravity term.
+Thus, we can treat the system as single-input, single-output systems with
+constant parameters.
+The decouplcd and configuration-invariant inertia matrix was first
+accomplished in reference [Asada and Youcef-Toumi 84], in which a special
+five-bat-link parallcl drive mechanism was devised for a dircct-drive arm . The
+feasibility and practical usefulness were also demonstrated through the
+development of the special arm. However, extension to general manipulator
+arms was not made in a comprchcnsive form. In this chapter, the conditions for
+the kinematic structure and mass properties of the manipulator ann which
+provide a decouplcd and/or configuration-invariant inertia are determined.
+4.3 Modelling
+In this section, we derive the inertia tensor matrices of the manipulator arms discussed in this paper. As shown in Figure 4-1, the manipulator arm is
+assumed to be an open kinematic chain consisting of only revolute joints, The
+
+
+Chapler4
+z
+Autho Mo. P
+Figure 4-1: An open kinematic manipulator with revolute joints.
+67
+
+
+68 Direct-Drive Robots
+joints are numbered 1 through n from the proximal joint to the distal joint The link between joints i and i+1 is called link i. The direction of the axis of joint i
+is represented by a unit vector bi and the displacement of link i is denoted by 9j which is the angle of rotation about the unit vector. The centroid of link k is
+shown by point CJc in the figure, the velocity vector of the centroid is denoted by
+VJc and the angular velocity vector by rok• Let mk and IJc be the mass and the inertia tensor of link k with respect to the O-xyz inertial reference frame. then the total kinetic energy stored in the arm links from 1 to n is given by
+n
+T= 2,� (mkvIJevC/C+ rofIJeroJ
+k=12
+(4.5)
+The motion of link k is generated by the preceding joint motions. The angular velocity Wk' for example, is given by
+k
+wJc= 2, bA (4.6)
+i=l
+To represent the linear velocity of the centroid CJe' we denote the position vector
+from an arbitrary point on Lhe ith joint axis to the centroid clc by vector rj,cJe • Then,
+( 4 . 7 )
+where x is the vector product. Substituting Equ. (4.6) and Equ. (4.7) into Equ. (4.5) yields
+(4.8)
+where lIij is the i-j element of the nXn manipulator inertia matrix involved in Equ.(4.1), and is given by
+n
+/1.. = � [mJe(bTb . . rT .r. Jc-bTr. Jc . bTr. Jc) + bTIJcb. ] (4.9)
+I) L.J I J l.elC'J,e J I,e I J,e I }
+Jc=max li,Jl
+
+
+Chapter 4 69
+Note that the inertia matrix is symmetric, hence lIij=lIji• We also derive a
+different expression for the inertia matrix, which we need in the following
+analysis. Let I be an arbitrary joint number. We consider the case in which all
+the joints between i+l and n are immobilized. The last (n-I+l) links are then
+treated as a single rigid body. As shown in Figure 4-2, let MI,1I and PI be,
+respectively, the total mass of the last (n-I+ 1) links and the position vector from point 01 to the centroid C/,1I that is the centroid of the last (n-I+ 1) links. Then,
+(4.10)
+(4.11)
+Let q/.k be the position vector from the centroid C/,1I to the centroid of link k, then the following is also derived from the definition of the centroid:
+(4.12)
+(4.13)
+Substituting Equ. (4.12) and Equ. (4.13) into Equ. (4.9), we can split the i-j clement of the inertia matrix into two parts: onc involves terms associated with the last (n-l+l) links and the other involves the terms for the other links.
+(4.14)
+where N/,1I is the composite inertia tensor of the last (n-I + 1) links with respect
+
+
+70 Direct-Drive Robots
+immobilized
+join' I
+Figure 4-2: Total mass and centroid of last (n-l+l) links.
+
+
+Chapter 4 71
+to the centroid C,II, which is given by
+(4.15)
+4.4 Analysis
+In order to eliminate the coupling and nonlinear torques, the inertia matrix
+must be diagonalized and made invariant fo r all the arm configurations. In this
+section, we analyze the inertia matrix and derive the necessary conditions for
+the kinematic structure and mass properties to allow the reduction of the inertia
+matrix to a diagonal and/or invariant form.
+4.4.1 Off-diagonal elements
+We first discuss the necessary conditions for an off-diagonal clement,
+Ilij = Ilji (i<,;). to be zero or invariant for all the arm configurations. We derive
+the necessary conditions by considering a special situation where only one joint.
+say joint I, rotates 360 degrees, while the other joints are immobilized. This
+simple analysis provides useful conditions that arc used to determine the
+kinematic structure and mass properties for decoupled and/or configuration
+invarian t inertia.
+As shown in Figure 4-3, we immobilize all the joints beyond joint I, and
+regard the last (n-I+ 1) links as a single rigid body. Let OCI,n be the
+perpendicular from the centroid CI,n to the joint axis b/. We locate the inertial
+reference frame O-xyz at the point 0, which is chosen to coincide with point 0,
+on joint axis b,. Without loss of generality, we can orient the z axis in the same
+direction as that of joint axis bl• The displacement of joint I is thcn represented
+by the angle from the x axis to the vector PI' which is the position vector of the
+centroid CI•II relative to the origin O. Denoting the length of the vector PI by
+LIII, we obtain,
+
+
+72 Direct-Drive Robots
+jOi nIl
+!/r/·
+•
+I I, ..
+/
+�i'
+°i �i
+I in k n
+Figure 4-3: Immobilizing joints of a manipulator
+
+
+Chapter 4 73
+(4.16)
+The inertia tensor N1,n' that is the composite inertia tensor of the last (n-l+l)
+links, varies in its matrix expression, as the joint angle 01 changes. Let N/•1I be
+the composite inertia tensor when 0, = 0, the matrix N,,n is given by
+where A is the 3><3 rotation matrix given by
+-sin 9, 0 ]
+cos 0, 0 o1
+(4.17)
+(4.18)
+For simplicity, the subscripts I and n are neglected unless the notation gets confusing. The elements of the inertia tensor N arc then written as
+Nxx Nxy Nxz
+N= Nxy NY] Nyz (4.19)
+Nn Nyz Nzz
+When the joint axis bi is not orthogonal to the joint axis b/, the i'h joint axis
+intersects with the x-y plane. If we define the intersection as the representative point on the i1h joint axis, the position vector rjJ• that is the vector from points
+oi to 0/. can be written as
+
+
+74 Direcl-Dri�'e Robots
+(4.20)
+The direction cosines of the ith joint axis are denoted by
+(4.21)
+Substituting Equ. (4. 16)-Equ. (4.21» into Equ. (4.14) yields the expression
+relating the off-diagonal element of the inertia matrix /Iii to the joint angle 9/,
+00_ 2 - - 
+Ilil -(ML +Nzz)bz + (bl"u+bl'yz+MLbl"x)COs 9+
+(bftu - bl"yz +MLbzry)sin a
+(4.22)
+Note that the subscripts I and n for M and L arc neglected. The following proposition is derived directly from Equ. (4.22)
+Proposition (4.1): The necessary condition for the off-diagonal
+clement of the inertia matrix, IIii' to be invariant for an arbitrary 9l are given by
+(4.23)
+and
+(4.24)
+In addition to the above conditions, the first term in Equ. (4.22) must be zero when the decoupled inertia matrix is required. However, the off-diagonal
+
+
+Chapter 4 75
+element 1Iil does not vanish unless bz = O. since the diagonal clement of the
+inertia tensor Nzz is always positive. When bz = O. the two joint axes arc perpendicular to each other. and we conclude the following.
+Proposition (4.2): For manipulator arms with an open kinematic chain structure, the inertia matrix cannot be dccoupled unless the joint axes are orthogonal to each other.
+When bf bl = 0, namely the two joint axes are orthogonal, we can direct the x
+axis of the inertial reference frame along the joint axis bi, without loss of generality As shown in Figure 4-4.
+(4.25)
+Let OJ be the representative point of joint i that is located at the intersection of
+the joint axis and the y-z plane as shown in the figure, then the position vector
+rj,l can be expressed as
+(4.26)
+Using the above equations in Equ. (4.14), we obtain
+(4.27)
+The following is derived directly from the above results
+
+
+76 Direct-Dril'e Robots
+Figure 4-4: Manipulator with two orthogonal joint axes
+
+
+Chapter 4
+Proposition (4.3): When joint axes bj and bl are orthogonal, the necessary conditions for the off-diagonal element lIiI to vanish for an
+arbitrary joint angle 91 are given by
+77
+(4.28)
+and
+(4.29)
+4.4.2 Diagonal elements
+Next, we consider diagonal elements of the inertia matrix, /lji' Letl be an arbitrary joint number greater than or equal to i. We investigate the change in
+/Iii when the joint angle 91 varies from 0 to 360 degrccs. As in the case of
+Figure 4-3, we immobilize all the joints beyond I and treat the last (n-/+ 1) links as a single rigid body. Again we use the inertial reference from the centroid CI,n to the joint axis b/. From Equ. (4.14),
+(4.30)
+where liii is a constant parameter independent of S/' and is given by
+(4.31)
+We first derive the conditions that the diagonal clement /Iii is invariant for
+an arbitrary 9/, when the joint axes, b, and bj, are not orthogonal. Then we
+discuss the case where the axes are orthogonal to each other. Substituting Equ. (4.20) and Equ. (4.21) into Equ. (4.30) yields
+where the coefficients ao' ..., as are given by
+
+
+78 Direct-Dri)le Robots
+(4.33)
+(
+4
+. 3
+4 )
+(4.35)
+(4.36)
+(4
+.
+3
+7
+)
+(4.38)
+In order for the I�P to be invariant for an arbitrary ai' it is necessary that the coefficients aj satisfy all of the following conditions:
+(4
+.
+3
+9)
+(4.40)
+(4.41)
+(4.42)
+The above conditions can be funhcr reduced by combining them with Equs. (4.23) and (4.24), which are the necessary conditions for the otT-diagonal
+clement /ljl to be invariant for an arbitrary OJ. Substituting Equ. (4.23) into
+Equ. (4.41),
+(4.43)
+From Equ. (4.24) and Equ. (4.42),
+
+
+Chapter4 79
+(4.44)
+Eliminating 'x in the above two equations, we obtain (b; + b;)ry = 0, which
+is satisfied if, and only if, one of the following two conditions is met:
+i) bx = by = 0, namely, joint axes hi and bl are parallcl, or
+ii) rx = ry = 0, namely, the joint axes intersect at the origin O.
+In the same way, we can derive a similar expression, (b; + b;)2iJX)' = O. from Equ. (4.39) and Equ. (4.40). This leads to the following two conditions:
+i) bx = by = 0, or
+- - 2
+ii)N.ty=OandNxx+ML =Nyy
+Similarly, necessary conditions can be derived for two joints which arc orthogonal to each other. Summarizing the above results, the following
+proposition is obtained.
+
+
+80 Direct·Dril'e Robots
+Proposition (4.4): The necessary condition for the diagonal
+clement ITii, as well as the Off-diagonal clement IIi/' to be invariant for
+an arbitrary 9/ is that the kinematic structure and mass properties of
+the manipulator arm satisfy one of the following four conditions:
+i) bi::: b/. i.e.• the two joint axes arc parallel.
+ii) bib, 7; 0 and
+rX""")I=O. i,e. 0i=O.and
+N.xy=O.and
+- 2_
+NJVC+ML -N.yy•
+iii) bib1=O and
+L
+= 0 and
+Nry=O and
+Nn=Nyy•
+iv) bTbI=O and
+r =0
+y
+N "",0
+ry
+-2
+Nn""'Nyy+ML .
+4.5 Design
+4.5.1 Arm Design for DecoupJed Inertia
+Based on the previous analysis on the necessary conditions. we determine
+the kinematic structure and mass properties of a manipulator arm that possesses dccouplcd and/or invariant inertia matrices.
+First. we consider the decoupled inertia. From Proposition (4.2) it follows
+that all the joint axes must be orthogonal for an arbitrary arm configuration to accomplish the dccouplcd incnia. The kinematic stnlcturc in which all the joint axes arc orthogonal at all time is limited to two degree-or-freedom arms only.
+
+
+Chapter 4 81
+For the inertia matrix of the 2 d.o.f. arm, the off-diagonal clement to be considered is only 1112, and the joint desplaccmcnt that might cause changes in
+1112 is 92, Then we can derive the necessary conditions for invariant inertia by
+applying Proposition (4.3) only to II�� .
+Conversely, if the necessary conditions on IIF:] arc substituted into Equ.
+(4.22) to compute the off-diagonal clement 1112, one can find that the off diagonal element vanishes for an arbitrary 92, Consequently, the necessary conditions also provide the sufficient conditions for decoupled inertia. Therefore the following obtained:
+Theorem (4.1): An open.kincmatie-chain manipulator arm possesses a dccoupled inertia matrix for an arbitrary arm configuration if, and only if, its kinematic structure and mass properties satisfy the following conditions:
+Structure: two degree-of-freedom arm with orthogonal joint axes (Figure 4-5).
+and
+where the notations are defined in Figure 4-5.
+(4.45)
+(4.46)
+Special cases, which are practically useful, are shown in Figure 4-6. In the first arm design, the centroid of link 2 lies on the joint axis h2' namely, L = 0,
+and in the second arm design the perpendicular from the centroid of link 2 to the jOint axis b2 intersects with the common normal of the two joint axes, namely, 'z = O. For each of the two cases, the left hand side of Equ. (4.45) is
+zero, hence Nxz must be coincident with the joint axis h2_ since Nyz is also zero from condition Equ. (4.46).
+4.5.2 Arm Design for DecoupJed and Invariant Inertia
+Manipulator arms with dccouplcd and configuration-invariant inertia matrices arc discussed in this subsection. To be decoupled, the conditions given in Theorem (4.1) must hold. At the same time, the diagonal clement 1111 must
+
+
+82 Direct-Drire Robots
+y
+Figure 4-5: A 2 d.o.f. open kinematic chain manipulator with dccouplcd incrtia tcnsor.

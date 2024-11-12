@@ -1,15 +1,15 @@
 {
 	"translatorID": "92d4ed84-8d0-4d3c-941f-d4b9124cfbb",
+	"translatorType": 4,
 	"label": "IEEE Xplore",
 	"creator": "Simon Kornblith, Michael Berkowitz, Bastian Koenings, and Avram Lyon",
 	"target": "^https?://([^/]+\\.)?ieeexplore\\.ieee\\.org/([^#]+[&?]arnumber=\\d+|(abstract/)?document/|search/(searchresult|selected)\\.jsp|xpl/(mostRecentIssue|tocresult)\\.jsp\\?|xpl/conhome/\\d+/proceeding)",
 	"minVersion": "4.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-09-30 13:40:38"
+	"lastUpdated": "2024-09-30 13:45:00"
 }
 
 /*

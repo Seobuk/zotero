@@ -1,15 +1,15 @@
 {
 	"translatorID": "0a61e167-de9a-4f93-a68a-628b48855909",
+	"translatorType": 8,
 	"label": "Crossref REST",
 	"creator": "Martynas Bagdonas",
-	"target": "",
+	"target": null,
 	"minVersion": "5.0.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 90,
 	"inRepository": true,
-	"translatorType": 8,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-09-12 15:10:05"
+	"lastUpdated": "2024-09-14 20:00:00"
 }
 
 /*

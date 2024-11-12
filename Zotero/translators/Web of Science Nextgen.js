@@ -1,15 +1,15 @@
 {
 	"translatorID": "4a3820a3-a7bd-44a1-8711-acf7b57d2c37",
+	"translatorType": 4,
 	"label": "Web of Science Nextgen",
 	"creator": "Abe Jellinek",
 	"target": "^https://(www\\.webofscience\\.com|webofscience\\.clarivate\\.cn)/",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-04-03 05:05:34"
+	"lastUpdated": "2024-04-03 06:10:00"
 }
 
 /*

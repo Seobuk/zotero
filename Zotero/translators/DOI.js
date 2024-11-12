@@ -1,15 +1,15 @@
 {
 	"translatorID": "c159dcfe-8a53-4301-a499-30f6549c340d",
+	"translatorType": 4,
 	"label": "DOI",
 	"creator": "Simon Kornblith",
-	"target": "",
+	"target": null,
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 400,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-06-04 14:34:03"
+	"lastUpdated": "2024-08-21 22:15:00"
 }
 
 /*

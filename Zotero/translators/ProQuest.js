@@ -1,15 +1,15 @@
 {
 	"translatorID": "fce388a6-a847-4777-87fb-6595e710b7e7",
+	"translatorType": 4,
 	"label": "ProQuest",
 	"creator": "Avram Lyon",
 	"target": "^https?://(www|search)\\.proquest\\.com/(.*/)?(docview|pagepdf|results|publicationissue|browseterms|browsetitles|browseresults|myresearch/(figtables|documents))",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-10-22 16:06:36"
+	"lastUpdated": "2024-10-22 16:15:00"
 }
 
 /*

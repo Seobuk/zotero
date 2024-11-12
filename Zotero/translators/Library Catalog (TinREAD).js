@@ -1,15 +1,15 @@
 {
 	"translatorID": "78835a5b-3378-49c2-a94f-3422aab0e949",
+	"translatorType": 4,
 	"label": "Library Catalog (TinREAD)",
 	"creator": "Franklin Pezzuti Dyer",
 	"target": "^https?://[^/]+/opac/bibliographic_view",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 250,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-08-01 14:15:46"
+	"lastUpdated": "2024-08-01 14:20:00"
 }
 
 /*

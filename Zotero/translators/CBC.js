@@ -1,15 +1,15 @@
 {
 	"translatorID": "03c4b906-8cb2-4850-a771-697cbd92c2a1",
+	"translatorType": 4,
 	"label": "CBC",
 	"creator": "Geoff Banh",
 	"target": "^https?:\\/\\/www\\.cbc\\.ca/",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-14 20:55:10"
+	"lastUpdated": "2024-03-14 21:00:00"
 }
 
 /*

@@ -1,15 +1,15 @@
 {
 	"translatorID": "71f28f90-764a-42a8-8107-d87252da9b50",
+	"translatorType": 4,
 	"label": "Taylor & Francis eBooks",
 	"creator": "Abe Jellinek",
 	"target": "^https?://(www\\.)?taylorfrancis\\.com/(books|chapters|search)",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-02-27 13:57:59"
+	"lastUpdated": "2024-03-07 16:00:00"
 }
 
 /*

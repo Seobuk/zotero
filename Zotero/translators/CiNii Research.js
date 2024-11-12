@@ -1,15 +1,15 @@
 {
 	"translatorID": "46291dc3-5cbd-47b7-8af4-d009078186f6",
+	"translatorType": 4,
 	"label": "CiNii Research",
 	"creator": "Michael Berkowitz, Mitsuo Yoshida and Satoshi Ando",
 	"target": "^https?://cir\\.nii\\.ac\\.jp/",
 	"minVersion": "1.0.0b4.r5",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-09-26 14:22:20"
+	"lastUpdated": "2024-09-26 14:30:00"
 }
 
 /*

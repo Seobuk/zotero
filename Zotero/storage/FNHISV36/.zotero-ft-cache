@@ -1,0 +1,279 @@
+Actuator Design for High Force Proprioceptive Control in Fast Legged
+Locomotion
+Sangok Seok, Albert Wang, David Otten and Sangbae Kim
+Abstract— High speed legged locomotion involves high acceleration and extensive loadings of the leg, which impose critical challenges in actuator design. We introduce actuator dimensional analysis for maximizing torque density and transmission ‘transparency’. A front leg prototype developed based on insight from the analysis is evaluated for direct proprioceptive force control without force sensors. The vertical stiffness controlled leg was tested on a material testing device to calibrate the mechanical impedance of the leg. By compensating transmission impedance from commanded torque, the leg was able to estimate impact force. For the impact test, the mean absolute error as a ratio of full scale sensor force is 0.041 in the 3406 N/m stiffness experiment and is 0.049 in the 5038 N/m experiment. The results indicate that prescribed force profile control is possible during high speed locomotion.
+I. INTRODUCTION
+High speed locomotion entails several critical challenges in legged robot design. One of the major apparent challenges is the high force requirement. As observed in biology, ground reaction force increases with speed and is directly related to the duty factor 1. In steady state running, the total vertical impulse during one period (T) of cyclic locomotion must be equal to the total gravitational impulse to satisfy momentum conservation.
+T
+∫
+0
+Fzdt = mgT
+The equation implies that a smaller duty factor entails higher ground reaction forces. Typically, faster running requires a higher stride frequency and lower duty factor [4]. This leads to high effective ground reaction forces during running. The maximum normal ground reaction force on each leg is around three times the bodyweight in human running at 4.5 m/s [2] and 2.6 times the bodyweight in dog galloping at 9 m/s [3]. In addition to the high force requirement, variable impedance seems highly desirable. Hurst [16] emphasized the importance of the variable stiffness in series elastic actuators. In human running, significant changes in effective leg stiffness are observed in the variation of speed [34] and ground stiffness [33].
+This work was supported by Defence Advanced Research Program Agency M3 program Authors are with the Department of Mechanical Engineering at Massachusetts Institute of Technology, Cambridge, MA, 02139, USA , corresponding email: sangok at mit.edu 1the portion of time that leg stays on the ground
+Planetary gear
+Hip motor Knee motor
+Encoder mount
+Ab/Adduction joint
+Tendon
+CoM
+Fig. 1. The solid model of the front leg design of the MIT cheetah robot. The leg is designed to maximize backdrivability and transparent force production. The rotational inertia of the leg is minimized by locating all drive components at the shoulder. The center of mass of the leg is located 3cm below the center of the rotation of the shoulder joint.
+Although the power mass density of EM (electromagnetic) actuators (continuous up to 7 kW/kg [35], 3-5 kW/kg[36]) significantly exceeds biological muscle (Max. 0.3 kW/kg) [1], the high power is available only at high speed with relatively low torque compared to muscles. Higher gear reduction can increase torque density, a critical requirement in legged locomotion, but this increases actuators’ passive impedance (reflected inertia, friction, damping) which limits the bandwidth and significantly compromises transmission ‘transparency’[29], critical for high speed force control. Gear friction is usually highly nonlinear [23][24][22]and significantly compromises force control performance [10] because the mechanical impedance of the gear train can cause non-desirable force in fast dynamics. The critical trade off in EM actuators seems to be the trade off between high torque density and low actuator impedance.
+There are several approaches that enable impedance control without compromising torque density of the motors. Many researchers modulate the apparent impedance by employing torque feedback and full state feedback, but the performance is limited to relatively slow speed dynamics [31][30] and is not suitable for high speed locomotion. Employment of series elastic actuators[12] allows variable mechanical impedance to achieve by tuning the stiffness of the elastic elements. A dual actuator is used in a manipulator to improve stiffness modulation [13]. Tunable stiffness of series elasticity is incorporated to geared motors for manipulation [14][15], and for running robots [16][21].
+2012 IEEE/RSJ International Conference on Intelligent Robots and Systems October 7-12, 2012. Vilamoura, Algarve, Portugal
+978-1-4673-1736-8/12/S31.00 ©2012 IEEE 1970
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on November 12,2024 at 02:34:07 UTC from IEEE Xplore. Restrictions apply.
+
+
+The hybrid approach on macro-mini actuators incorporates advantages of both high force pneumatic actuators with minimal impedance and small EM actuators [17] for humansafe robotic manipulators. Most of these approaches require additional actuators and increase actuator complexity and inertia of manipulators. Pneumatic actuators are implemented in robotic arm design due to its intrinsically low passive impedance and relatively high force density but they suffer from limited bandwidth [9][20]. Direct drive actuators are employed to minimize friction caused by the gear train [19][7]. The major disadvantage of direct drive arms is significantly lower torque density. High bandwidth force control can be achieved by employing open loop impedance control 2 with low mechanical impedance (low inertia linkages and actuators) system architecture. This approach is well-executed in haptic display devices [11], which employ low impedance transmission systems such as cable transmissions and linkages that maximize the ‘transparency’[29] closely related to ’backdrivability’ of the actuator. Utilizing low mechanical impedance, direct torque commands can produce forces at the end effector and remove the need for force sensor feedback. The dynamic stability issue [32] is significantly improved by collocating the sensing 3 and the system remains stable through high speed user input. Although haptic display devices successfully reproduce desired virtual mechanical impedance in a small force range, it is not clear how to realize this approach in the systems that require high-force high speed operations. For highly dynamic legged locomotion, force control should be realized in a simple and robust system. The mechanical system should be able to withstand high ground reaction forces followed by high impacts on the ground. In this paper, we introduce the dimensional analysis of EM actuators focusing on maximizing torque density and the mechanical impedance of a high force ‘transparent’ actuation system for high speed legged locomotion. We present a leg prototype designed for the MIT Cheetah robot, a running quadruped, realizing high speed and high torque. The low impedance of the leg allows direct torque control of the actuators and true proprioceptive force control without a force sensor. Section II discusses dimensional analysis of EM actuators regarding a critical design trade-off in EM motors. In section III, we describe the mechanical design aspect of the front leg of MIT cheetah leg based on the dimensional analysis of actuators. Finally, through the stiffness control test of the leg, we demonstrate how the leg can be used to generate accurate forces during running.
+II. DIMENSIONAL ANALYSIS ON ELECTROMAGNETIC
+MOTORS
+A. Power density vs. Torque density
+Power density (mass specific power) is often used as a major metric to evaluate the capacity of the actuators.
+2Technically, there is a current feedback loop to control torque of the motor instead of using force sensor feedback. 3Here, sensing is current sensing at the motor to realize desirable torques
+Torque
+Angular speed
+Demag. Torque
+(~10X of cont. Torque)
+Recommended operation space (from manufacturer)
+Continuous torque
+V= Vrecommended Transient operation space
+Extended continuous operation space
+Fig. 2. The EM motor performance diagram in torque-speed space.
+The power of EM motors is usually determined by the recommended voltage provided by the manufacturer. The recommended voltage is set concerning the thermal failure in the case that users command voltage without the knowledge of the coil temperature. This is usually not useful in a current-controlled system where current can be limited under the continuous torque or coil. Within the continuous current limit, the motor can generate much higher power than the rating provided by the manufacturer with a fixed voltage limit. Figure 2 shows operation limits of motors in torque-speed space. Considering that electric Joule heating is proportional to current squared times resistance and current is directly related to torque, not speed, the power can be greatly increased by increasing speed under the continuous current limit. This is represented in the blue area in Figure 2. Speed can be limited by increased viscous damping of bearings and air, electric commutation frequency limit, and so on. In most robotics applications the duty factor of the motor operation is low and the operation trajectory in torque-speed space changes depending on the situation. In the applications where there are frequent physical interactions with environments including legged locomotion, the duty factor of the robot is significantly low. If the duty factor of the actuator operation is known, we can utilize the transient operation space shown in pink in Figure 2. The robots often need to produce torques higher than the continuous operating torque limit for a short period of time. One can always achieve higher power in high-speed by providing higher voltage but this requires higher gear ratio that leads to a higher impedance of the actuator, reducing the efficiency and increasing the total weight. Achieving a high torque actuator allows lower gear ratio and lower mechanical impedance. Therefore, power density of EM actuators is not a well defined metric and does not indicate the actual delivered power if combined with a gear train. A clearer metric to maximize in actuator design for robotics is torque density (mass specific torque).
+B. Gap radius: a critical metric in EM motor design
+There are a number of EM actuator design parameters that affect the overall performance of the motors. One of the critical design parameter among them is the gap radius. The gap radius is the distance from the rotating axis to the center of the gap between permanent magnets and the stator. Figure
+1971
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on November 12,2024 at 02:34:07 UTC from IEEE Xplore. Restrictions apply.
+
+
+rgap
+Mass ~ rgap Torque ~ rgap Rotor inertia ~ rgap
+Torque density ~ rgap Torque/inertia ~ 1/ rgap
+tstator
+trotor
+-6
+-4
+-2
+0
+2
+4
+6
+0.5 1 1.5 2
+log(gap diameter)
+log(torque/inertia) log(torque/mass) log(Kt^2/R)
+y = 4.1107x - 8.1444
+y = 0.8023x - 1.1813
+y = -1.5734x + 6.7254
+(a) (b)
+2 3
+Fig. 3. The specifications of the motor are scaled with the gap radius assuming electromagnetic similarity.
+3(a) shows hypothesized brushless motor specifications as functions of rgap (gap radius). The gap radius is a strong parameter in motor characteristics. In contrast, the axial length of the motor does not affect torque density and torque per inertia because increasing axial length is equivalent to adding identical motors on the same axle. In Figure 3(b), Emoteq HT series motor characteristics are plotted against gap radius. Motors of the same gap radius and various lengths have overlapping values of torque density and torque per inertia. As we vary the gap radius, assuming that the electromagnetic characteristics of a section (marked as dotted line in Figure 3) remains same with same radial thicknesses of stators and rotors, we can estimate how motor specifications scale with the gap radius. We call this electromagnetic similarity. As the gap radius becomes larger, the moment arm and the surface area inside of the gap increase proportionally. The mass of the motor is proportional to rgap; the torque is proportional to rg2ap; the rotor inertia is proportional to rg3ap. Therefore, we can predict that torque density is proportional to rgap and the acceleration capability (torque/inertia) is proportional to 1/rgap. Another important characteristic is torque production efficiency which is related to the motor constant KM. K2M is equivalent to the torque squared per unit ohmic power loss. The following equation describes the how it is related to
+motor parameters. K2M = Kt2
+R = τ2
+I2R ∝ nl0B2rg2apA
+ρ where Kt is the torque constant, I is the motor current, R is the terminal resistance, n is the number of wires in the cross section, l0 is the length of the motor along the axis, B is the field strength of the magnets, rgap is the radius of the motor gap, A is the cross section area of each wire and ρ is the the resistivity of the wire material. Given a particular wire gauge, the number of wires in the cross section n scales linearly with the radius of the motor. Thus the relationship becomes τ2
+I2R ∝ rg3ap.
+These models can be very helpful to design an actuator for a given set of requirements (e.g. torque density, inertial, viscous, and frictional mechanical impedance). Suppose we want to choose a motor and gearset with the largest torque per inertia while keeping the output torque and motor mass constant. If we double the radius, the motor length is halved, the motor torque doubles and the gear ratio is halved. The motor rotor inertia increases by 4 times but the reflected rotor inertia through the gears4 scales by one fourth. The total
+4the reflected inertia is proportional to gear ratio squared
+Continuous torque density (Nm/kg)
+Outside diameter (mm)
+!"#$%&'()'*+,"%-%..'' /012'3"%.'#*'",..4' 5'6'7170089':'717;<='
+5'6'717789':'717=8>'
+7'
+71>'
+71<'
+71;'
+71='
+0'
+01>'
+01<'
+01;'
+01='
+7' >7' <7' ;7' =7' 077' 0>7' 0<7'
+?,9#@'A!'
+Torque/inertia (mNm/ gcm2)
+Outside diameter(mm)
+!"
+#"
+$!"
+$#"
+%!"
+!" #!" $!!" $#!"
+Maxon RE
+Emoteq HT
+Fig. 4. (left) A comparison between Maxon RE series and Emoteq frameless motors assuming the frame weight be 50% of the motor for Emoteq motors. (right) Acceleration capability(torque/rotor inertia).
+reflected rotor inertia and the total torque at the output shaft stay the same. In general, higher gear ratios add mass, inertia and friction loss. Thus the increased motor radius would improve torque per inertia by reducing the gear requirement. Therefore, it is optimal to choose the motor with largest gap radius and add the least amount of gearing to meet the torque requirement. Figure 4 shows the data collected from Maxon motors and Emoteq motors to evaluate the scaling predictions. We use the continuous torque as a representative metric because it includes the thermal characteristics whereas demagnetization torque (sometimes denoted as peak torque) does not represent how long the motor can sustain that torque 5. The thermal limitation of the motor should be analysed depending on the duty factor of the application. The plot in Figure 3 shows that the torque density is proportional to rg0.a8p; torque per rotor inertia is r−1.5
+gap ; the torque production efficiency is proportional to rg4ap. This shows a consistent trend considering these specification of these motors do not necessarily follow our assumptions in modelling due to manufacturing considerations.
+III. MECHANICAL DESIGN OF THE LEG
+Using the torque density analysis introduced in section II, we selected the largest radius motor that could fit within the 5 inch space constraint for the MIT Cheetah leg. Given the large torque of the motor, only a minimal gear ratio (1:5.8) is required, whereas most EM actuators used in legged robot tend to have large gear ratios (more than 1:100) which make the actuator non-backdrivable and inefficient. Unlike traditional serial link robots in which actuators are present at every joint, two actuators and gear trains are coaxially located at the hip of the leg in Figure 1. The knee joint is driven by a steel linkage at the output of the knee motor. This design minimizes the rotational inertia of the leg and helps reduce the mass in the motor frames. The desired peak torque is roughly 100 Nm considering the maximum ground reaction forces estimated from data in [3]. Each motor is connected to one stage of planetary gearing with 4 planet
+5Usually, demagnetization torques are 10 times larger than the continuous torque.
+1972
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on November 12,2024 at 02:34:07 UTC from IEEE Xplore. Restrictions apply.
+
+
+gears to distribute the stress. The peak torque of the motor is 21 Nm. The structures of the leg are also designed to minimize mass and leg inertia. The humerus and radius are made of foam-core composite plastic and the foot is molded with an embedded webbing tendon that provides compliance and minimizes the stress on the radius. Bending stress is minimized in the leg structure by distributing tensile forces to the tendons. This method allows significantly lower inertia of the leg without compromising leg strength [37]. The shoulder module that contains the motors, gear trains and frame weighs 4.2 kg. The humerus weighs 160 g and the lower limb including foot mass is 300 g. The moment of inertia of the whole leg at the shoulder joint 0.058 kgm2 in a straight configuration.
+IV. PROPRIOCEPTIVE FORCE CONTROL
+A. Controller
+The leg dynamics are described by the following general equation in joint space
+H(q)q ̈ +C(q, q ̇)q ̇ + g(q) + fd(q ̇) + fc(q, τ) = τ − JT Fext
+where H(q) is the mass matrix, C(q, q ̇) is Coriolis force g(q) is gravity, fd(q ̇) is damping friction, fc(q, τ) is torque dependent Coulomb friction, τ is the torque applied at the motors, J is the Jacobian matrix and Fext is the external reaction force exerted on the foot in Cartesian space. The impedance control algorithms in this system are similar to those used in haptic devices. As in haptics, the passive impedance caused by inertia and damping can hamper the accurate reproduction of forces [29]. Therefore, the prevailing design has been to increase ‘transparency’ between the end effector and actuator by reducing dynamic effects from mass and friction. Transparency allows the force exerted by the motors to match the end effector forces thus eliminating the need for a non-collocated sensor. Instead of a force sensor at the foot, force can be determined from the applied actuator torque and from displacements in joint space measured by the motor encoder. This approach avoids the possible instability caused by unmodeled modes between the force actuator and the non-collocated sensor [32]. The MIT Cheetah robot leg is specifically designed to minimize inertia and friction. In the dynamics equations, Coriolis terms do not contribute much and can be neglected [19]. Also the motor force is large compared to gravity and damping, so the low speed force relationship becomes τ ≈ JT Fext + fc(q, τ). The approximation greatly simplifies the control because double differentiation of the encoder signal to calculate acceleration is not robust on digital systems. As a first approximation it is also possible to ignore torque dependent friction. It can be compensated later as feedforward in control after being characterized in experiment. To enable proprioceptive control, the robot first converts joint space displacements to Cartesian space using forward kinematics. A PID loop on position is then applied around a zero set point and a new torque command is sent to the motor. In the case of the virtual linear spring shown in this
+88.8 V Supply Voltage
+Speed2 x Gain1
+Speed x Command x Gain2
+Speed x Gain4
+Calculate Speed from Change in Encoder Position
+d-Axis Gain
+q-Axis Gain
+Command x Gain3
+ABC to d-q Transform
+d-q to ABC Transform
+Σ
+Σ
+Σ
+Σ
+Σ
+Σ
+x
+x
+iA
+iB
+iC
+id
+iq
+Supply Voltage
+Speed
+Current Command
+Current Command
+Speed
+Encoder
+_ +
+_
+Supply Feedforward
+_ +
+_ +
+Encoder
+Supply Feedforward
+vd
+vq
+vA
+vB
+vC
++ +
++ +
+Speed
+Fig. 5. A block diagram of the control architecture of the current driver.
+paper, the controller uses pure proportional gain only. The control equation is given by τ = JT (−Kpx) + fc(q, τ) where τ the desired output torque command, J is the Jacobian, Kp is the virtual spring stiffness, x is the Cartesian coordinate of the foot and fc(q, τ) is the compensator for torque dependant friction.
+B. Experiment Setup
+To compare the actual force to calculated force from the motor current, the Cheetah robot leg was mounted inside of an axial material testing device (Zwick Roell BX1EZ005.A4K-000) which can generate ±5 kN loads and speeds of 500 mm/s with 0.2 m stroke length. The standard force sensor was replaced with a six axis force torque sensor (ATI delta, SI-660-60 calibration) which can measure up to 1980 N in the z-axis with 0.25 N resolution. Pure vertical force was obtained by tuning the leg configuration and controller so that all other forces and torques were close to zero (less than 1% of the maximum force during the test). The actual force data, the estimated force from motor current and z-axis displacement were simultaneously measured at 500 Hz. Force commands from position feedback described in Section IV-A were executed every measurement cycle. The force sensor data was then compared to the proprioceptive measurement. Tests were conducted by creating a virtual linear spring in the controller using only P control without I and D gain. Cyclic sawtooth position profiles were exerted on the leg and the speed was varied over experiments from 6.67 mm/s to 426.7 mm/s. An impact test was also conducted to show high bandwidth control in conditions closer to running. The experiment was performed with an impact velocity of 500 mm/s.
+C. Controller Hardware
+An FPGA based real-time controller (NI sbRIO-9642) was used as the main controller. This controller integrates a 2 mega gate FPGA (Xilinx Spartan II) and a 400 MHz realtime processor(Freescale MPC5200). To reduce the load on the real-time processor, all low level communication and interfacing with the hardware is programmed in FPGA. In the
+1973
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on November 12,2024 at 02:34:07 UTC from IEEE Xplore. Restrictions apply.
+
+
+i
+PD Control (500Hz) Jacobian Transpose
+Parallel UART
+Emulator UART(500kbps)
+i (2B)
+PCI Bus
+θ, i, status (4B)
+Real Time Controller
+θ, i
+i
+FPGA
+d-q Feedback (4 kHz)
+NI sbRIO-9642
+End Effector
+Jacobian (transmission)
+Brushless Motors
+Absolute Encoders
+Environment
+τ
+θ
+x
+θ
+F
+x
+F
+θ
+Motor Drivers
+Cheetah leg
+Fig. 6. A condensed block diagram of the control architecture of the hardware.
+Fig. 7. (left)Experimental setup of the leg on a material testing device. (right) MIT cheetah prototype
+280
+-40
+0
+40
+80
+120
+160
+200
+240
+0 10 20 30 40 50 60 70 80 90 Displacement (mm)
+Force(N)
+427 mm/s
+7 mm/s
+213 mm/s
+0
+40
+80
+120
+160
+200
+240
+Displacement (mm)
+0 10 20 30 40 50 60 70 80
+Force Displacement Curve
+Linear Fit of Extension
+Linear Fit of Compression
+Force(N)
+260
+300
+-20
+0
+20
+60
+100
+140
+180
+220
+260
+0 5000 10000 15000 20000 25000 30000 35000
+Force from Motor Current Compensated Force
+Force from FT sensor
+Time (ms)
+Force(N)
+0
+40
+80
+120
+160
+200
+240
+280
+320
+0 50 100 150 200 250 300 350 400 450 500
+Compensated (3406 N/m) Force Sensor (3406 N/m) Compensated (5083N/m) Force Sensor (5083N/m)
+Time (ms)
+Force(N)
+ab
+cd
+Fig. 8. (a) Cyclic force vs displacement plot for various speeds and total displacements, (b) Linear fit on the cyclic force vs displacement plot at 7 mm/s showing the two distinct regions corresponding to leg compression and extension. The two linear fits are used to determine force compensation on the force estimated using motor current, (c) Plot of force over time showing the force estimated from motor current, the compensated force and the true measured force from the force torque sensor, (d) Force vs time plot during several impact test performed at with controller virtual stiffness of 3406 N/m and 5083 N/m. Both the compensated force from the motor current and the force sensor data are shown.
+FPGA, 12 parallel UART lines are emulated for communication with eight custom brushless DC motor drivers and four Dynamixel EX-106+ smart motors in the abduction joints. Additionally, data from the analog six axis force sensor is converted in FPGA for logging. This force sensor is used for data comparison with the converted forces from the motor current. Figures 5 and 6 show the motor driver architecture and overall control architecture respectively. In this experiment, the left front leg’s shoulder and knee motors were activated and the Jacobian transformation, PD control, and FT sensor data acquisition are processed every 2 ms in the real-time controller. The experimental data are streamed from the main controller to PC via UDP (User Datagram Protocol) communication to prevent delay in the main loop time.
+D. Results and Discussion
+Data processing on the cyclic tests is used to find the torque dependent friction. Figure 8(a) shows the hysteresis curve as the leg is loaded and unloaded. The behavior is consistent over a range of cycling speeds. Figure 8(c) shows the discrepancy between the measured force profile from the force sensor and the estimated force from the motor current during the 7 mm/s cyclic test. In order to make a perfect spring in force-displacement space, the estimated force must be compensated. Figure 8(b) shows the cyclic measured force vs displacement plot at 7 mm/s showing the two distinct behaviors corresponding to leg compression and extension. The hysteresis curve corresponds to the energy consumed by friction in each loading and unloading cycle. The friction force changes direction depending on whether the leg is compressing or extending. To compensate for the behavior, two linear fits are used to determine the actual force vs displacement relation in both movement directions. During the compression, the actual force vs displacement slope is 0.886 of the estimated force vs displacement slope. The value is 0.696 for extension of the leg. In order to apply compensation, the estimated force is multiplied by the appropriate ratio value depending on the direction of leg movement. Figure 8(c) shows the estimated force before and after compensation as the measurement from the force sensor. The compensated curve and actual force match well. After the correct values for friction compensation are found using data from the cyclic displacement test, the compensation can be applied to other arbitrary movements. Figure 8(d) shows the force profiles from impact tests conducted with two virtual spring settings. The compensated force matches the force sensor measurement in both cases. The mean absolute error as a ratio of full scale sensor force is 0.041 in the 3406 N/m experiment and is 0.049 in the 5038 N/m experiment. At higher virtual stiffness, there is some discrepancy when the direction of movement changes. This suggests that compensation may have to be adjusted depending on the algorithm of the force controller. The leg configuration used for the experiment produces only force in the vertical direction. Therefore the loading is on each joint is equal to the exerted vertical force. Thus the
+1974
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on November 12,2024 at 02:34:07 UTC from IEEE Xplore. Restrictions apply.
+
+
+torque dependent friction can be taken as a function of vertical force. This lumped approach works well and gives sufficiently good results during impact and should therefore deliver high performance during robot running.
+V. CONCLUSIONS
+This paper presents the force production capabilities of the leg on the MIT Robotic Cheetah. We have shown that the mechanical design principles for maximum transparency allows for high force proprioception even with simple controllers. These legs will be used on the robot to perform high speed running and will be able to execute the prescribed force commands. The supplement video to this paper shows balanced standing and jumping using proprioceptive force control. Future research includes the characterization of gear impedance to complete the model of the actuator as a full package including the motive device and the transmission whose model will enable precise force control. Energy efficiency can also be improved by developing high torque motors suited for the joint velocities and forces in legged locomotion.
+ACKNOWLEDGMENT
+This program is sponsored by DARPA M3 program.
+REFERENCES
+[1] I. Hunter and S. Lafontaine, “A comparison of muscle with artificial actuators”, in Tech. Dig. IEEE Solid State Sensors Actuators Workshop, pp. 178-185, 1992. [2] M. F. Bobbert and M. R. Yeadon and B. M. Nigg, “Mechanical analysis of the landing phase in heel-toe running”, Journal of Biomechanics, Vol. 25, no. 3, page, 223-234, 1992. [3] R. M. Walter and D. R. Carrier, “Ground forces applied by galloping dogs”, J Exp Biol, vol. 210, no. 2, pp. 208-216, 2007. [4] L. D. Maes, M. Herbin, R. Hackert, V. L. Bels, and A. Abourachid, “Steady locomotion in dogs: temporal and associated spatial coordination patterns and the effect of speed”, J Exp Biol, vol. 211, no. 1, pp. 138-149, 2008. [5] Lee, Y-T, H-R Choi, W-K Chung and Y. Youm, “Stiffness Control of a Coupled Tendon-Driven Robot Hand”, IEEE Control Systems, pp.10-19, 1994. [6] K. Koganezawa, “Back-drivable and Inherently Safe Mechanism for Artificial Finger”, Proceedings of Robotics: Science and Systems, June, 2010, Zaragoza, Spain [7] Puddy, B., Hunter, I., “Design and optimization strategies for musclelike direct-drive linear permanent-magnet motors”, The International Journal of Robotics Research June 2011 30: 834-845. [8] Ishida, T., Takanishi, A., “A Robot Actuator Development With High Backdrivability”, Robotics, IEEE Conference on Automation and Mechatronics, p 1-6, June 2006 [9] Goldfarb, M., Barth, E., Gogola, M. Wehrmeyer, J., “Design and Energetic Characterization of a Liquid-Propellant-Powered Actuator for Self-Powered Robots”, IEEE / ASME Trans Mechatronics, Vol. 8, pp. 254-262. [10] S. P. Buerger and N. Hogan., “Novel Actuation Methods for High Force Haptics”, Advances in Haptics 2010, Mehrdad Hosseini Zadeh (Ed.), ISBN: 978-953-307-093-3, InTech. [11] Massie, T., Salisbury, K., “The PHANTOM Haptic Interface: A Device for Probing Virtual Objects”, Proc. ASME Winter Annual Meeting, Symposium on Haptic Interfaces for Virtual Environment and Teleoperator Systems. [12] Pratt, G., Williamson, M., “Series Elastic Actuators”, Proc. IEEE/RSJ Int Conf on Human Robot Interaction and Cooperative Robots, 1995, pp. 399-406. [13] Kim, B.S., Song, J.B., Park, J.J., “Serial-Type Dual Actuator Unit With Planetary Gear Train: Basic Design and Applications”, IEEE/ASME Transactions on Mechatronics, Vol. 15, No. 1, Feb, 2010
+[14] Koganezawa, K., “Mechanical stiffness control for antagonistically driven joints”, in Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems. IEEE/RSJ, August 2005, pp. 25122519. [15] Tonietti, G., Schiavi, R., and Bicchi, A., “Design and control of a variable stiffness actuator for safe and fast physical human/robot interaction”, in Proc. 2005 IEEE International Conference on Robotics and Automation, April 2005, pp. 582-533. [16] Hurst, J. W., Chestnutt. J. E., and Rizzi, A. A., “An actuator with physically variable stiffness for highly dynamic legged locomotion”, in Proc. of IEEE International Conference on Robotics and Automation. New Orleans, LA, USA: IEEE, April 2004, pp. 4662-4667. [17] Shin, D.,Sardellitti, I., Park, Y.L., Khatib, O., Cutkosky M. “Design and Control of a Bio-Inspired Human-Friendly Robot”, The International Journal of Robotics Research April 2010 vol. 29 no. 5 571-584. [18] Migliore, S.A., Brown, E.A., DeWeerth, S.P., “Novel nonlinear elastic actuators for passively controlling robotic joint compliance”, Journal of Mechanical Design 129(4):406-412, 2007. [19] H. Asada, K.Y. Toumi, Direct-Drive Robots, Theory and Practice, MIT Press, Cambridge, 1987. [20] Caldwell, D.G., Medrano-Cerda, G.A., Goodwin, M., “Control of pneumatic muscle actuators”, Control Systems, IEEE, Issue Date: Feb 1995, Vol.15, 1, page(s): 40-48. [21] K. Galloway, J. Clark, and D. Koditschek, “Design of a tunable stiffness composite leg for dynamic locomotion”, in ASME IDETC/CIE, 2009 [22] He S., Gunda, R., Singh, R., “Effect of sliding friction on the dynamics of spur gear pair with realistic time-varying stiffness”, Journal of Sound and Vibration Vol. 301, Issues 3-5, 3 April 2007, Pages 927949. [23] Grotjahn, M., Daemi, M., Heimann, M., “Friction and rigid body identification of robot dynamics”, International Journal of Solids and Structures Volume 38, Issues 10-13, March 2001, Pages 1889-1902. [24] REBBECHI, F. OSWALD and D. TOWNSEND, “Measurement of gear tooth dynamic friction”, ASME, DE-Vol. 88, Proceedings of the 7th Power Transmission and Gearing Conference, (1996), pp. 355-363. [25] M. Raibert, “Trotting, pacing, and bounding by a quadruped robot”, J. Biomechanics, 23, Suppl.1, 79–98,1990. [26] H. Kimura, Y. Fukuoka and A.H. Cohen, “Adaptive Dynamic Walking of a Quadruped Robot on Natural Ground based on Biological Concepts”, Int. Journal of Robotics Research, Vol.26, No.5, pp.475490, 2007. [27] M. Raibert, K. Blankespoor, G. Nelson, R. Playter and BigDog Team, “BigDog, the rough-terrain quadruped robot”, 17th World Congress The International Federation of Automatic Control Seoul, Korea, July 6-11, 2008 [28] I. Poulakakis and M. Buehler, “Modeling and experiments of untethered quadrupedal running with a bounding gait: the scout ii robot”, International Journal of Robotics Research, 24(4):239-256, 2005. [29] C. R. Carignan and K. R. Cleary., “Closed-loop force control for haptic simulation of virtual environments” Haptics-e [Online], vol (2). Available: http://www.haptics-e.org. [30] C. Ott, A. Albu-Schaeffer, A. Kugi, and G. Hirzinger, “On the passivity based impedance control of flexible joint robots”, IEEE Trans. Robot. Automat., vol. 24, no. 2, pp. 416-429, 2008. [31] G. Hirzinger, N. Sporer, A. Albu-Schaeffer, M. Haehnle, R. Krenn, A. Pascucci, and M. Schedl, “DLR’s torque-controlled light weight robot: III. Are we reaching the technological limits now?”, in Proc. Int. Conf. Robot. Automat. ICRA, Washington D.C., 2002, pp. 1710-1716. [32] S. D. Eppinger and W. P. Seering, “Three dynamic problems in robot force control”, IEEE Trans. Robot. Automat., vol. 8, pp. 751-758, Dec.1992. [33] D. P. Ferris, M. Louie, and C. T. Farley, “Running in the real world: adjusting leg stiffness for different surfaces”, Proceedings of the Royal Society B: Biological Sciences, vol. 265(1400), 1998. [34] C. T. Farley and O. Gonzalez, “Leg stiffness and stride frequency in human running”, Journal of Biomechanics, vol. 29, no. 2, pp. 181-186, 1995. [35] http://www.teslamotors.com/ [36] http://www.scorpionsystem.com/ [37] Ananthanarayanan, A., Azadi, M., Kim, S.,“Towards the Bio-inspired Legs Design for High Speed Running”, Accepted for publication in Journal of Bioinspiration and Biomimetics, July 2012 (accepted)
+1975
+Authorized licensed use limited to: KIMM (Korea Institute of Machinery & Materials). Downloaded on November 12,2024 at 02:34:07 UTC from IEEE Xplore. Restrictions apply.

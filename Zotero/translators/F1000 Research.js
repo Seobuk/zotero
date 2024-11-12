@@ -1,15 +1,15 @@
 {
 	"translatorID": "f36025f5-597e-4873-841c-f5c877a05b9b",
+	"translatorType": 4,
 	"label": "F1000 Research",
 	"creator": "Abe Jellinek",
 	"target": "^https?://(www\\.)?(((openresearchcentral|(aas|amrc|hrb|wellcome|gates)openresearch)\\.org)|(f1000research|emeraldopenresearch)\\.com)/",
 	"minVersion": "3.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 200,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-21 19:05:49"
+	"lastUpdated": "2024-03-25 15:25:00"
 }
 
 /*

@@ -1,15 +1,15 @@
 {
 	"translatorID": "938ebe32-2b2e-4349-a5b3-b3a05d3de627",
+	"translatorType": 4,
 	"label": "ACS Publications",
 	"creator": "Sean Takats, Michael Berkowitz, Santawort, and Aurimas Vinckevicius",
 	"target": "^https?://pubs\\.acs\\.org/(toc/|journal/|topic/|isbn/\\d|doi/(full/|abs/|epdf/|book/)?10\\.|action/(doSearch\\?|showCitFormats\\?.*doi))",
 	"minVersion": "4.0.5",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-09-30 13:50:18"
+	"lastUpdated": "2024-09-30 13:55:00"
 }
 
 /*

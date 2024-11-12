@@ -1,15 +1,15 @@
 {
 	"translatorID": "874d70a0-6b95-4391-a681-c56dabaa1411",
+	"translatorType": 4,
 	"label": "clinicaltrials.gov",
 	"creator": "Ryan Velazquez and contributors",
 	"target": "^https://(classic\\.clinicaltrials\\.gov/ct2/(show|results)|(www\\.)?clinicaltrials\\.gov/(study|search))\\b",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-10-08 18:20:57"
+	"lastUpdated": "2024-10-08 18:25:00"
 }
 
 /*

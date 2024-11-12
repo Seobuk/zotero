@@ -1,14 +1,14 @@
 {
 	"translatorID": "a6ee60df-1ddc-4aae-bb25-45e0537be973",
+	"translatorType": 1,
 	"label": "MARC",
 	"creator": "Simon Kornblith, Sylvain Machefert",
 	"target": "marc",
 	"minVersion": "2.1.9",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 1,
-	"lastUpdated": "2024-03-15 21:14:09"
+	"lastUpdated": "2024-03-18 16:20:00"
 }
 
 /*

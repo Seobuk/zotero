@@ -1,14 +1,14 @@
 {
 	"translatorID": "99A6641F-A8C2-4923-9BBB-0DA87F1E5187",
+	"translatorType": 2,
 	"label": "CFF References",
 	"creator": "Sebastian Karcher, Dave Bunten",
 	"target": "cff",
 	"minVersion": "5.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 2,
-	"lastUpdated": "2024-05-17 20:02:13"
+	"lastUpdated": "2024-06-24 19:10:00"
 }
 
 /*

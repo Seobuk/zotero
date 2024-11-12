@@ -1,15 +1,15 @@
 {
 	"translatorID": "98ad3ad1-9d43-4b2e-bc36-172cbf00ba1d",
+	"translatorType": 4,
 	"label": "eLife",
 	"creator": "Aurimas Vinckevicius, Sebastian Karcher",
 	"target": "^https?://(elife\\.)?elifesciences\\.org/(articles|search|subjects|archive)",
 	"minVersion": "4.0",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
 	"inRepository": true,
-	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2024-03-05 10:52:52"
+	"lastUpdated": "2024-03-05 11:00:00"
 }
 
 /*
