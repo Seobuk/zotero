@@ -1,0 +1,62 @@
+2017 14th International Conference on Ubiquitous Robots and Ambient Intelligence (URAI) June 28 - July 1, 2017 at Maison Glad Jeju, Jeju, Korea
+Design of Soft Actuator using 3D-Printed Composite
+Sung-Hyuk Song1,2, Sung-Hoon Ahn2,3, Cheol Hoon Park1 and Young Su Son1
+1 Department of Robotics and Mechatronics, Korea Institute of Machinery & Materials, Daejeon, 305-343, Korea (Tel : +82-42-868-7916; E-mail: shsong@kimm.re.kr)
+2 Department of Mechanical & Aerospace Engineering, Seoul National University, Seoul, 151-742, Korea 3 Institute of Advanced Machines and Design, Seoul National University, Seoul, 151-742, Korea
+
+Abstract – This paper describes a soft composite actuator using a 3D-printed scaffold structure. The actuator consists of a scaffold structure embedded in the center and two wires embedded above and below the scaffold to generate motion. Each component is combined with a soft polymer, so it has the advantage of a soft morphing motion. When the wire is pulled, a bending based motion is generated, because of the eccentric force, according to the neutral surface of the composite actuator. The actuating shape can be designed according to the scaffold layer combination and deformation magnitude can be controlled by the length of the pulled wire. Two different scaffold structures, consisting of symmetric and asymmetric ply combinations, were used, and symmetric and asymmetric bend-twist motions (upper 4.3°, lower 25.9° twisting angle) can be realized.
+
+Fig. 1. Design of the scaffold structure.
+
+Keywords – Soft actuator, Tendon-driven actuator, 3D printing, Composite actuator.
+1. Introduction
+Soft morphing is an emerging technology for applications in various industrial fields, such as wearable devices and biomimetic soft robots, because of its advantages in adaptability to various environmental conditions by mimicking the ‘soft’ motions of nature [1]. To realize soft morphing, a soft actuator, fabricated with a rubber-like material, has been developed and shape-memory alloys (SMA), ionic polymer metal composites (IPMC), and piezoelectric materials (PZT) are used widely as actuating sources in soft actuators [2]. However, difficulties in control due to non-linear behavior and limited actuating motion are obstacles to use in various applications. Thus, in this research, a tendon-driven mechanism was used as the actuating source to simplify actuator control, instead of a ‘smart’ material, and 3D-printed scaffold structures were embedded to achieve actuating motion. Scaffold structures have been used to control actuating motions in smart soft composite actuators [3, 4], so in this research, two types of scaffold structures are used in the actuator according to the desired actuating shape. Two different actuating modes were realized and the twisting angle was measured.
+
+of multiple filaments that are deposited in the desired direction (Fig. 1). Each layer can have a different ply angle, so various types of scaffold structure can be designed. Due to the embedded scaffold structure, the actuator can generate bend-twist coupled motion according to Eq. (1):
+
+=
+
+(1)
+
+In Eq. (1), the general type of composite is designed to have coupling stiffness B as 0 and it minimizes complex deformation. To generate complex motion in the actuator, the B term is set to a non-zero value intentionally using an anisotropic scaffold structure, and it can then show bendtwist coupling motion according to the ply combination in the scaffold structure.
+To generate motion, one of the two layered wires, one above and one below the neutral surface (Fig. 2), is pulled and it can show not only bending motion but also bendtwist coupled motion because of the scaffold structure (Fig. 3).
+
+2. Design
+The actuator consists of a scaffold structure, two wires for tendon-driven actuation, and a polymer matrix to combine the components. The scaffold structure consists
+
+Fig. 2. Configuration of the soft actuator with scaffold structure and two wires.
+
+978-1-5090-3056-9/17/$31.00 ©2017 IEEE
+
+79
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:52 UTC from IEEE Xplore. Restrictions apply.
+
+when the wire positioned near the layer with the smaller ply angle (30°) was pulled. Thus, it could be an asymmetric motion, which is a pure bending and bendtwist motion.
+
+Fig. 3. Actuating mechanism of bend-twist coupled motion using scaffold structure.
+
+bend-twist coupled motion because of scaffold structure as in Fig. 3.
+
+3. Fabrication
+3.1 Scaffold structure fabrication
+The scaffold structure consists of multiple filaments separated from each other. Thus, its shape can be fabricated readily using a fused-deposition-modeling (FDM)-type 3D printer (Dimension SST 768, Stratasys) instead of a ‘traditional’ plastic casting process. Each filament of the scaffold structure can consist of an acrylonitrile butadiene styrene (ABS) filament ejected directly from the nozzle head, and its dimensions are 350 μm wide × 250 μm high.
+3.2 Actuator fabrication
+The wire is encapsulated in a tube-shaped polyimide film to minimize friction when it is pulled. A film-covered wire and scaffold structure were positioned at the casting mold fabricated with the 3D printer (Dimension SST 768, Stratasys) and a liquid polymer (Moldstar 16 Fast; Smooth-On Inc.) was poured into the mold and placed at room temperature for 30 min. After the polymer was cured, the composite was removed from the mold and wire fixture was installed at the tip of the actuator.
+4. Result
+To evaluate the actuating performance depending on the scaffold structure, two types of scaffold structure, symmetric and asymmetric ply combinations, were embedded. For the symmetric scaffold structure, a [30/45/30] ply combination was used and its actuating motion was measured (Fig. 4(a)). The average upper and lower twisting angles were 41.6° and 46.2°, respectively, so it showed symmetric bend-twist motion relative to the reference plane. The [90/60/30] ply combination was selected for the asymmetric scaffold structure and its motion is shown in Figure 4(b). When the wire positioned near the layer with the larger ply angle (90°) was pulled, it showed a 4.3° twisting angle, which is near a pure bending motion. Otherwise, a 25.9° twisting angle was realized
+
+Fig. 4. Deformation of the actuator with (a) symmetric scaffold structure ([30/45/30]), (b) asymmetric scaffold structure ([90/60/30]).
+5. Conclusion
+A tendon-driven soft actuator using a 3D-printed scaffold structure is presented in this paper. The actuator used two types of scaffold structure to control the motion of the composite actuator; thus, symmetric and asymmetric motions could be realized. This actuator can be used in a soft gripper module and a soft robot arm module with an artificial muscle actuator; a detailed design methodology to realize target motion will be developed.
+Acknowledgement
+This work was supported by the Industrial Strategic technology development program(10049258) funded by the Ministry of Knowledge Economy(MKE, Korea).
+References
+[1] K.-J. Cho, et al., “Review of Manufacturing Process for Soft Biomimetic Robots,” Int. J. Precis. Eng. Man., Vol. 10, No. 3, pp. 171, 2009.
+[2] A, Solfa, S. A. Meguid, K. T. Tan and W. K. Yeo, “Shape Morphing of Aircraft Wing: Status and Challenges,” Materials & Design, Vol. 31, No. 3, pp. 1284-1292, 2010.
+[3] S.-H. Ahn, et al., “Smart Soft Composite: An Integrated 3D Soft Morphing Structure Using BendTwist Coupling of Anisotropic Materials,” Int. J. Precis. Eng. Man., Vol. 13, No. 4, pp. 631–634, 2012.
+[4] S.-H. Song, H. Lee, J.-G. Lee, J.-Y. Lee, M. Cho and S.-H. Ahn, "Design and analysis of a smart soft composite structure for various modes of actuation," Composites Part B: Eng., Vol. 95, pp. 155-165, 2016.
+
+80
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:52 UTC from IEEE Xplore. Restrictions apply.
+

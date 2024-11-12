@@ -1,0 +1,715 @@
+1046
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+
+Wrist Assisting Soft Wearable Robot With Stretchable Coolant Vessel Integrated SMA Muscle
+Jaeyeon Jeong , Kyujin Hyeon , Jungwoo Han , Cheol Hoon Park , So-Young Ahn, Soo-Kyung Bok, and Ki-Uk Kyung , Member, IEEE
+
+Abstract—This article proposes a shape memory alloy (SMA)-based artiﬁcial muscle that has an active cooling system. An SMA coil spring is embedded into a stretchable coolant vessel, which allows active cooling of SMA through coolant circulation. The coolant effect has been investigated by measuring actuation speed. Integrating a thermomechanical model and heat transfer model between coolant and SMA, actuation times have been estimated. Based on these results, actuation performances that use four different coolants have been found out, and the mineral oil cooling case shows both contraction and extension times of less than 1 s to contract to over 35% of its initial length with 1 kg load. A soft wearable robot for assisting wrist motion has been designed by integrating multiple SMA muscles with a glove, wristband, and elbow anchor. Thanks to the advantages of the SMA coil spring actuator, the proposed robot is compliant and weight-balanced structure. The robot shows ranges of motion of 38°, 50°, 34°, and 35°, for ﬂexion, extension, radial deviation, and ulnar deviation, respectively. In addition, the robot shows improved cyclic performance compared to a natural air-cooling system. Finally, its torque assistance and the amount of time needed to wear it have been analyzed with user tests.
+Index Terms—Rehabilitation, shape memory alloy (SMA), soft robotics, wearable robots.
+Manuscript received July 23, 2020; revised November 6, 2020 and January 27, 2021; accepted April 7, 2021. Date of publication May 10, 2021; date of current version April 18, 2022. Recommended by Technical Editor M. Al Janaideh and Senior Editor G. Alici. This work was supported in part by the R&D Program under Grant 2019R1A2C2006362 of the National Research Foundation (NRF), Korea, in part by the Translation Research Program for Rehabilitation Robots under Grant NRCTR-EX19006, and in part by the National Rehabilitation Center, Ministry of Health and Welfare, Korea, and the Alchemist Project under Grant 20007014 of Ministry of Trade, Industry and Energy, Korea. (Corresponding authors: Soo-Kyung Bok; Ki-Uk Kyung.)
+Jaeyeon Jeong, Kyujin Hyeon, Jungwoo Han, and Ki-Uk Kyung are with the Korea Advanced Institute of Science and Technology, Daejeon 34141, South Korea (e-mail: jjy7583@kaist.ac.kr; axz0502@kaist.ac.kr; jungwoohan72@kaist.ac.kr; kyungku@kaist.ac.kr).
+Cheol Hoon Park is with the Department of Robotics and Mechatronics, Korea Institute of Machinery and Materials, Daejeon 34103, South Korea (e-mail: parkch@kimm.re.kr).
+So-Young Ahn and Soo-Kyung Bok are with the Department of Rehabilitation Medicine, Chungnam National University Hospital, Daejeon 35015, South Korea (e-mail: asyoung@cnuh.co.kr; skbok@cnuh.co.kr).
+This article has supplementary material provided by the authors and color versions of one or more ﬁgures available at https://doi.org/10.1109/ TMECH.2021.3078472.
+Digital Object Identiﬁer 10.1109/TMECH.2021.3078472
+
+I. INTRODUCTION
+W EARABLE robots have been researched widely because they can be great solutions to assist the activities of daily living (ADLs) of patients who have physical disabilities such as paralysis or sarcopenia [1]–[4]. The main developmental issues of wearable robots for assisting human motion are to reduce their weights and complexity as the robot has to be comfortable and simple enough for users to wear. In addition, large displacement and high force are essential for the wearable robot system. Especially for many rehabilitation robots, the size of the robot is large; therefore, the rehabilitation therapy using the robot could be carried out only in particular places like hospitals. If the size and mass of the robot could be reduced, the patients would receive the treatment regardless of environment. Therefore, soft robotics is gaining attention as it could suggest new approaches to develop wearable robots [5]–[17].
+Diverse soft actuators and systems, such as soft pneumatic actuators, shape memory alloy (SMA) actuators, and tendondriven systems, have been applied to develop soft wearable robots [5], [6]. Soft pneumatic actuators can produce high force and deformation using deformable pockets and an air compressor [7]–[9]. One of the main advantages of soft pneumatic actuators in wearable robots is that they could easily produce human-like bending motions. However, such devices need additional structures such as air compressors and valves.
+Tendon-driven mechanisms use a strong cable and a motorgear system to mimic the actual motions of human muscles [10]–[13]. Many wearable robots have been developed with the tendon-driven mechanisms because they can produce high force and displacement with the compact and lightweight design of the wearable parts. However, the overall robot structure might be bulky because the actuating system, with motor and gears must be placed separately from the wearing parts. Also, they require rigid components, which make patients dangerous [14].
+SMA actuators are commonly used soft actuators in the industry; they can produce high force using phase transformation induced by temperature change [15]–[33]. In low temperatures, the phase of the SMA is in martensite, which can be easily stretched when the stress is applied. When the temperature goes high, the SMA is transformed to the austenite phase, which has an arranged crystalline structure. In the austenite phase, the SMA
+
+1083-4435 © 2021 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+JEONG et al.: WRIST ASSISTING SOFT WEARABLE ROBOT WITH STRETCHABLE COOLANT VESSEL INTEGRATED SMA MUSCLE
+
+1047
+
+tries to recover its “memorized” shape. In other words, the force and displacement can be produced by the temperature change.
+For wearable robots using SMA actuators, wire geometry has been widely used [15]–[17] because it is easy to generate high force with a compliant system. However, these systems require bulky structure since wire structure has low deformation (5%) [21]. On the other hand, when these actuators are produced in coil spring shape, high deformation can be achieved over 200% deformation [22]–[25]. There are some great advantages of the SMA coil spring actuators as wearable robots; one of them is that the SMA coil spring can be used as both the actuator and the weight-balancing component itself. Therefore, the motion of the robot can be achieved by applying a relatively small amount of force change. In addition, the SMA actuator can make the robot compliant since it can stretch and recover its shape even after the external force is applied. Normally, SMA actuators are heated by applying an electrical current. Therefore, the actuation system is relatively simple because it requires only the SMA actuator and electrical connection with a controller. However, it is difﬁcult to construct a system that can quickly change the SMA actuator temperature, and rapid cooling is especially difﬁcult. To improve the bandwidth of the actuator, some researchers have suggested SMA-based actuators with an active water-cooling system [26]–[32]. However, increased energy can be a problem due to the heat loss to coolant, when operating the SMA actuator by applying an electrical current. Recently, Park et al. suggested a new type of SMA-based actuator that is controlled by water temperature [31], [32]. It shows fast actuation speed and contraction ratio with a high maximal force of 130 N when the water temperature is 82 °C. However, this system is not suitable for wearable applications because it requires large reservoirs to store hot and cool water.
+In this article, the design and performance of a soft wearable robot for assisting wrist motions with SMA muscles are described. The SMA muscle is designed with joule heating and active cooling systems, allowing it to enhance the actuation speed with a simple mechanical design. In order to select the optimal coolant for fast and efﬁcient actuation, both theoretical veriﬁcation through simulation and experimental veriﬁcation were conducted. In the simulation, the effects of the thermal conductivity and speciﬁc heat of coolants were found out. Experimentally, using four different coolants (water, ethylene glycol (EG), propylene glycol (PG), and mineral oil), the contraction and extension times of the SMA muscle were measured. From the experimental results, mineral oil was selected as the proper coolant for the SMA muscle. The fabricated SMA muscle can contract to 38% of its initial length and fully extend, within 1 s for each case with 1 kg load, which is similar to the contraction ratio of human muscle [35].
+Finally, the soft wearable robot for assisting wrist motion is designed simply by attaching SMA muscles to a soft glove and wristband [35]. With multiple SMA muscles attached at the backside and palm side of the glove, the fabricated robot can produce two degrees-of-freedom (DOF) motions at the wrist, including ﬂexion, extension, radial deviation, and ulnar deviation. In order to reduce the size of the robot, the active cooling system is designed with one hydraulic pump, a radiator, and a cooling fan. The fabricated robot shows motion ranges of 38°, 50°,
+
+TABLE I PARAMETER SPECIFICATIONS OF SMA MUSCLE
+Fig. 1. (a) Schematic diagram of the actuating system of SMA muscle. (b) Fabricated SMA muscle with coolant vessel.
+34°, and 35° for ﬂexion, extension, radial deviation, and ulnar deviation, respectively. The proposed robot shows fast cyclic actuation performances of 0.1 Hz for ﬂexion-extension motion and 0.13 Hz for radial-ulnar deviation motion. In addition, user tests were conducted with ﬁve healthy adults to analyze torque enhancing performance and the amount of time needed to put on the device.
+II. SMA MUSCLE FOR WEARABLE ROBOT A. Stretchable Coolant Vessel Integrated SMA Muscle
+In order to develop a lightweight and soft wearable robot with high force for assisting ADLs using upper extremity, an SMAbased muscle was ﬁrst designed. An SMA coil spring actuator was selected to achieve both high force and large deformation of up to 40% contraction ratio. The SMA coil spring actuator was fabricated by coiling a wire on a rod. Then, it was annealed at 350 °C for 30 mins in an electrical oven to allow the SMA to memorize the shape [18], [19], [31], [32]. The speciﬁcations of the SMA muscle are shown in Table I.
+Since the SMA muscle has a slow cooling rate, an active cooling system was integrated with the actuator using a stretchable coolant vessel made of silicone elastomer, a small hydraulic pump, and a radiator with an air-cooling fan. Fig. 1 shows a schematic of the SMA muscle. The SMA coil spring is surrounded by a stretchable coolant vessel ﬁlled with coolant. Silicone elastomer is used for the coolant vessel because it
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+1048
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+
+is stretchable enough to cooperate with the large deformation of the SMA coil spring. It also gives another advantage in volume miniaturization of the actuator integrated with the coolant pathway. This compact vessel mechanism requires only a 210 mL coolant reservoir. The two ends of the SMA muscle were connected to the pump inlet and to the outlet of the radiator respectively. The SMA coil spring was heated by electrical Joule heating; it was cooled by convective heat transfer from the SMA to the coolant. To enhance the cooling rate, the coolant was circulated by the pump when the SMA actuator had to extend.
+
+Fig. 2. (a) Control volume of single coil. (b) Heat transfer proﬁles of SMA muscle.
+
+B. Theoretical Analysis of Coolant Effect
+
+Because the heating and cooling rates are strongly related to the thermal properties of coolants, coolant effects must be analyzed to select the optimal coolant for the SMA muscle. These effects will be analyzed theoretically ﬁrst in this section. In order to ﬁnd out the effects of the thermal properties of the coolant material, a thermomechanical model was constructed that includes a constitutive model of the SMA coil spring and a heat transfer model of the designed SMA muscle structure [21]–[24], [27]–[29]. The relationship between the shear stress and the shear strain of the SMA coil spring can be explained by the following equation [21], [22]:
+
+τ−
+
+τ0 =
+
+G
+
+(γ
+
+−
+
+γ0)
+
++
+
+Ωτ
+
+(ξ
+
+−
+
+ξ0)
+
++
+
+√Θ 3
+
+(T
+
+−
+
+T0)
+
+.
+
+(1)
+
+τ is the shear stress, G is the shear modulus of the SMA, γ is the shear strain of the SMA, Ωτ is the phase transformation coefﬁcient of the SMA, ξ is the martensite volume fraction of the SMA, Θ is the thermal expansion coefﬁcient of the SMA, and T is the temperature of the SMA. In the case of SMA, the thermal expansion term can be negligible because the deformation of the SMA produced by the phase transition is dominant compared to the thermal expansion. The phase transformation coefﬁcient of the SMA is expressed by the maximum residual strain γL and the shear modulus G. In addition, the shear modulus of the SMA is described with the martensite volume fraction, which changes with the stress applied to the SMA and the temperature of the SMA
+
+Ωτ = −γLG
+
+(2)
+
+G (ξ) = ξGM + (1 − ξ) GA.
+
+(3)
+
+The relationship between force and displacement and the relationship between the shear strain and the displacement can be represented by the parameters of the coil spring, as shown in (4) [20], [22], [23]
+
+Gd4
+
+d
+
+F = 8D3n δ. γ = πD2n δ.
+
+(4)
+
+F is the force generated by the coil spring, d is the wire diameter, D is the spring diameter, n is the number of turns of the coil, δ is the displacement of the coil spring, and G is the shear modulus. D, d, and n are the design parameters of the coil spring; G is the property of the material.
+By integrating (1), (2), (3), and (4), the relationship between force and displacement of the SMA coil spring can be expressed
+
+as in (5) [27]–[29].
+
+C1 (F − F0) = C2 (G (ξ) δ − G (ξ0) δ0)
+
+− C2δL (G (ξ) ξ − G (ξ0) ξ0)
+
+(5)
+
+8K D
+
+d
+
+4C − 1
+
+C1 = πd3 , C2 = nπD2 , K = 4C − 4
+
++
+
+0.615 C
+
+(Wahl
+
+s
+
+correction
+
+factor)
+
+,
+
+C
+
+=
+
+D. d
+
+The martensite volume fraction can be expressed as the sum of the temperature-induced or twinned martensite volume fraction, ξT , and the stress-induced or detwinned martensite volume fraction, ξS
+
+ξ = ξT + ξS .
+
+(6)
+
+During the heating phase, the martensite volume fraction can be expressed as follows:
+
+ξ = ξ0 2
+
+π cos AF − As
+
+T
+
+−
+
+As
+
+−
+
+τ CA
+
++1
+
+(7a)
+
+ξS
+
+=
+
+ξS0
+
+−
+
+ξS0 ξ0
+
+(ξ0
+
+−
+
+ξ)
+
+(7b)
+
+ξT = ξT 0
+
+−
+
+ξT 0 ξ0
+
+(ξ0
+
+−
+
+ξ)
+
+.
+
+(7c)
+
+During the cooling phase, the martensite volume fraction from austenite to detwinned martensite is given by
+
+ξS
+
+=
+
+1
+
+− ξS0 2
+
+cos
+
+π τscr − τfcr
+
+τ − τfcr − CM (T − Ms)
+
++ 1 + ξS0
+
+(8a)
+
+2
+
+ξT
+
+=
+
+ξT 0
+
+−
+
+ξT 0 1 − ξS0
+
+(ξS
+
+− ξS0) .
+
+(8b)
+
+The heat transfer model of the actuator is derived from the energy conservation equation [27]–[29], [33]–[35]. In order to construct the simple heat transfer model, the model was built based on a wire structure by applying a coolant vessel with a large diameter of more than twice the spring diameter. The schematic of the control volume is shown in Fig. 2(a). The length of each segment is set as the length of one coil. The energy conservation equation of the SMA in the control volume can be described as
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+JEONG et al.: WRIST ASSISTING SOFT WEARABLE ROBOT WITH STRETCHABLE COOLANT VESSEL INTEGRATED SMA MUSCLE
+
+1049
+
+follows [27]–[29], [35].
+
+mf cp,f T˙f = qSMA→Fluid − m˙ f cp,f ΔTf
+
+(9)
+
+msmacp,sma T˙sma = qFluid→SMA + RSMAI2 − msmaLsmaξ˙. (10)
+
+Tf is the temperature of the ﬂuid, cp,f is the speciﬁc heat of the ﬂuid, cp,sma is the speciﬁc heat of the SMA, βsma is the resistivity of the SMA, and m˙ f is the mass ﬂow of the coolant. For simpliﬁcation, we neglected radiation from the
+
+ﬂuid to ambient air. The second term on the right side of (10)
+
+is the electrical energy input needed to heat the SMA. The
+
+last term relates to energy absorption or release during phase
+
+transformation described as latent heat.
+
+A number of assumptions were considered in constructing
+
+the heat transfer model of the proposed SMA muscle [27]–[29].
+
+The normal strain of the SMA wire is negligible because the
+
+force and displacement of the SMA coil spring are dominantly
+
+determined by the shear stress.
+
+Since the SMA is assumed as a thin wire model, the radial
+
+temperature gradient of the SMA in the control volume is not
+
+considered.
+
+The
+
+Biot
+
+number
+
+Bi
+
+=
+
+hdsma ksma
+
+explains how fast
+
+conductive heat transfer occurs compared to convective heat
+
+transfer, where h is convective heat transfer coefﬁcient and
+
+ksma is thermal conductivity. If Bi << 1, it means that the conductive heat transfer occurs dominantly compared to the
+
+convective heat transfer in the control volume. Therefore, if Bi
+
+is much smaller than 1 in our SMA model, the temperature of
+
+the SMA at all points in the control volume can be assumed to be
+
+constant, which implies the lumped method with homogeneity
+
+can be applied. The thermal conductivity of the SMA and water
+
+are 18 and 0.6 W/mK, respectively. Convective heat transfer
+
+coefﬁcient h can be expressed as using h
+
+=
+
+Nukf Dh
+
+where Nusselt
+
+number (Nu), the thermal conductivity of the ﬂuid (kf), and
+
+hydraulic diameter (Dh). It is clear that d << Dh and kf<< ksma.
+
+Because this implies Bi is a small number, lumped parameter
+
+representation can be applied in the control volume. Similarly,
+
+the conduction of the SMA wire in the longitudinal direction is
+
+negligible if the segment of the control volume is short enough.
+
+Because there is no ﬂow of ﬂuid in the heating phase, the
+
+temperature of the coolant is assumed to increase independently
+
+in each segment. However, as the ﬂuid ﬂows through the next
+
+segment in the cooling phase, the temperature of the (i − 1)th
+
+segment ﬂuid at time t is transferred to the temperature of the ith
+
+segment at time t + Δt. This is described in Fig. 2(b). Then, the
+
+continuous equations (9) and (10) can be numerically solved,
+
+as described in (11) and (12). The numerical unit time Δt is
+
+described as Δt = c/uf , where the length of each segment c, and the velocity of the ﬂuid uf
+
+ΔTﬂuid,i,t Δt
+
+=
+
+4πDd ∗ h (Tsma,i,t − Tﬂuid,i,t) ρf cp,f cDt2ube − πd2D
+
+(11)
+
+ΔTsma,i,t = Δt
+
+− 4h ρsmaCp,smad
+
+(Tsma,i,t
+
+−
+
+Tﬂuid,i,t)
+
++
+
+16I 2 βsma c (πd2)2ρsmaCp,sma
+
+/(1 + Lsmaξ˙).
+
+(12)
+
+Fig. 3. (a) Heat ﬂow of SMA for temperatures by DSC test. (b) Relationship between shear stress and shear strain for different SMA phases.
+
+In the heating phase, free convection from the SMA to the ﬂuid occurs because there is no ﬂow. Then, the Nusselt number of the heating phase can be described using the Raleigh number and Prandtl number [34], [35]
+
+Ra = gβf (Tsma − Tf ) Dh3 νf αf
+
+P r = νf αf
+
+νf
+
+=
+
+μf , ρf
+
+αf
+
+=
+
+kf ρf Cp,f
+
+(13)
+
+where βf , νf , μf , and kf are the volumetric coefﬁcient of thermal expansion, kinematic viscosity, dynamic viscosity, and thermal
+
+conductivity of the ﬂuid, respectively
+
+⎡
+
+⎤2
+
+Nu = ⎢⎢⎣0.60 + 0.387 1+
+
+Ra
+0.56 Pr
+
+9 16
+
+16
+
+1 6
+
+⎥⎥⎦
+
+9
+
+(14)
+
+for 10−5 ≤ Ra ≤ 1012
+
+h = Nukf .
+
+(15)
+
+Dh
+
+In the cooling phase, because there is no electrical current
+
+input while the coolant ﬂows, the temperature of SMA is de-
+
+creased by forced convection. In addition, we considered the
+
+coil geometry of the SMA to the model. Therefore, we chose
+
+a combination of heat transfer coefﬁcient of vertical ﬂow and
+
+horizontal ﬂow for the coil spring case, as follows [33], [35]:
+
+0.683Re
+
+1 2
+
+P
+
+r
+
+1 3
+
+4.15
+
+h = kf cosθ
+
+d
+
++ kf sinθ Dtube − d . (16)
+
+In order to apply the designed model to our SMA actuator,
+
+several SMA parameters were measured. The four stress-free
+
+transformation temperatures of the SMA were obtained from a
+
+differential scanning calorimetry (DSC) test in which a sample
+
+of the SMA was heated and cooled in the temperature range of −50 to 100 °C. The heat ﬂow results are plotted in Fig. 3(a).
+
+The SMA has solid-solid phase transformations when temper-
+
+ature increases (martensite to austenite) or decreases (austenite
+
+to martensite). The phase transformation from martensite to
+
+austenite is endothermic due to the latent heat of transformation.
+
+Fig. 3(a) shows a valley that indicates an endothermic process in the heating phase. The austenite start temperature (AS) and
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+1050
+TABLE II PARAMETERS OF SMA COIL SPRING FOR SIMULATION
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+
+Fig. 4. Simulation results of actuation time of SMA muscle. (a) Contraction time. (b) Extension time. (c) Total actuation time per cycle.
+
+the austenite ﬁnish temperature (AF ) are obtained from start and ﬁnish temperature of the valley. The latent heat of transformation (Lsma) is obtained from an area of the valley. On the other hand, in the cooling phase, there are two peaks, which indicates it is exothermic due to the phase transformation from austenite to martensite. The reason why there are two peaks is there is not only martensite but rhombohedral phase (R-phase). However, martensite and R-phase are considered as one phase for simplicity of modeling in this article. The three parameters (martensite start temperature (MS), martensite ﬁnish temperature (MF ), and latent heat of transformation) can be measured using the same process as performed in the heating phase at the peak, not the valley. Next, the shear moduli of the SMA and the critical stresses in the martensite phase were measured using a dynamic mechanical analyzer (DMA). Fig. 3(b) shows the relationship between the shear stress and the shear strain when the SMA is fully martensite (T < As) and fully austenite (T > Af ). The shear moduli of SMA (GA and GM ) are obtained from the linear slope of the stress-strain curve of the austenite and martensite, respectively. The critical shear stresses (τscr, τfcr) are determined by the stresses at which the nonlinear relationship between shear stress and shear strain starts and ﬁnishes in the stress-strain curve of the martensite, respectively. This nonlinear relationship is called the detwinning process. The parameters used for the simulation are shown in Table II.
+The actuation time can be estimated by solving (5), (11), and (12) with substituting (14) and (15) in the contraction case and (16) in the extension case. In order to analyze the effect of the thermal properties of coolants, two thermal properties, thermal
+
+conductivity and speciﬁc heat, were selected. For the simulation, a constant load condition of 10 N was applied, and the target displacement of contraction was 55 mm, which is about 38% of the initially stretched SMA muscle by the load. Because the shear stress of the SMA applied by the load is larger than the critical ﬁnish shear stress of the SMA, phase transformation only occurs between the fully austenite phase and the detwinned martensite phase. Then, the initial martensite volume fraction in the heating phase is 1. In order to investigate only the effects of the thermal properties of the coolants, the viscosity and density of water were used for all simulations in Section Ⅱ-B. In addition, one assumption was made for the simulation of the SMA muscle: the contracting force exerted by the stretchable coolant vessel was ignored because its elastic modulus is much smaller than the modulus of the SMA actuator.
+In order to produce contraction of the SMA muscle, a step input electrical current of 4 A was applied in all cases. The estimated contraction time is shown in Fig. 4(a). The contraction time increases as the speciﬁc heat and the thermal conductivity increase. With the larger thermal conductivity of the coolant, the convective heat transfer coefﬁcient becomes large. Thus, a large amount of heat is transferred from the SMA to the coolant. In addition, the large speciﬁc heat of the coolant induces a slow temperature increase of the coolant in the control volume. Therefore, the temperature difference between the SMA and the coolant, which is proportional to the convective heat transfer, decreases slowly.
+The estimated extension time is shown in Fig. 4(b). In the case of the extension time, the coolant ﬂow rate was set at 5∗10−6 m3/s. The extension time increased when the thermal conductivity was less than 0.1 W/mK, and the speciﬁc heat is less than 500 J/kgK, which is a small value. When the values of the thermal properties are less than the above values, the extension times were observed to be near 1 s. In the case of cooling, surely the large thermal conductivity induces large heat transfer
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+JEONG et al.: WRIST ASSISTING SOFT WEARABLE ROBOT WITH STRETCHABLE COOLANT VESSEL INTEGRATED SMA MUSCLE
+TABLE III THERMAL PROPERTIES OF COOLANTS FOR EXPERIMENTS
+
+1051
+
+Fig. 6. Experimental results of contraction time of SMA muscle.
+
+Fig. 5. Fabricated SMA muscles with extended and contracted state.
+from the SMA to the coolant. In addition, the large speciﬁc heat induces the slow temperature increase of the coolant when ﬂowing through the SMA. Therefore, the temperature difference between the SMA and the coolant in the next control volume after ﬂowing becomes large, and large heat transfer can occur.
+The total actuation time per cycle can be explained by adding the contraction time and the extension time, as shown in Fig. 4(c). The shortest actuation time was estimated to be about 1.912 s when the thermal conductivity was around 0.1 W/mK and the speciﬁc heat was around 1000—4000 J/kgK.
+C. Experimental Analysis of Coolant Effect
+In order to investigate the coolant effect in the actual system, four coolants that are widely used in the industry were selected: water, mineral oil, PG, and EG. The thermal properties and viscosities of those coolants are shown in Table III, and the fabricated SMA muscles with extended and contracted state is shown in Fig. 5.
+A 1 kg load was applied for all the experiments. In the case of heating, a step input current of 4 A current was applied with no coolant circulation to match the condition with the simulation and to compare the energy consumption. The contraction time was measured by observing how long it took for the SMA muscle to contract 55 mm, which is about 38% of the initially stretched length, from the extended condition. In the case of cooling, there was no current input and the coolant was circulated with various pump inputs, which imply the amount of circulating pressure.
+
+The extension time is deﬁned as the time when the SMA muscle is fully stretched from 55 mm contraction. Displacement was measured by the laser displacement sensor in all experiments.
+Fig. 6 shows the contraction times of the SMA muscle integrated with the cooling system for four selected coolants. The shortest contraction time of 0.97 s was measured when mineral oil was used for the coolant. The longest contraction time was measured more than 6 s when the water was used for the coolants. In addition, the contraction time of the EG cooling and PG cooling case were measured as 1.76 and 1.44 s, respectively. These results show a similar trend with the simulation results, which were estimated as 1.18, 2.09, 1.34, and 6.96 s for mineral oil, EG, PG, and water cooling cases, respectively. For the water-cooling case, one of the problems was the low boiling point; the boiling effect was observed during the heating process of the SMA coil spring. It causes fast heat absorption from the SMA to water; therefore, it decreases the temperature of the SMA instantaneously.
+The extension times of the SMA muscle integrated with the cooling system for four selected coolants are shown in Fig. 7. Dotted lines indicate 90% of the full displacement change. In all cases, the extension time decreases as the pump power input increases, which means that the cooling rate rises as the ﬂow rate of the coolant increases. In addition, for high ﬂow rate, the extension times were measured and found to be less than 1 s for water, EG, and mineral oil. These results imply that the fast ﬂow rate strongly reduces the extension time for the four selected coolants.
+When the same pump input was applied, the shortest extension time was measured, less than 0.5 s, for water. EG and mineral oil also show short extension times of less than 1 s, but values are relatively longer than that for water. In addition, PG shows the slowest extension rate, which is slightly different from the tendency of the simulation results. In the case of PG, as shown in Fig. 7(c), its cooling response is slower than the expected from the simulation described in Fig. 4(b). As shown in Table III, PG has the highest viscosity value and this causes a slower cooling response by low ﬂow rate.
+In the simulations and experimental results, the mineral oil with both contraction time and extension time of less than 1 s was
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+1052
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+
+Fig. 9. Motion of wrist produced by wearable robot. (a) Extension. (b) Flexion. (c) Radial deviation. (d) Ulnar deviation. Actuator arrangement. (e) Back side. (f) Palm side.
+
+article, the robot was integrated with an active cooling system with an enhanced anchoring design. This section introduces the developed aspects of the robot, especially the anchoring design, the cyclic performance, and the user test.
+
+Fig. 7. Experimental results of extension time of SMA muscle. (a) Water case. (b) EG case. (c) PG case. (d) Mineral oil cooling case.
+
+A. Wrist Motion Analysis
+The wrist joint can be approximated as a joint with two nonaligned rotational axes; therefore, wrist motion can be analyzed as two-DOF motion. Extension and ﬂexion motions take place within the anteroposterior plane and along the transverse axis, and ulnar deviation and radial deviation motions take place within the transverse plane and along the anteroposterior axis. These four motions are shown in Fig. 9(a), (b), (c), and (d).
+
+B. Design of Soft Wearable Robot for Assisting Wrist Motion
+
+Fig. 8. Cyclic actuation of SMA muscle.
+selected as the optimal coolant material for our SMA muscles. Fig. 8 shows the cyclic performance of the SMA muscle with 0.5 Hz frequency. Step current input of 4 A and step pump input of 2.7 W were applied. The range of actuation of the proposed SMA muscle did not decrease even if repetitive actuation occurs.
+III. SOFT WEARABLE ROBOT FOR ASSISTING WRIST MOTION
+Wrist motion is essential for various ADLs like opening doors and lifting a spoon for food intake [37], [38]; therefore, it is worthwhile to develop a soft wearable robot for assisting wrist motion to improve the quality of life of people who have difﬁculty in controlling their wrists [36], [39], [40]. In our previous work, we proposed a prototype of the soft wearable robot for wrist motion assistance [36]. The robot comprised a wearable ﬁngerless glove and a wearable strap placed on the forearm. The proposed robot can maximally produce 1.32 Nm in the extension direction and it was shown in our previous work [36]. In this
+
+In order to achieve desired wrist motions, ﬁve SMA muscles were attached to the glove and the strap as shown in Fig. 9. Four wrist motions can be induced by selectively actuating the SMA muscles: contraction of three actuators on the back of the hand (1, 2, and 3) results in extension motion, contraction of two actuators (4 and 5) on palm side results in ﬂexion motion, contraction of two actuators (1 and 4) near the ﬁfth ﬁnger results in ulnar deviation, and contraction of two actuators (2 and 5) near the thumb results in radial deviation.
+The placements of the SMA muscles were determined in our previous study [36]. The initial stretched length of the SMA muscles in the neutral position is set to 120 mm to prestretch the actuators. The distance between the actuators that are positioned at the back of the hand is set at 15 mm, and the distance between the actuators at the palm is set at 60 mm.
+An anchor refers to a structure to prevent dislocation of the wearable robot from its original position. In the previous study, a ﬁngerless glove and a nonstretchable strap around the forearm were used as the anchoring structure for each hand and forearm; however, dislocation of the strap on the forearm made the anchoring system insecure. In order to solve the slip problem, an additional anchor is attached to the elbow, as shown in Fig. 10. The forearm anchor is connected to the elbow anchor by two nonstretchable fabric straps with buckles. By pulling the fabric straps, the forearm anchor is tightly suspended at the desired position.
+The cooling system is particularly important for robot performance in that they improve the speed of switching from one
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+JEONG et al.: WRIST ASSISTING SOFT WEARABLE ROBOT WITH STRETCHABLE COOLANT VESSEL INTEGRATED SMA MUSCLE
+
+1053
+
+Fig. 11. Cyclic performances of the robot using natural air cooling and mineral oil cooling. (a) Flexion/extension direction. (b) Radial/ulnar deviation direction.
+TABLE V GENDERS AND AGES OF SUBJECTS
+
+Fig. 10. Fabricated wearable robot for assisting wrist motion. (a) Schematic structure. (b) Robot worn on arm. (c) Coolant circulation system.
+TABLE IV RANGE OF MOTION FOR FOUR WRIST MOTIONS
+wrist action to another. A schematic diagram of the cooling system is provided in Fig. 10(c). When the pump is on, the coolant ﬂows from the outlet of the pump to the SMA muscles. Simultaneously, the coolant ﬂows from the radiator to the inlet of the pump. To maintain the temperature of the coolant, the radiator is used to continuously cool the coolant. By connecting the coolant paths of all ﬁve SMA muscles, the size of the cooling system is signiﬁcantly reduced because multiple pumps are not required to cool the actuators individually. It efﬁciently reduces the size of the robot. The mass of the wearing part is only 300 g, and the total mass of the robot including controllers, cooling components, and a power source is 1.92 kg. The volume of the radiator is smaller than 800 cm3 area and the pump size is smaller than 70 cm3.
+C. Performances of Wearable Robot for Assisting Wrist Motion
+The ROM and the cyclic performances of the robot were tested using an arm mannequin that can move freely with twoDOF wrist motion and can rotate more than the human body. To measure the wrist angle, absolute magnetic encoders were attached to the wrist joint, as shown in Fig. 10(a). A universal joint was applied to achieve free two-DOF wrist motions. The mannequin itself can rotate more than 70˚ for any direction of wrist motion. The ROMs were measured again by applying the wearable robot on the mannequin and fully actuating the robot. Table IV shows the measured ROMs when the robot was
+
+activated on the mannequin. The largest ROM was measured in the direction of extension, and sufﬁcient ROMs of 35˚ were measured in all directions. Normally, the ROMs of the human body for radial deviation is 20–25˚ and ulnar deviation is 30˚, which are smaller than the robot. The ranges of rotation should be controlled to ensure safety when human wears it.
+In order to check the enhancement of the cyclic performance of the robot when using the active cooling system, the robot was repeatedly actuated to 80% of ROM of each direction on the mannequin for both cases of natural cooling and active cooling with mineral oil circulation. The step current input was applied for 4 A for the active cooling case and 2 A for the natural aircooling case until the robot reached the selected ROM. Fig. 11 shows the cyclic performances of the robot in the direction of ﬂexion/extension and deviations. In both cases, their actuation cycle times were delayed after several actuations when there was no active cooling. Because the cooling rate was much slower than the heating rate in the case of the natural air cooling, these results can be attributed to the temperature saturation of the antagonistic SMA muscles. When the active cooling with mineral oil was produced, the cycle time of the actuation was maintained in both directions, as shown in Fig. 11. These results imply that the active cooling system successfully enhances the cyclic actuation performances of the proposed robot.
+D. User Tests
+Several tests were conducted to investigate the effect of torque assistance and wearing time for ﬁve healthy adults (three males and two females). First, the effect of torque assistance was investigated by measuring the duration to produce the target force consistently in the direction of the wrist motion with the given loading conditions. The times were measured in non-assisting and assisting robot conditions. Table V provides information of the subjects. All experimental protocol was approved by Institutional Review Board at the Korea Advanced Institute of Science and Technology (KH2019-148).
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+1054
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+TABLE VII RATE OF DURATION INCREASE
+
+Fig. 12. Experimental setup for measuring time maintaining target force.
+TABLE VI MEASURED DURATION OF MAINTAINING TARGET FORCE
+
+TABLE VIII SELF-DONNING TIME OF ROBOT
+
+Fig. 12 shows the experimental setup for measuring the duration of maintaining the target force. The isometric exercise system is constructed because this exercise is widely used in rehabilitation areas [42]. The subjects were asked to continuously produce a pulling force higher than the target force in the directions of the four wrist motions of ﬂexion, extension, radial deviation, and ulnar deviation while their arms were ﬁxed and the external load was given. The target force was set at 30 N for all directions. In the experiment, the additional loads were applied to give high resistance to the muscle. This is because the torqueassisted effect of the proposed robot in high resistance conditions can be clearer than applied with low resistance. However, the muscle strength of the wrist in the direction of ﬂexion, extension, ulnar deviation, and radial deviation are different, respectively. Considering this fact, therefore, the load was applied differently depending on the direction of the wrist motion. For example, a load of 3 kg was given for the directions of ﬂexion and extension while maintaining above the target force. A load of 1.5 kg was applied when subjects pulled their wrists in the direction of radial deviation, and there was no additional load in the direction of ulnar deviation. In addition, an experiment with no assistance was carried out ﬁrst for all subjects and, to prevent the effect of muscle fatigue, a 20-min rest was given before the experiment with assistance condition. The experiments for measuring the duration were carried out twice for all subjects. Assisted torque by the proposed robot can be estimated from the results of torque measurement reported in our previous study; 0.61, 1.32, 0.90, and 0.62 Nm for ﬂexion, extension, radial deviation, and ulnar deviation, respectively [37].
+Tables VI and VII show the average duration of maintenance and the rate of duration increase for all wrist motions. In all
+
+cases, subjects could produce the targeted force longer when their wrists were assisted by the robot. For all subjects, the highest increase in rate was observed in the case of extension. These results were predictable because the number of assisting actuators is three for extension, whereas only two actuators were activated for the other directions. The effect of robot assistance can be analyzed by ﬁnding out the rate of duration increase, which can be expressed by (tassist − tnot assist)/tnot assist. The average rates of increase were 62.81%, 101.65%, 58.11%, and 44.23% for directions of ﬂexion, extension, radial deviation, and ulnar deviation, respectively. Therefore, it implies that our robot can support wrist motion with torque assistance.
+Because our robot was designed to assist patients who have physical disabilities, another important aspect is wearability; the robot has to be easy to put on and take off. Focusing on this aspect, our previous research measured the amount of time needed to put on the device [35]; two minutes on average were needed in the cases of both self-donning with one arm and donning with another person’s aid. For this article, we measured the self-donning time with improved design.
+Table VII shows the times measured for subjects to put on the robot. All subjects were asked to put on the robot using only one arm on which the robot was not worn. All experiments were carried out after enough trials of wearing the robot over ﬁve times. In order to design the experimental environment to make it similar to that of patients, the subjects were asked to put the robot on another person’s hand, and the person wearing the robot was asked not to intentionally move their arm or hand. The average amount of time needed to put on the device was 72.4 s, which is much less than 2 min. Although the additional anchoring part on the elbow was added, the amount of time needed to put on the device has improved compared to the wearing time with our previous prototype which only has the glove and the wristband [35]. The simple ﬁxation of the wristband part in the proper position using the length-changeable strap and the elbow
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+JEONG et al.: WRIST ASSISTING SOFT WEARABLE ROBOT WITH STRETCHABLE COOLANT VESSEL INTEGRATED SMA MUSCLE
+
+1055
+
+anchoring part made these improved results possible. In addition, the simple ﬁnger anchor with only one ﬁxation structure makes this robot easy to wear.
+
+IV. DISCUSSION
+In this article, we focused on designing a soft and lightweight wearable robot for assisting the motion of the wrist. The main objective of the design is to suggest a compact soft actuator achieving both enough range of motion and force required to assist ADLs motion. For large amount of contraction/extension, high lifting force, and natural restoring force supporting weightbalance, we proposed the stretchable coolant vessel integrated SMA muscle, which provides a contraction ratio of 40% and lifting force up to 10 N for supporting human activities. The proposed wearable robot can assist every wrist motion including ﬂexion, extension, ulnar deviation, and radial deviation. The weight of the wearing part is only 300 g and the whole system is 1.92 kg. In order to reduce the slip of the wearing part of the wrist, we adopted the elbow joint as an anchor. In addition, by adjusting the length of the nonstretchable strap with an adjustable strap buckle, the user not only can wear the robot regardless of the arm size but also can control the pre-stretched length of the SMA muscle to adjust the assistive force.
+However, since the response of SMA is based on thermal control, the proposed interface takes at least about 2 s for contraction and extension although we took the design based on model analysis. In general, ADLs do not require high speed over 1.5 Hz (maximally 233˚/s for wrist ﬂexion) [43], [44], and especially when supporting the rehabilitation of wrist movement, 0.5 Hz shows the best performance [45]. It seems the current speed of the proposed system is enough for rehabilitation tasks. Here, we discuss various ways to enhance the speed of the proposed actuator for extension of applicability.
+There have been great researches about SMA actuators achieving high bandwidth based on resonance design, thin wire, and microscaled pattern with concentrated input energy [46]– [50]. These researches show the high bandwidth over 10 Hz in a certain deﬂection range in low stress conditions. Referring to the ideas of previous works, we can estimate the frequency response of our system by changing design parameters.
+As shown in Fig. 13, actuation frequencies of the SMA muscle can be simulated by modulating design parameters with the proposed model. Fig. 13(a)–(d) show estimated frequencies in accordance with varying contraction ratio and wire diameter. Fig. 13(a)–(c) are estimated under identical input energy. Fig. 13(a) shows the results when all the other design parameters are based on the proposed actuator (kf = 0.136 W/mK, τ0 = 4.49 × 108 Pa, J = 6.14 W). This shows that less contraction ratio results in higher frequency. It also shows thinner SMA does not show enhanced performance in high thermal conductivity coolants since heating takes a very long time because of elevated cooling performance caused by high ratio of surface to cross-sectional area. Fig. 13(b) shows the results when the thermal conductivity is higher (kf = 0.6 W/mK). As estimated in Fig. 13(a) and (b) supports the degraded performance of thin wires in highly conductive coolants. Thicker wire may improve
+
+Fig. 13. Simulation results of actuation frequencies for various design parameters. (a) Varying contraction ratio and wire diameter of proposed actuator supporting 10 N. (b) Increasing the thermal conductivity of coolant (0.6 W/mK). (c) Decreasing the load (applying lower applied nominal stress of τ = τ0/1.5. (d) Increasing input power (11.62 W) and coolant ﬂow rate (1.5 × 10−5 m3/s). (e) Actuation frequencies for various currents and coolant ﬂowrates when the coolant is mineral oil. (f) Actuation frequencies for various currents and coolant ﬂow rates when the coolant is water.
+performance within a limited condition but it makes the muscle actuator bulkier. Since there are trade-offs between heating and cooling response, we need to optimize design parameters. Fig. 13(c) shows the results when smaller stress or loading condition is applied (τ = τ0 /1.5) to the SMA actuator. In this case, higher actuation frequencies are estimated. These results can be explained by the decrease of the phase transition temperatures of the SMA when the applied stress decreases. Fig. 13(d) shows the actuation frequencies with increased heating power and coolant ﬂow rate. The frequencies largely increase in whole ranges of the wire diameter and the contraction ratio. This implies that more concentrated energy may derive faster response.
+Since Fig. 13(a)–(d) shows thermal conductivity of coolant and amount of input energy mainly contribute to increasing the speed of the proposed type actuator, we simulated its frequency response in accordance with changing coolant, coolant ﬂow rate, and input current as shown in Fig. 13(e) and (f). Fig. 13(e) shows the results of the mineral oil cooling case, and Fig. 13(f) shows the results of the water-cooling case. The contraction ratio is 40% and the wire diameter is 0.5 mm. The current is modulated
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+1056
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+
+from 1 to 10 A, and the range of coolant ﬂowrate is from 1 to 30×10−6 m3/s. Both results show that the high frequency is estimated in high current input and high coolant ﬂowrate. As shown in Fig. 13(e), the frequency gradually increases when the current and the ﬂow rate increase. However, Fig. 13(f) shows that the frequency rapidly increases after the current exceeds 5 A. Water cooling with fast ﬂow rate case shows lower performance under respectively low current and very high performance over 5 A. It implies the combination of concentrated heating energy and massive cooling achieves enhanced frequency response. For example, when we apply the input current of 10 A and the water coolant ﬂow rate of 30×10−6 m3/s , the estimated actuation frequency is about 3.71 Hz, which is even faster than human muscle in ADLs.
+From the proposed model, the responses of the actuator, such as contraction ratio, force, or actuation frequency, can be estimated depending on the thermal properties of coolants, stress applied to the SMA muscle, and power input to the SMA muscle. In other words, this implies that we can determine the design parameters to achieve the target performances of the SMA muscle. For example, if some researchers need an actuator that can produce high bandwidth but does not focus on the contraction ratio, then they can select the coolant that has high thermal conductivity and apply high power input. Our main target performance is a high contraction ratio of over 40%, high force over 10 N, and relatively low power input to reduce the power consumption especially for wearable or portable devices. The design process was to achieve high actuation frequency while satisfying these target conditions, especially focusing on the thermal properties of the coolants.
+Our model can describe the trends of the performance of the SMA muscle related to the thermal properties of the coolants. However, the model has to be improved in detail since the model does not reﬂect the measured results accurately yet. Since the geometry of the SMA coil spring is complex, several assumptions that make the gap between the simulated values and actual measured values were included; the simpliﬁcation of heat transfer as a simple wire and the nonlinear characteristics of the SMA produced by the coil spring geometry. The model can be improved by applying these complex factors.
+V. CONCLUSION
+We propose a soft wearable robot for assisting wrist motion with stretchable coolant vessel integrated SMA muscle with an active cooling system using coolant circulation. The SMA muscle was designed with one SMA coil spring and coolant vessel weighing only 0.8 and 2 g, respectively. The SMA muscle is designed to produce up to 40% contraction and 10 N force. In order to maximize the actuation frequency while satisfying the above conditions, the effects of thermal properties of the coolant were theoretically analyzed. The experiments were performed on speeds of heating and cooling responses of SMA muscle with four coolants widely used in the industry. From the simulations and the experiments for both heating and cooling effects, mineral oil was selected as the optimal coolant. The SMA muscle with mineral oil cooling system shows contraction time less than
+
+1 s with 40% contraction ratio when 4 A current is applied for heating. In addition, extension time shows less than 1 s when the step pump input of 2.7 W is applied. By attaching multiple SMA muscles on a soft glove, wristband, and elbow anchoring, a soft wearable robot for assisting wrist motion was designed. Thanks to the advantages of the SMA coil spring, the robot itself has a weight-balanced and compliant structure with only 300 g weight of wearing part. The proposed robot shows sufﬁcient ROM of 35˚ in all directions; the largest ROM of 50˚ for extension. In addition, the robot shows stable and fast cyclic actuation performance with active cooling.
+In order to enhance the actuation speed of SMA muscle, we analyzed the estimated frequency of the proposed mechanism in various aspects such as wire diameter, the thermal conductivity of coolants, nominal stress, contraction ratio, and energy. When the concentrated energy input is applied, the actuation frequency improves up to 3.71 Hz. However, since we need to avoid more energy consumption especially for wearable or portable devices, we still need to continuously seek new ways for improving the response of SMA actuators.
+In this study, a theoretical model of an SMA muscle designed by integrating a thermomechanical model of an SMA and a heat transfer model between the SMA and the ﬂuid was introduced. However, the model does not describe the designed actuator perfectly. There were several simpliﬁcations in heat transfer model, like assuming coil spring geometry as long wire geometry and simplifying the nonlinearities of the SMA caused by the coil spring geometry. In order to investigate the behavior of the SMA muscle accurately, we will develop our theoretical model in greater detail, especially considering the energy efﬁciency. For the proposed SMA muscle and wearable robot, the coolant circulation pathway is still long, which makes the user uncomfortable. Therefore, a much simpler structure will be considered for future work.
+REFERENCES
+[1] K. Kong and D. Jeon, “Design and control of an exoskeleton for the elderly and patients,” IEEE/ASME Trans. Mechatronics, vol. 11, no. 4, pp. 428–432, Aug. 2006.
+[2] J. C. Perry, J. Rosen, and S. Burns, “Upper-limb powered exoskeleton design,” IEEE/ASME Trans. Mechatronics, vol. 12, no. 4, pp. 408–417, Aug. 2007.
+[3] T. Yan, M. Cempini, C. M. Oddo, and N. Vitiello, “Review of assistive strategies in powered lower-limb orthoses and exoskeletons,” Robot. Auton. Syst., vol. 64, pp. 120–136, Feb. 2015.
+[4] A. J. Veale and S. Q. Xie, “Towards compliant and wearable robotic orthoses: A review of current and emerging actuator technologies,” Med. Eng. Phys., vol. 38, no. 4, pp. 317–325, Apr. 2016.
+[5] C. Lee et al., “Soft robot review,” Int. J. Control Autom., vol. 15, no. 1, pp. 3–15, Jan. 2017.
+[6] A. Miriyev, K. Stack, and H. Lipson, “Soft materials for soft actuators,” Nat. Commun., vol. 8, pp. 596, Sep. 2017.
+[7] T. G. Sugar et al., “Design and control of RUPERT: A device for robotic upper extremity repetitive therapy,” IEEE Trans. Neural Syst. Rehabil. Eng., vol. 15, no. 3, pp. 336–346, Sep. 2007.
+[8] H. K. Yap, J. H. Lim, F. Nasrallah, J. C. H. Goh, and R. C. H. Yeow, “A soft exoskeleton for hand assistive and rehabilitation application using pneumatic actuators with variable stiffness,” in Proc. IEEE Int. Conf. Robot. Automat., 2015, pp. 4967–4972.
+[9] T. H. Koh, N. Cheng, H. K. Yap, and C.-H. Yeow, “Design of a soft robotic elbow sleeve with passive and intent-controlled actuation,” Front. Neurosci., vol. 11, Oct. 2017, Art. no. 597.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+JEONG et al.: WRIST ASSISTING SOFT WEARABLE ROBOT WITH STRETCHABLE COOLANT VESSEL INTEGRATED SMA MUSCLE
+
+1057
+
+[10] N. Vitiello et al., “NEUROExos: A powered elbow exoskeleton for physical rehabilitation,” IEEE Trans. Robot., vol. 29, no. 1, pp. 220–235, Feb. 2013.
+[11] H. In, B. B. Kang, M. Sin, and K.-J. Cho, “Exo-Glove: A wearable robot for the hand with a soft tendon routing system,” IEEE Robot. Autom. Mag., vol. 22, no. 1, pp. 97–105, Mar. 2015.
+[12] X. Cui, W. Chen, X. Jin, and S. K. Agrawal, “Design of a 7-DOF cabledriven arm exoskeleton (CAREX-7) and a controller for dexterous motion training or assistance,” IEEE/ASME Trans. Mechatronics, vol. 22, no. 1, pp. 161–172, Feb. 2017.
+[13] M. Xiloyannis et al., “Design and validation of a modular one-to-many actuator for a soft wearable exosuit,” Front. Neurobot., vol. 13, Jun. 2019, Art. no. 39.
+[14] Z. Peng and J. Huang, “Soft rehabilitation and nursing-care robots: A review and future outlook,” Appl. Sci., vol. 9, no. 15, pp. 3102, Jul. 2019.
+[15] A. Villoslada, A. Flores, D. Copaci, D. Blanco, and L. Moreno, “Highdisplacement ﬂexible shape memory alloy actuator for soft wearable robots,” Robot. Auton. Syst., vol. 73, pp. 91–101, Nov. 2015.
+[16] J. Hope and A. McDaid, “Development of wearable wrist and forearm exoskeleton with shape memory alloy actuators,” J. Intell. Robot. Syst., vol. 86, no. 4, pp. 397–417, 2017.
+[17] D. Copaci, E. Cano, L. Moreno, and D. Blanco, “New design of a soft robotics wearable elbow exoskeleton based on shape memory alloy wire actuators,” Appl. Bionics Biomech., vol. 2017, Sep. 2017, Art. no. 1605101.
+[18] S. J. Park and C. H. Park, “Suit-type wearable robot powered by shape-memory-alloy-based fabric muscle,” Sci. Rep., vol. 9, Jun. 2019, Art. no. 9157.
+[19] S. J. Park, U. Kim, and C. H. Park, “A novel fabric muscle based on shape memory alloy springs,” Soft Robot, vol. 7, no. 3, pp. 322–331, Jun. 2020.
+[20] J. M. Jani, M. Leary, A. Subic, and M. A. Gibson, “A review of shape memory alloy research, applications and opportunities,” Mater. Des., vol. 56, pp. 1078–1113, Apr. 2013.
+[21] L. Brinson, “One-dimensional constitutive behavior of shape memory alloy: Thermomechanical derivation with non-constant material functions and redeﬁned martensite internal variable,” J. Intel. Mat. Syst. Str., vol. 4, no. 2, pp. 229–242, Apr. 1993.
+[22] C. Liang and C. A. Rogers, “One-dimensional thermomechanical constitutive relations for shape memory materials,” J. Intel. Mat. Syst. Str., vol. 8, no. 4, pp. 285–302, Apr. 1990.
+[23] S. M. An, J. Ryu, M. Cho, and K. J. Cho, “Engineering design framework for a shape memory alloy coil spring actuator using a static two-state model,” Smart Mater. Struct., vol. 21, no. 5, Apr. 2012, Art. no. 055009.
+[24] H. Tobushi and K. Tanaka, “Deformation of a shape memory alloy helical spring: Analysis based on stress-strain-temperature relation,” JSME Int. J. Ser., vol. 34, no. 1, pp. 83–89, Jan. 1991.
+[25] S. J. Yates and A. L. kalamkarov, “Experimental study of helical shape memory alloy actuators : Effect of design and operating parameters on thermal transient and stroke,” Metals, vol. 3, no. 1, pp. 123–149, Feb. 2013.
+[26] Y. Tadesse, N. Thayer, and S. Priya, “Tailoring the response time of shape memory alloy wires through active cooling and pre-stress,” J. Intel. Mat. Syst. Str., vol. 21, no. 1, pp. 19–40, Nov. 2009.
+[27] S. S. Cheng, Y. Kim, and J. P. Desai, “Modeling and characterization of shape memory alloy springs with water cooling strategy in a neurosurgical robot,” J. Intel. Mat. Syst. Str., vol. 28, no. 16, pp. 2167–2183, Sep. 2017.
+[28] S. S. Cheng, Y. Kim, and J. P. Desai, “New actuation mechanism for actively cooled SMA springs in a neurosurgical robot,” IEEE Trans. Robot., vol. 33, no. 4, pp. 986–993, Aug. 2017.
+[29] J. D. Ertel and S. A. Mascaro, “Dynamic thermomechanical modeling of a wet shape memory alloy actuator,” J. Dyn. Syst-T ASME., vol. 132, no. 5, Sep. 2010.
+[30] J. Jeong, C. H. Park, and K. U. Kyung, “Modeling and analysis of SMA actuator embedded in stretchable coolant vascular pursuing artiﬁcial muscle,” in Proc. IEEE Int. Conf. Robot. Automat., 2020, pp. 5641–5646.
+[31] C. H. Park and Y. S. Son, “SMA spring-based SMA muscle actuated by hot and cool water using faucet-like valve,” in Proc. SPIE 10164, Act Passive Smart Struct. Integr. Syst., 2017, pp. 1–10.
+[32] C. H. Park, K. J. Choi, and Y. S. Son, “Shape memory alloy-based spring bundle actuator controlled by water temperature,” IEEE/ASME Trans. Mechatronics, vol. 24, no. 4, pp. 1798–1807, Aug. 2019.
+[33] A. Pathak, D. Bre, and J. Luntz, “Transformation strain based method for characterization of convective heat transfer from shape memory alloy wires,” Smart Mater. Struct., vol. 19, no. 3, Feb. 2010, Art. no. 035005.
+[34] S. W. Churchill and H. H. Chu, “Correlating equations for laminar and turbulent free convection from a horizontal cylinder,” Int. J. Heat Mass Transf., vol. 18, no. 9, pp. 1049–1053, Sep. 1975.
+
+[35] F. P. Incropera, D. P. Dewitt, T. L. Bergman, and A. S. Lavine, Principles of Heat and Mass Transfer, 7th ed. Chichester, U.K.: Wiley, 2013, pp. 455–464.
+[36] I. W. Hunter and S. Lafontaine, “A comparison of muscle with artiﬁcial actuators,” in Proc. Tech. Dig. IEEE Solid-State Sensor Actuator Workshop, 1992, pp. 175–185..
+[37] J. Jeong, I. B. Yasir, J. Han, C. H. Park, S. K. Bok, and K. U. Kyung, “Design of shape memory alloy-based soft wearable robot for assisting wrist motion,” Appl. Sci., vol. 9, no. 19, pp. 4025, Aug. 2019.
+[38] K. A. Mann, F. W. Werner, and A. K. Palmer, “Frequency spectrum analysis of wrist motion for activities of daily living,” J. Orthop., vol. 7, no. 2, pp. 304–306, Mar. 1989.
+[39] J. G. Andrews and Y. Youm, “A biomechanical investigation of wrist kinematics,” J. Biomech., vol. 12, no. 1, pp. 83–93, May. 1977.
+[40] H. Choi, B. B. Kang, B. K. Jung, and J. Cho, “Exo-wrist: A soft tendon-driven wrist-wearable robot with active anchor for dart-throwing motion in hemiplegic patients,” IEEE Robot. Autom. Lett., vol. 4, no. 4, pp. 4499–4505, Oct. 2019.
+[41] E. H. Skorina, M. Luo, and C. D. Onal, “A soft robotic wearable wrist device for kinesthetic haptic feedback,” Front. Robot. AI, vol. 5, no. 83, Jul. 2018.
+[42] J. H. Erwin, C. Keller, S. Anderson, and J. Costa, “Hand and wrist strengthening exercise during rehabilitation of a patient with hereditary distal myopathy,” Arch. Phys. M., vol. 72, no. 9, pp. 701–702, Aug. 1991.
+[43] J. Rosen, J. C. Perry, N. Manning, S. Burns, and B. Hannaford, “The human arm kinematics and dynamics during daily activities–towards a 7 DOF upper limb powered exoskeleton,” in Proc. IEEE Int. Conf. Robot. Automat, 2005, pp. 532–539.
+[44] M. Xiloyannis, L. Cappello, K. D. Binh, C. W. Antuvan, and L. Masia, “Preliminary design and control of a soft exosuit for assisting elbow movements and hand grasping in activities of daily living,” J. Rehabil. Assist. Technol. Eng., vol. 4, pp. 1–15, Jan. 2017.
+[45] S. J. Bae, S. H. Jang, J. P. Seo, and P. H. Chang, “The optimal speed for cortical activation of passive wrist movements performed by a rehabilitation robot: A functional NIRS study,” Front. Hum. Neurosci., vol. 11, Apr. 2017, Art. no. 194
+[46] S. H. Song, J. Y. Lee, H. Rodrigue, I. S. Choi, Y. J. Kang, and S. H. Ahn, “35 Hz shape memory alloy actuator with bending-twisting mode” Sci. Rep., vol. 6, Feb. 2016, Art. no. 21118.
+[47] H. T. Lee, M. S. Kim, G. Y. Lee, C. S. Kim, and S. H. Ahn, “Shape memory alloy (SMA)-based microscale actuators with 60% deformation rate and 1.6 kHz actuation speed,” Small, vol. 14, no. 23, Jun. 2018, Art. no. 1801023.
+[48] C. R. Knick, D. J. Sharar, A. A. Wilson, G. L. Smith, C. J. Morris, and H. A. Bruck, “High frequency, low power, electrically actuated shape memory alloy MEMS bimorph thermal actuators,” J. Micromech. Microeng., vol. 29, May 2019, Art. no. 075005.
+[49] D. S. Kuchin, P. V. Lega, A. P. Orlov, V. V. Koledov, and A. V. Irzhak, “The smallest and the fastest shape memory alloy actuator for micro- and nanorobotics,” in Proc. Int. Conf. Manipulation, Automat. Robot. at Small Scales (MARSS), 2017, pp. 1–4.
+[50] C. C. Ma, R. Wang, Q. P. Sun, Y. Zohar, and M. Wong, “Frequency response of TiNi shape memory alloy thin ﬁlm micro-actuators,” in Proc. IEEE 13th Annu. Int. Conf. Micro Electro Mech. Syst., 2000, pp. 370–374.
+Jaeyeon Jeong received the B.S. degree in mechanical engineering from the Pohang University of Science and Technology, Pohang, South Korea, in 2017, and the M.S. degree in mechanical engineering from Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, in 2019. He is currently working toward the doctor’s degree in mechanical engineering in Korea Advanced Institute of Science and Technology (KAIST).
+His research interests include soft robotics, wearable robots, human-robot interaction, and soft sensor.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+
+1058
+
+IEEE/ASME TRANSACTIONS ON MECHATRONICS, VOL. 27, NO. 2, APRIL 2022
+
+Kyujin Hyeon received the B.S. and M.S. degrees from the Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, in 2019 and 2021 respectively, both in mechanical engineering. He is currently working toward the second M.S. degree and doctor’s degree, both in mechanical engineering in Korea Advanced Institute of Science and Technology (KAIST).
+His research interests include soft robotics, simulation of soft materials, and soft actuator.
+
+So-Young Ahn received the M.B. and M.D.Ph.D. degrees from the College of Medicine, Chungnam National University, Daejeon South Korea, in 2009 and 2017 respectively.
+Since 2017, she has been a Professor with the Department of Rehabilitation Medicine, Chungnam National University. Her research interests include respiratory rehabilitation, cancer rehabilitation, and neurodegenerative disease rehabilitation.
+
+Jungwoo Han received the B.S. degree in mechanical engineering from the Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, where he is currently working toward the M.S. degree in mechanical engineering.
+His research interests include soft robotics and wearable robots.
+Cheol Hoon Park received the B.S. and M.S. degrees from Yonsei University, Seoul, South Korea, in 1998 and 2000 respectively, and the Ph.D. degree from Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, all in mechanical engineering, in 2004.
+He is currently a Principal Researcher with the Department of Robotics and Mechatronics, KIMM, Daejeon, South Korea. His research interests include magnetic bearings, high-speed rotating machines, precision control, and artiﬁcial muscles.
+
+Soo-Kyung Bok received the M.B. and M.D.Ph.D. degrees from the College of Medicine, Chungnam National University, Daejeon, South Korea, in 1993 and 2000 respectively.
+Since 2011, he has been a Professor with the Department of Rehabilitation Medicine, Chungnam National University. His research interests include brain injury rehabilitation, cancer rehabilitation, cognitive rehabilitation, and lymphedema.
+Ki-Uk Kyung (Member, IEEE) received the B.S., M.S., and Ph.D. degrees from the Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, all in mechanical engineering.
+Since 2018, he has been an Associate Professor of mechanical engineering and the Director of the Human–Robot Interaction Laboratory, KAIST. His research interests include soft robotics/mechatronics, haptics, innovative systems, and human-robot interaction.
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:49 UTC from IEEE Xplore. Restrictions apply.
+

@@ -1,0 +1,48 @@
+2017 14th International Conference on Ubiquitous Robots and Ambient Intelligence (URAI) June 28 - July 1, 2017 at Maison Glad Jeju, Jeju, Korea
+Evaluation of Artificial Muscle Using SMA Spring Bundle with High Load Capacity and Power Density
+Cheol Hoon Park1 and Young Su Son1
+1 Department of Robotics and Mechatronics, Korea Institute of Machinery & Materials, Daejeon, 305-343, Korea (Tel : +82-42-868-7980; E-mail: parkch@kimm.re.kr)
+
+Abstract - Recently, studies on artificial muscles that are linearly driven like human muscles and move smoothly and flexibly have been attracting attention. In this study, AMSSB (artificial muscle based on SMA spring bundle) driven by hot water and cool water is presented and its performance evaluation results are presented. It showed applicable performance to a robot by showing a power density of 1 kW/kg and a large displacement of 70 mm for a driving frequency of 1 Hz and a high load mass of 2.3 kg.
+Keywords – Artificial muscle, SMA spring bundle, Shape memory alloy, Actuating frequency
+
+actuated in the manner that when hot water is supplied, the SMA spring bundle shrinks, and when cool water is supplied, the SMA spring bundle stretches.
+
+1. Introduction
+Most of the actuators currently applied to industrial robot manipulators are rotary motors, which work with transmission elements such as gears and pulleys. This kind of conventional robot designs increase the weight of the robot manipulators and complicate the design. In recent years, studies on artificial muscles that are linearly driven like human muscles and move smoothly and flexibly have been attracting attention. When the artificial muscles are applied as robot actuators, the weight of the robot manipulators decrease and the robot design can be simplified [1,2]. In addition, since the flexible artificial muscles wrap around the robot manipulator link, damage can be reduced even though there is a collision with a human, so safer robots become possible. This paper presents an artificial muscle based on SMA(shape memory alloy) spring bundle (AMSSB) driven by hot water and cool water. The characteristics of AMSSB such as spring constant, displacement- actuating frequency and displacement-load were evaluated, and the applicability of AMSSB to robot manipulator is presented, too.
+2. Artificial Muscle based on SMA Spring Bundle
+The AMSSB proposed in this study consists of SMA spring bundle and silicon tube as shown in Figure 1. Five SMA springs were used in the SMA spring bundle here, and the load capacity of the artificial muscle increases with the number of SMA springs used. The SMA springs were fabricated using Flexinol wire with a diameter of 0.5 mm and transition temperature of 70 Ԩ from Dynalloy, Inc. The effective length of the SMA spring is 20 mm, and the spring index is 5. The total mass of the five SMA springs is 2.25 g and the mass of the silicon tube is 3.3 g. Silicon tube is equipped with adapters to supply water. If the load mass is suspended at one end of the AMSSB, AMSSB is
+
+Fig. 1. (a) SMA spring, (b) SMA spring bundle, (c) AMSSB
+Fig. 2. Experimental setup for tensile tests of AMSSB
+3. Experimental setup and results for AMSSB
+Figure 2 shows the experimental setup for measuring the spring constant of AMSSB. The temperature of the SMA spring bundle is kept constant by passing constant temperature water through the AMSSB installed in the tensile tester. The spring constant can be calculated after simultaneously measuring the elongated length of AMSSB and the force acting on AMSSB as the tensile tester pulls it. Figure 3 shows the relationship between the force and the displacement measured while passing hot water with the temperature of 100 Ԩ through AMSSB.
+
+978-1-5090-3056-9/17/$31.00 ©2017 IEEE
+
+81
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:54 UTC from IEEE Xplore. Restrictions apply.
+
+Here, the spring constant of AMSSB is calculated to be about 0.91 N/mm when the force is 20 N or less, and about 0.33 N/mm when the force is 20 to 40 N, respectively.
+
+Figure 5(a) shows the experimental results for the relationship between the load mass and the displacement under the condition of actuating frequency 1 Hz. Large displacements exceeding 70 mm are generated even for the load mass of 2.3 kg and the power density at this time is about 1 kW/kg.
+
+Fig. 3. Measurement result of force-displacement
+relationship for 0.5 mm-spring index 5 AMSSB at hot water temperature of 100 Ԩ
+
+Figure 4 shows the experimental setup for measuring the characteristics of AMSSB. Two water tanks for hot water and cold water are placed at the top of the experimental setup. The AMSSB is attached under the solenoid valve, and the solenoid valve is switched so that hot water and cold water flowed down to AMSSB to be heated or cooled. A load mass is attached to the other end of AMSSB. A laser displacement sensor was installed under it to measure the displacement of AMSSB. Figure 5(a) shows the experimental results for the relationship between the actuating frequency and the displacement under the condition of load mass 1.1 kg. For example, to measure the response of AMSSB at 1 Hz actuating frequency, the hot water is flowed into AMSSB for 0.5 seconds, including the time to switch the solenoid valve so that the hot water flows, and then the cold water is flowed into AMSSB for 0.5 s including the time to switch the solenoid valve. Experiments were performed on four actuating frequencies, 0.5, 0.7, 1.0 and 1.67Hz. Large displacements exceeding 40 mm are generated at actuating frequencies of 1 Hz or less, and the displacement is reduced to 20 mm at the actuating frequency of 1.67 Hz.
+
+Fig. 5. Experimental results for relationship between actuating frequency and displacement with load mass 1.1 kg(a), load mass and displacement(b) of AMSSB with actuating frequency 1 Hz
+4. Conclusion
+In this study, an artificial muscle based on SMA spring bundle driven by hot water and cool water was presented and its performance evaluation results were presented. It showed applicable performance as a robot actuator by showing a large displacement of 70 mm even for a driving frequency of 1 Hz and a high load mass of 2.3 kg. The power density at this time is 20 times higher than the power density of human muscles. In the future, further research will be carried out to improve its position control performance so that it can be practically applied as a robot actuator.
+
+Fig. 4. Experimental setup to measure characteristics of AMSSB
+
+References
+[1] C. H. Park, S.Y. Ham and Y. S. Son, “Relationship between input power and power density of SMA spring,” SPIE Smart Structures and Materials, 97990R, 2016.
+[2] S. M. An, J. Ryu, M. Cho, and K. J. Cho, “Engineering design framework for a shape memory alloy coil spring actuator using a static two-state model,” Smart Materials and Structures, Vol. 21, No. 5, 055009, 2012.
+
+82
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:54 UTC from IEEE Xplore. Restrictions apply.
+

@@ -1,0 +1,63 @@
+2017 14th International Conference on Ubiquitous Robots and Ambient Intelligence (URAI) June 28 - July 1, 2017 at Maison Glad Jeju, Jeju, Korea
+User-friendly Teaching Tool for a Robot Manipulator in Human Robot Collaboration
+
+Hyun Min Do, Hwi-Su Kim, Dong Il Park, Tae Yong Choi and Chanhun Park
+Department of Robotics and Mechatronics, Korea Institute of Machinery and Materials, Daejeon, 34103, Korea (Tel : +82-42-868-7507; E-mail: hmdo@kimm.re.kr)
+
+Abstract – Needs for human-robot collaboration in production automation are increasing and thus the technology for human-robot collaboration is being actively developed. User-friendly teaching tool of a robot manipulator is one of essential technologies for efficient human-robot collaboration. This paper proposes an intuitive teaching tool that can be attached to the robot and can accurately teach motions without being affected by sensor noise. This device is designed to perform teaching work by a combination of a jog dial and buttons. A prototype was implemented to verify the proposed concept.
+Keywords – Teaching tool, User-friendly, Human robot collaboration
+1. Introduction
+Recently, the use of robots has been widening beyond simple repetitive tasks in production sites, and needs for an automation of small electronic product manufacturing process, which has previously mostly depended on manual work are increasing [1]. However, the ability of robots is still insufficient compared with human workers and they cannot perform all tasks by themselves. Therefore, efforts are being made to increase production efficiency by collaboration between human and robot. In other words, there is an increasing need for human-robot collaboration in which human beings and robots coexist in the same work space, rather than the traditional use of robots that separates human and robot by safety fences [2,3].
+There are some essential elements required for humans and robots to work together. The most important element is the safety functions of robots that prevent injuries caused by collision between the robot and the human. Another important element is an intuitive interface between human and robot. In the case of conventional robot systems, once the robot was programmed by a teaching expert, it is difficult to change it and impossible to respond quickly to field situations. Therefore, an easy, intuitive interface is indispensable in allowing workers to handle robots easily. In this paper, therefore, we propose an intuitive teaching tool with a user-friendly interface for giving work instructions to robots.
+One example of an intuitive teaching is the direct teaching method [4]. This method identifies the direction and force that a person wants to move the robot by measuring the force exerted by the person on the exterior of the robotic arm. It mainly uses a torque sensor in the robot joint, the measured values of the multi-axis
+
+force/torque sensor at the end of the robotic arm, or the current change of the joint motor. This direct teaching method is convenient because the robot moves in the same way the user want it to move. On the other hand, external forces that have not been applied may be detected due to sensor noise and it is difficult to move the robot end-effector accurately as intended in a workspace. To address these problems, this paper proposes an intuitive teaching tool based on a jog dial and switches that can be installed on the robot and teach robotic movements intuitively and accurately.
+2. Intuitive Teaching Device
+2.1 Design Concept The proposed teaching tool consists of three parts. The first is the motion setting unit which consists of a teaching button for switching between robot teaching mode and operation mode, a save/load button for saving or loading waypoints, a control button for adjusting the movement amount or direction, a mode button for switching various teaching modes, a setting button for changing/fixing the coordinate system, and a playback mode button. More functions can be added as needed. The second part is the motion operation unit, which can generate intuitive jog motions of the robot such as position and orientation teaching by understanding the user’s intention through jog motion inputs. The influence of noise from analog sensors, such as torque sensors, is fundamentally blocked because every user input is processed as a digital signal. Thus, accurate teaching is possible according to the user’s intention. The third part is the robot status display unit, which displays the teaching state or the robot’s status and can be composed of LED lamps and display devices.
+Fig. 1. Proposed teaching tool
+
+978-1-5090-3056-9/17/$31.00 ©2017 IEEE
+
+751
+
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:54 UTC from IEEE Xplore. Restrictions apply.
+
+In addition, the proposed teaching tool can be attached to the robot end and thus the user can intuitively teach the intended path while watching the motion of the robot end. The schematic diagram of the proposed teaching tool is described in Fig. 1.
+
+2.2 Mechanism
+This section describes the mechanism of motion operation unit for direct teaching. The design of the jog dial mechanism is crucial for efficient teaching input. The proposed method detects the user’s intended movement by combining digital inputs from switches pressed according to the movement of the jog dial. Specifically, the switches around the jog dial implement movements in the x, y, and z axes and rotation around each axis, as described in Fig. 2.
+
+‫ٻ‬
+Fig. 4. Prototype of intuitive teaching tool
+This tool has motion setting buttons at the bottom; the red jog dial in the middle is the motion operation unit; the upper LED lamps comprise the status display unit; and the top part is the ultrasonic sensor unit for distance measurement. This prototype tool was used to verify the feasibility of the proposed concept combined with the robot simulator before the application of an actual robot manipulator. Teaching and playback motion were successfully tested using a robot kinematics simulator.
+
+Fig. 2. Arrangement of jog dial switches
+In other words, physical buttons are placed inside, above, and below a jog dial, which are pressed according to the movement and rotation of the jog dial. Thus, the movement and rotation directions can be detected by the on/off combinations of the buttons. Fig 3. shows the combinations of buttons that detect the movements and rotational motions in tool coordinate.
+
+4. Summary and future works
+This paper proposed the intuitive teaching tool which can be installed at the robot end to be used in a human-robot collaboration environment. A jog dial-based teaching mechanism was designed to maximize the intuitiveness of human operator and to prevent the influence of sensor noise. A prototype was implemented and the performance was verified through the demonstration combined with a robot simulator. In the future, the teaching tool will be improved to enhance its teaching accuracy and will be tested in the application to the actual robot.
+
+‫ٻ‬ (a) +x direction
+
+(b) +z direction
+
+(c) +șx direction
+
+(d) +șz direction
+
+Fig. 3. Combination of buttons for detecting the motion
+
+3. Implementation
+An intuitive teaching tool was implemented and fig. 4 shows the prototype to verify the concept of the proposed teaching tool.
+
+Acknowledgement
+This work was supported by the Ministry of Trade, Industry & Energy and KEIT under program number 10063413.
+References
+[1] H. M. Do, T.-Y. Choi and J. H. Kyung, “Automation of cell production system for cellular phones using dual-arm robots,” Int. J. Advanced Manufacturing Technology, Vol. 83, pp. 1349-1360, 2016.
+[2] C. Thomas, B. Matthias and B. Kuhlenkötter, “HumanǦRobot Collaboration – New Applications in Industrial Robotics,” Int. Conf. on Competitive Manufacturing, 2016.
+[3] E. Coupete, V. Weistroffer and O. Hugues, “New Challenges for Human-Robot Collaboration in an Industrial Context,” IEEE RO-MAN, 2016.
+[4] C. Park et. al., “Direct Teaching Algorithm for a Manipulator in a Constraint Condition using the Teaching Force Shaping Method,” Advanced Robotics, Vol. 24, pp. 1365-1384, 2010.
+
+752
+Authorized licensed use limited to: University of Ulsan. Downloaded on November 11,2024 at 04:47:54 UTC from IEEE Xplore. Restrictions apply.
+
